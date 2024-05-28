@@ -38,10 +38,10 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.password_textbox = new System.Windows.Forms.TextBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.username_textbox = new System.Windows.Forms.TextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -154,28 +154,28 @@
             this.button1.TabIndex = 10;
             this.button1.Text = "LOGIN";
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.login_Click);
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.White;
-            this.panel4.Controls.Add(this.textBox2);
+            this.panel4.Controls.Add(this.password_textbox);
             this.panel4.Controls.Add(this.pictureBox3);
             this.panel4.Location = new System.Drawing.Point(300, 236);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(450, 45);
             this.panel4.TabIndex = 9;
             // 
-            // textBox2
+            // password_textbox
             // 
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.textBox2.Location = new System.Drawing.Point(55, 8);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(370, 21);
-            this.textBox2.TabIndex = 7;
-            this.textBox2.UseSystemPasswordChar = true;
+            this.password_textbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.password_textbox.Font = new System.Drawing.Font("Century Gothic", 14F);
+            this.password_textbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.password_textbox.Location = new System.Drawing.Point(61, 8);
+            this.password_textbox.Name = "password_textbox";
+            this.password_textbox.Size = new System.Drawing.Size(377, 29);
+            this.password_textbox.TabIndex = 0;
+            this.password_textbox.UseSystemPasswordChar = true;
             // 
             // pictureBox3
             // 
@@ -189,22 +189,23 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.White;
-            this.panel3.Controls.Add(this.textBox1);
+            this.panel3.Controls.Add(this.username_textbox);
             this.panel3.Controls.Add(this.pictureBox2);
             this.panel3.Location = new System.Drawing.Point(300, 185);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(450, 45);
             this.panel3.TabIndex = 8;
             // 
-            // textBox1
+            // username_textbox
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.textBox1.Location = new System.Drawing.Point(55, 7);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(370, 25);
-            this.textBox1.TabIndex = 6;
+            this.username_textbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.username_textbox.Font = new System.Drawing.Font("Century Gothic", 14F);
+            this.username_textbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.username_textbox.Location = new System.Drawing.Point(61, 7);
+            this.username_textbox.Name = "username_textbox";
+            this.username_textbox.ShortcutsEnabled = false;
+            this.username_textbox.Size = new System.Drawing.Size(377, 29);
+            this.username_textbox.TabIndex = 0;
             // 
             // pictureBox2
             // 
@@ -268,7 +269,7 @@
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.login_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -302,8 +303,8 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox password_textbox;
+        private System.Windows.Forms.TextBox username_textbox;
         private System.Windows.Forms.Button button1;
     }
 }

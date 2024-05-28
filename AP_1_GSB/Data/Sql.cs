@@ -18,11 +18,10 @@ namespace AP_1_GSB.Data
             {
                 Connection = new MySqlConnection("server=127.0.0.1;uid=root;pwd=;database=ap1_winforms");
                 Connection.Open();
-                MessageBox.Show("wsh la team TEAMMMMMMMMM");
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show("wsh la team");
+                MessageBox.Show("dégouté la team la team");
             }
         }
     }

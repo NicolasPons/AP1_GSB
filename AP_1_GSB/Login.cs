@@ -20,32 +20,59 @@ namespace AP_1_GSB
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void login_Load(object sender, EventArgs e)
         {
-            Data.Sql.Connect();
+            //Data.Sql.Connect();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
+            Data.Sql.Connection.Close();
             Application.Exit();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void login_Click(object sender, EventArgs e)
         {
+
+
             //Sur le click du LOGIN
 
             //Co sur la BDD MySQL.
-            Data.Sql.Connection.Open();
+            Data.Sql.Connect();
             //Vérification des informations du login. (username / password)
+            string nomUtilisateur = username_textbox.Text;
+            string motDePasse = password_textbox.Text;
+
+            string RequeteIdMdp = "SELECT * FROM UTILISATEUR WHERE identifiant = @nomUtilisateur AND mdp = @motDePasse";
+            MySqlCommand cmd = new MySqlCommand(RequeteIdMdp, Data.Sql.Connection);
+            cmd.Parameters.AddWithValue("@nomUtilisateur", nomUtilisateur);
+            cmd.Parameters.AddWithValue("@motDePasse", motDePasse);
+            MySqlDataReader reader = cmd.ExecuteReader();
 
 
-            //En fonction du login (switch case) ouvrir le bon forms.
-            //1 - Visiteur
-            //2 - Comptable
-            //3 - Admin*
+            if (reader.Read())
+            {
+                int role = (int)reader["id_role"];
 
+                switch (role)
+                {
+                    case 1:
+                        MessageBox.Show("visiteur");
+                        break;
 
+                    case 2:
+                        MessageBox.Show("comptable");
+                        break;
 
+                    case 3:
+                        MessageBox.Show("administrateur");
+                        break;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nom d'utilisateur ou mot de passe incorrect", "Erreur de connection", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
