@@ -22,17 +22,13 @@ namespace AP_1_GSB
             InitializeComponent();
         }
 
-        private void login_Load(object sender, EventArgs e)
-        {
-            //Data.Sql.Connect();
-        }
 
-        private void btnQuitterAppCiquer(object sender, EventArgs e)
+        private void BtnQuitterAppCiquer(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void btnSeConnecterCliquer(object sender, EventArgs e)
+        private void BtnSeConnecterCliquer(object sender, EventArgs e)
         {
             AuthentificationService loginService = new AuthentificationService();
 
@@ -56,10 +52,6 @@ namespace AP_1_GSB
                         MessageBox.Show("administrateur");
                         break;
                 }
-            }
-            else
-            {
-
             }
         }
     }

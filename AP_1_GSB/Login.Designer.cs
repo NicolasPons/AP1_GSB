@@ -156,14 +156,14 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(339, 264);
+            this.button1.Location = new System.Drawing.Point(333, 246);
             this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(111, 28);
+            this.button1.Size = new System.Drawing.Size(132, 28);
             this.button1.TabIndex = 10;
-            this.button1.Text = "LOGIN";
+            this.button1.Text = "Se connecter";
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.btnSeConnecterCliquer);
+            this.button1.Click += new System.EventHandler(this.BtnSeConnecterCliquer);
             // 
             // panel4
             // 
@@ -266,7 +266,7 @@
             this.btnQuitter.TabIndex = 5;
             this.btnQuitter.Text = "X";
             this.btnQuitter.UseVisualStyleBackColor = true;
-            this.btnQuitter.Click += new System.EventHandler(this.btnQuitterAppCiquer);
+            this.btnQuitter.Click += new System.EventHandler(this.BtnQuitterAppCiquer);
             // 
             // label3
             // 
@@ -289,7 +289,6 @@
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.login_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

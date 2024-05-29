@@ -19,12 +19,12 @@ namespace AP_1_GSB.Services
             {
                 try
                 {
-                    string RequeteIdMdp = "SELECT id_utilisateur, identifiant, mdp, nom, prenom, email, role.nom FROM UTILISATEUR INNER JOIN role ON utilisateur.id_role = role.id_role WHERE identifiant = @nomUtilisateur AND mdp = @motDePasse";
+                    string RequeteIdMdp = "SELECT id_utilisateur, identifiant, mdp, utilisateur.nom, prenom, email, role.nom FROM UTILISATEUR INNER JOIN role ON utilisateur.id_role = role.id_role WHERE identifiant = @utilisateur AND mdp = @mdp";
 
                     MySqlCommand cmd = new MySqlCommand(RequeteIdMdp, Data.SqlConnection.Connection);
 
-                    cmd.Parameters.AddWithValue("@nomUtilisateur", utilisateur);
-                    cmd.Parameters.AddWithValue("@motDePasse", mdp);
+                    cmd.Parameters.AddWithValue("@Utilisateur", utilisateur);
+                    cmd.Parameters.AddWithValue("@mdp", mdp);
 
                     MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -46,7 +46,7 @@ namespace AP_1_GSB.Services
                                 break;
                         }
 
-                        Utilisateur newUtilisateur = new Utilisateur()
+                        Utilisateur nouvelUtilisateur = new Utilisateur()
                         {
                             IdUtilisateur = (int)reader["id_utilisateur"],
                             Identifiant = (string)reader["identifiant"],
@@ -57,7 +57,7 @@ namespace AP_1_GSB.Services
                             Role = utilisateurRole
                         };
 
-                        return newUtilisateur;
+                        return nouvelUtilisateur;
                     }
                     else
                     {
@@ -71,6 +71,7 @@ namespace AP_1_GSB.Services
             }
             else
             {
+                MessageBox.Show("Veuillez remplir les champs", "Erreur de connection", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
             return null;
