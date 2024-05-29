@@ -16,7 +16,7 @@ namespace AP_1_GSB.Data
         {
             try
             {
-                Connection = new MySqlConnection("server=127.0.0.1;uid=root;pwd=;database=ap1_winforms");
+                Connection = new MySqlConnection("server=127.0.0.1;uid=root;pwd=;database=gsb_ap1");
                 Connection.Open();
             }
             catch (MySqlException e)
