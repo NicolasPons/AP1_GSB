@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AP_1_GSB
+namespace AP_1_GSB.Visiteur
 {
-    public partial class DashBoardVisiteur : Form
+    public partial class AjouterNoteFrais : Form
     {
-        public DashBoardVisiteur()
+        public AjouterNoteFrais()
         {
             InitializeComponent();
         }

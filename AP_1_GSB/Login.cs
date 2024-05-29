@@ -39,9 +39,8 @@ namespace AP_1_GSB
                 switch (utilisateur.Role)
                 {
                     case UtilisateurRole.Visiteur:
-                        DashBoardVisiteur dashBoardVisiteur = new DashBoardVisiteur();
-                        
-                        dashBoardVisiteur.Show();
+                        Dashboard dashBoard = new Dashboard(utilisateur.IdUtilisateur, utilisateur.Nom, utilisateur.Prenom);
+                        dashBoard.Show();
                         break;
 
                     case UtilisateurRole.Comptable:
@@ -53,6 +52,7 @@ namespace AP_1_GSB
                         break;
                 }
             }
+            this.Hide();
         }
     }
 }
