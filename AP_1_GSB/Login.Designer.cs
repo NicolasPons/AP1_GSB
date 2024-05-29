@@ -67,7 +67,7 @@
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(225, 431);
             this.panel1.TabIndex = 0;
@@ -126,7 +126,7 @@
             // 
             this.pictureBox1.Image = global::AP_1_GSB.Properties.Resources.gsbtransparent;
             this.pictureBox1.Location = new System.Drawing.Point(26, 24);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(177, 110);
             this.pictureBox1.TabIndex = 0;
@@ -145,7 +145,7 @@
             this.panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel2.ForeColor = System.Drawing.Color.White;
             this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(562, 431);
             this.panel2.TabIndex = 0;
@@ -157,7 +157,7 @@
             this.button1.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(333, 246);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(132, 28);
             this.button1.TabIndex = 10;
@@ -171,7 +171,7 @@
             this.panel4.Controls.Add(this.saisieMdp);
             this.panel4.Controls.Add(this.pictureBox3);
             this.panel4.Location = new System.Drawing.Point(225, 192);
-            this.panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(338, 37);
             this.panel4.TabIndex = 9;
@@ -182,7 +182,7 @@
             this.saisieMdp.Font = new System.Drawing.Font("Century Gothic", 14F);
             this.saisieMdp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.saisieMdp.Location = new System.Drawing.Point(46, 6);
-            this.saisieMdp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.saisieMdp.Margin = new System.Windows.Forms.Padding(2);
             this.saisieMdp.Name = "saisieMdp";
             this.saisieMdp.Size = new System.Drawing.Size(283, 27);
             this.saisieMdp.TabIndex = 0;
@@ -192,7 +192,7 @@
             // 
             this.pictureBox3.Image = global::AP_1_GSB.Properties.Resources.comdlpng6956463__1_;
             this.pictureBox3.Location = new System.Drawing.Point(11, 6);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(30, 25);
             this.pictureBox3.TabIndex = 6;
@@ -204,7 +204,7 @@
             this.panel3.Controls.Add(this.saisieUtilisateur);
             this.panel3.Controls.Add(this.pictureBox2);
             this.panel3.Location = new System.Drawing.Point(225, 150);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(338, 37);
             this.panel3.TabIndex = 8;
@@ -215,7 +215,7 @@
             this.saisieUtilisateur.Font = new System.Drawing.Font("Century Gothic", 14F);
             this.saisieUtilisateur.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.saisieUtilisateur.Location = new System.Drawing.Point(46, 6);
-            this.saisieUtilisateur.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.saisieUtilisateur.Margin = new System.Windows.Forms.Padding(2);
             this.saisieUtilisateur.Name = "saisieUtilisateur";
             this.saisieUtilisateur.ShortcutsEnabled = false;
             this.saisieUtilisateur.Size = new System.Drawing.Size(283, 27);
@@ -225,7 +225,7 @@
             // 
             this.pictureBox2.Image = global::AP_1_GSB.Properties.Resources.User_Avatar_Profile_PNG_Isolated__1_;
             this.pictureBox2.Location = new System.Drawing.Point(11, 6);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(30, 25);
             this.pictureBox2.TabIndex = 5;
@@ -259,10 +259,10 @@
             this.btnQuitter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQuitter.Font = new System.Drawing.Font("Verdana", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnQuitter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.btnQuitter.Location = new System.Drawing.Point(532, 0);
-            this.btnQuitter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnQuitter.Location = new System.Drawing.Point(525, 2);
+            this.btnQuitter.Margin = new System.Windows.Forms.Padding(2);
             this.btnQuitter.Name = "btnQuitter";
-            this.btnQuitter.Size = new System.Drawing.Size(30, 32);
+            this.btnQuitter.Size = new System.Drawing.Size(35, 42);
             this.btnQuitter.TabIndex = 5;
             this.btnQuitter.Text = "X";
             this.btnQuitter.UseVisualStyleBackColor = true;
@@ -285,7 +285,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
