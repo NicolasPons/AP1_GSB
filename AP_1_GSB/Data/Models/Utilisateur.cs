@@ -10,8 +10,6 @@ namespace AP_1_GSB.Data.Models
     {
         public int IdUtilisateur { get; set; }
 
-        public string Nom { get; set; }
-
         public string Identifiant { get; set; }
 
         public string Mdp { get; set; }
