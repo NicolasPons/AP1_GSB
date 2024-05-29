@@ -27,17 +27,16 @@ namespace AP_1_GSB
             //Data.Sql.Connect();
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
+        private void btnQuitterAppCiquer(object sender, EventArgs e)
         {
-            Close();
             Application.Exit();
         }
 
-        private void login_Click(object sender, EventArgs e)
+        private void btnSeConnecterCliquer(object sender, EventArgs e)
         {
-            LoginService loginService = new LoginService();
+            AuthentificationService loginService = new AuthentificationService();
 
-            Utilisateur utilisateur = loginService.VerificationUtilisateur(username_textbox.Text, password_textbox.Text);
+            Utilisateur utilisateur = loginService.VerificationUtilisateur(saisieUtilisateur.Text, saisieMdp.Text);
 
             if (utilisateur != null)
             {

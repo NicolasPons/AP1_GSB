@@ -9,17 +9,17 @@ using System.Windows.Forms;
 
 namespace AP_1_GSB.Services
 {
-    internal class LoginService
+    internal class AuthentificationService
     {
         public Utilisateur VerificationUtilisateur(string utilisateur, string mdp)
         {
-            Data.SqlConnection.Connect();
+            Data.SqlConnection.ConnexionSql();
 
             if (!string.IsNullOrEmpty(utilisateur) && !string.IsNullOrEmpty(mdp))
             {
                 try
                 {
-                    string RequeteIdMdp = "SELECT id_utilisateur, identifiant, mdp, role.id_role, role.nom FROM UTILISATEUR INNER JOIN role ON utilisateur.id_role = role.id_role WHERE identifiant = @nomUtilisateur AND mdp = @motDePasse";
+                    string RequeteIdMdp = "SELECT id_utilisateur, identifiant, mdp, nom, prenom, email, role.nom FROM UTILISATEUR INNER JOIN role ON utilisateur.id_role = role.id_role WHERE identifiant = @nomUtilisateur AND mdp = @motDePasse";
 
                     MySqlCommand cmd = new MySqlCommand(RequeteIdMdp, Data.SqlConnection.Connection);
 
@@ -51,6 +51,9 @@ namespace AP_1_GSB.Services
                             IdUtilisateur = (int)reader["id_utilisateur"],
                             Identifiant = (string)reader["identifiant"],
                             Mdp = (string)reader["mdp"],
+                            Nom = (string)reader["nom"],
+                            Prenom = (string)reader["prenom"],
+                            Email = (string)reader["email"],
                             Role = utilisateurRole
                         };
 

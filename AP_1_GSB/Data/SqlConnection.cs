@@ -12,17 +12,22 @@ namespace AP_1_GSB.Data
     {
         public static MySqlConnection Connection;
 
-        public static void Connect()
+        public static void ConnexionSql()
         {
             try
             {
                 Connection = new MySqlConnection("server=127.0.0.1;uid=root;pwd=;database=ap1_winforms");
                 Connection.Open();
             }
-            catch (MySqlException ex)
+            catch (MySqlException e)
             {
-                MessageBox.Show("dégouté la team la team");
+                MessageBox.Show(e.Message, "La connexion à la base de donnée a échoué");
             }
+        }
+
+        public static void DeconnexionSql()
+        {
+            Connection.Close();
         }
     }
 }
