@@ -63,6 +63,16 @@ namespace AP_1_GSB.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _532_5328945_menu_bar_icon_white_ {
+            get {
+                object obj = ResourceManager.GetObject("532-5328945_menu-bar-icon-white-", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap comdlpng6956463 {
             get {
                 object obj = ResourceManager.GetObject("comdlpng6956463", resourceCulture);
@@ -96,6 +106,16 @@ namespace AP_1_GSB.Properties {
         internal static System.Drawing.Bitmap gsbtransparent {
             get {
                 object obj = ResourceManager.GetObject("gsbtransparent", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap three_bars_icon_28 {
+            get {
+                object obj = ResourceManager.GetObject("three-bars-icon-28", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

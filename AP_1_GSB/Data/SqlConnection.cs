@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace AP_1_GSB.Data
 {
-    internal class Sql
+    internal class SqlConnection
     {
         public static MySqlConnection Connection;
 

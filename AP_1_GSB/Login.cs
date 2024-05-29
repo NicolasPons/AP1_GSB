@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AP_1_GSB.Services;
+using AP_1_GSB.Data.Models;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI.Relational;
@@ -27,51 +29,38 @@ namespace AP_1_GSB
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Data.Sql.Connection.Close();
+            Close();
             Application.Exit();
         }
 
         private void login_Click(object sender, EventArgs e)
         {
+            LoginService loginService = new LoginService();
 
+            Utilisateur utilisateur = loginService.VerificationUtilisateur(username_textbox.Text, password_textbox.Text);
 
-            //Sur le click du LOGIN
-
-            //Co sur la BDD MySQL.
-            Data.Sql.Connect();
-            //Vérification des informations du login. (username / password)
-            string nomUtilisateur = username_textbox.Text;
-            string motDePasse = password_textbox.Text;
-
-            string RequeteIdMdp = "SELECT * FROM UTILISATEUR WHERE identifiant = @nomUtilisateur AND mdp = @motDePasse";
-            MySqlCommand cmd = new MySqlCommand(RequeteIdMdp, Data.Sql.Connection);
-            cmd.Parameters.AddWithValue("@nomUtilisateur", nomUtilisateur);
-            cmd.Parameters.AddWithValue("@motDePasse", motDePasse);
-            MySqlDataReader reader = cmd.ExecuteReader();
-
-
-            if (reader.Read())
+            if (utilisateur != null)
             {
-                int role = (int)reader["id_role"];
-
-                switch (role)
+                switch (utilisateur.Role)
                 {
-                    case 1:
-                        MessageBox.Show("visiteur");
+                    case UtilisateurRole.Visiteur:
+                        DashBoardVisiteur dashBoardVisiteur = new DashBoardVisiteur();
+                        
+                        dashBoardVisiteur.Show();
                         break;
 
-                    case 2:
+                    case UtilisateurRole.Comptable:
                         MessageBox.Show("comptable");
                         break;
 
-                    case 3:
+                    case UtilisateurRole.Administrateur:
                         MessageBox.Show("administrateur");
                         break;
                 }
             }
             else
             {
-                MessageBox.Show("Nom d'utilisateur ou mot de passe incorrect", "Erreur de connection", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
     }
