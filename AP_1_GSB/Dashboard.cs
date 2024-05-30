@@ -19,8 +19,7 @@ namespace AP_1_GSB
         {
             InitializeComponent();
             NomPrenom.Text = "Bienvenue " + utilisateur.Nom + " " + utilisateur.Prenom;
-            DateFicheFrais.Text = "Fiche de frais du mois du " + DateTime.Now.ToString("MMMM yyyy") + "au " + DateTime.Now.ToString("";
-            DateTime.
+            DateFicheFrais.Text = "Fiche de frais du 10 " + DateTime.Now.ToString("MMMM yyyy") + " au 9 " + DateTime.Now.AddMonths(1).ToString("MMMM yyyy");
         }
         
 
