@@ -203,6 +203,11 @@
     <Compile Include="Dashboard.Designer.cs">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Data\Models\TypeFraisForfait.cs" />
+    <Compile Include="Data\Models\Justificatif.cs" />
+    <Compile Include="Data\Models\FraisHorsForfait.cs" />
+    <Compile Include="Data\Models\FraisForfait.cs" />
+    <Compile Include="Data\Models\FicheFrais.cs" />
     <Compile Include="Data\Models\Utilisateur.cs" />
     <Compile Include="Data\SqlConnection.cs" />
     <Compile Include="Login.cs">
@@ -214,6 +219,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AuthentificationService.cs" />
+    <Compile Include="Services\RecuperationFicheFrais.cs" />
     <Compile Include="Visiteur\AjouterNoteFrais.cs">
       <SubType>Form</SubType>
     </Compile>

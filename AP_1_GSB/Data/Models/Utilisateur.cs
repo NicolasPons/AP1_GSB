@@ -16,6 +16,8 @@ namespace AP_1_GSB.Data.Models
         public string Prenom { get; set; }
         public string Email { get; set; }
         public UtilisateurRole Role { get; set; }
+        public List<FicheFrais> FichesFrais { get; set; }
+
     }
     public enum UtilisateurRole
     {

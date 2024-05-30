@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AP_1_GSB.Data.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,15 @@ namespace AP_1_GSB.Visiteur
 {
     public partial class AjouterNoteFrais : Form
     {
-        public AjouterNoteFrais()
+        public AjouterNoteFrais(Utilisateur utilisateur)
         {
             InitializeComponent();
+            DateFicheFrais.Text = "Fiche de frais du 10 " + DateTime.Now.ToString("MMMM yyyy") + " au 9 " + DateTime.Now.AddMonths(1).ToString("MMMM yyyy");
+        }
+
+        private void AjouterNoteFrais_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

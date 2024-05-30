@@ -1,5 +1,6 @@
 ﻿using AP_1_GSB.Data.Models;
 using MySql.Data.MySqlClient;
+using Mysqlx.Expr;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +36,7 @@ namespace AP_1_GSB.Services
 
                         switch (role)
                         {
-                            case "visiteur": 
+                            case "visiteur":
                                 utilisateurRole = UtilisateurRole.Visiteur;
                                 break;
                             case "comptable":
@@ -57,6 +58,8 @@ namespace AP_1_GSB.Services
                             Role = utilisateurRole
                         };
 
+
+                        Data.SqlConnection.DeconnexionSql();
                         return nouvelUtilisateur;
                     }
                     else
@@ -64,16 +67,19 @@ namespace AP_1_GSB.Services
                         MessageBox.Show("Nom d'utilisateur ou mot de passe incorrect", "Erreur de connection", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                catch 
+                catch
                 {
+                    Data.SqlConnection.DeconnexionSql();
                     return null;
                 }
             }
             else
             {
                 MessageBox.Show("Veuillez remplir les champs", "Erreur de connection", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Data.SqlConnection.DeconnexionSql();
                 return null;
             }
+            Data.SqlConnection.DeconnexionSql();
             return null;
         }
     }

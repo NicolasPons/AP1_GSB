@@ -36,12 +36,9 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnAjouterNoteFrais = new System.Windows.Forms.Button();
             this.myPanel = new System.Windows.Forms.Panel();
-            this.DateFicheFrais = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
-            this.myPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -55,7 +52,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(732, 54);
+            this.panel1.Size = new System.Drawing.Size(1464, 54);
             this.panel1.TabIndex = 0;
             // 
             // NomPrenom
@@ -63,17 +60,18 @@
             this.NomPrenom.AutoSize = true;
             this.NomPrenom.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.NomPrenom.ForeColor = System.Drawing.Color.White;
-            this.NomPrenom.Location = new System.Drawing.Point(345, 23);
+            this.NomPrenom.Location = new System.Drawing.Point(1036, 17);
             this.NomPrenom.Name = "NomPrenom";
-            this.NomPrenom.Size = new System.Drawing.Size(0, 26);
+            this.NomPrenom.Size = new System.Drawing.Size(292, 26);
             this.NomPrenom.TabIndex = 9;
+            this.NomPrenom.Text = "Bienvenue Jean Michel Jarre";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(52, 18);
+            this.label1.Location = new System.Drawing.Point(109, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(168, 26);
             this.label1.TabIndex = 8;
@@ -82,7 +80,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::AP_1_GSB.Properties.Resources._532_5328945_menu_bar_icon_white_;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(42, 11);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(34, 37);
             this.pictureBox1.TabIndex = 7;
@@ -94,7 +92,7 @@
             this.btnQuitter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQuitter.Font = new System.Drawing.Font("Verdana", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnQuitter.ForeColor = System.Drawing.Color.White;
-            this.btnQuitter.Location = new System.Drawing.Point(679, 6);
+            this.btnQuitter.Location = new System.Drawing.Point(1396, 6);
             this.btnQuitter.Margin = new System.Windows.Forms.Padding(2);
             this.btnQuitter.Name = "btnQuitter";
             this.btnQuitter.Size = new System.Drawing.Size(39, 43);
@@ -111,14 +109,15 @@
             this.panel2.Location = new System.Drawing.Point(0, 54);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(150, 432);
+            this.panel2.Size = new System.Drawing.Size(200, 918);
             this.panel2.TabIndex = 1;
             // 
             // btnAjouterNoteFrais
             // 
-            this.btnAjouterNoteFrais.Location = new System.Drawing.Point(0, 3);
+            this.btnAjouterNoteFrais.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.854546F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAjouterNoteFrais.Location = new System.Drawing.Point(0, 0);
             this.btnAjouterNoteFrais.Name = "btnAjouterNoteFrais";
-            this.btnAjouterNoteFrais.Size = new System.Drawing.Size(150, 53);
+            this.btnAjouterNoteFrais.Size = new System.Drawing.Size(200, 74);
             this.btnAjouterNoteFrais.TabIndex = 2;
             this.btnAjouterNoteFrais.Text = "Ajouter des notes de frais";
             this.btnAjouterNoteFrais.UseVisualStyleBackColor = true;
@@ -126,42 +125,23 @@
             // 
             // myPanel
             // 
-            this.myPanel.Controls.Add(this.DateFicheFrais);
             this.myPanel.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.myPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.myPanel.Location = new System.Drawing.Point(150, 54);
+            this.myPanel.Location = new System.Drawing.Point(200, 54);
             this.myPanel.Name = "myPanel";
-            this.myPanel.Size = new System.Drawing.Size(582, 432);
+            this.myPanel.Size = new System.Drawing.Size(1264, 918);
             this.myPanel.TabIndex = 2;
-            // 
-            // DateFicheFrais
-            // 
-            this.DateFicheFrais.AutoSize = true;
-            this.DateFicheFrais.Location = new System.Drawing.Point(240, 23);
-            this.DateFicheFrais.Name = "DateFicheFrais";
-            this.DateFicheFrais.Size = new System.Drawing.Size(35, 13);
-            this.DateFicheFrais.TabIndex = 0;
-            this.DateFicheFrais.Text = "label4";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(0, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "label3";
             // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(732, 486);
-            this.Controls.Add(this.label3);
+            this.ClientSize = new System.Drawing.Size(1464, 972);
             this.Controls.Add(this.myPanel);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Dashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -170,10 +150,7 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
-            this.myPanel.ResumeLayout(false);
-            this.myPanel.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -187,7 +164,5 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label NomPrenom;
-        private System.Windows.Forms.Label DateFicheFrais;
-        private System.Windows.Forms.Label label3;
     }
 }

@@ -34,6 +34,8 @@ namespace AP_1_GSB
 
             Utilisateur utilisateur = loginService.VerificationUtilisateur(saisieUtilisateur.Text, saisieMdp.Text);
 
+            
+
             if (utilisateur != null)
             {
                 switch (utilisateur.Role)

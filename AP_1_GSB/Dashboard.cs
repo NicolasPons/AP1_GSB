@@ -15,17 +15,18 @@ namespace AP_1_GSB
 {
     public partial class Dashboard : Form
     {
+        Utilisateur utilisateur;
         public Dashboard(Data.Models.Utilisateur utilisateur)
         {
+            this.utilisateur = utilisateur;
             InitializeComponent();
             NomPrenom.Text = "Bienvenue " + utilisateur.Nom + " " + utilisateur.Prenom;
-            DateFicheFrais.Text = "Fiche de frais du 10 " + DateTime.Now.ToString("MMMM yyyy") + " au 9 " + DateTime.Now.AddMonths(1).ToString("MMMM yyyy");
         }
         
 
         private void BtnAjouterNoteFrais(object sender, EventArgs e)
         {
-            AjouterNoteFrais ajouterNoteFrais = new AjouterNoteFrais();
+            AjouterNoteFrais ajouterNoteFrais = new AjouterNoteFrais(utilisateur);
             ajouterNoteFrais.TopLevel = false;
             myPanel.Controls.Add(ajouterNoteFrais);
             ajouterNoteFrais.FormBorderStyle = FormBorderStyle.None;
