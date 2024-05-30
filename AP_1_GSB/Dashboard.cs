@@ -22,11 +22,29 @@ namespace AP_1_GSB
             InitializeComponent();
             NomPrenom.Text = "Bienvenue " + utilisateur.Nom + " " + utilisateur.Prenom;
         }
-        
+
 
         private void BtnAjouterNoteFrais(object sender, EventArgs e)
         {
-            AjouterNoteFrais ajouterNoteFrais = new AjouterNoteFrais(utilisateur);
+            FicheFrais ficheEnCours = null;
+            utilisateur = Services.FicheFraisService.RecupererFichesFrais(utilisateur);
+
+            utilisateur.FichesFrais.ForEach(ficheFrais =>
+            {
+                if (ficheFrais.Date.Month == DateTime.Now.Month && ficheFrais.Date.Year == DateTime.Now.Year)
+                {
+                    ficheEnCours = ficheFrais;
+                }
+            });
+
+            if (ficheEnCours == null)
+            {
+                MessageBox.Show("Null null null");
+                return;
+            }
+ 
+
+            AjouterNoteFrais ajouterNoteFrais = new AjouterNoteFrais(utilisateur, ficheEnCours);
             ajouterNoteFrais.TopLevel = false;
             myPanel.Controls.Add(ajouterNoteFrais);
             ajouterNoteFrais.FormBorderStyle = FormBorderStyle.None;

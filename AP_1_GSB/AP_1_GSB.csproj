@@ -219,7 +219,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AuthentificationService.cs" />
-    <Compile Include="Services\RecuperationFicheFrais.cs" />
+    <Compile Include="Services\FicheFraisService.cs" />
     <Compile Include="Visiteur\AjouterNoteFrais.cs">
       <SubType>Form</SubType>
     </Compile>

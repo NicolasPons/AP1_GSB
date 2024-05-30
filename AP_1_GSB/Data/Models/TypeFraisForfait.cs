@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AP_1_GSB.Data.Models
 {
-    internal class TypeFraisForfait
+    public class TypeFraisForfait
 
     {
         public int IdFraisForfait { get; set; }

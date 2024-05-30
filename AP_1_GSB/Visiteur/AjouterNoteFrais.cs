@@ -13,15 +13,12 @@ namespace AP_1_GSB.Visiteur
 {
     public partial class AjouterNoteFrais : Form
     {
-        public AjouterNoteFrais(Utilisateur utilisateur)
+        Utilisateur Utilisateur;
+        public AjouterNoteFrais(Utilisateur utilisateur, FicheFrais ficheEnCours)
         {
+            this.Utilisateur = utilisateur;
             InitializeComponent();
             DateFicheFrais.Text = "Fiche de frais du 10 " + DateTime.Now.ToString("MMMM yyyy") + " au 9 " + DateTime.Now.AddMonths(1).ToString("MMMM yyyy");
-        }
-
-        private void AjouterNoteFrais_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

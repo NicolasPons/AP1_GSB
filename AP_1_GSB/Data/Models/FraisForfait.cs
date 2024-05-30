@@ -12,11 +12,11 @@ namespace AP_1_GSB.Data.Models
         public int Quantite { get; set; }
         public DateTime Date { get; set; }
         public EtatFraisForfait Etat { get; set; }
-        public TypeFraisForfait typeFraisForfait { get; set; }
+        public TypeFraisForfait TypeForfait { get; set; }
         public Justificatif Justificatif { get; set; }
     }
     public enum EtatFraisForfait
-    {
+    
     {
         Attente,
         Accepter,
