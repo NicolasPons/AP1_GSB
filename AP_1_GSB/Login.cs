@@ -39,7 +39,7 @@ namespace AP_1_GSB
                 switch (utilisateur.Role)
                 {
                     case UtilisateurRole.Visiteur:
-                        Dashboard dashBoard = new Dashboard();
+                        Dashboard dashBoard = new Dashboard(utilisateur);
                         dashBoard.Show();
                         break;
 

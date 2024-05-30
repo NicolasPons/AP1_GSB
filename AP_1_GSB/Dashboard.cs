@@ -15,9 +15,12 @@ namespace AP_1_GSB
 {
     public partial class Dashboard : Form
     {
-        public Dashboard()
+        public Dashboard(Data.Models.Utilisateur utilisateur)
         {
             InitializeComponent();
+            NomPrenom.Text = "Bienvenue " + utilisateur.Nom + " " + utilisateur.Prenom;
+            DateFicheFrais.Text = "Fiche de frais du mois du " + DateTime.Now.ToString("MMMM yyyy") + "au " + DateTime.Now.ToString("";
+            DateTime.
         }
         
 
@@ -32,9 +35,10 @@ namespace AP_1_GSB
 
         }
 
-        private void btnQuitter_Click(object sender, EventArgs e)
+        private void BtnQuitter_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
+
     }
 }
