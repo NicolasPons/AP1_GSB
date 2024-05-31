@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AP_1_GSB.Data.Models
 {
@@ -14,3 +15,5 @@ namespace AP_1_GSB.Data.Models
         public int Montant { get; set; }
     }
 }
+
+

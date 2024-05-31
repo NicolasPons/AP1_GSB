@@ -29,6 +29,7 @@ namespace AP_1_GSB
             FicheFrais ficheEnCours = null;
             utilisateur = Services.FicheFraisService.RecupererFichesFrais(utilisateur);
 
+
             utilisateur.FichesFrais.ForEach(ficheFrais =>
             {
                 if (ficheFrais.Date.Month == DateTime.Now.Month && ficheFrais.Date.Year == DateTime.Now.Year)
@@ -39,12 +40,12 @@ namespace AP_1_GSB
 
             if (ficheEnCours == null)
             {
-                MessageBox.Show("Null null null");
+                Services.FicheFraisService.CreerFicheFraisMoisEnCours(utilisateur);
                 return;
             }
- 
 
-            AjouterNoteFrais ajouterNoteFrais = new AjouterNoteFrais(utilisateur, ficheEnCours);
+
+            NoteFraisDuMois ajouterNoteFrais = new NoteFraisDuMois(utilisateur, ficheEnCours);
             ajouterNoteFrais.TopLevel = false;
             myPanel.Controls.Add(ajouterNoteFrais);
             ajouterNoteFrais.FormBorderStyle = FormBorderStyle.None;

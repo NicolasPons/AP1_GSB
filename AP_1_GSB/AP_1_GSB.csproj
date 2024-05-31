@@ -220,11 +220,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AuthentificationService.cs" />
     <Compile Include="Services\FicheFraisService.cs" />
-    <Compile Include="Visiteur\AjouterNoteFrais.cs">
+    <Compile Include="Visiteur\NoteFraisDuMois.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Visiteur\AjouterNoteFrais.Designer.cs">
-      <DependentUpon>AjouterNoteFrais.cs</DependentUpon>
+    <Compile Include="Visiteur\NoteFraisDuMois.Designer.cs">
+      <DependentUpon>NoteFraisDuMois.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
@@ -242,8 +242,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Visiteur\AjouterNoteFrais.resx">
-      <DependentUpon>AjouterNoteFrais.cs</DependentUpon>
+    <EmbeddedResource Include="Visiteur\NoteFraisDuMois.resx">
+      <DependentUpon>NoteFraisDuMois.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

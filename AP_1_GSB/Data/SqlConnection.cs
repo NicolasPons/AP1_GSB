@@ -18,7 +18,6 @@ namespace AP_1_GSB.Data
             {
                 Connection = new MySqlConnection("server=127.0.0.1;uid=root;pwd=;database=gsb_ap1");
                 Connection.Open();
-                MessageBox.Show("Connexion à la base de donnée réussie", "Connexion réussie");
             }
             catch (MySqlException e)
             {

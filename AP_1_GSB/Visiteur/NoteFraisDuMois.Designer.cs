@@ -1,6 +1,6 @@
 ﻿namespace AP_1_GSB.Visiteur
 {
-    partial class AjouterNoteFrais
+    partial class NoteFraisDuMois
     {
         /// <summary>
         /// Required designer variable.
@@ -30,18 +30,19 @@
         {
             this.DateFicheFrais = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.listView2 = new System.Windows.Forms.ListView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.ID_Frais_Forfait = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Type_frais_forfait = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Quantite = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Justificatif = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.listView2 = new System.Windows.Forms.ListView();
             this.id_hors_forfait = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Description = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Montant = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Justificatif_Hors_Forfait = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // DateFicheFrais
@@ -104,12 +105,20 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Note de frais hors forfait";
             // 
-            // AjouterNoteFrais
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(762, 230);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 6;
+            // 
+            // NoteFraisDuMois
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1314, 918);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listView2);
@@ -117,7 +126,7 @@
             this.Controls.Add(this.DateFicheFrais);
             this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "AjouterNoteFrais";
+            this.Name = "NoteFraisDuMois";
             this.Text = "AjouterNoteFrais";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -140,5 +149,6 @@
         private System.Windows.Forms.ColumnHeader Description;
         private System.Windows.Forms.ColumnHeader Montant;
         private System.Windows.Forms.ColumnHeader Justificatif_Hors_Forfait;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
