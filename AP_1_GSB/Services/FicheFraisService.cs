@@ -149,6 +149,7 @@ namespace AP_1_GSB.Services
                 cmd.Parameters.AddWithValue("idEtat", 1);
 
                 int idFiche = Convert.ToInt32(cmd.ExecuteScalar());
+                MessageBox.Show("La valeur de l'ID de la fiche créée doit être : 8 ");
                 EtatFicheFrais EtatFiche = EtatFicheFrais.Attente;
 
                 FicheFrais ficheFrais = new FicheFrais()
@@ -169,6 +170,13 @@ namespace AP_1_GSB.Services
             {
                 Data.SqlConnection.DeconnexionSql();
             }
+        }
+
+        public static FicheFrais RecupererDerniereFiche(List<FicheFrais> fiches)
+        {
+            if (fiches != null && fiches.Any())
+                return fiches.Last();
+            return null;
         }
     }
 }

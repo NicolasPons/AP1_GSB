@@ -219,6 +219,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AuthentificationService.cs" />
+    <Compile Include="Services\FraisForfaitService.cs" />
     <Compile Include="Services\FicheFraisService.cs" />
     <Compile Include="Visiteur\NoteFraisDuMois.cs">
       <SubType>Form</SubType>

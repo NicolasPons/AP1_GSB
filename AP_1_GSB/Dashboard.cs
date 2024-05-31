@@ -13,6 +13,9 @@ using System.Windows.Forms;
 
 namespace AP_1_GSB
 {
+
+    //FONCTION DELETE UPDATE DE TYPE BOOLEEN POUR VERIFIER LA SUPPRESSION/AJOUT DANS LA BD
+    //VERIFIER L'ID RETOURNE PAR EXECUTESCALAR ET COMPARER AVEC LA VALEUR 
     public partial class Dashboard : Form
     {
         Utilisateur utilisateur;
@@ -23,35 +26,40 @@ namespace AP_1_GSB
             NomPrenom.Text = "Bienvenue " + utilisateur.Nom + " " + utilisateur.Prenom;
         }
 
-
+        //DEBUG EN COURS. VERIFIER LA VALEUR DU DERNIER ID. ID EST 10 en BD MAIS RESSORT 0 EN OBJET. WHY ??? WHY ALWAYS ME ??? 
         private void BtnAjouterNoteFrais(object sender, EventArgs e)
         {
-            FicheFrais ficheEnCours = null;
             utilisateur = Services.FicheFraisService.RecupererFichesFrais(utilisateur);
+            utilisateur = Services.FicheFraisService.CreerFicheFraisMoisEnCours(utilisateur);
+            FicheFrais ficheTest = utilisateur.FichesFrais.Last();
+            int IdFicheFrais = ficheTest.IdFicheFrais;
+            MessageBox.Show("L'ID de la dernière fiche en objet est : " + IdFicheFrais);
+
+            //FicheFrais ficheEnCours = null;
+            //utilisateur = Services.FicheFraisService.RecupererFichesFrais(utilisateur);
 
 
-            utilisateur.FichesFrais.ForEach(ficheFrais =>
-            {
-                if (ficheFrais.Date.Month == DateTime.Now.Month && ficheFrais.Date.Year == DateTime.Now.Year)
-                {
-                    ficheEnCours = ficheFrais;
-                }
-            });
+            //utilisateur.FichesFrais.ForEach(ficheFrais =>
+            //{
+            //    if (ficheFrais.Date.Month == DateTime.Now.Month && ficheFrais.Date.Year == DateTime.Now.Year)
+            //    {
+            //        ficheEnCours = ficheFrais;
+            //    }
+            //});
 
-            if (ficheEnCours == null)
-            {
-                Services.FicheFraisService.CreerFicheFraisMoisEnCours(utilisateur);
-                return;
-            }
+            //if (ficheEnCours == null)
+            //{
+            //    utilisateur = Services.FicheFraisService.CreerFicheFraisMoisEnCours(utilisateur);
+            //    ficheEnCours = Services.FicheFraisService.RecupererDerniereFiche(utilisateur.FichesFrais);
+            //    //ficheEnCours = utilisateur.FichesFrais.Last();
+            //}
 
-
-            NoteFraisDuMois ajouterNoteFrais = new NoteFraisDuMois(utilisateur, ficheEnCours);
-            ajouterNoteFrais.TopLevel = false;
-            myPanel.Controls.Add(ajouterNoteFrais);
-            ajouterNoteFrais.FormBorderStyle = FormBorderStyle.None;
-            ajouterNoteFrais.Dock = DockStyle.Fill;
-            ajouterNoteFrais.Show();
-
+            //NoteFraisDuMois ajouterNoteFrais = new NoteFraisDuMois(utilisateur, ficheEnCours);
+            //ajouterNoteFrais.TopLevel = false;
+            //myPanel.Controls.Add(ajouterNoteFrais);
+            //ajouterNoteFrais.FormBorderStyle = FormBorderStyle.None;
+            //ajouterNoteFrais.Dock = DockStyle.Fill;
+            //ajouterNoteFrais.Show();
         }
 
         private void BtnQuitter_Click(object sender, EventArgs e)
