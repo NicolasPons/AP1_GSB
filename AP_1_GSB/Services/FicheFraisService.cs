@@ -148,8 +148,9 @@ namespace AP_1_GSB.Services
                 cmd.Parameters.AddWithValue("@date", DateCreationFiche);
                 cmd.Parameters.AddWithValue("idEtat", 1);
 
+                MessageBox.Show("La valeur de l'ID de la fiche créée doit être : 14 ");
                 int idFiche = Convert.ToInt32(cmd.ExecuteScalar());
-                MessageBox.Show("La valeur de l'ID de la fiche créée doit être : 8 ");
+                MessageBox.Show("Execute Scalar renvoit : " + idFiche);
                 EtatFicheFrais EtatFiche = EtatFicheFrais.Attente;
 
                 FicheFrais ficheFrais = new FicheFrais()

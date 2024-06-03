@@ -66,6 +66,5 @@ namespace AP_1_GSB
         {
             Application.Exit();
         }
-
     }
 }
