@@ -13,13 +13,13 @@ namespace AP_1_GSB.Data.Models
         public EtatFicheFrais Etat { get; set; }
         public List<FraisForfait> FraisForfaits { get; set; }
         public List<FraisHorsForfait> FraisHorsForfaits { get; set; }
-
     }
     public enum EtatFicheFrais
     {
-        Attente,
+        EnCours,
         Accepter,
         Refuser,
+        HorsDelai,
         RefusPartiel
     }
 }

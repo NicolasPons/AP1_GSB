@@ -19,47 +19,62 @@ namespace AP_1_GSB
     public partial class Dashboard : Form
     {
         Utilisateur utilisateur;
-        public Dashboard(Data.Models.Utilisateur utilisateur)
+        public Dashboard(Utilisateur utilisateur)
         {
             this.utilisateur = utilisateur;
             InitializeComponent();
             NomPrenom.Text = "Bienvenue " + utilisateur.Nom + " " + utilisateur.Prenom;
         }
 
-        //DEBUG EN COURS. VERIFIER LA VALEUR DU DERNIER ID. ID EST 10 en BD MAIS RESSORT 0 EN OBJET. WHY ??? WHY ALWAYS ME ??? 
+        // TESTER ALGORITHME POUR VOIR SI FICHEFRAIS RECUP EST LA BONNE 
+        // TESTER ALGORITHME POUR VOIR SI FICHEENCOURS EST BIEN LA DERNIERE FICHE EN CAS DE CREATION DE FICHE 
         private void BtnAjouterNoteFrais(object sender, EventArgs e)
         {
             utilisateur = Services.FicheFraisService.RecupererFichesFrais(utilisateur);
-            utilisateur = Services.FicheFraisService.CreerFicheFraisMoisEnCours(utilisateur);
-            FicheFrais ficheTest = utilisateur.FichesFrais.Last();
-            int IdFicheFrais = ficheTest.IdFicheFrais;
-            MessageBox.Show("L'ID de la dernière fiche en objet est : " + IdFicheFrais);
 
-            //FicheFrais ficheEnCours = null;
-            //utilisateur = Services.FicheFraisService.RecupererFichesFrais(utilisateur);
+            FicheFrais ficheEnCours = null;
+            DateTime now = DateTime.Now;
+            DateTime startDate, endDate;
+
+            if (now.Day >= 11)
+            {
+                startDate = new DateTime(now.Year, now.Month, 11);
+                endDate = new DateTime(now.Year, now.Month + 1, 10);
+            }
+            else
+            {
+                startDate = new DateTime(now.Year, now.Month - 1, 11);
+                endDate = new DateTime(now.Year, now.Month, 10);
+            }
 
 
-            //utilisateur.FichesFrais.ForEach(ficheFrais =>
-            //{
-            //    if (ficheFrais.Date.Month == DateTime.Now.Month && ficheFrais.Date.Year == DateTime.Now.Year)
-            //    {
-            //        ficheEnCours = ficheFrais;
-            //    }
-            //});
+            utilisateur.FichesFrais.ForEach
+                (
+                    ficheFrais =>
+                    {
+                        if (ficheFrais.Date >= startDate && ficheFrais.Date <= endDate)
+                        {
+                            ficheEnCours = ficheFrais;
+                        }
+                    }
+                );
 
-            //if (ficheEnCours == null)
-            //{
-            //    utilisateur = Services.FicheFraisService.CreerFicheFraisMoisEnCours(utilisateur);
-            //    ficheEnCours = Services.FicheFraisService.RecupererDerniereFiche(utilisateur.FichesFrais);
-            //    //ficheEnCours = utilisateur.FichesFrais.Last();
-            //}
+            if (ficheEnCours == null)
+            {
+                DateTime dateCreationFiche = startDate;
+                utilisateur = Services.FicheFraisService.CreerFicheFraisMoisEnCours(utilisateur, dateCreationFiche);
+                ficheEnCours = utilisateur.FichesFrais.Last();
+            }
 
-            //NoteFraisDuMois ajouterNoteFrais = new NoteFraisDuMois(utilisateur, ficheEnCours);
-            //ajouterNoteFrais.TopLevel = false;
-            //myPanel.Controls.Add(ajouterNoteFrais);
-            //ajouterNoteFrais.FormBorderStyle = FormBorderStyle.None;
-            //ajouterNoteFrais.Dock = DockStyle.Fill;
-            //ajouterNoteFrais.Show();
+            utilisateur = Services.FicheFraisService.RecupererNotesForfait(utilisateur, ficheEnCours);
+            utilisateur = Services.FicheFraisService.RecupererNotesHorsForfait(utilisateur, ficheEnCours);
+
+            NoteFraisDuMois ajouterNoteFrais = new NoteFraisDuMois(utilisateur, ficheEnCours);
+            ajouterNoteFrais.TopLevel = false;
+            myPanel.Controls.Add(ajouterNoteFrais);
+            ajouterNoteFrais.FormBorderStyle = FormBorderStyle.None;
+            ajouterNoteFrais.Dock = DockStyle.Fill;
+            ajouterNoteFrais.Show();
         }
 
         private void BtnQuitter_Click(object sender, EventArgs e)

@@ -13,7 +13,7 @@ namespace AP_1_GSB.Data.Models
         public DateTime Date { get; set; }
         public EtatFraisForfait Etat { get; set; }
         public TypeFraisForfait TypeForfait { get; set; }
-        public Justificatif Justificatif { get; set; }
+        public Justificatif justificatif { get; set; }
     }
     public enum EtatFraisForfait
     

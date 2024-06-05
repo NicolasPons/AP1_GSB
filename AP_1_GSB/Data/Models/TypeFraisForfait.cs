@@ -8,11 +8,10 @@ using System.Windows.Forms;
 namespace AP_1_GSB.Data.Models
 {
     public class TypeFraisForfait
-
     {
         public int IdFraisForfait { get; set; }
         public string Nom { get; set; }
-        public int Montant { get; set; }
+        public float Montant { get; set; }
     }
 }
 
