@@ -182,7 +182,7 @@ namespace AP_1_GSB.Services
                 try
                 {
                     int idFicheFrais = ficheFrais.IdFicheFrais;
-                    //int idFicheFrais = 2;
+                    
                     string RequeteNotesForfait = "SELECT id_hors_forfait, description, frais_hors_forfait.montant, date, frais_hors_forfait.etat, frais_hors_forfait.id_justificatif, justificatif.fichier FROM frais_hors_forfait LEFT JOIN justificatif ON justificatif.id_justificatif = frais_hors_forfait.id_justificatif WHERE frais_hors_forfait.id_fiche_frais = @idFicheFrais";
                     using (MySqlCommand cmd = new MySqlCommand(RequeteNotesForfait, Data.SqlConnection.Connection))
                     {

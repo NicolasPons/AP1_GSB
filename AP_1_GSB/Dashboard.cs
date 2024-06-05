@@ -75,6 +75,7 @@ namespace AP_1_GSB
             ajouterNoteFrais.FormBorderStyle = FormBorderStyle.None;
             ajouterNoteFrais.Dock = DockStyle.Fill;
             ajouterNoteFrais.Show();
+            
         }
 
         private void BtnQuitter_Click(object sender, EventArgs e)
