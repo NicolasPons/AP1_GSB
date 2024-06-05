@@ -8,7 +8,7 @@ namespace AP_1_GSB.Data.Models
 {
     public class FraisHorsForfait
     {
-        public int IdFraisForfait { get; set; }
+        public int IdFraisHorsForfait { get; set; }
         public string Description { get; set; }
         public float Montant { get; set; }
         public DateTime Date { get; set; }

@@ -17,24 +17,55 @@ namespace AP_1_GSB.Visiteur
         Utilisateur Utilisateur;
         public NoteFraisDuMois(Utilisateur utilisateur, FicheFrais ficheEnCours)
         {
-            DateTime prochainMois = DateTime.Now.AddMonths(1);
-            DateTime DateMin = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 11);
-            DateTime DateMax = new DateTime(DateTime.Now.Year, prochainMois.Month, 10);
             this.Utilisateur = utilisateur;
             InitializeComponent();
-            DateFicheFrais.Text = "Fiche de frais du 11 " + DateTime.Now.ToString("MMMM yyyy") + " au 10 " + DateTime.Now.AddMonths(1).ToString("MMMM yyyy");
-            dateTimePicker1.MinDate = DateMin;
-            dateTimePicker1.MaxDate = DateMax;
+            DateTime dtFin = new DateTime(ficheEnCours.Date.Year, ficheEnCours.Date.AddMonths(1).Month, ficheEnCours.Date.AddDays(-1).Day);
+            DateFicheFrais.Text = "Fiche de frais du " + ficheEnCours.Date.ToString("dd MMMM yyyy") + " au " + dtFin.ToString("dd MMMM yyyy");
 
-            byte[] blob = utilisateur.FichesFrais[0].FraisForfaits[1].justificatif.FichierBlob;
-            using (MemoryStream ms = new MemoryStream(blob))
+            dateTimePicker1.MinDate = ficheEnCours.Date;
+            dateTimePicker1.MaxDate = dtFin;
+
+            foreach (var fraisForfait in ficheEnCours.FraisForfaits)
             {
-                Image image = Image.FromStream(ms);
-                // Vous pouvez maintenant utiliser l'objet image.
-                // Par exemple, pour l'afficher dans un PictureBox :
-                pictureBox1.Image = image;
-                pictureBox1.Size = image.Size;
+                var item = new ListViewItem(new[]
+                {
+                    fraisForfait.IdFraisForfait.ToString(),
+                    fraisForfait.TypeForfait.Nom,
+                    fraisForfait.Quantite.ToString(),
+                    fraisForfait.Date.ToString("dd MMMM yyyy"),
+                    fraisForfait.Etat.ToString(),
+                    //fraisForfait.justificatif.FichierBlob.
+                    // Ajoutez d'autres attributs ici si nécessaire
+                });
+                ListViewForfait.Items.Add(item);
             }
+
+            foreach (var fraisHorsForfait in ficheEnCours.FraisHorsForfaits)
+            {
+                var item = new ListViewItem(new[]
+                {
+                    fraisHorsForfait.IdFraisHorsForfait.ToString(),
+                    fraisHorsForfait.Description,
+                    fraisHorsForfait.Montant.ToString(),
+                    fraisHorsForfait.Date.ToString("dd MMMM yyyy"),
+                    fraisHorsForfait.Etat.ToString(),
+                    //fraisHorsForfait.Justificatif.ToString(),
+                });
+                listViewHorsForfait.Items.Add(item);
+            }
+
+
+
+            // PERMET D'AFFICHER UNE IMAGE DU FICHIER BLOB
+            //byte[] blob = utilisateur.FichesFrais[0].FraisForfaits[1].justificatif.FichierBlob;
+            //using (MemoryStream ms = new MemoryStream(blob))
+            //{
+            //    Image image = Image.FromStream(ms);
+            //    // Vous pouvez maintenant utiliser l'objet image.
+            //    // Par exemple, pour l'afficher dans un PictureBox :
+            //    pictureBox1.Image = image;
+            //    pictureBox1.Size = image.Size;
+            //}
         }
     }
 }

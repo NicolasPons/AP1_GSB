@@ -96,7 +96,8 @@ namespace AP_1_GSB.Services
                     //int idFicheFrais = 2;
                     string RequeteNotesForfait = "SELECT id_frais_forfait, quantite, date, etat, frais_forfait.id_justificatif, justificatif.fichier," +
                                                 "type_frais_forfait.id_type_forfait, type_frais_forfait.nom, type_frais_forfait.montant " +
-                                                "FROM `frais_forfait` LEFT JOIN justificatif ON justificatif.id_justificatif = frais_forfait.id_justificatif " +
+                                                "FROM `frais_forfait` " +
+                                                "LEFT JOIN justificatif ON justificatif.id_justificatif = frais_forfait.id_justificatif " +
                                                 "INNER JOIN type_frais_forfait on frais_forfait.id_type_forfait = type_frais_forfait.id_type_forfait " +
                                                 "WHERE frais_forfait.id_fiche_frais = @idFicheFrais";
                     using (MySqlCommand cmd = new MySqlCommand(RequeteNotesForfait, Data.SqlConnection.Connection))
@@ -183,7 +184,9 @@ namespace AP_1_GSB.Services
                 {
                     int idFicheFrais = ficheFrais.IdFicheFrais;
                     
-                    string RequeteNotesForfait = "SELECT id_hors_forfait, description, frais_hors_forfait.montant, date, frais_hors_forfait.etat, frais_hors_forfait.id_justificatif, justificatif.fichier FROM frais_hors_forfait LEFT JOIN justificatif ON justificatif.id_justificatif = frais_hors_forfait.id_justificatif WHERE frais_hors_forfait.id_fiche_frais = @idFicheFrais";
+                    string RequeteNotesForfait = "SELECT id_hors_forfait, description, frais_hors_forfait.montant, date, frais_hors_forfait.etat, frais_hors_forfait.id_justificatif, justificatif.fichier " +
+                                                 "FROM frais_hors_forfait LEFT JOIN justificatif ON justificatif.id_justificatif = frais_hors_forfait.id_justificatif " +
+                                                 "WHERE frais_hors_forfait.id_fiche_frais = @idFicheFrais";
                     using (MySqlCommand cmd = new MySqlCommand(RequeteNotesForfait, Data.SqlConnection.Connection))
                     {
                         cmd.Parameters.AddWithValue("@idFicheFrais", idFicheFrais);
@@ -221,7 +224,7 @@ namespace AP_1_GSB.Services
 
                                 FraisHorsForfait fraisHorsForfait = new FraisHorsForfait()
                                 {
-                                    IdFraisForfait = (int)reader["id_hors_forfait"],
+                                    IdFraisHorsForfait = (int)reader["id_hors_forfait"],
                                     Description = (string)reader["description"],
                                     Montant = (float)reader["montant"],
                                     Date = (DateTime)reader["date"],
