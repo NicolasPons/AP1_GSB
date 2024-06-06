@@ -15,6 +15,25 @@ namespace AP_1_GSB.Services
 {
     public class FicheFraisService
     {
+        public static FicheFrais RecupererDerniereFiche(List<FicheFrais> fiches)
+        {
+            if (fiches != null && fiches.Any())
+                return fiches.Last();
+            return null;
+        }
+        private static Justificatif CreerJustificatif(MySqlDataReader reader)
+        {
+            Justificatif justi = null;
+            if (reader["id_justificatif"] != DBNull.Value)
+            {
+                justi = new Justificatif()
+                {
+                    IdJustificatif = (int)reader["id_justificatif"],
+                    FichierBlob = reader["fichier"] == DBNull.Value ? null : (byte[])reader["fichier"],
+                };
+            }
+            return justi;
+        }
         public static Utilisateur RecupererFichesFrais(Utilisateur utilisateur)
         {
             Data.SqlConnection.ConnexionSql();
@@ -26,45 +45,51 @@ namespace AP_1_GSB.Services
                     string RequeteFichesFrais = "Select * FROM fiche_frais " +
                                                 "INNER JOIN type_etat ON type_etat.id_etat = fiche_frais.id_etat " +
                                                 "WHERE fiche_frais.id_utilisateur = @idUtilisateur";
-                    MySqlCommand cmd = new MySqlCommand(RequeteFichesFrais, Data.SqlConnection.Connection);
-                    cmd.Parameters.AddWithValue("@idUtilisateur", idUtilisateur);
-
-                    MySqlDataReader reader = cmd.ExecuteReader();
-                    List<FicheFrais> listeFicheFrais = new List<FicheFrais>();
-                    while (reader.Read())
+                    using (MySqlCommand cmd = new MySqlCommand(RequeteFichesFrais, Data.SqlConnection.Connection))
                     {
-                        string etat = ((string)reader["nom"]).ToLower();
-                        EtatFicheFrais etatFicheFrais;
 
-                        switch (etat)
+
+                        cmd.Parameters.AddWithValue("@idUtilisateur", idUtilisateur);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
-                            case "accepter":
-                                etatFicheFrais = EtatFicheFrais.Accepter;
-                                break;
-                            case "refuser":
-                                etatFicheFrais = EtatFicheFrais.Refuser;
-                                break;
-                            case "refus_partiel":
-                                etatFicheFrais = EtatFicheFrais.RefusPartiel;
-                                break;
-                            case "hors_delai":
-                                etatFicheFrais = EtatFicheFrais.HorsDelai;
-                                break;
-                            default:
-                                etatFicheFrais = EtatFicheFrais.EnCours;
-                                break;
+                            List<FicheFrais> listeFicheFrais = new List<FicheFrais>();
+                            while (reader.Read())
+                            {
+                                string etat = ((string)reader["nom"]).ToLower();
+                                EtatFicheFrais etatFicheFrais;
+
+                                switch (etat)
+                                {
+                                    case "accepter":
+                                        etatFicheFrais = EtatFicheFrais.Accepter;
+                                        break;
+                                    case "refuser":
+                                        etatFicheFrais = EtatFicheFrais.Refuser;
+                                        break;
+                                    case "refus_partiel":
+                                        etatFicheFrais = EtatFicheFrais.RefusPartiel;
+                                        break;
+                                    case "hors_delai":
+                                        etatFicheFrais = EtatFicheFrais.HorsDelai;
+                                        break;
+                                    default:
+                                        etatFicheFrais = EtatFicheFrais.EnCours;
+                                        break;
+                                }
+
+                                FicheFrais fichefrais = new FicheFrais()
+                                {
+                                    IdFicheFrais = (int)reader["id_fiche_frais"],
+                                    Date = (DateTime)reader["date_fiche"],
+                                    Etat = etatFicheFrais
+                                };
+                                listeFicheFrais.Add(fichefrais);
+                            }
+                            utilisateur.FichesFrais = listeFicheFrais;
+                            return utilisateur;
                         }
-
-                        FicheFrais fichefrais = new FicheFrais()
-                        {
-                            IdFicheFrais = (int)reader["id_fiche_frais"],
-                            Date = (DateTime)reader["date_fiche"],
-                            Etat = etatFicheFrais
-                        };
-                        listeFicheFrais.Add(fichefrais);
                     }
-                    utilisateur.FichesFrais = listeFicheFrais;
-                    return utilisateur;
                 }
                 catch (Exception ex)
                 {
@@ -85,15 +110,14 @@ namespace AP_1_GSB.Services
         }
 
 
-        public static Utilisateur RecupererNotesForfait(Utilisateur utilisateur, FicheFrais FicheFrais)
+        public static Utilisateur RecupererNotesForfait(Utilisateur utilisateur, FicheFrais FicheEnCours)
         {
             Data.SqlConnection.ConnexionSql();
-            if (utilisateur != null && (utilisateur.IdUtilisateur) > 0 && FicheFrais != null)
+            if (utilisateur != null && (utilisateur.IdUtilisateur) > 0 && FicheEnCours != null)
             {
                 try
                 {
-                    int idFicheFrais = FicheFrais.IdFicheFrais;
-                    //int idFicheFrais = 2;
+                    int idFicheFrais = FicheEnCours.IdFicheFrais;
                     string RequeteNotesForfait = "SELECT id_frais_forfait, quantite, date, etat, frais_forfait.id_justificatif, justificatif.fichier," +
                                                 "type_frais_forfait.id_type_forfait, type_frais_forfait.nom, type_frais_forfait.montant " +
                                                 "FROM `frais_forfait` " +
@@ -124,17 +148,10 @@ namespace AP_1_GSB.Services
                                         etatNote = EtatFraisForfait.Attente;
                                         break;
                                 }
+                                
+                                Justificatif justi = CreerJustificatif(reader);
 
-                                Justificatif justi = null;
-                                if (reader["id_justificatif"] != DBNull.Value)
-                                {
-                                    justi = new Justificatif()
-                                    {
-                                        IdJustificatif = (int)reader["id_justificatif"],
-                                        FichierBlob = reader["fichier"] == DBNull.Value ? null : (byte[])reader["fichier"],
-                                    };
-                                }
-
+                                //CREER METHODE YA ZEUBI
                                 TypeFraisForfait typeFraisForfait = new TypeFraisForfait()
                                 {
                                     IdFraisForfait = (int)reader["id_type_forfait"],
@@ -153,16 +170,17 @@ namespace AP_1_GSB.Services
                                 };
                                 listeNotesFrais.Add(noteFrais);
                             }
-                            FicheFrais.FraisForfaits = listeNotesFrais;
+                            FicheEnCours.FraisForfaits = listeNotesFrais;
                         }
                     }
                     return utilisateur;
                 }
-                catch (Exception ex)
+                catch (MySqlException ex)
                 {
                     MessageBox.Show("Erreur lors de la récupération des notes de frais forfait : " + ex.Message);
                     return null;
                 }
+
                 finally
                 {
                     Data.SqlConnection.DeconnexionSql();
@@ -175,15 +193,15 @@ namespace AP_1_GSB.Services
                 return null;
             }
         }
-        public static Utilisateur RecupererNotesHorsForfait(Utilisateur utilisateur, FicheFrais ficheFrais)
+        public static Utilisateur RecupererNotesHorsForfait(Utilisateur utilisateur, FicheFrais FicheEnCours)
         {
             Data.SqlConnection.ConnexionSql();
-            if (utilisateur != null && (utilisateur.IdUtilisateur) > 0 && ficheFrais != null)
+            if (utilisateur != null && (utilisateur.IdUtilisateur) > 0 && FicheEnCours != null)
             {
                 try
                 {
-                    int idFicheFrais = ficheFrais.IdFicheFrais;
-                    
+                    int idFicheFrais = FicheEnCours.IdFicheFrais;
+
                     string RequeteNotesForfait = "SELECT id_hors_forfait, description, frais_hors_forfait.montant, date, frais_hors_forfait.etat, frais_hors_forfait.id_justificatif, justificatif.fichier " +
                                                  "FROM frais_hors_forfait LEFT JOIN justificatif ON justificatif.id_justificatif = frais_hors_forfait.id_justificatif " +
                                                  "WHERE frais_hors_forfait.id_fiche_frais = @idFicheFrais";
@@ -213,14 +231,7 @@ namespace AP_1_GSB.Services
                                 }
 
                                 Justificatif justi = null;
-                                if (reader["id_justificatif"] != DBNull.Value)
-                                {
-                                    justi = new Justificatif()
-                                    {
-                                        IdJustificatif = (int)reader["id_justificatif"],
-                                        FichierBlob = reader["fichier"] == DBNull.Value ? null : (byte[])reader["fichier"],
-                                    };
-                                }
+                                justi = CreerJustificatif(reader);
 
                                 FraisHorsForfait fraisHorsForfait = new FraisHorsForfait()
                                 {
@@ -233,9 +244,10 @@ namespace AP_1_GSB.Services
                                 };
                                 listeHorsForfait.Add(fraisHorsForfait);
                             }
-                            ficheFrais.FraisHorsForfaits = listeHorsForfait;
+                            FicheEnCours.FraisHorsForfaits = listeHorsForfait;
                         }
                     }
+                    
                     return utilisateur;
                 }
                 catch (Exception ex)
@@ -295,14 +307,8 @@ namespace AP_1_GSB.Services
             }
         }
 
-
-        public static FicheFrais RecupererDerniereFiche(List<FicheFrais> fiches)
-        {
-            if (fiches != null && fiches.Any())
-                return fiches.Last();
-            return null;
-        }
     }
+
 }
 
 // METHODE POUR RECUPERER UNE SEULE FICHE DE FRAIS

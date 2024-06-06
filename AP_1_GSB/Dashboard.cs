@@ -34,16 +34,16 @@ namespace AP_1_GSB
 
             FicheFrais ficheEnCours = null;
             DateTime now = DateTime.Now;
-            DateTime startDate, endDate;
+            DateTime DateDebut, endDate;
 
             if (now.Day >= 11)
             {
-                startDate = new DateTime(now.Year, now.Month, 11);
+                DateDebut = new DateTime(now.Year, now.Month, 11);
                 endDate = new DateTime(now.Year, now.Month + 1, 10);
             }
             else
             {
-                startDate = new DateTime(now.Year, now.Month - 1, 11);
+                DateDebut = new DateTime(now.Year, now.Month - 1, 11);
                 endDate = new DateTime(now.Year, now.Month, 10);
             }
 
@@ -52,7 +52,7 @@ namespace AP_1_GSB
                 (
                     ficheFrais =>
                     {
-                        if (ficheFrais.Date >= startDate && ficheFrais.Date <= endDate)
+                        if (ficheFrais.Date >= DateDebut && ficheFrais.Date <= endDate)
                         {
                             ficheEnCours = ficheFrais;
                         }
@@ -61,8 +61,7 @@ namespace AP_1_GSB
 
             if (ficheEnCours == null)
             {
-                DateTime dateCreationFiche = startDate;
-                utilisateur = Services.FicheFraisService.CreerFicheFraisMoisEnCours(utilisateur, dateCreationFiche);
+                utilisateur = Services.FicheFraisService.CreerFicheFraisMoisEnCours(utilisateur, DateDebut);
                 ficheEnCours = utilisateur.FichesFrais.Last();
             }
 

@@ -56,7 +56,7 @@ namespace AP_1_GSB.Visiteur
 
 
 
-            // PERMET D'AFFICHER UNE IMAGE DU FICHIER BLOB
+            ////PERMET D'AFFICHER UNE IMAGE DU FICHIER BLOB
             //byte[] blob = utilisateur.FichesFrais[0].FraisForfaits[1].justificatif.FichierBlob;
             //using (MemoryStream ms = new MemoryStream(blob))
             //{
