@@ -12,12 +12,16 @@ using System.Windows.Forms;
 
 namespace AP_1_GSB.Visiteur
 {
-    public partial class NoteFraisDuMois : Form
+    public partial class FicheFraisDuMois : Form
     {
         Utilisateur Utilisateur;
-        public NoteFraisDuMois(Utilisateur utilisateur, FicheFrais ficheEnCours)
+        FicheFrais FicheEnCours;
+        public event Action ListesVide;
+
+        public FicheFraisDuMois(Utilisateur utilisateur, FicheFrais ficheEnCours)
         {
             this.Utilisateur = utilisateur;
+            this.FicheEnCours = ficheEnCours;
             InitializeComponent();
             DateTime dtFin = new DateTime(ficheEnCours.Date.Year, ficheEnCours.Date.AddMonths(1).Month, ficheEnCours.Date.AddDays(-1).Day);
             DateFicheFrais.Text = "Fiche de frais du " + ficheEnCours.Date.ToString("dd MMMM yyyy") + " au " + dtFin.ToString("dd MMMM yyyy");
@@ -53,8 +57,38 @@ namespace AP_1_GSB.Visiteur
                 });
                 listViewHorsForfait.Items.Add(item);
             }
+        }
+        public void VerifierListesVides()
+        {
+            if (ListViewForfait.Items.Count == 0 && listViewHorsForfait.Items.Count == 0)
+            {
+                ListesVide?.Invoke();
+            }
+        }
 
+        public void SupprimerFraisForfait()
+        {
+            int idFraisASupprimer = 0;
+            FraisForfait FraisASupprimer = null;
 
+            if (ListViewForfait.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Veuillez sélectionner un frais forfait à supprimer");
+                return;
+            }
+            else
+            {
+                idFraisASupprimer = int.Parse(ListViewForfait.SelectedItems[0].SubItems[0].Text);
+                ListViewForfait.Items.Remove(ListViewForfait.SelectedItems[0]);
+                FraisASupprimer = FicheEnCours.FraisForfaits.Find(f => f.IdFraisForfait == idFraisASupprimer);
+                
+            }
+            Services.FraisForfaitService.SupprimerFraisForfait(FraisASupprimer);
+            FicheEnCours.FraisForfaits.Remove(FraisASupprimer);
+            VerifierListesVides();
+        }
+    }
+}
 
             ////PERMET D'AFFICHER UNE IMAGE DU FICHIER BLOB
             //byte[] blob = utilisateur.FichesFrais[0].FraisForfaits[1].justificatif.FichierBlob;
@@ -66,6 +100,3 @@ namespace AP_1_GSB.Visiteur
             //    pictureBox1.Image = image;
             //    pictureBox1.Size = image.Size;
             //}
-        }
-    }
-}

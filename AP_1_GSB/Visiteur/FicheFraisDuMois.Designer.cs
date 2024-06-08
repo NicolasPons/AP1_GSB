@@ -1,6 +1,6 @@
 ﻿namespace AP_1_GSB.Visiteur
 {
-    partial class NoteFraisDuMois
+    partial class FicheFraisDuMois
     {
         /// <summary>
         /// Required designer variable.
@@ -70,6 +70,8 @@
             this.Date,
             this.Etat,
             this.Justificatif});
+            this.ListViewForfait.FullRowSelect = true;
+            this.ListViewForfait.GridLines = true;
             this.ListViewForfait.HideSelection = false;
             this.ListViewForfait.Location = new System.Drawing.Point(38, 124);
             this.ListViewForfait.Name = "ListViewForfait";
@@ -81,32 +83,37 @@
             // ID_Frais_Forfait
             // 
             this.ID_Frais_Forfait.Text = "ID";
-            this.ID_Frais_Forfait.Width = 200;
+            this.ID_Frais_Forfait.Width = 50;
             // 
             // Type_frais_forfait
             // 
             this.Type_frais_forfait.Text = "Type frais forfait";
-            this.Type_frais_forfait.Width = 200;
+            this.Type_frais_forfait.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Type_frais_forfait.Width = 230;
             // 
             // Quantite
             // 
             this.Quantite.Text = "Quantite";
-            this.Quantite.Width = 200;
+            this.Quantite.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Quantite.Width = 230;
             // 
             // Date
             // 
             this.Date.Text = "Date";
-            this.Date.Width = 200;
+            this.Date.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Date.Width = 230;
             // 
             // Etat
             // 
             this.Etat.Text = "Etat";
-            this.Etat.Width = 200;
+            this.Etat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Etat.Width = 230;
             // 
             // Justificatif
             // 
             this.Justificatif.Text = "Justificatif";
-            this.Justificatif.Width = 200;
+            this.Justificatif.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Justificatif.Width = 230;
             // 
             // listViewHorsForfait
             // 
@@ -117,6 +124,8 @@
             this.DateHorsForfait,
             this.EtatHF,
             this.JustificatifHF});
+            this.listViewHorsForfait.FullRowSelect = true;
+            this.listViewHorsForfait.GridLines = true;
             this.listViewHorsForfait.HideSelection = false;
             this.listViewHorsForfait.Location = new System.Drawing.Point(38, 538);
             this.listViewHorsForfait.Name = "listViewHorsForfait";
@@ -128,37 +137,37 @@
             // ID
             // 
             this.ID.Text = "ID";
-            this.ID.Width = 200;
+            this.ID.Width = 50;
             // 
             // Description
             // 
             this.Description.Text = "Description";
             this.Description.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Description.Width = 200;
+            this.Description.Width = 230;
             // 
             // Montant
             // 
             this.Montant.Text = "Montant";
             this.Montant.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Montant.Width = 200;
+            this.Montant.Width = 230;
             // 
             // DateHorsForfait
             // 
             this.DateHorsForfait.Text = "Date";
             this.DateHorsForfait.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.DateHorsForfait.Width = 200;
+            this.DateHorsForfait.Width = 230;
             // 
             // EtatHF
             // 
             this.EtatHF.Text = "Etat";
             this.EtatHF.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.EtatHF.Width = 200;
+            this.EtatHF.Width = 230;
             // 
             // JustificatifHF
             // 
             this.JustificatifHF.Text = "Justificatif";
             this.JustificatifHF.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.JustificatifHF.Width = 200;
+            this.JustificatifHF.Width = 230;
             // 
             // label1
             // 
@@ -189,7 +198,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(351, 193);
+            this.pictureBox1.Location = new System.Drawing.Point(1045, 26);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(100, 50);
             this.pictureBox1.TabIndex = 7;

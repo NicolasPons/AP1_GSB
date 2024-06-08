@@ -34,8 +34,9 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnQuitter = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.BtnSupprimerNote = new System.Windows.Forms.Button();
             this.btnAjouterNoteFrais = new System.Windows.Forms.Button();
-            this.myPanel = new System.Windows.Forms.Panel();
+            this.PanelAffichage = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -104,6 +105,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel2.Controls.Add(this.BtnSupprimerNote);
             this.panel2.Controls.Add(this.btnAjouterNoteFrais);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 54);
@@ -111,6 +113,16 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(200, 918);
             this.panel2.TabIndex = 1;
+            // 
+            // BtnSupprimerNote
+            // 
+            this.BtnSupprimerNote.Location = new System.Drawing.Point(0, 80);
+            this.BtnSupprimerNote.Name = "BtnSupprimerNote";
+            this.BtnSupprimerNote.Size = new System.Drawing.Size(200, 74);
+            this.BtnSupprimerNote.TabIndex = 3;
+            this.BtnSupprimerNote.Text = "Supprimer une note";
+            this.BtnSupprimerNote.UseVisualStyleBackColor = true;
+            this.BtnSupprimerNote.Click += new System.EventHandler(this.BtnSupprimerNote_Clique);
             // 
             // btnAjouterNoteFrais
             // 
@@ -121,16 +133,16 @@
             this.btnAjouterNoteFrais.TabIndex = 2;
             this.btnAjouterNoteFrais.Text = "Ajouter des notes de frais";
             this.btnAjouterNoteFrais.UseVisualStyleBackColor = true;
-            this.btnAjouterNoteFrais.Click += new System.EventHandler(this.BtnAjouterNoteFrais);
+            this.btnAjouterNoteFrais.Click += new System.EventHandler(this.BtnAjouterNoteFrais_Clique);
             // 
-            // myPanel
+            // PanelAffichage
             // 
-            this.myPanel.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.myPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.myPanel.Location = new System.Drawing.Point(200, 54);
-            this.myPanel.Name = "myPanel";
-            this.myPanel.Size = new System.Drawing.Size(1264, 918);
-            this.myPanel.TabIndex = 2;
+            this.PanelAffichage.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.PanelAffichage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelAffichage.Location = new System.Drawing.Point(200, 54);
+            this.PanelAffichage.Name = "PanelAffichage";
+            this.PanelAffichage.Size = new System.Drawing.Size(1264, 918);
+            this.PanelAffichage.TabIndex = 2;
             // 
             // Dashboard
             // 
@@ -138,7 +150,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1464, 972);
-            this.Controls.Add(this.myPanel);
+            this.Controls.Add(this.PanelAffichage);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -159,10 +171,11 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnAjouterNoteFrais;
-        private System.Windows.Forms.Panel myPanel;
+        private System.Windows.Forms.Panel PanelAffichage;
         private System.Windows.Forms.Button btnQuitter;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label NomPrenom;
+        private System.Windows.Forms.Button BtnSupprimerNote;
     }
 }
