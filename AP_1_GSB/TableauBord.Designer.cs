@@ -1,6 +1,6 @@
 ﻿namespace AP_1_GSB
 {
-    partial class Dashboard
+    partial class TableauBord
     {
         /// <summary>
         /// Required designer variable.
@@ -37,6 +37,7 @@
             this.BtnSupprimerNote = new System.Windows.Forms.Button();
             this.btnAjouterNoteFrais = new System.Windows.Forms.Button();
             this.PanelAffichage = new System.Windows.Forms.Panel();
+            this.BtnModifier = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -105,6 +106,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel2.Controls.Add(this.BtnModifier);
             this.panel2.Controls.Add(this.BtnSupprimerNote);
             this.panel2.Controls.Add(this.btnAjouterNoteFrais);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
@@ -144,7 +146,16 @@
             this.PanelAffichage.Size = new System.Drawing.Size(1264, 918);
             this.PanelAffichage.TabIndex = 2;
             // 
-            // Dashboard
+            // BtnModifier
+            // 
+            this.BtnModifier.Location = new System.Drawing.Point(0, 160);
+            this.BtnModifier.Name = "BtnModifier";
+            this.BtnModifier.Size = new System.Drawing.Size(200, 74);
+            this.BtnModifier.TabIndex = 4;
+            this.BtnModifier.Text = "Modifier une note";
+            this.BtnModifier.UseVisualStyleBackColor = true;
+            // 
+            // TableauBord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -155,7 +166,7 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "Dashboard";
+            this.Name = "TableauBord";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DashBoard";
             this.panel1.ResumeLayout(false);
@@ -177,5 +188,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label NomPrenom;
         private System.Windows.Forms.Button BtnSupprimerNote;
+        private System.Windows.Forms.Button BtnModifier;
     }
 }

@@ -55,7 +55,8 @@
             this.DateFicheFrais.AutoSize = true;
             this.DateFicheFrais.Font = new System.Drawing.Font("Century Gothic", 13.74545F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DateFicheFrais.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.DateFicheFrais.Location = new System.Drawing.Point(399, 26);
+            this.DateFicheFrais.Location = new System.Drawing.Point(465, 32);
+            this.DateFicheFrais.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.DateFicheFrais.Name = "DateFicheFrais";
             this.DateFicheFrais.Size = new System.Drawing.Size(460, 24);
             this.DateFicheFrais.TabIndex = 0;
@@ -73,9 +74,10 @@
             this.ListViewForfait.FullRowSelect = true;
             this.ListViewForfait.GridLines = true;
             this.ListViewForfait.HideSelection = false;
-            this.ListViewForfait.Location = new System.Drawing.Point(38, 124);
+            this.ListViewForfait.Location = new System.Drawing.Point(44, 153);
+            this.ListViewForfait.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ListViewForfait.Name = "ListViewForfait";
-            this.ListViewForfait.Size = new System.Drawing.Size(1207, 357);
+            this.ListViewForfait.Size = new System.Drawing.Size(1408, 438);
             this.ListViewForfait.TabIndex = 1;
             this.ListViewForfait.UseCompatibleStateImageBehavior = false;
             this.ListViewForfait.View = System.Windows.Forms.View.Details;
@@ -127,9 +129,10 @@
             this.listViewHorsForfait.FullRowSelect = true;
             this.listViewHorsForfait.GridLines = true;
             this.listViewHorsForfait.HideSelection = false;
-            this.listViewHorsForfait.Location = new System.Drawing.Point(38, 538);
+            this.listViewHorsForfait.Location = new System.Drawing.Point(44, 662);
+            this.listViewHorsForfait.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.listViewHorsForfait.Name = "listViewHorsForfait";
-            this.listViewHorsForfait.Size = new System.Drawing.Size(1207, 354);
+            this.listViewHorsForfait.Size = new System.Drawing.Size(1408, 435);
             this.listViewHorsForfait.TabIndex = 2;
             this.listViewHorsForfait.UseCompatibleStateImageBehavior = false;
             this.listViewHorsForfait.View = System.Windows.Forms.View.Details;
@@ -173,7 +176,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.74545F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(38, 96);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.label1.Location = new System.Drawing.Point(44, 118);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(194, 25);
             this.label1.TabIndex = 3;
@@ -183,7 +188,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.74545F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(38, 501);
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.label3.Location = new System.Drawing.Point(44, 617);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(242, 25);
             this.label3.TabIndex = 5;
@@ -191,25 +198,27 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(1045, 96);
+            this.dateTimePicker1.Location = new System.Drawing.Point(1219, 118);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(233, 21);
             this.dateTimePicker1.TabIndex = 6;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(1045, 26);
+            this.pictureBox1.Location = new System.Drawing.Point(1219, 32);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 50);
+            this.pictureBox1.Size = new System.Drawing.Size(117, 62);
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
             // 
-            // NoteFraisDuMois
+            // FicheFraisDuMois
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1314, 918);
+            this.ClientSize = new System.Drawing.Size(1533, 1130);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label3);
@@ -217,9 +226,11 @@
             this.Controls.Add(this.listViewHorsForfait);
             this.Controls.Add(this.ListViewForfait);
             this.Controls.Add(this.DateFicheFrais);
+            this.Font = new System.Drawing.Font("Century Gothic", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "NoteFraisDuMois";
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Name = "FicheFraisDuMois";
             this.Text = "AjouterNoteFrais";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

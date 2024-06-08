@@ -14,13 +14,13 @@ namespace AP_1_GSB.Visiteur
 {
     public partial class FicheFraisDuMois : Form
     {
-        Utilisateur Utilisateur;
-        FicheFrais FicheEnCours;
+        readonly Utilisateur utilisateur;
+        readonly FicheFrais FicheEnCours;
         public event Action ListesVide;
 
         public FicheFraisDuMois(Utilisateur utilisateur, FicheFrais ficheEnCours)
         {
-            this.Utilisateur = utilisateur;
+            this.utilisateur = utilisateur;
             this.FicheEnCours = ficheEnCours;
             InitializeComponent();
             DateTime dtFin = new DateTime(ficheEnCours.Date.Year, ficheEnCours.Date.AddMonths(1).Month, ficheEnCours.Date.AddDays(-1).Day);
@@ -38,8 +38,7 @@ namespace AP_1_GSB.Visiteur
                     fraisForfait.Quantite.ToString(),
                     fraisForfait.Date.ToString("dd MMMM yyyy"),
                     fraisForfait.Etat.ToString(),
-                    //fraisForfait.justificatif.FichierBlob.
-                    // Ajoutez d'autres attributs ici si nécessaire
+                    //fraisForfait.justificatif.FichierBlob. 
                 });
                 ListViewForfait.Items.Add(item);
             }
@@ -66,6 +65,22 @@ namespace AP_1_GSB.Visiteur
             }
         }
 
+        public void SupprimerSelectionLigne()
+        {
+            if (ListViewForfait.SelectedItems.Count > 0)
+            {
+                SupprimerFraisForfait();
+            }
+            else if (listViewHorsForfait.SelectedItems.Count > 0)
+            {
+                SupprimerFraisHorsForfait();
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner un frais à supprimer");
+            }
+        }
+
         public void SupprimerFraisForfait()
         {
             int idFraisASupprimer = 0;
@@ -81,10 +96,48 @@ namespace AP_1_GSB.Visiteur
                 idFraisASupprimer = int.Parse(ListViewForfait.SelectedItems[0].SubItems[0].Text);
                 ListViewForfait.Items.Remove(ListViewForfait.SelectedItems[0]);
                 FraisASupprimer = FicheEnCours.FraisForfaits.Find(f => f.IdFraisForfait == idFraisASupprimer);
-                
             }
-            Services.FraisForfaitService.SupprimerFraisForfait(FraisASupprimer);
+            bool ValeurRetour = Services.FraisForfaitService.SupprimerFraisForfait(FraisASupprimer);
+            if (ValeurRetour)
+            {
+                MessageBox.Show("Note de frais forfait supprimée");
+            }
+            else
+            {
+                MessageBox.Show("Erreur lors de la suppression de la note de frais");
+            }
             FicheEnCours.FraisForfaits.Remove(FraisASupprimer);
+            
+            VerifierListesVides();
+        }
+
+        public void SupprimerFraisHorsForfait()
+        {
+            int idFraisASupprimer = 0;
+            FraisHorsForfait FraisASupprimer = null;
+            
+
+            if (listViewHorsForfait.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Veuillez sélectionner un frais hors forfait à supprimer");
+                return;
+            }
+            else
+            {
+                idFraisASupprimer = int.Parse(listViewHorsForfait.SelectedItems[0].SubItems[0].Text);
+                listViewHorsForfait.Items.Remove(listViewHorsForfait.SelectedItems[0]);
+                FraisASupprimer = FicheEnCours.FraisHorsForfaits.Find(f => f.IdFraisHorsForfait == idFraisASupprimer);
+            }
+            bool ValeurRetour = Services.FraisHorsForfaitService.SupprimerFraisHorsForfait(FraisASupprimer);
+            if (ValeurRetour)
+            {
+                MessageBox.Show("Note de frais hors forfait supprimée");
+            }
+            else
+            {
+                MessageBox.Show("Erreur lors de la suppression de la note de frais");
+            }
+            FicheEnCours.FraisHorsForfaits.Remove(FraisASupprimer);
             VerifierListesVides();
         }
     }

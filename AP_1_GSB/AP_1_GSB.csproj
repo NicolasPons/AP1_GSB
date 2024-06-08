@@ -197,11 +197,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dashboard.cs">
+    <Compile Include="TableauBord.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dashboard.Designer.cs">
-      <DependentUpon>Dashboard.cs</DependentUpon>
+    <Compile Include="TableauBord.Designer.cs">
+      <DependentUpon>TableauBord.cs</DependentUpon>
     </Compile>
     <Compile Include="Data\Models\TypeFraisForfait.cs" />
     <Compile Include="Data\Models\Justificatif.cs" />
@@ -221,14 +221,21 @@
     <Compile Include="Services\AuthentificationService.cs" />
     <Compile Include="Services\FraisForfaitService.cs" />
     <Compile Include="Services\FicheFraisService.cs" />
+    <Compile Include="Services\FraisHorsForfaitService.cs" />
+    <Compile Include="Visiteur\AjouterNoteDeFrais.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visiteur\AjouterNoteDeFrais.Designer.cs">
+      <DependentUpon>AjouterNoteDeFrais.cs</DependentUpon>
+    </Compile>
     <Compile Include="Visiteur\FicheFraisDuMois.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Visiteur\FicheFraisDuMois.Designer.cs">
       <DependentUpon>FicheFraisDuMois.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Dashboard.resx">
-      <DependentUpon>Dashboard.cs</DependentUpon>
+    <EmbeddedResource Include="TableauBord.resx">
+      <DependentUpon>TableauBord.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -243,6 +250,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Visiteur\AjouterNoteDeFrais.resx">
+      <DependentUpon>AjouterNoteDeFrais.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Visiteur\FicheFraisDuMois.resx">
       <DependentUpon>FicheFraisDuMois.cs</DependentUpon>
     </EmbeddedResource>
