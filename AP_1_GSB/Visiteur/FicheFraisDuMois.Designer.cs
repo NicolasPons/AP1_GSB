@@ -45,7 +45,6 @@
             this.JustificatifHF = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -75,7 +74,7 @@
             this.ListViewForfait.GridLines = true;
             this.ListViewForfait.HideSelection = false;
             this.ListViewForfait.Location = new System.Drawing.Point(44, 153);
-            this.ListViewForfait.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ListViewForfait.Margin = new System.Windows.Forms.Padding(4);
             this.ListViewForfait.Name = "ListViewForfait";
             this.ListViewForfait.Size = new System.Drawing.Size(1408, 438);
             this.ListViewForfait.TabIndex = 1;
@@ -84,6 +83,7 @@
             // 
             // ID_Frais_Forfait
             // 
+            this.ID_Frais_Forfait.Tag = "";
             this.ID_Frais_Forfait.Text = "ID";
             this.ID_Frais_Forfait.Width = 50;
             // 
@@ -130,7 +130,7 @@
             this.listViewHorsForfait.GridLines = true;
             this.listViewHorsForfait.HideSelection = false;
             this.listViewHorsForfait.Location = new System.Drawing.Point(44, 662);
-            this.listViewHorsForfait.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listViewHorsForfait.Margin = new System.Windows.Forms.Padding(4);
             this.listViewHorsForfait.Name = "listViewHorsForfait";
             this.listViewHorsForfait.Size = new System.Drawing.Size(1408, 435);
             this.listViewHorsForfait.TabIndex = 2;
@@ -139,6 +139,7 @@
             // 
             // ID
             // 
+            this.ID.Tag = "";
             this.ID.Text = "ID";
             this.ID.Width = 50;
             // 
@@ -196,18 +197,10 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Note de frais hors forfait";
             // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(1219, 118);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(233, 21);
-            this.dateTimePicker1.TabIndex = 6;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Location = new System.Drawing.Point(1219, 32);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(117, 62);
             this.pictureBox1.TabIndex = 7;
@@ -220,7 +213,6 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1533, 1130);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listViewHorsForfait);
@@ -229,9 +221,10 @@
             this.Font = new System.Drawing.Font("Century Gothic", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FicheFraisDuMois";
             this.Text = "AjouterNoteFrais";
+            this.Load += new System.EventHandler(this.FicheFraisDuMois_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -249,7 +242,6 @@
         private System.Windows.Forms.ListView listViewHorsForfait;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.ColumnHeader ID_Frais_Forfait;
         private System.Windows.Forms.ColumnHeader Etat;
         private System.Windows.Forms.ColumnHeader ID;

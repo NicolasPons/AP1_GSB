@@ -22,7 +22,6 @@ namespace AP_1_GSB
             InitializeComponent();
         }
 
-
         private void BtnQuitterAppCiquer(object sender, EventArgs e)
         {
             Application.Exit();
@@ -30,12 +29,8 @@ namespace AP_1_GSB
 
         private void BtnSeConnecterCliquer(object sender, EventArgs e)
         {
-            AuthentificationService loginService = new AuthentificationService();
-
-            Utilisateur utilisateur = loginService.VerificationUtilisateur(saisieUtilisateur.Text, saisieMdp.Text);
-
+            Utilisateur utilisateur = Services.AuthentificationService.VerificationUtilisateur(saisieUtilisateur.Text, saisieMdp.Text);
             
-
             if (utilisateur != null)
             {
                 switch (utilisateur.Role)
@@ -53,6 +48,10 @@ namespace AP_1_GSB
                         MessageBox.Show("administrateur");
                         break;
                 }
+            }
+            else
+            {
+                return;
             }
             this.Hide();
         }

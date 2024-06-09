@@ -3,6 +3,7 @@ using MySql.Data.MySqlClient;
 using Mysqlx.Expr;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ namespace AP_1_GSB.Services
 {
     internal class AuthentificationService
     {
-        public Utilisateur VerificationUtilisateur(string utilisateur, string mdp)
+        public static Utilisateur VerificationUtilisateur(string utilisateur, string mdp)
         {
             Data.SqlConnection.ConnexionSql();
 
@@ -57,9 +58,6 @@ namespace AP_1_GSB.Services
                             Email = (string)reader["email"],
                             Role = utilisateurRole
                         };
-
-
-                        Data.SqlConnection.DeconnexionSql();
                         return nouvelUtilisateur;
                     }
                     else
@@ -67,10 +65,15 @@ namespace AP_1_GSB.Services
                         MessageBox.Show("Nom d'utilisateur ou mot de passe incorrect", "Erreur de connection", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                catch
+                
+                catch (MySqlException e)
+                {
+                    MessageBox.Show("Erreur lors de la connexion : " + e.Message);
+                    return null;
+                }
+                finally
                 {
                     Data.SqlConnection.DeconnexionSql();
-                    return null;
                 }
             }
             else

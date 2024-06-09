@@ -118,7 +118,7 @@ namespace AP_1_GSB.Services
                 try
                 {
                     int idFicheFrais = FicheEnCours.IdFicheFrais;
-                    string RequeteNotesForfait = "SELECT id_frais_forfait, quantite, date, etat, frais_forfait.id_justificatif, justificatif.fichier," +
+                    string RequeteNotesForfait ="SELECT id_frais_forfait, quantite, date, etat, frais_forfait.id_justificatif, justificatif.fichier," +
                                                 "type_frais_forfait.id_type_forfait, type_frais_forfait.nom, type_frais_forfait.montant " +
                                                 "FROM `frais_forfait` " +
                                                 "LEFT JOIN justificatif ON justificatif.id_justificatif = frais_forfait.id_justificatif " +
@@ -152,10 +152,13 @@ namespace AP_1_GSB.Services
                                 Justificatif justi = CreerJustificatif(reader);
 
                                 //CREER METHODE YA ZEUBI
+
+                                string nomType = (string)reader["nom"];
+                                string nomTypeModifié = nomType.Replace("_", " ").Replace("f", "F");
                                 TypeFraisForfait typeFraisForfait = new TypeFraisForfait()
                                 {
                                     IdFraisForfait = (int)reader["id_type_forfait"],
-                                    Nom = (string)reader["nom"],
+                                    Nom = nomTypeModifié,
                                     Montant = (float)reader["montant"]
                                 };
 
@@ -284,7 +287,6 @@ namespace AP_1_GSB.Services
 
                 int idFiche = Convert.ToInt32(cmd.ExecuteScalar());
 
-                MessageBox.Show("Execute Scalar renvoit : " + idFiche);
                 EtatFicheFrais EtatFiche = EtatFicheFrais.EnCours;
 
                 FicheFrais ficheFrais = new FicheFrais()

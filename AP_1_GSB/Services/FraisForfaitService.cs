@@ -1,5 +1,6 @@
 ﻿using AP_1_GSB.Data.Models;
 using MySql.Data.MySqlClient;
+using Mysqlx.Prepare;
 using Org.BouncyCastle.Cms;
 using Org.BouncyCastle.Pqc.Crypto.Utilities;
 using System;
@@ -37,6 +38,48 @@ namespace AP_1_GSB.Services
                 return false; 
             }
 
+            return false;
+        }
+
+        public static bool AjouterFraisForfait(int IdFiche, int typeForfait, DateTime date, int quantite, byte[] justificatif)
+        {
+            int idJustificatif = 0;
+            if (justificatif != null )
+            {
+            Justificatif justi;
+            justi = Services.JustificatifService.AjouterJustificatif(justificatif); 
+            idJustificatif = justi.IdJustificatif;
+            }
+
+            Data.SqlConnection.ConnexionSql();
+
+            string RequeteCreationFraisForfait = "INSERT INTO frais_forfait (quantite, date, etat, id_type_forfait, id_fiche_frais, id_justificatif) " +
+                                                "VALUES (@quantite, @Date, @etat, @id_type_forfait, @id_fiche_frais, @id_justificatif)";
+
+            try
+            {
+                using(MySqlCommand cmd = new MySqlCommand(RequeteCreationFraisForfait, Data.SqlConnection.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@quantite", quantite);
+                    cmd.Parameters.AddWithValue("@Date", date);
+                    cmd.Parameters.AddWithValue("@etat", "ATTENTE");
+                    cmd.Parameters.AddWithValue("@id_type_forfait", typeForfait);
+                    cmd.Parameters.AddWithValue("@id_fiche_frais", IdFiche);
+                    cmd.Parameters.AddWithValue("@id_justificatif", idJustificatif);
+
+                    if (cmd.ExecuteNonQuery() > 0) 
+                        { return true; }
+                }
+            }
+            catch(MySqlException e)
+            {
+                MessageBox.Show("Erreur lors de la connexion à la base de donné : " + e.Message);
+                return false;
+            }
+            finally
+            {
+                Data.SqlConnection.DeconnexionSql();
+            }
             return false;
         }
     }

@@ -15,19 +15,31 @@ namespace AP_1_GSB.Visiteur
     public partial class FicheFraisDuMois : Form
     {
         readonly Utilisateur utilisateur;
-        readonly FicheFrais FicheEnCours;
+        readonly FicheFrais ficheEnCours;
         public event Action ListesVide;
 
-        public FicheFraisDuMois(Utilisateur utilisateur, FicheFrais ficheEnCours)
+        public FicheFraisDuMois(Utilisateur utilisateur, FicheFrais ficheEnCours, DateTime dtFin)
         {
             this.utilisateur = utilisateur;
-            this.FicheEnCours = ficheEnCours;
+            this.ficheEnCours = ficheEnCours;
             InitializeComponent();
-            DateTime dtFin = new DateTime(ficheEnCours.Date.Year, ficheEnCours.Date.AddMonths(1).Month, ficheEnCours.Date.AddDays(-1).Day);
             DateFicheFrais.Text = "Fiche de frais du " + ficheEnCours.Date.ToString("dd MMMM yyyy") + " au " + dtFin.ToString("dd MMMM yyyy");
+        }   
 
-            dateTimePicker1.MinDate = ficheEnCours.Date;
-            dateTimePicker1.MaxDate = dtFin;
+        public void MettreAJourListView()
+        {
+            listViewHorsForfait.Items.Clear();
+            ListViewForfait.Items.Clear();
+            //foreach (FraisHorsForfait fraisHorsForfait in ficheEnCours.FraisHorsForfaits)
+            //{
+            //    ListViewItem item = new ListViewItem(fraisHorsForfait.Description);
+            //    item.SubItems.Add(fraisHorsForfait.Montant.ToString());
+            //    item.SubItems.Add(fraisHorsForfait.Date.ToString("dd/MM/yyyy"));
+            //    item.SubItems.Add(fraisHorsForfait.Etat.ToString());
+            //    //item.SubItems.Add(fraisHorsForfait.Justificatif)
+            //    item.Tag = fraisHorsForfait.IdFraisHorsForfait;
+            //    listViewHorsForfait.Items.Add(item);
+            //}
 
             foreach (var fraisForfait in ficheEnCours.FraisForfaits)
             {
@@ -57,6 +69,7 @@ namespace AP_1_GSB.Visiteur
                 listViewHorsForfait.Items.Add(item);
             }
         }
+
         public void VerifierListesVides()
         {
             if (ListViewForfait.Items.Count == 0 && listViewHorsForfait.Items.Count == 0)
@@ -95,7 +108,7 @@ namespace AP_1_GSB.Visiteur
             {
                 idFraisASupprimer = int.Parse(ListViewForfait.SelectedItems[0].SubItems[0].Text);
                 ListViewForfait.Items.Remove(ListViewForfait.SelectedItems[0]);
-                FraisASupprimer = FicheEnCours.FraisForfaits.Find(f => f.IdFraisForfait == idFraisASupprimer);
+                FraisASupprimer = ficheEnCours.FraisForfaits.Find(f => f.IdFraisForfait == idFraisASupprimer);
             }
             bool ValeurRetour = Services.FraisForfaitService.SupprimerFraisForfait(FraisASupprimer);
             if (ValeurRetour)
@@ -106,7 +119,7 @@ namespace AP_1_GSB.Visiteur
             {
                 MessageBox.Show("Erreur lors de la suppression de la note de frais");
             }
-            FicheEnCours.FraisForfaits.Remove(FraisASupprimer);
+            ficheEnCours.FraisForfaits.Remove(FraisASupprimer);
             
             VerifierListesVides();
         }
@@ -126,7 +139,7 @@ namespace AP_1_GSB.Visiteur
             {
                 idFraisASupprimer = int.Parse(listViewHorsForfait.SelectedItems[0].SubItems[0].Text);
                 listViewHorsForfait.Items.Remove(listViewHorsForfait.SelectedItems[0]);
-                FraisASupprimer = FicheEnCours.FraisHorsForfaits.Find(f => f.IdFraisHorsForfait == idFraisASupprimer);
+                FraisASupprimer = ficheEnCours.FraisHorsForfaits.Find(f => f.IdFraisHorsForfait == idFraisASupprimer);
             }
             bool ValeurRetour = Services.FraisHorsForfaitService.SupprimerFraisHorsForfait(FraisASupprimer);
             if (ValeurRetour)
@@ -137,8 +150,13 @@ namespace AP_1_GSB.Visiteur
             {
                 MessageBox.Show("Erreur lors de la suppression de la note de frais");
             }
-            FicheEnCours.FraisHorsForfaits.Remove(FraisASupprimer);
+            ficheEnCours.FraisHorsForfaits.Remove(FraisASupprimer);
             VerifierListesVides();
+        }
+
+        private void FicheFraisDuMois_Load(object sender, EventArgs e)
+        {
+            MettreAJourListView();
         }
     }
 }

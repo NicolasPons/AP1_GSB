@@ -19,17 +19,19 @@ namespace AP_1_GSB
     public partial class TableauBord : Form
     {
         readonly Utilisateur utilisateur;
-        FicheFraisDuMois affichageFicheFraisDuMois;
+        FicheFraisDuMois FicheFraisDuMois;
+        FicheFrais ficheEnCours;
+        DateTime dtFin;
         public TableauBord(Utilisateur utilisateur)
         {
             this.utilisateur = utilisateur;
             InitializeComponent();
             NomPrenom.Text = "Bienvenue " + utilisateur.Nom + " " + utilisateur.Prenom;
-            
+
 
             utilisateur = Services.FicheFraisService.RecupererFichesFrais(utilisateur);
 
-            FicheFrais ficheEnCours = null;
+            ficheEnCours = null;
             DateTime now = DateTime.Now;
             DateTime DateDebut, endDate;
 
@@ -61,32 +63,35 @@ namespace AP_1_GSB
                 utilisateur = Services.FicheFraisService.CreerFicheFraisMoisEnCours(utilisateur, DateDebut);
                 ficheEnCours = utilisateur.FichesFrais.Last();
             }
+            dtFin = new DateTime(ficheEnCours.Date.Year, ficheEnCours.Date.AddMonths(1).Month, 10);
 
             utilisateur = Services.FicheFraisService.RecupererNotesForfait(utilisateur, ficheEnCours);
             utilisateur = Services.FicheFraisService.RecupererNotesHorsForfait(utilisateur, ficheEnCours);
 
-            affichageFicheFraisDuMois = new FicheFraisDuMois(utilisateur, ficheEnCours);
-            affichageFicheFraisDuMois.ListesVide += () => BtnSupprimerNote.Enabled = false;
-            affichageFicheFraisDuMois.VerifierListesVides();
-            affichageFicheFraisDuMois.TopLevel = false;
-            PanelAffichage.Controls.Add(affichageFicheFraisDuMois);
-            affichageFicheFraisDuMois.FormBorderStyle = FormBorderStyle.None;
-            affichageFicheFraisDuMois.Dock = DockStyle.Fill;
-            affichageFicheFraisDuMois.Show();
+            FicheFraisDuMois = new FicheFraisDuMois(utilisateur, ficheEnCours, dtFin);
+            FicheFraisDuMois.ListesVide += () => BtnSupprimerNote.Enabled = false;
+            FicheFraisDuMois.VerifierListesVides();
+            FicheFraisDuMois.TopLevel = false;
+            PanelAffichage.Controls.Add(FicheFraisDuMois);
+            FicheFraisDuMois.FormBorderStyle = FormBorderStyle.None;
+            FicheFraisDuMois.Dock = DockStyle.Fill;
+            FicheFraisDuMois.Show();
         }
 
         // TESTER ALGORITHME POUR VOIR SI FICHEFRAIS RECUP EST LA BONNE 
         // TESTER ALGORITHME POUR VOIR SI FICHEENCOURS EST BIEN LA DERNIERE FICHE EN CAS DE CREATION DE FICHE 
         public void BtnAjouterNoteFrais_Clique(object sender, EventArgs e)
         {
-            AjouterNoteDeFrais ajouterNoteFrais = new AjouterNoteDeFrais();
-            ajouterNoteFrais.Show();
+            AjouterNoteDeFrais ajouterNoteFrais = new AjouterNoteDeFrais(utilisateur, ficheEnCours, dtFin);
+            ajouterNoteFrais.NoteDeFraisAjoutee += FicheFraisDuMois.MettreAJourListView;
+            ajouterNoteFrais.StartPosition = FormStartPosition.Manual;
+            ajouterNoteFrais.Location = new System.Drawing.Point(this.Location.X + 400, this.Location.Y + 250);
             ajouterNoteFrais.TopLevel = true;
-            
+            ajouterNoteFrais.Show();
         }
         public void BtnSupprimerNote_Clique(object sender, EventArgs e)
         {
-            affichageFicheFraisDuMois.SupprimerSelectionLigne();
+            FicheFraisDuMois.SupprimerSelectionLigne();
         }
 
         private void BtnQuitter_Click(object sender, EventArgs e)
