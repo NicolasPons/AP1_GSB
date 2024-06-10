@@ -96,30 +96,33 @@ namespace AP_1_GSB.Visiteur
 
         public void SupprimerFraisForfait()
         {
-            int idFraisASupprimer = 0;
-            FraisForfait FraisASupprimer = null;
 
             if (ListViewForfait.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Veuillez sélectionner un frais forfait à supprimer");
                 return;
             }
-            else
+
+            int idFraisASupprimer = int.Parse(ListViewForfait.SelectedItems[0].SubItems[0].Text);
+            ListViewForfait.Items.Remove(ListViewForfait.SelectedItems[0]);
+            FraisForfait FraisASupprimer = ficheEnCours.FraisForfaits.Find(f => f.IdFraisForfait == idFraisASupprimer);
+
+            if (FraisASupprimer == null)
             {
-                idFraisASupprimer = int.Parse(ListViewForfait.SelectedItems[0].SubItems[0].Text);
-                ListViewForfait.Items.Remove(ListViewForfait.SelectedItems[0]);
-                FraisASupprimer = ficheEnCours.FraisForfaits.Find(f => f.IdFraisForfait == idFraisASupprimer);
+                MessageBox.Show("Erreur : frais forfait non trouvé");
+                return;
             }
+
             bool ValeurRetour = Services.FraisForfaitService.SupprimerFraisForfait(FraisASupprimer);
             if (ValeurRetour)
             {
                 MessageBox.Show("Note de frais forfait supprimée");
+                ficheEnCours.FraisForfaits.Remove(FraisASupprimer);
             }
             else
             {
                 MessageBox.Show("Erreur lors de la suppression de la note de frais");
             }
-            ficheEnCours.FraisForfaits.Remove(FraisASupprimer);
             
             VerifierListesVides();
         }

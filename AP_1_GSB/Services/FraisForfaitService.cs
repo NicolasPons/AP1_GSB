@@ -65,7 +65,7 @@ namespace AP_1_GSB.Services
                     cmd.Parameters.AddWithValue("@etat", "ATTENTE");
                     cmd.Parameters.AddWithValue("@id_type_forfait", typeForfait);
                     cmd.Parameters.AddWithValue("@id_fiche_frais", IdFiche);
-                    cmd.Parameters.AddWithValue("@id_justificatif", idJustificatif);
+                    cmd.Parameters.AddWithValue("@id_Justificatif", idJustificatif == 0 ? (object)DBNull.Value : idJustificatif);
 
                     if (cmd.ExecuteNonQuery() > 0) 
                         { return true; }

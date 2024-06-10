@@ -33,17 +33,17 @@ namespace AP_1_GSB
 
             ficheEnCours = null;
             DateTime now = DateTime.Now;
-            DateTime DateDebut, endDate;
+            DateTime DateDebut;
 
             if (now.Day >= 11)
             {
                 DateDebut = new DateTime(now.Year, now.Month, 11);
-                endDate = new DateTime(now.Year, now.Month + 1, 10);
+                dtFin = new DateTime(now.Year, now.Month + 1, 10);
             }
             else
             {
                 DateDebut = new DateTime(now.Year, now.Month - 1, 11);
-                endDate = new DateTime(now.Year, now.Month, 10);
+                dtFin = new DateTime(now.Year, now.Month, 10);
             }
 
 
@@ -51,7 +51,7 @@ namespace AP_1_GSB
                 (
                     ficheFrais =>
                     {
-                        if (ficheFrais.Date >= DateDebut && ficheFrais.Date <= endDate)
+                        if (ficheFrais.Date >= DateDebut && ficheFrais.Date <= dtFin)
                         {
                             ficheEnCours = ficheFrais;
                         }
@@ -63,7 +63,6 @@ namespace AP_1_GSB
                 utilisateur = Services.FicheFraisService.CreerFicheFraisMoisEnCours(utilisateur, DateDebut);
                 ficheEnCours = utilisateur.FichesFrais.Last();
             }
-            dtFin = new DateTime(ficheEnCours.Date.Year, ficheEnCours.Date.AddMonths(1).Month, 10);
 
             utilisateur = Services.FicheFraisService.RecupererNotesForfait(utilisateur, ficheEnCours);
             utilisateur = Services.FicheFraisService.RecupererNotesHorsForfait(utilisateur, ficheEnCours);
