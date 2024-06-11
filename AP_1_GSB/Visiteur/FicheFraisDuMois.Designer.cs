@@ -45,8 +45,7 @@
             this.JustificatifHF = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.BtnPDF = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // DateFicheFrais
@@ -76,7 +75,7 @@
             this.ListViewForfait.Location = new System.Drawing.Point(44, 153);
             this.ListViewForfait.Margin = new System.Windows.Forms.Padding(4);
             this.ListViewForfait.Name = "ListViewForfait";
-            this.ListViewForfait.Size = new System.Drawing.Size(1408, 438);
+            this.ListViewForfait.Size = new System.Drawing.Size(1207, 438);
             this.ListViewForfait.TabIndex = 1;
             this.ListViewForfait.UseCompatibleStateImageBehavior = false;
             this.ListViewForfait.View = System.Windows.Forms.View.Details;
@@ -132,7 +131,7 @@
             this.listViewHorsForfait.Location = new System.Drawing.Point(44, 662);
             this.listViewHorsForfait.Margin = new System.Windows.Forms.Padding(4);
             this.listViewHorsForfait.Name = "listViewHorsForfait";
-            this.listViewHorsForfait.Size = new System.Drawing.Size(1408, 435);
+            this.listViewHorsForfait.Size = new System.Drawing.Size(1207, 435);
             this.listViewHorsForfait.TabIndex = 2;
             this.listViewHorsForfait.UseCompatibleStateImageBehavior = false;
             this.listViewHorsForfait.View = System.Windows.Forms.View.Details;
@@ -197,14 +196,15 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Note de frais hors forfait";
             // 
-            // pictureBox1
+            // BtnPDF
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(1219, 32);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(117, 62);
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.TabStop = false;
+            this.BtnPDF.Location = new System.Drawing.Point(1018, 103);
+            this.BtnPDF.Name = "BtnPDF";
+            this.BtnPDF.Size = new System.Drawing.Size(121, 40);
+            this.BtnPDF.TabIndex = 6;
+            this.BtnPDF.Text = "Export PDF";
+            this.BtnPDF.UseVisualStyleBackColor = true;
+            this.BtnPDF.Click += new System.EventHandler(this.BtnPDF_Click);
             // 
             // FicheFraisDuMois
             // 
@@ -212,7 +212,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1533, 1130);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.BtnPDF);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listViewHorsForfait);
@@ -225,7 +225,6 @@
             this.Name = "FicheFraisDuMois";
             this.Text = "AjouterNoteFrais";
             this.Load += new System.EventHandler(this.FicheFraisDuMois_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -250,6 +249,6 @@
         private System.Windows.Forms.ColumnHeader DateHorsForfait;
         private System.Windows.Forms.ColumnHeader EtatHF;
         private System.Windows.Forms.ColumnHeader JustificatifHF;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button BtnPDF;
     }
 }

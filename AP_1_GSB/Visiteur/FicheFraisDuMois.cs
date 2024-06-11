@@ -9,7 +9,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using PdfSharp;
+using PdfSharp.Pdf;
+using PdfSharp.Drawing;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Xml.Linq;
 namespace AP_1_GSB.Visiteur
 {
     public partial class FicheFraisDuMois : Form
@@ -30,6 +34,7 @@ namespace AP_1_GSB.Visiteur
         {
             listViewHorsForfait.Items.Clear();
             ListViewForfait.Items.Clear();
+
             //foreach (FraisHorsForfait fraisHorsForfait in ficheEnCours.FraisHorsForfaits)
             //{
             //    ListViewItem item = new ListViewItem(fraisHorsForfait.Description);
@@ -96,7 +101,7 @@ namespace AP_1_GSB.Visiteur
 
         public void SupprimerFraisForfait()
         {
-
+            
             if (ListViewForfait.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Veuillez sélectionner un frais forfait à supprimer");
@@ -161,16 +166,41 @@ namespace AP_1_GSB.Visiteur
         {
             MettreAJourListView();
         }
+
+        private void BtnPDF_Click(object sender, EventArgs e)
+        {
+            PdfDocument pdf = new PdfDocument();
+            PdfPage pdfPage = pdf.AddPage();
+            pdf.Info.Title = "Notes de frais";
+            XGraphics gfx = XGraphics.FromPdfPage(pdfPage);
+            XFont font = new XFont("Arial", 20, XFontStyleEx.Regular);
+            XStringFormat format = new XStringFormat();
+            XRect rect = new XRect(40, 40, pdfPage.Width.Point - 80, pdfPage.Height.Point - 80);
+
+
+            string contenu = "Saf la mouille";
+                             
+            gfx.DrawString(contenu, font, XBrushes.Black, rect, format);
+
+            string nomFichier = "Notes_de_frais_" + utilisateur.Nom + "_" + utilisateur.Prenom + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".pdf";
+            pdf.Save(nomFichier);
+
+            
+            System.Diagnostics.Process.Start(nomFichier);
+        }
     }
 }
 
-            ////PERMET D'AFFICHER UNE IMAGE DU FICHIER BLOB
-            //byte[] blob = utilisateur.FichesFrais[0].FraisForfaits[1].justificatif.FichierBlob;
-            //using (MemoryStream ms = new MemoryStream(blob))
-            //{
-            //    Image image = Image.FromStream(ms);
-            //    // Vous pouvez maintenant utiliser l'objet image.
-            //    // Par exemple, pour l'afficher dans un PictureBox :
-            //    pictureBox1.Image = image;
-            //    pictureBox1.Size = image.Size;
-            //}
+
+
+
+////PERMET D'AFFICHER UNE IMAGE DU FICHIER BLOB
+//byte[] blob = utilisateur.FichesFrais[0].FraisForfaits[1].justificatif.FichierBlob;
+//using (MemoryStream ms = new MemoryStream(blob))
+//{
+//    Image image = Image.FromStream(ms);
+//    // Vous pouvez maintenant utiliser l'objet image.
+//    // Par exemple, pour l'afficher dans un PictureBox :
+//    pictureBox1.Image = image;
+//    pictureBox1.Size = image.Size;
+//}
