@@ -182,7 +182,7 @@
             // 
             // BtnPDF
             // 
-            this.BtnPDF.Location = new System.Drawing.Point(1019, 18);
+            this.BtnPDF.Location = new System.Drawing.Point(1078, 59);
             this.BtnPDF.Name = "BtnPDF";
             this.BtnPDF.Size = new System.Drawing.Size(121, 40);
             this.BtnPDF.TabIndex = 6;

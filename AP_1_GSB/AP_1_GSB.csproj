@@ -378,5 +378,8 @@
   <ItemGroup>
     <Content Include="BDD\gsb_ap1.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interface\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
