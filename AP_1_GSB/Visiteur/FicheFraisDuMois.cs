@@ -9,9 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using PdfSharp;
-using PdfSharp.Pdf;
-using PdfSharp.Drawing;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Xml.Linq;
 namespace AP_1_GSB.Visiteur
@@ -27,6 +24,7 @@ namespace AP_1_GSB.Visiteur
             this.utilisateur = utilisateur;
             this.ficheEnCours = ficheEnCours;
             InitializeComponent();
+            MettreAJourListView();
             DateFicheFrais.Text = "Fiche de frais du " + ficheEnCours.Date.ToString("dd MMMM yyyy") + " au " + dtFin.ToString("dd MMMM yyyy");
         }   
 
@@ -35,44 +33,55 @@ namespace AP_1_GSB.Visiteur
             listViewHorsForfait.Items.Clear();
             ListViewForfait.Items.Clear();
 
-            //foreach (FraisHorsForfait fraisHorsForfait in ficheEnCours.FraisHorsForfaits)
-            //{
-            //    ListViewItem item = new ListViewItem(fraisHorsForfait.Description);
-            //    item.SubItems.Add(fraisHorsForfait.Montant.ToString());
-            //    item.SubItems.Add(fraisHorsForfait.Date.ToString("dd/MM/yyyy"));
-            //    item.SubItems.Add(fraisHorsForfait.Etat.ToString());
-            //    //item.SubItems.Add(fraisHorsForfait.Justificatif)
-            //    item.Tag = fraisHorsForfait.IdFraisHorsForfait;
-            //    listViewHorsForfait.Items.Add(item);
-            //}
-
-            foreach (var fraisForfait in ficheEnCours.FraisForfaits)
+            foreach (FraisHorsForfait fraisHorsForfait in ficheEnCours.FraisHorsForfaits)
             {
-                var item = new ListViewItem(new[]
-                {
-                    fraisForfait.IdFraisForfait.ToString(),
-                    fraisForfait.TypeForfait.Nom,
-                    fraisForfait.Quantite.ToString(),
-                    fraisForfait.Date.ToString("dd MMMM yyyy"),
-                    fraisForfait.Etat.ToString(),
-                    //fraisForfait.justificatif.FichierBlob. 
-                });
+                ListViewItem item = new ListViewItem(fraisHorsForfait.Description);
+                item.SubItems.Add(fraisHorsForfait.Montant.ToString());
+                item.SubItems.Add(fraisHorsForfait.Date.ToString("dd/MM/yyyy"));
+                item.SubItems.Add(fraisHorsForfait.Etat.ToString());
+                //item.SubItems.Add(fraisHorsForfait.Justificatif)
+                item.Tag = fraisHorsForfait.IdFraisHorsForfait;
+                listViewHorsForfait.Items.Add(item);
+            }
+
+            foreach (FraisForfait fraisForfait in ficheEnCours.FraisForfaits)
+            {
+                ListViewItem item = new ListViewItem(fraisForfait.TypeForfait.Nom);
+                item.SubItems.Add(fraisForfait.Quantite.ToString());
+                item.SubItems.Add(fraisForfait.Date.ToString("dd/MM/yyyy"));
+                item.SubItems.Add(fraisForfait.Etat.ToString());
+                //item.SubItems.Add(fraisHorsForfait.Justificatif)
+                item.Tag = fraisForfait.IdFraisForfait;
                 ListViewForfait.Items.Add(item);
             }
 
-            foreach (var fraisHorsForfait in ficheEnCours.FraisHorsForfaits)
-            {
-                var item = new ListViewItem(new[]
-                {
-                    fraisHorsForfait.IdFraisHorsForfait.ToString(),
-                    fraisHorsForfait.Description,
-                    fraisHorsForfait.Montant.ToString(),
-                    fraisHorsForfait.Date.ToString("dd MMMM yyyy"),
-                    fraisHorsForfait.Etat.ToString(),
-                    //fraisHorsForfait.Justificatif.ToString(),
-                });
-                listViewHorsForfait.Items.Add(item);
-            }
+            //foreach (var fraisForfait in ficheEnCours.FraisForfaits)
+            //{
+            //    var item = new ListViewItem(new[]
+            //    {
+            //        fraisForfait.IdFraisForfait.ToString(),
+            //        fraisForfait.TypeForfait.Nom,
+            //        fraisForfait.Quantite.ToString(),
+            //        fraisForfait.Date.ToString("dd MMMM yyyy"),
+            //        fraisForfait.Etat.ToString(),
+            //        fraisForfait.justificatif.FichierBlob.
+            //    });
+            //    ListViewForfait.Items.Add(item);
+            //}
+
+            //foreach (var fraisHorsForfait in ficheEnCours.FraisHorsForfaits)
+            //{
+            //    var item = new ListViewItem(new[]
+            //    {
+            //        fraisHorsForfait.IdFraisHorsForfait.ToString(),
+            //        fraisHorsForfait.Description,
+            //        fraisHorsForfait.Montant.ToString(),
+            //        fraisHorsForfait.Date.ToString("dd MMMM yyyy"),
+            //        fraisHorsForfait.Etat.ToString(),
+            //        fraisHorsForfait.Justificatif.ToString(),
+            //    });
+            //    listViewHorsForfait.Items.Add(item);
+            //}
         }
 
         public void VerifierListesVides()
@@ -108,7 +117,7 @@ namespace AP_1_GSB.Visiteur
                 return;
             }
 
-            int idFraisASupprimer = int.Parse(ListViewForfait.SelectedItems[0].SubItems[0].Text);
+            int idFraisASupprimer = (int)ListViewForfait.SelectedItems[0].Tag;
             ListViewForfait.Items.Remove(ListViewForfait.SelectedItems[0]);
             FraisForfait FraisASupprimer = ficheEnCours.FraisForfaits.Find(f => f.IdFraisForfait == idFraisASupprimer);
 
@@ -145,7 +154,7 @@ namespace AP_1_GSB.Visiteur
             }
             else
             {
-                idFraisASupprimer = int.Parse(listViewHorsForfait.SelectedItems[0].SubItems[0].Text);
+                idFraisASupprimer = (int)listViewHorsForfait.SelectedItems[0].Tag; ;
                 listViewHorsForfait.Items.Remove(listViewHorsForfait.SelectedItems[0]);
                 FraisASupprimer = ficheEnCours.FraisHorsForfaits.Find(f => f.IdFraisHorsForfait == idFraisASupprimer);
             }
@@ -162,31 +171,16 @@ namespace AP_1_GSB.Visiteur
             VerifierListesVides();
         }
 
-        private void FicheFraisDuMois_Load(object sender, EventArgs e)
-        {
-            MettreAJourListView();
-        }
+        // VERIFIER SI PAS BUG AVANT DE SUPPRIMER, PEUT ETRE DEBUG VerifierListesVides()
+        //private void FicheFraisDuMois_Load(object sender, EventArgs e)
+        //{
+        //    //MettreAJourListView();
+        //    //VerifierListesVides();
+        //}
 
         private void BtnPDF_Click(object sender, EventArgs e)
         {
-            PdfDocument pdf = new PdfDocument();
-            PdfPage pdfPage = pdf.AddPage();
-            pdf.Info.Title = "Notes de frais";
-            XGraphics gfx = XGraphics.FromPdfPage(pdfPage);
-            XFont font = new XFont("Arial", 20, XFontStyleEx.Regular);
-            XStringFormat format = new XStringFormat();
-            XRect rect = new XRect(40, 40, pdfPage.Width.Point - 80, pdfPage.Height.Point - 80);
-
-
-            string contenu = "Saf la mouille";
-                             
-            gfx.DrawString(contenu, font, XBrushes.Black, rect, format);
-
-            string nomFichier = "Notes_de_frais_" + utilisateur.Nom + "_" + utilisateur.Prenom + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".pdf";
-            pdf.Save(nomFichier);
-
-            
-            System.Diagnostics.Process.Start(nomFichier);
+;
         }
     }
 }

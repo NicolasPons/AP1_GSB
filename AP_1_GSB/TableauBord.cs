@@ -82,7 +82,9 @@ namespace AP_1_GSB
         public void BtnAjouterNoteFrais_Clique(object sender, EventArgs e)
         {
             AjouterNoteDeFrais ajouterNoteFrais = new AjouterNoteDeFrais(utilisateur, ficheEnCours, dtFin);
+
             ajouterNoteFrais.NoteDeFraisAjoutee += FicheFraisDuMois.MettreAJourListView;
+            ajouterNoteFrais.NoteDeFraisAjoutee += () => BtnSupprimerNote.Enabled = true;
             ajouterNoteFrais.StartPosition = FormStartPosition.Manual;
             ajouterNoteFrais.Location = new System.Drawing.Point(this.Location.X + 400, this.Location.Y + 250);
             ajouterNoteFrais.TopLevel = true;

@@ -97,7 +97,9 @@ namespace AP_1_GSB.Visiteur
                 {
                     MessageBox.Show("Frais créée avec succés.");
                     utilisateur = FicheFraisService.RecupererNotesForfait(utilisateur, FicheEnCours);
-                    NoteDeFraisAjoutee?.Invoke();   
+                    NoteDeFraisAjoutee?.Invoke();
+
+
                 }
                 else 
                 {
