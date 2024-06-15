@@ -44,6 +44,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.BtnPDF = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.LblTotalForfait = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.LblTotalHorsForfait = new System.Windows.Forms.Label();
+            this.LblTotalFiche = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // DateFicheFrais
@@ -190,12 +195,62 @@
             this.BtnPDF.UseVisualStyleBackColor = true;
             this.BtnPDF.Click += new System.EventHandler(this.BtnPDF_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(1052, 439);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(98, 16);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Total frais forfait : ";
+            // 
+            // LblTotalForfait
+            // 
+            this.LblTotalForfait.AutoSize = true;
+            this.LblTotalForfait.Location = new System.Drawing.Point(1156, 439);
+            this.LblTotalForfait.Name = "LblTotalForfait";
+            this.LblTotalForfait.Size = new System.Drawing.Size(43, 16);
+            this.LblTotalForfait.TabIndex = 8;
+            this.LblTotalForfait.Text = "12320€";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(1028, 882);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(122, 16);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Total frais hors forfait : ";
+            // 
+            // LblTotalHorsForfait
+            // 
+            this.LblTotalHorsForfait.AutoSize = true;
+            this.LblTotalHorsForfait.Location = new System.Drawing.Point(1156, 882);
+            this.LblTotalHorsForfait.Name = "LblTotalHorsForfait";
+            this.LblTotalHorsForfait.Size = new System.Drawing.Size(43, 16);
+            this.LblTotalHorsForfait.TabIndex = 10;
+            this.LblTotalHorsForfait.Text = "12320€";
+            // 
+            // LblTotalFiche
+            // 
+            this.LblTotalFiche.AutoSize = true;
+            this.LblTotalFiche.Location = new System.Drawing.Point(763, 496);
+            this.LblTotalFiche.Name = "LblTotalFiche";
+            this.LblTotalFiche.Size = new System.Drawing.Size(40, 16);
+            this.LblTotalFiche.TabIndex = 11;
+            this.LblTotalFiche.Text = "label5";
+            // 
             // FicheFraisDuMois
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1264, 918);
+            this.Controls.Add(this.LblTotalFiche);
+            this.Controls.Add(this.LblTotalHorsForfait);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.LblTotalForfait);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.BtnPDF);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
@@ -231,5 +286,10 @@
         private System.Windows.Forms.ColumnHeader EtatHF;
         private System.Windows.Forms.ColumnHeader JustificatifHF;
         private System.Windows.Forms.Button BtnPDF;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label LblTotalForfait;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label LblTotalHorsForfait;
+        private System.Windows.Forms.Label LblTotalFiche;
     }
 }

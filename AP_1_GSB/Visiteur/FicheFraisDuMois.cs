@@ -20,6 +20,7 @@ using System.Security.Cryptography;
 using System.Globalization;
 using iText.IO.Image;
 using iText.Layout.Properties;
+using AP_1_GSB.Services;
 namespace AP_1_GSB.Visiteur
 {
     public partial class FicheFraisDuMois : Form
@@ -27,6 +28,7 @@ namespace AP_1_GSB.Visiteur
         readonly Utilisateur utilisateur;
         readonly FicheFrais ficheEnCours;
         public event Action ListesVide;
+        public event Action CalculTotalFiche;
         public ListView ListViewForfait => this.listViewForfait;
         public ListView ListViewHorsForfait => this.listViewHorsForfait;
 
@@ -37,7 +39,15 @@ namespace AP_1_GSB.Visiteur
             InitializeComponent();
             MettreAJourListView();
             DateFicheFrais.Text = "Fiche de frais du " + ficheEnCours.Date.ToString("dd MMMM yyyy") + " au " + dtFin.ToString("dd MMMM yyyy");
-        }   
+            CalculTotalFiche += EvenementCalculTotal;
+        }
+
+        private void EvenementCalculTotal()
+        {
+            float totalFiche = FicheFraisService.CalculerTotalFiche(ficheEnCours);
+            LblTotalFiche.Text = totalFiche.ToString("F2");
+        }
+
 
         public void MettreAJourListView()
         {
@@ -54,6 +64,8 @@ namespace AP_1_GSB.Visiteur
                 item.Tag = fraisHorsForfait.IdFraisHorsForfait;
                 listViewHorsForfait.Items.Add(item);
             }
+            float totalForfait = FraisForfaitService.CalculerTotalForfait(ficheEnCours);
+            LblTotalForfait.Text = totalForfait.ToString() + " €";
 
             foreach (FraisForfait fraisForfait in ficheEnCours.FraisForfaits)
             {
@@ -65,6 +77,11 @@ namespace AP_1_GSB.Visiteur
                 item.Tag = fraisForfait.IdFraisForfait;
                 listViewForfait.Items.Add(item);
             }
+
+            float totalHorsForfait = FraisHorsForfaitService.CalculerTotalHorsForfait(ficheEnCours);
+            LblTotalHorsForfait.Text = totalHorsForfait.ToString() + " €";
+            CalculTotalFiche?.Invoke();
+            //float totalFiche = CalculerTotalFiche(ficheEnCours);
         }
 
         public FraisHorsForfait SelectionHorsForfaitAModifier()
@@ -108,16 +125,16 @@ namespace AP_1_GSB.Visiteur
         //VERIFIER SI LA SUPPRESSION SUPPRIME LA BONNE LIGNE EN BASE 
         public void SupprimerFraisForfait()
         {
-            
+
             if (listViewForfait.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Veuillez sélectionner un frais forfait à supprimer");
                 return;
             }
-
             int idFraisASupprimer = (int)listViewForfait.SelectedItems[0].Tag;
             listViewForfait.Items.Remove(listViewForfait.SelectedItems[0]);
             FraisForfait FraisASupprimer = ficheEnCours.FraisForfaits.Find(f => f.IdFraisForfait == idFraisASupprimer);
+
 
             if (FraisASupprimer == null)
             {
@@ -130,12 +147,15 @@ namespace AP_1_GSB.Visiteur
             {
                 MessageBox.Show("Note de frais forfait supprimée");
                 ficheEnCours.FraisForfaits.Remove(FraisASupprimer);
+                float total = FraisForfaitService.CalculerTotalForfait(ficheEnCours);
+                LblTotalForfait.Text = total.ToString() + " €";
+                CalculTotalFiche?.Invoke();
             }
             else
             {
                 MessageBox.Show("Erreur lors de la suppression de la note de frais");
             }
-            
+
             VerifierListesVides();
         }
 
@@ -143,7 +163,7 @@ namespace AP_1_GSB.Visiteur
         {
             int idFraisASupprimer = 0;
             FraisHorsForfait FraisASupprimer = null;
-            
+
 
             if (listViewHorsForfait.SelectedItems.Count == 0)
             {
@@ -159,13 +179,16 @@ namespace AP_1_GSB.Visiteur
             bool ValeurRetour = Services.FraisHorsForfaitService.SupprimerFraisHorsForfait(FraisASupprimer);
             if (ValeurRetour)
             {
+                ficheEnCours.FraisHorsForfaits.Remove(FraisASupprimer);
+                float totalHorsForfait = FraisHorsForfaitService.CalculerTotalHorsForfait(ficheEnCours);
+                LblTotalHorsForfait.Text = totalHorsForfait.ToString() + " €";
+                CalculTotalFiche?.Invoke();
                 MessageBox.Show("Note de frais hors forfait supprimée");
             }
             else
             {
                 MessageBox.Show("Erreur lors de la suppression de la note de frais");
             }
-            ficheEnCours.FraisHorsForfaits.Remove(FraisASupprimer);
             VerifierListesVides();
         }
 
@@ -231,9 +254,9 @@ namespace AP_1_GSB.Visiteur
                 collaborateurTable.AddCell(CreateCell("E-mail"));
                 collaborateurTable.AddCell(CreateCell(utilisateur.Email));
 
-                float yPosition = 750; 
-                float margin = 20;     
-                float tableWidth = 250; 
+                float yPosition = 750;
+                float margin = 20;
+                float tableWidth = 250;
 
                 collaborateurTable.SetFixedPosition(1, 315, 660, tableWidth);
                 noteFraisTable.SetFixedPosition(1, margin + tableWidth + margin, yPosition, tableWidth);
@@ -307,6 +330,7 @@ namespace AP_1_GSB.Visiteur
         {
             return new Cell().Add(new Paragraph(content).SetFontSize(10).SetBold()).SetBackgroundColor(iText.Kernel.Colors.ColorConstants.BLUE).SetFontColor(iText.Kernel.Colors.ColorConstants.WHITE);
         }
+
     }
 }
 

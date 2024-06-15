@@ -317,6 +317,21 @@ namespace AP_1_GSB.Services
             }
         }
 
+        public static float CalculerTotalFiche (FicheFrais ficheEnCours) 
+        {
+            float totalFiche = 0;
+            foreach (FraisHorsForfait frais in ficheEnCours.FraisHorsForfaits)
+            {
+                totalFiche += frais.Montant;
+            }
+
+            foreach (FraisForfait frais in ficheEnCours.FraisForfaits)
+            {
+                totalFiche += frais.Quantite * frais.TypeForfait.Montant;
+            }
+            return totalFiche;
+        }
+
     }
 
 }

@@ -121,5 +121,15 @@ namespace AP_1_GSB.Services
             return false;
         }
 
+        public static float CalculerTotalHorsForfait(FicheFrais ficheEncours)
+        {
+            float total = 0;
+            foreach (FraisHorsForfait fraisHorsForfait in ficheEncours.FraisHorsForfaits)
+            {
+                total += fraisHorsForfait.Montant;
+
+            }
+            return total;
+        }
     }
 }

@@ -125,7 +125,16 @@ namespace AP_1_GSB.Services
             }
             return false;
         }
- 
+
+        public static float CalculerTotalForfait(FicheFrais ficheEncours) 
+        {
+            float Total = 0;
+            foreach(FraisForfait frais in ficheEncours.FraisForfaits)
+            {
+                Total += frais.Quantite * frais.TypeForfait.Montant;
+            }
+            return Total;
+        } 
     }
 }
 

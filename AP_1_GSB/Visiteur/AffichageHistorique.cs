@@ -38,5 +38,10 @@ namespace AP_1_GSB.Visiteur
             DateTime dtFin = new DateTime(fiche.Date.Year, fiche.Date.Month + 1, 10);
             return dtFin;
         }
+
+        private void BtnRetour_Click(object sender, EventArgs e)
+        {
+            this.SendToBack();
+        }
     }
 }
