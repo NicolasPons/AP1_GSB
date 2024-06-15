@@ -78,5 +78,48 @@ namespace AP_1_GSB.Services
             return false;
         }
 
+        public static bool ModifierFraisHorsForfait(int IdFrais, string description, DateTime dateFrais, int montant, byte[] FichierBinaire)
+        {
+            int idJustificatif = 0;
+            if (FichierBinaire != null)
+            {
+                Justificatif justi = JustificatifService.AjouterJustificatif(FichierBinaire);
+                idJustificatif = justi.IdJustificatif;
+            }
+
+            Data.SqlConnection.ConnexionSql();
+
+            string RequeteModificationFraisHorsForfait = "UPDATE `frais_hors_forfait` SET `description` = @description, `montant` = @montant, `date` = @date, `id_justificatif` = @idJustificatif " +
+                                                     "WHERE `id_hors_forfait` = @IdFrais";
+
+            try
+            {
+                using (MySqlCommand cmd = new MySqlCommand(RequeteModificationFraisHorsForfait, Data.SqlConnection.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@description", description);
+                    cmd.Parameters.AddWithValue("@montant", montant);
+                    cmd.Parameters.AddWithValue("@date", dateFrais);
+                    cmd.Parameters.AddWithValue("@idJustificatif", idJustificatif == 0 ? (object)DBNull.Value : idJustificatif);
+                    cmd.Parameters.AddWithValue("@IdFrais", IdFrais);
+
+                    if (cmd.ExecuteNonQuery() > 0)
+                    {
+                        return true;
+                    }
+                }
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show("Erreur lors de la connexion à la base de données : " + e.Message);
+                return false;
+            }
+            finally
+            {
+                Data.SqlConnection.DeconnexionSql();
+            }
+
+            return false;
+        }
+
     }
 }

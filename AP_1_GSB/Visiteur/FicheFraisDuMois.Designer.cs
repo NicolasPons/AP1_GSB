@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.DateFicheFrais = new System.Windows.Forms.Label();
-            this.ListViewForfait = new System.Windows.Forms.ListView();
+            this.listViewForfait = new System.Windows.Forms.ListView();
             this.Type_frais_forfait = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Quantite = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -58,24 +58,24 @@
             this.DateFicheFrais.TabIndex = 0;
             this.DateFicheFrais.Text = "Fiche de frais du 10 Mai 2025 au 00 Mai 2025";
             // 
-            // ListViewForfait
+            // listViewForfait
             // 
-            this.ListViewForfait.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listViewForfait.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Type_frais_forfait,
             this.Quantite,
             this.Date,
             this.Etat,
             this.Justificatif});
-            this.ListViewForfait.FullRowSelect = true;
-            this.ListViewForfait.GridLines = true;
-            this.ListViewForfait.HideSelection = false;
-            this.ListViewForfait.Location = new System.Drawing.Point(44, 115);
-            this.ListViewForfait.Margin = new System.Windows.Forms.Padding(4);
-            this.ListViewForfait.Name = "ListViewForfait";
-            this.ListViewForfait.Size = new System.Drawing.Size(1155, 320);
-            this.ListViewForfait.TabIndex = 1;
-            this.ListViewForfait.UseCompatibleStateImageBehavior = false;
-            this.ListViewForfait.View = System.Windows.Forms.View.Details;
+            this.listViewForfait.FullRowSelect = true;
+            this.listViewForfait.GridLines = true;
+            this.listViewForfait.HideSelection = false;
+            this.listViewForfait.Location = new System.Drawing.Point(44, 115);
+            this.listViewForfait.Margin = new System.Windows.Forms.Padding(4);
+            this.listViewForfait.Name = "listViewForfait";
+            this.listViewForfait.Size = new System.Drawing.Size(1155, 320);
+            this.listViewForfait.TabIndex = 1;
+            this.listViewForfait.UseCompatibleStateImageBehavior = false;
+            this.listViewForfait.View = System.Windows.Forms.View.Details;
             // 
             // Type_frais_forfait
             // 
@@ -200,7 +200,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listViewHorsForfait);
-            this.Controls.Add(this.ListViewForfait);
+            this.Controls.Add(this.listViewForfait);
             this.Controls.Add(this.DateFicheFrais);
             this.Font = new System.Drawing.Font("Century Gothic", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.Black;
@@ -216,7 +216,7 @@
         #endregion
 
         private System.Windows.Forms.Label DateFicheFrais;
-        private System.Windows.Forms.ListView ListViewForfait;
+        private System.Windows.Forms.ListView listViewForfait;
         private System.Windows.Forms.ColumnHeader Type_frais_forfait;
         private System.Windows.Forms.ColumnHeader Quantite;
         private System.Windows.Forms.ColumnHeader Date;

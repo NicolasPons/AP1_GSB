@@ -34,10 +34,11 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnQuitter = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.BtnModifier = new System.Windows.Forms.Button();
             this.BtnSupprimerNote = new System.Windows.Forms.Button();
             this.btnAjouterNoteFrais = new System.Windows.Forms.Button();
             this.PanelAffichage = new System.Windows.Forms.Panel();
-            this.BtnModifier = new System.Windows.Forms.Button();
+            this.BtnHistorique = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -106,6 +107,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel2.Controls.Add(this.BtnHistorique);
             this.panel2.Controls.Add(this.BtnModifier);
             this.panel2.Controls.Add(this.BtnSupprimerNote);
             this.panel2.Controls.Add(this.btnAjouterNoteFrais);
@@ -115,6 +117,16 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(200, 918);
             this.panel2.TabIndex = 1;
+            // 
+            // BtnModifier
+            // 
+            this.BtnModifier.Location = new System.Drawing.Point(0, 160);
+            this.BtnModifier.Name = "BtnModifier";
+            this.BtnModifier.Size = new System.Drawing.Size(200, 74);
+            this.BtnModifier.TabIndex = 4;
+            this.BtnModifier.Text = "Modifier une note";
+            this.BtnModifier.UseVisualStyleBackColor = true;
+            this.BtnModifier.Click += new System.EventHandler(this.BtnModifier_Click);
             // 
             // BtnSupprimerNote
             // 
@@ -146,14 +158,15 @@
             this.PanelAffichage.Size = new System.Drawing.Size(1264, 918);
             this.PanelAffichage.TabIndex = 2;
             // 
-            // BtnModifier
+            // BtnHistorique
             // 
-            this.BtnModifier.Location = new System.Drawing.Point(0, 160);
-            this.BtnModifier.Name = "BtnModifier";
-            this.BtnModifier.Size = new System.Drawing.Size(200, 74);
-            this.BtnModifier.TabIndex = 4;
-            this.BtnModifier.Text = "Modifier une note";
-            this.BtnModifier.UseVisualStyleBackColor = true;
+            this.BtnHistorique.Location = new System.Drawing.Point(0, 240);
+            this.BtnHistorique.Name = "BtnHistorique";
+            this.BtnHistorique.Size = new System.Drawing.Size(200, 74);
+            this.BtnHistorique.TabIndex = 5;
+            this.BtnHistorique.Text = "Afficher l\'historique";
+            this.BtnHistorique.UseVisualStyleBackColor = true;
+            this.BtnHistorique.Click += new System.EventHandler(this.BtnHistorique_Click);
             // 
             // TableauBord
             // 
@@ -189,5 +202,6 @@
         private System.Windows.Forms.Label NomPrenom;
         private System.Windows.Forms.Button BtnSupprimerNote;
         private System.Windows.Forms.Button BtnModifier;
+        private System.Windows.Forms.Button BtnHistorique;
     }
 }

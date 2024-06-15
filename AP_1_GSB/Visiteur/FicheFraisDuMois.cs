@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Xml.Linq;
 using iText.Kernel.Pdf;
 using iText.Layout;
@@ -28,6 +27,8 @@ namespace AP_1_GSB.Visiteur
         readonly Utilisateur utilisateur;
         readonly FicheFrais ficheEnCours;
         public event Action ListesVide;
+        public ListView ListViewForfait => this.listViewForfait;
+        public ListView ListViewHorsForfait => this.listViewHorsForfait;
 
         public FicheFraisDuMois(Utilisateur utilisateur, FicheFrais ficheEnCours, DateTime dtFin)
         {
@@ -41,7 +42,7 @@ namespace AP_1_GSB.Visiteur
         public void MettreAJourListView()
         {
             listViewHorsForfait.Items.Clear();
-            ListViewForfait.Items.Clear();
+            listViewForfait.Items.Clear();
 
             foreach (FraisHorsForfait fraisHorsForfait in ficheEnCours.FraisHorsForfaits)
             {
@@ -62,13 +63,27 @@ namespace AP_1_GSB.Visiteur
                 item.SubItems.Add(fraisForfait.Etat.ToString());
                 //item.SubItems.Add(fraisHorsForfait.Justificatif)
                 item.Tag = fraisForfait.IdFraisForfait;
-                ListViewForfait.Items.Add(item);
+                listViewForfait.Items.Add(item);
             }
+        }
+
+        public FraisHorsForfait SelectionHorsForfaitAModifier()
+        {
+            int idHorsForfait = (int)ListViewHorsForfait.SelectedItems[0].Tag;
+            FraisHorsForfait fraisHorsForfait = ficheEnCours.FraisHorsForfaits.FirstOrDefault(item => item.IdFraisHorsForfait == idHorsForfait);
+            return fraisHorsForfait;
+        }
+
+        public FraisForfait SelectionForfaitAModifier()
+        {
+            int idForfait = (int)listViewForfait.SelectedItems[0].Tag;
+            FraisForfait fraisForfait = ficheEnCours.FraisForfaits.FirstOrDefault(item => item.IdFraisForfait == idForfait);
+            return fraisForfait;
         }
 
         public void VerifierListesVides()
         {
-            if (ListViewForfait.Items.Count == 0 && listViewHorsForfait.Items.Count == 0)
+            if (listViewForfait.Items.Count == 0 && listViewHorsForfait.Items.Count == 0)
             {
                 ListesVide?.Invoke();
             }
@@ -76,7 +91,7 @@ namespace AP_1_GSB.Visiteur
 
         public void SupprimerSelectionLigne()
         {
-            if (ListViewForfait.SelectedItems.Count > 0)
+            if (listViewForfait.SelectedItems.Count > 0)
             {
                 SupprimerFraisForfait();
             }
@@ -86,7 +101,7 @@ namespace AP_1_GSB.Visiteur
             }
             else
             {
-                MessageBox.Show("Veuillez sélectionner un frais à supprimer");
+                MessageBox.Show("Veuillez sélectionner un frais à supprimer.", "Aucune sélection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -94,14 +109,14 @@ namespace AP_1_GSB.Visiteur
         public void SupprimerFraisForfait()
         {
             
-            if (ListViewForfait.SelectedItems.Count == 0)
+            if (listViewForfait.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Veuillez sélectionner un frais forfait à supprimer");
                 return;
             }
 
-            int idFraisASupprimer = (int)ListViewForfait.SelectedItems[0].Tag;
-            ListViewForfait.Items.Remove(ListViewForfait.SelectedItems[0]);
+            int idFraisASupprimer = (int)listViewForfait.SelectedItems[0].Tag;
+            listViewForfait.Items.Remove(listViewForfait.SelectedItems[0]);
             FraisForfait FraisASupprimer = ficheEnCours.FraisForfaits.Find(f => f.IdFraisForfait == idFraisASupprimer);
 
             if (FraisASupprimer == null)
@@ -248,7 +263,7 @@ namespace AP_1_GSB.Visiteur
                 fraisForfaitTable.AddHeaderCell(CreateHeaderCell("Date"));
                 fraisForfaitTable.AddHeaderCell(CreateHeaderCell("Etat"));
 
-                foreach (ListViewItem item in ListViewForfait.Items)
+                foreach (ListViewItem item in listViewForfait.Items)
                 {
                     fraisForfaitTable.AddCell(CreateCell(item.SubItems[0].Text));
                     fraisForfaitTable.AddCell(CreateCell(item.SubItems[1].Text));
@@ -288,7 +303,6 @@ namespace AP_1_GSB.Visiteur
         {
             return new Cell().Add(new Paragraph(content).SetFontSize(10));
         }
-
         private Cell CreateHeaderCell(string content)
         {
             return new Cell().Add(new Paragraph(content).SetFontSize(10).SetBold()).SetBackgroundColor(iText.Kernel.Colors.ColorConstants.BLUE).SetFontColor(iText.Kernel.Colors.ColorConstants.WHITE);

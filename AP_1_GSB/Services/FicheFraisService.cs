@@ -153,14 +153,22 @@ namespace AP_1_GSB.Services
 
                                 //CREER METHODE YA ZEUBI
 
-                                string nomType = (string)reader["nom"];
-                                string nomTypeModifié = nomType.Replace("_", " ").Replace("f", "F");
+                                
                                 TypeFraisForfait typeFraisForfait = new TypeFraisForfait()
                                 {
                                     IdFraisForfait = (int)reader["id_type_forfait"],
-                                    Nom = nomTypeModifié,
+                                    Nom = (string)reader["nom"],
                                     Montant = (float)reader["montant"]
                                 };
+
+                                if (typeFraisForfait.Nom == "frais_km")
+                                {
+                                    typeFraisForfait.Nom = "Frais kilométrique";
+                                }
+                                else if (typeFraisForfait.Nom == "Nuitee")
+                                {
+                                    typeFraisForfait.Nom = "Nuitée";
+                                }
 
                                 FraisForfait noteFrais = new FraisForfait()
                                 {
