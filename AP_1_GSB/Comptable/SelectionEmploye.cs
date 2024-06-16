@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace AP_1_GSB.Comptable
 {
-    public partial class AffichageComptable : Form
+    public partial class SelectionEmploye : Form
     {
-        public AffichageComptable()
+        public SelectionEmploye()
         {
             InitializeComponent();
             ChargerListView();
@@ -31,6 +31,19 @@ namespace AP_1_GSB.Comptable
                 item.SubItems.Add(visisteur.Email);
                 item.Tag = visisteur.IdUtilisateur;
                 listViewAffichageUtilisateurs.Items.Add(item);
+            }
+        }
+
+        public void SelectionnerEmploye()
+        {
+            if (listViewAffichageUtilisateurs.SelectedItems.Count > 0)
+            {
+                int IdEmploye = (int)listViewAffichageUtilisateurs.SelectedItems[0].Tag;
+
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner un employé");
             }
         }
     }

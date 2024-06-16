@@ -1,6 +1,6 @@
 ﻿namespace AP_1_GSB.Comptable
 {
-    partial class AffichageComptable
+    partial class SelectionEmploye
     {
         /// <summary>
         /// Required designer variable.

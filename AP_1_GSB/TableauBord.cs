@@ -21,6 +21,7 @@ namespace AP_1_GSB
     {
         Utilisateur utilisateur;
         FicheFraisDuMois ficheFraisDuMois;
+        SelectionEmploye affichageComptable;
         FicheFrais ficheEnCours;
         FraisForfait forfaitAModifie;
         FraisHorsForfait horsForfaitAModifie;
@@ -53,6 +54,7 @@ namespace AP_1_GSB
             //PanelUtilisateur.BringToFront();
             PanelComptable.Hide();
             NomPrenom.Text = "Bienvenue " + utilisateur.Nom + " " + utilisateur.Prenom;
+
             utilisateur = Services.FicheFraisService.RecupererFichesFrais(utilisateur);
 
             ficheEnCours = null;
@@ -186,7 +188,7 @@ namespace AP_1_GSB
             PanelUtilisateur.Hide();
             //Label ou image signifiant qu'on est sur un compte comptable 
             NomPrenom.Text = "Bienvenue " + utilisateur.Nom + " " + utilisateur.Prenom;
-            AffichageComptable affichageComptable = new AffichageComptable();
+            affichageComptable = new SelectionEmploye();
             affichageComptable.TopLevel = false;
             PanelAffichage.Controls.Add(affichageComptable);
             affichageComptable.FormBorderStyle = FormBorderStyle.None;
@@ -195,13 +197,17 @@ namespace AP_1_GSB
 
 
         }
+
+        private void BtnSelectionVisiteur_Click(object sender, EventArgs e)
+        {
+            affichageComptable.SelectionnerEmploye();
+        }
         #endregion
 
         private void BtnQuitter_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
-
     }
 }
 
