@@ -280,8 +280,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Comptable\AffichageComptable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comptable\AffichageComptable.Designer.cs">
+      <DependentUpon>AffichageComptable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Services\TypeFraisForfaitService.cs" />
     <Compile Include="Services\JustificatifService.cs" />
+    <Compile Include="Services\UtilisateurService.cs" />
+    <Compile Include="Services\VisiteurService.cs" />
     <Compile Include="TableauBord.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -325,6 +333,9 @@
     <Compile Include="Visiteur\FicheFraisDuMois.Designer.cs">
       <DependentUpon>FicheFraisDuMois.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Comptable\AffichageComptable.resx">
+      <DependentUpon>AffichageComptable.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TableauBord.resx">
       <DependentUpon>TableauBord.cs</DependentUpon>
     </EmbeddedResource>

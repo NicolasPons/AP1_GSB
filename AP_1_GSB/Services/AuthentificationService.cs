@@ -32,7 +32,7 @@ namespace AP_1_GSB.Services
 
                     if (reader.Read())
                     {
-                        string role = (string)reader["nom"];
+                        string role = reader.GetString(6);
                         UtilisateurRole utilisateurRole = UtilisateurRole.Visiteur;
 
                         switch (role)

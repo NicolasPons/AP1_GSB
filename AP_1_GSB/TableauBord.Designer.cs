@@ -33,15 +33,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnQuitter = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.PanelUtilisateur = new System.Windows.Forms.Panel();
+            this.BtnHistorique = new System.Windows.Forms.Button();
             this.BtnModifier = new System.Windows.Forms.Button();
             this.BtnSupprimerNote = new System.Windows.Forms.Button();
             this.btnAjouterNoteFrais = new System.Windows.Forms.Button();
             this.PanelAffichage = new System.Windows.Forms.Panel();
-            this.BtnHistorique = new System.Windows.Forms.Button();
+            this.PanelComptable = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel2.SuspendLayout();
+            this.PanelUtilisateur.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -104,19 +105,30 @@
             this.btnQuitter.UseVisualStyleBackColor = true;
             this.btnQuitter.Click += new System.EventHandler(this.BtnQuitter_Click);
             // 
-            // panel2
+            // PanelUtilisateur
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.panel2.Controls.Add(this.BtnHistorique);
-            this.panel2.Controls.Add(this.BtnModifier);
-            this.panel2.Controls.Add(this.BtnSupprimerNote);
-            this.panel2.Controls.Add(this.btnAjouterNoteFrais);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 54);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 918);
-            this.panel2.TabIndex = 1;
+            this.PanelUtilisateur.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.PanelUtilisateur.Controls.Add(this.PanelComptable);
+            this.PanelUtilisateur.Controls.Add(this.BtnHistorique);
+            this.PanelUtilisateur.Controls.Add(this.BtnModifier);
+            this.PanelUtilisateur.Controls.Add(this.BtnSupprimerNote);
+            this.PanelUtilisateur.Controls.Add(this.btnAjouterNoteFrais);
+            this.PanelUtilisateur.Dock = System.Windows.Forms.DockStyle.Left;
+            this.PanelUtilisateur.Location = new System.Drawing.Point(0, 54);
+            this.PanelUtilisateur.Margin = new System.Windows.Forms.Padding(2);
+            this.PanelUtilisateur.Name = "PanelUtilisateur";
+            this.PanelUtilisateur.Size = new System.Drawing.Size(200, 918);
+            this.PanelUtilisateur.TabIndex = 1;
+            // 
+            // BtnHistorique
+            // 
+            this.BtnHistorique.Location = new System.Drawing.Point(0, 240);
+            this.BtnHistorique.Name = "BtnHistorique";
+            this.BtnHistorique.Size = new System.Drawing.Size(200, 74);
+            this.BtnHistorique.TabIndex = 5;
+            this.BtnHistorique.Text = "Afficher l\'historique";
+            this.BtnHistorique.UseVisualStyleBackColor = true;
+            this.BtnHistorique.Click += new System.EventHandler(this.BtnHistorique_Click);
             // 
             // BtnModifier
             // 
@@ -158,15 +170,12 @@
             this.PanelAffichage.Size = new System.Drawing.Size(1264, 918);
             this.PanelAffichage.TabIndex = 2;
             // 
-            // BtnHistorique
+            // PanelComptable
             // 
-            this.BtnHistorique.Location = new System.Drawing.Point(0, 240);
-            this.BtnHistorique.Name = "BtnHistorique";
-            this.BtnHistorique.Size = new System.Drawing.Size(200, 74);
-            this.BtnHistorique.TabIndex = 5;
-            this.BtnHistorique.Text = "Afficher l\'historique";
-            this.BtnHistorique.UseVisualStyleBackColor = true;
-            this.BtnHistorique.Click += new System.EventHandler(this.BtnHistorique_Click);
+            this.PanelComptable.Location = new System.Drawing.Point(0, 0);
+            this.PanelComptable.Name = "PanelComptable";
+            this.PanelComptable.Size = new System.Drawing.Size(200, 918);
+            this.PanelComptable.TabIndex = 6;
             // 
             // TableauBord
             // 
@@ -175,7 +184,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1464, 972);
             this.Controls.Add(this.PanelAffichage);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.PanelUtilisateur);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -185,7 +194,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel2.ResumeLayout(false);
+            this.PanelUtilisateur.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -193,7 +202,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel PanelUtilisateur;
         private System.Windows.Forms.Button btnAjouterNoteFrais;
         private System.Windows.Forms.Panel PanelAffichage;
         private System.Windows.Forms.Button btnQuitter;
@@ -203,5 +212,6 @@
         private System.Windows.Forms.Button BtnSupprimerNote;
         private System.Windows.Forms.Button BtnModifier;
         private System.Windows.Forms.Button BtnHistorique;
+        private System.Windows.Forms.Panel PanelComptable;
     }
 }

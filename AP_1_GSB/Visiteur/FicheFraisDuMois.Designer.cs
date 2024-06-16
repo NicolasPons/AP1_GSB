@@ -234,7 +234,7 @@
             // LblTotalFiche
             // 
             this.LblTotalFiche.AutoSize = true;
-            this.LblTotalFiche.Location = new System.Drawing.Point(763, 496);
+            this.LblTotalFiche.Location = new System.Drawing.Point(1159, 501);
             this.LblTotalFiche.Name = "LblTotalFiche";
             this.LblTotalFiche.Size = new System.Drawing.Size(40, 16);
             this.LblTotalFiche.TabIndex = 11;

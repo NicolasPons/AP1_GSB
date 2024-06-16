@@ -22,18 +22,18 @@ namespace AP_1_GSB.Visiteur
         DateTime dateFrais;
         byte[] FichierBinaire;
         string description;
-        string mode;
+        string versionPopUp;
         int type;
         int quantite;
         int montant;
         public event Action NoteDeFraisAjoutee;
 
-        public CreerModifierNotesFrais(Utilisateur utilisateur, FicheFrais ficheEnCours, DateTime dtFin, string mode)
+        public CreerModifierNotesFrais(Utilisateur utilisateur, FicheFrais ficheEnCours, DateTime dtFin, string versionPopUp)
         {
             InitializeComponent();
             this.utilisateur = utilisateur;
             this.ficheEnCours = ficheEnCours;
-            this.mode = mode;
+            this.versionPopUp = versionPopUp;
             InitialiserForm(dtFin);
             ChargerCombobox();
 
@@ -52,13 +52,13 @@ namespace AP_1_GSB.Visiteur
 
         }
 
-        public CreerModifierNotesFrais(Utilisateur utilisateur, FicheFrais ficheEnCours, DateTime dtFin, string mode, FraisForfait fraisForfait)
+        public CreerModifierNotesFrais(Utilisateur utilisateur, FicheFrais ficheEnCours, DateTime dtFin, string versionPopUp, FraisForfait fraisForfait)
         {
             InitializeComponent();
             this.utilisateur = utilisateur;
             this.ficheEnCours = ficheEnCours;
             this.fraisForfait = fraisForfait;
-            this.mode = mode;
+            this.versionPopUp = versionPopUp;
             InitialiserForm(dtFin);
             ChargerCombobox();
 
@@ -76,7 +76,7 @@ namespace AP_1_GSB.Visiteur
             LblQuantite.Visible = false;
             LblTypeForfait.Visible = false;
         }
-        public CreerModifierNotesFrais(Utilisateur utilisateur, FicheFrais ficheEnCours, DateTime dtFin, string mode, FraisHorsForfait fraisHorsForfait)
+        public CreerModifierNotesFrais(Utilisateur utilisateur, FicheFrais ficheEnCours, DateTime dtFin, string versionPopUp, FraisHorsForfait fraisHorsForfait)
         {
             InitializeComponent();
             
@@ -84,7 +84,7 @@ namespace AP_1_GSB.Visiteur
             this.utilisateur = utilisateur;
             this.ficheEnCours = ficheEnCours;
             this.fraisHorsForfait = fraisHorsForfait;
-            this.mode = mode;
+            this.versionPopUp = versionPopUp;
             InitialiserForm(dtFin);
             ChargerCombobox();
 
@@ -108,7 +108,7 @@ namespace AP_1_GSB.Visiteur
             DateFrais.MinDate = ficheEnCours.Date;
             DateFrais.MaxDate = dtFin;
 
-            if (mode == "creer")
+            if (versionPopUp == "creer")
             {
                 label1.Text = "Création d'une note de frais";
             }
@@ -176,7 +176,7 @@ namespace AP_1_GSB.Visiteur
 
         private void BtnValider_Click(object sender, EventArgs e)
         {
-            if (mode == "creer")
+            if (versionPopUp == "creer")
             {
                 if (SelectionFrais.SelectedIndex == 0)
                 {
@@ -218,7 +218,7 @@ namespace AP_1_GSB.Visiteur
                 }
             }
 
-            else if (mode == "modifierForfait")
+            else if (versionPopUp == "modifierForfait")
             {
                 int IdFiche = fraisForfait.IdFraisForfait;
                 type = SelectionTypeForfait.SelectedIndex + 1;
@@ -263,5 +263,6 @@ namespace AP_1_GSB.Visiteur
         {
             this.Close();
         }
+
     }
 }

@@ -119,6 +119,7 @@
             // 
             // QuantiteMontant
             // 
+            this.QuantiteMontant.BackColor = System.Drawing.Color.White;
             this.QuantiteMontant.Location = new System.Drawing.Point(207, 228);
             this.QuantiteMontant.Maximum = new decimal(new int[] {
             10000,

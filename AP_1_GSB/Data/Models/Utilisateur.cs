@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,6 @@ namespace AP_1_GSB.Data.Models
     public class Utilisateur
     {
         public int IdUtilisateur { get; set; }
-
         public string Identifiant { get; set; }
         public string Mdp { get; set; }
         public string Nom { get; set; }

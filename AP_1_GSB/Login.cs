@@ -36,12 +36,13 @@ namespace AP_1_GSB
                 switch (utilisateur.Role)
                 {
                     case UtilisateurRole.Visiteur:
-                        TableauBord dashBoard = new TableauBord(utilisateur);
-                        dashBoard.Show();
+                        TableauBord TableauBordUtilisateur = new TableauBord(utilisateur);
+                        TableauBordUtilisateur.Show();
                         break;
 
                     case UtilisateurRole.Comptable:
-                        MessageBox.Show("comptable");
+                        TableauBord TableauBordComptable = new TableauBord(utilisateur);
+                        TableauBordComptable.Show();
                         break;
 
                     case UtilisateurRole.Administrateur:

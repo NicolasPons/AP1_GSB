@@ -1,5 +1,6 @@
 ﻿using AP_1_GSB.Data.Models;
 using AP_1_GSB.Visiteur;
+using AP_1_GSB.Comptable;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,7 +19,7 @@ namespace AP_1_GSB
     //VERIFIER L'ID RETOURNE PAR EXECUTESCALAR ET COMPARER AVEC LA VALEUR 
     public partial class TableauBord : Form
     {
-        readonly Utilisateur utilisateur;
+        Utilisateur utilisateur;
         FicheFraisDuMois ficheFraisDuMois;
         FicheFrais ficheEnCours;
         FraisForfait forfaitAModifie;
@@ -28,8 +29,30 @@ namespace AP_1_GSB
         {
             this.utilisateur = utilisateur;
             InitializeComponent();
-            NomPrenom.Text = "Bienvenue " + utilisateur.Nom + " " + utilisateur.Prenom;
 
+            switch (utilisateur.Role)
+            {
+                case UtilisateurRole.Visiteur:
+                    AfficherInformationsUtilisateur();
+                    break;
+
+                case UtilisateurRole.Comptable:
+                    AfficherInformationComptable();
+                    break;
+
+                case UtilisateurRole.Administrateur:
+                    MessageBox.Show("administrateur");
+                    break;
+            }
+        }
+
+        #region Visiteur
+
+        private void AfficherInformationsUtilisateur()
+        {
+            //PanelUtilisateur.BringToFront();
+            PanelComptable.Hide();
+            NomPrenom.Text = "Bienvenue " + utilisateur.Nom + " " + utilisateur.Prenom;
             utilisateur = Services.FicheFraisService.RecupererFichesFrais(utilisateur);
 
             ficheEnCours = null;
@@ -77,13 +100,10 @@ namespace AP_1_GSB
             ficheFraisDuMois.Dock = DockStyle.Fill;
             ficheFraisDuMois.Show();
         }
-
-        // TESTER ALGORITHME POUR VOIR SI FICHEFRAIS RECUP EST LA BONNE 
-        // TESTER ALGORITHME POUR VOIR SI FICHEENCOURS EST BIEN LA DERNIERE FICHE EN CAS DE CREATION DE FICHE 
         public void BtnAjouterNoteFrais_Clique(object sender, EventArgs e)
         {
-            string mode = "creer";
-            OuvrirPopUp(mode);
+            string VersionPopUp = "creer";
+            OuvrirPopUp(VersionPopUp);
         }
         public void BtnSupprimerNote_Clique(object sender, EventArgs e)
         {
@@ -94,26 +114,25 @@ namespace AP_1_GSB
         {
             if (ficheFraisDuMois.ListViewForfait.SelectedItems.Count > 0)
             {
-                string mode = "modifierForfait";
+                string versionPopUp = "modifierForfait";
                 forfaitAModifie = ficheFraisDuMois.SelectionForfaitAModifier();
-                OuvrirPopUp(mode, forfaitAModifie);
+                OuvrirPopUp(versionPopUp, forfaitAModifie);
             }
 
             else if (ficheFraisDuMois.ListViewHorsForfait.SelectedItems.Count > 0)
             {
-                string mode = "modifierHorsForfait";
+                string versionPopUp = "modifierHorsForfait";
                 horsForfaitAModifie = ficheFraisDuMois.SelectionHorsForfaitAModifier();
-                OuvrirPopUp(mode, horsForfaitAModifie);
+                OuvrirPopUp(versionPopUp, horsForfaitAModifie);
             }
             else
             {
                 MessageBox.Show("Veuillez sélectionner un frais à modifier.", "Aucune sélection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
-        private void OuvrirPopUp(string mode)
+        private void OuvrirPopUp(string versionPopUp)
         {
-            CreerModifierNotesFrais ajouterNoteFrais = new CreerModifierNotesFrais(utilisateur, ficheEnCours, dtFin, mode);
+            CreerModifierNotesFrais ajouterNoteFrais = new CreerModifierNotesFrais(utilisateur, ficheEnCours, dtFin, versionPopUp);
             ajouterNoteFrais.NoteDeFraisAjoutee += ficheFraisDuMois.MettreAJourListView;
             ajouterNoteFrais.NoteDeFraisAjoutee += () => BtnSupprimerNote.Enabled = true;
             ajouterNoteFrais.NoteDeFraisAjoutee += () => BtnModifier.Enabled = true;
@@ -122,21 +141,9 @@ namespace AP_1_GSB
             ajouterNoteFrais.TopLevel = true;
             ajouterNoteFrais.Show();
         }
-        private void OuvrirPopUp(string mode, FraisForfait fraisForfait)
+        private void OuvrirPopUp(string versionPopUp, FraisForfait fraisForfait)
         {
-            CreerModifierNotesFrais ajouterNoteFrais = new CreerModifierNotesFrais(utilisateur, ficheEnCours, dtFin, mode, fraisForfait);
-            ajouterNoteFrais.NoteDeFraisAjoutee += ficheFraisDuMois.MettreAJourListView;
-            ajouterNoteFrais.NoteDeFraisAjoutee += () => BtnSupprimerNote.Enabled = true;
-            ajouterNoteFrais.NoteDeFraisAjoutee += () => BtnModifier.Enabled = true;
-            ajouterNoteFrais.StartPosition = FormStartPosition.Manual;
-            ajouterNoteFrais.Location = new System.Drawing.Point(this.Location.X + 400, this.Location.Y + 250);
-            ajouterNoteFrais.TopLevel = true;
-            ajouterNoteFrais.Show();
-        }
-
-        private void OuvrirPopUp(string mode, FraisHorsForfait fraisHorsForfait)
-        {
-            CreerModifierNotesFrais ajouterNoteFrais = new CreerModifierNotesFrais(utilisateur, ficheEnCours, dtFin, mode, fraisHorsForfait);
+            CreerModifierNotesFrais ajouterNoteFrais = new CreerModifierNotesFrais(utilisateur, ficheEnCours, dtFin, versionPopUp, fraisForfait);
             ajouterNoteFrais.NoteDeFraisAjoutee += ficheFraisDuMois.MettreAJourListView;
             ajouterNoteFrais.NoteDeFraisAjoutee += () => BtnSupprimerNote.Enabled = true;
             ajouterNoteFrais.NoteDeFraisAjoutee += () => BtnModifier.Enabled = true;
@@ -146,11 +153,18 @@ namespace AP_1_GSB
             ajouterNoteFrais.Show();
         }
 
-
-        private void BtnQuitter_Click(object sender, EventArgs e)
+        private void OuvrirPopUp(string versionPopUp, FraisHorsForfait fraisHorsForfait)
         {
-            Application.Exit();
+            CreerModifierNotesFrais ajouterNoteFrais = new CreerModifierNotesFrais(utilisateur, ficheEnCours, dtFin, versionPopUp, fraisHorsForfait);
+            ajouterNoteFrais.NoteDeFraisAjoutee += ficheFraisDuMois.MettreAJourListView;
+            ajouterNoteFrais.NoteDeFraisAjoutee += () => BtnSupprimerNote.Enabled = true;
+            ajouterNoteFrais.NoteDeFraisAjoutee += () => BtnModifier.Enabled = true;
+            ajouterNoteFrais.StartPosition = FormStartPosition.Manual;
+            ajouterNoteFrais.Location = new System.Drawing.Point(this.Location.X + 400, this.Location.Y + 250);
+            ajouterNoteFrais.TopLevel = true;
+            ajouterNoteFrais.Show();
         }
+
 
         private void BtnHistorique_Click(object sender, EventArgs e)
         {
@@ -163,6 +177,31 @@ namespace AP_1_GSB
             affichageHistorique.BringToFront();
             affichageHistorique.Show();
         }
+
+        #endregion
+
+        #region Comptable 
+        private void AfficherInformationComptable()
+        {
+            PanelUtilisateur.Hide();
+            //Label ou image signifiant qu'on est sur un compte comptable 
+            NomPrenom.Text = "Bienvenue " + utilisateur.Nom + " " + utilisateur.Prenom;
+            AffichageComptable affichageComptable = new AffichageComptable();
+            affichageComptable.TopLevel = false;
+            PanelAffichage.Controls.Add(affichageComptable);
+            affichageComptable.FormBorderStyle = FormBorderStyle.None;
+            affichageComptable.Dock = DockStyle.Fill;
+            affichageComptable.Show();
+
+
+        }
+        #endregion
+
+        private void BtnQuitter_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
     }
 }
 
