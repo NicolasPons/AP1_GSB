@@ -148,7 +148,7 @@ namespace AP_1_GSB.Services
                 try
                 {
                     int idFicheFrais = FicheEnCours.IdFicheFrais;
-                    string RequeteNotesForfait ="SELECT id_frais_forfait, quantite, date, etat, frais_forfait.id_justificatif, justificatif.fichier," +
+                    string RequeteNotesForfait = "SELECT id_frais_forfait, quantite, date, etat, frais_forfait.id_justificatif, justificatif.fichier," +
                                                 "type_frais_forfait.id_type_forfait, type_frais_forfait.nom, type_frais_forfait.montant " +
                                                 "FROM `frais_forfait` " +
                                                 "LEFT JOIN justificatif ON justificatif.id_justificatif = frais_forfait.id_justificatif " +
@@ -178,12 +178,12 @@ namespace AP_1_GSB.Services
                                         etatNote = EtatFraisForfait.Attente;
                                         break;
                                 }
-                                
+
                                 Justificatif justi = CreerJustificatif(reader);
 
                                 //CREER METHODE YA ZEUBI
 
-                                
+
                                 TypeFraisForfait typeFraisForfait = new TypeFraisForfait()
                                 {
                                     IdFraisForfait = (int)reader["id_type_forfait"],
@@ -288,7 +288,7 @@ namespace AP_1_GSB.Services
                             FicheEnCours.FraisHorsForfaits = listeHorsForfait;
                         }
                     }
-                    
+
                     return utilisateur;
                 }
                 catch (Exception ex)
@@ -347,7 +347,7 @@ namespace AP_1_GSB.Services
             }
         }
 
-        public static float CalculerTotalFiche (FicheFrais ficheEnCours) 
+        public static float CalculerTotalFiche(FicheFrais ficheEnCours)
         {
             float totalFiche = 0;
             foreach (FraisHorsForfait frais in ficheEnCours.FraisHorsForfaits)
@@ -361,8 +361,39 @@ namespace AP_1_GSB.Services
             }
             return totalFiche;
         }
+        public static bool ChangerEtatFiche(FicheFrais ficheEnCours, int idEtat)
+        {
+            Data.SqlConnection.ConnexionSql();
+
+            int idFiche = ficheEnCours.IdFicheFrais;
+            string requete = "UPDATE fiche_frais SET id_etat = @idEdat WHERE id_fiche_frais = @id_Fiche; ";
+
+            try
+            {
+                using (MySqlCommand cmd = new MySqlCommand(requete, Data.SqlConnection.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@id_Fiche", idFiche);
+                    cmd.Parameters.AddWithValue("@id_etat", idEtat);
+
+                    if (cmd.ExecuteNonQuery() > 0)
+                        return true;
+                }
+            }
+
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Erreur lors du changement d'état :" + ex.Message);
+                return false;
+            }
+            finally
+            {
+                Data.SqlConnection.DeconnexionSql();
+            }
+            return false;
+        }
 
     }
+
 
 }
 

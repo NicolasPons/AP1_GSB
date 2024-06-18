@@ -1,4 +1,5 @@
 ﻿using AP_1_GSB.Data.Models;
+using iText.Layout.Splitting;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -43,7 +44,6 @@ namespace AP_1_GSB.Comptable
             {
                 int IdEmploye = (int)listViewAffichageUtilisateurs.SelectedItems[0].Tag;
                 employe = visiteurs.FirstOrDefault( v => v.IdUtilisateur == IdEmploye ); 
-                
                 return employe;
             }
             else

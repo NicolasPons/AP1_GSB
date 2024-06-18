@@ -35,12 +35,13 @@
             this.btnQuitter = new System.Windows.Forms.Button();
             this.PanelUtilisateur = new System.Windows.Forms.Panel();
             this.PanelComptable = new System.Windows.Forms.Panel();
+            this.BtnAfficheFichesEmploye = new System.Windows.Forms.Button();
             this.BtnHistorique = new System.Windows.Forms.Button();
             this.BtnModifier = new System.Windows.Forms.Button();
             this.BtnSupprimerNote = new System.Windows.Forms.Button();
             this.btnAjouterNoteFrais = new System.Windows.Forms.Button();
             this.PanelAffichage = new System.Windows.Forms.Panel();
-            this.BtnSelectionVisiteur = new System.Windows.Forms.Button();
+            this.btnRefusFrais = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.PanelUtilisateur.SuspendLayout();
@@ -124,11 +125,22 @@
             // 
             // PanelComptable
             // 
-            this.PanelComptable.Controls.Add(this.BtnSelectionVisiteur);
+            this.PanelComptable.Controls.Add(this.btnRefusFrais);
+            this.PanelComptable.Controls.Add(this.BtnAfficheFichesEmploye);
             this.PanelComptable.Location = new System.Drawing.Point(0, 0);
             this.PanelComptable.Name = "PanelComptable";
             this.PanelComptable.Size = new System.Drawing.Size(200, 918);
             this.PanelComptable.TabIndex = 6;
+            // 
+            // BtnAfficheFichesEmploye
+            // 
+            this.BtnAfficheFichesEmploye.Location = new System.Drawing.Point(0, 0);
+            this.BtnAfficheFichesEmploye.Name = "BtnAfficheFichesEmploye";
+            this.BtnAfficheFichesEmploye.Size = new System.Drawing.Size(200, 74);
+            this.BtnAfficheFichesEmploye.TabIndex = 0;
+            this.BtnAfficheFichesEmploye.Text = "Afficher la fiche de l\'employé";
+            this.BtnAfficheFichesEmploye.UseVisualStyleBackColor = true;
+            this.BtnAfficheFichesEmploye.Click += new System.EventHandler(this.BtnAfficherFichesEmplye_Clique);
             // 
             // BtnHistorique
             // 
@@ -180,15 +192,15 @@
             this.PanelAffichage.Size = new System.Drawing.Size(1264, 918);
             this.PanelAffichage.TabIndex = 2;
             // 
-            // BtnSelectionVisiteur
+            // btnRefusFrais
             // 
-            this.BtnSelectionVisiteur.Location = new System.Drawing.Point(0, 0);
-            this.BtnSelectionVisiteur.Name = "BtnSelectionVisiteur";
-            this.BtnSelectionVisiteur.Size = new System.Drawing.Size(200, 74);
-            this.BtnSelectionVisiteur.TabIndex = 0;
-            this.BtnSelectionVisiteur.Text = "Sélectionner un employé";
-            this.BtnSelectionVisiteur.UseVisualStyleBackColor = true;
-            this.BtnSelectionVisiteur.Click += new System.EventHandler(this.BtnSelectionVisiteur_Click);
+            this.btnRefusFrais.Location = new System.Drawing.Point(0, 80);
+            this.btnRefusFrais.Name = "btnRefusFrais";
+            this.btnRefusFrais.Size = new System.Drawing.Size(200, 74);
+            this.btnRefusFrais.TabIndex = 1;
+            this.btnRefusFrais.Text = "Sélectionner un frais à refuser";
+            this.btnRefusFrais.UseVisualStyleBackColor = true;
+            this.btnRefusFrais.Click += new System.EventHandler(this.btnRefusFrais_Click);
             // 
             // TableauBord
             // 
@@ -227,6 +239,7 @@
         private System.Windows.Forms.Button BtnModifier;
         private System.Windows.Forms.Button BtnHistorique;
         private System.Windows.Forms.Panel PanelComptable;
-        private System.Windows.Forms.Button BtnSelectionVisiteur;
+        private System.Windows.Forms.Button BtnAfficheFichesEmploye;
+        private System.Windows.Forms.Button btnRefusFrais;
     }
 }

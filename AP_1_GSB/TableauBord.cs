@@ -113,7 +113,9 @@ namespace AP_1_GSB
             utilisateur = Services.FicheFraisService.RecupererNotesForfait(utilisateur, ficheEnCours);
             utilisateur = Services.FicheFraisService.RecupererNotesHorsForfait(utilisateur, ficheEnCours);
 
-            ficheFraisDuMois = new FicheFraisDuMois(utilisateur, ficheEnCours, dateFin);
+            string version = "utilisateur";
+
+            ficheFraisDuMois = new FicheFraisDuMois(utilisateur, ficheEnCours, dateFin, version);
             ficheFraisDuMois.ListesVide += () => BtnSupprimerNote.Enabled = false;
             ficheFraisDuMois.ListesVide += () => BtnModifier.Enabled = false;
             ficheFraisDuMois.VerifierListesVides();
@@ -208,8 +210,9 @@ namespace AP_1_GSB
         {
             //Label ou image signifiant qu'on est sur un compte comptable 
             NomPrenom.Text = "Bienvenue " + utilisateur.Nom + " " + utilisateur.Prenom;
-            PanelUtilisateur.Hide();
-            PanelComptable.BringToFront();
+            PanelComptable.Visible = true;
+            btnRefusFrais.Enabled = false;
+          
 
             affichageComptable = new SelectionEmploye();
             affichageComptable.TopLevel = false;
@@ -219,16 +222,41 @@ namespace AP_1_GSB
             affichageComptable.Show();
         }
 
-        private void BtnSelectionVisiteur_Click(object sender, EventArgs e)
+        private void BtnAfficherFichesEmplye_Clique(object sender, EventArgs e)
         {
             Utilisateur employe = affichageComptable.SelectionnerEmploye();
-            MessageBox.Show("Les informations " + employe.Nom );
+            if (employe != null)
+            {
+                employe = Services.FicheFraisService.RecupererFichesFrais(employe);
+                RecupererDatesFiche();
+                ficheEnCours = Services.FicheFraisService.RecupererDerniereFiche(employe, DateDebut, dateFin);
+                employe = Services.FicheFraisService.RecupererNotesForfait(employe, ficheEnCours);
+                employe = Services.FicheFraisService.RecupererNotesHorsForfait(employe, ficheEnCours);
+
+                string version = "comptable";
+                btnRefusFrais.Enabled = true;
+                BtnAfficheFichesEmploye.Enabled = false;
+                //affichageComptable.Visible = false;
+                ficheFraisDuMois = new FicheFraisDuMois(employe, ficheEnCours, dateFin, version);
+                ficheFraisDuMois.VerifierListesVides();
+                ficheFraisDuMois.TopLevel = false;
+                PanelAffichage.Controls.Add(ficheFraisDuMois);
+                ficheFraisDuMois.FormBorderStyle = FormBorderStyle.None;
+                ficheFraisDuMois.Dock = DockStyle.Fill;
+                ficheFraisDuMois.BringToFront();
+                ficheFraisDuMois.Show();
+            }
         }
         #endregion
 
         private void BtnQuitter_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void btnRefusFrais_Click(object sender, EventArgs e)
+        {
+            ficheFraisDuMois.RefuserFrais();
         }
     }
 }

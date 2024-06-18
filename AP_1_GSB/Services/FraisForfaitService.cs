@@ -135,6 +135,34 @@ namespace AP_1_GSB.Services
             }
             return Total;
         } 
+
+        public static bool RefuserFraisForfat(int idFrais)
+        {
+            Data.SqlConnection.ConnexionSql();
+            string requete = "UPDATE frais_forfait SET etat = 'REFUSER' WHERE id_frais_forfait = @idFrais;";
+
+            try
+            {
+                using (MySqlCommand cmd = new MySqlCommand(requete, Data.SqlConnection.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@idFrais", idFrais);
+                    if (cmd.ExecuteNonQuery() > 0)
+                    {
+                        return true;
+                    }
+                }
+            }
+            catch (MySqlException ex) 
+            {
+                MessageBox.Show("Erreur lors du refus de frais : " + ex.Message);
+                return false;
+            }
+            finally 
+            {
+                Data.SqlConnection.DeconnexionSql();
+            }
+            return false ;
+        }
     }
 }
 
