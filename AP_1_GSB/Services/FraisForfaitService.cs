@@ -18,9 +18,9 @@ namespace AP_1_GSB.Services
     {
         public static bool SupprimerFraisForfait(FraisForfait frais)
         {
-            int IdFrais= frais.IdFraisForfait;
+            int IdFrais = frais.IdFraisForfait;
 
-            if( frais != null && frais.IdFraisForfait > 0)
+            if (frais != null && frais.IdFraisForfait > 0)
             {
                 Data.SqlConnection.ConnexionSql();
 
@@ -35,7 +35,7 @@ namespace AP_1_GSB.Services
                         return true;
                     }
                 }
-                return false; 
+                return false;
             }
             return false;
         }
@@ -43,11 +43,11 @@ namespace AP_1_GSB.Services
         public static bool AjouterFraisForfait(int IdFiche, int typeForfait, DateTime date, int quantite, byte[] justificatif)
         {
             int idJustificatif = 0;
-            if (justificatif != null )
+            if (justificatif != null)
             {
-            Justificatif justi;
-            justi = Services.JustificatifService.AjouterJustificatif(justificatif); 
-            idJustificatif = justi.IdJustificatif;
+                Justificatif justi;
+                justi = Services.JustificatifService.AjouterJustificatif(justificatif);
+                idJustificatif = justi.IdJustificatif;
             }
 
             Data.SqlConnection.ConnexionSql();
@@ -57,7 +57,7 @@ namespace AP_1_GSB.Services
 
             try
             {
-                using(MySqlCommand cmd = new MySqlCommand(RequeteCreationFraisForfait, Data.SqlConnection.Connection))
+                using (MySqlCommand cmd = new MySqlCommand(RequeteCreationFraisForfait, Data.SqlConnection.Connection))
                 {
                     cmd.Parameters.AddWithValue("@quantite", quantite);
                     cmd.Parameters.AddWithValue("@Date", date);
@@ -66,11 +66,11 @@ namespace AP_1_GSB.Services
                     cmd.Parameters.AddWithValue("@id_fiche_frais", IdFiche);
                     cmd.Parameters.AddWithValue("@id_Justificatif", idJustificatif == 0 ? (object)DBNull.Value : idJustificatif);
 
-                    if (cmd.ExecuteNonQuery() > 0) 
-                        { return true; }
+                    if (cmd.ExecuteNonQuery() > 0)
+                    { return true; }
                 }
             }
-            catch(MySqlException e)
+            catch (MySqlException e)
             {
                 MessageBox.Show("Erreur lors de la connexion à la base de donné : " + e.Message);
                 return false;
@@ -126,44 +126,45 @@ namespace AP_1_GSB.Services
             return false;
         }
 
-        public static float CalculerTotalForfait(FicheFrais ficheEncours) 
+        public static float CalculerTotalForfait(FicheFrais ficheEncours)
         {
             float Total = 0;
-            foreach(FraisForfait frais in ficheEncours.FraisForfaits)
+            foreach (FraisForfait frais in ficheEncours.FraisForfaits)
             {
                 Total += frais.Quantite * frais.TypeForfait.Montant;
             }
             return Total;
-        } 
+        }
 
-        public static bool RefuserFraisForfat(int idFrais)
+        public static bool ChangerEtatFraisForfat(int idFrais, string etat)
         {
             Data.SqlConnection.ConnexionSql();
-            string requete = "UPDATE frais_forfait SET etat = 'REFUSER' WHERE id_frais_forfait = @idFrais;";
+            string requete = "UPDATE frais_forfait SET etat = @etat WHERE id_frais_forfait = @idFrais;";
 
             try
             {
                 using (MySqlCommand cmd = new MySqlCommand(requete, Data.SqlConnection.Connection))
                 {
                     cmd.Parameters.AddWithValue("@idFrais", idFrais);
+                    cmd.Parameters.AddWithValue("@etat", etat);
                     if (cmd.ExecuteNonQuery() > 0)
                     {
                         return true;
                     }
                 }
             }
-            catch (MySqlException ex) 
+            catch (MySqlException ex)
             {
                 MessageBox.Show("Erreur lors du refus de frais : " + ex.Message);
                 return false;
             }
-            finally 
+            finally
             {
                 Data.SqlConnection.DeconnexionSql();
             }
-            return false ;
+            return false;
         }
     }
 }
 
-               
+

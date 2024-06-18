@@ -78,38 +78,6 @@ namespace AP_1_GSB
             RecupererDatesFiche();
 
             ficheEnCours = Services.FicheFraisService.RecupererDerniereFiche(utilisateur, DateDebut, dateFin);
-
-            //DateTime now = DateTime.Now;
-            //DateTime DateDebut;
-
-            //if (now.Day >= 11)
-            //{
-            //    DateDebut = new DateTime(now.Year, now.Month, 11);
-            //    dtFin = new DateTime(now.Year, now.Month + 1, 10);
-            //}
-            //else
-            //{
-            //    DateDebut = new DateTime(now.Year, now.Month - 1, 11);
-            //    dtFin = new DateTime(now.Year, now.Month, 10);
-            //}
-
-            //utilisateur.FichesFrais.ForEach
-            //    (
-            //        ficheFrais =>
-            //        {
-            //            if (ficheFrais.Date >= DateDebut && ficheFrais.Date <= dtFin)
-            //            {
-            //                ficheEnCours = ficheFrais;
-            //            }
-            //        }
-            //    );
-
-            //if (ficheEnCours == null)
-            //{
-            //    utilisateur = Services.FicheFraisService.CreerFicheFraisMoisEnCours(utilisateur, DateDebut);
-            //    ficheEnCours = utilisateur.FichesFrais.Last();
-            //}
-
             utilisateur = Services.FicheFraisService.RecupererNotesForfait(utilisateur, ficheEnCours);
             utilisateur = Services.FicheFraisService.RecupererNotesHorsForfait(utilisateur, ficheEnCours);
 
@@ -133,7 +101,7 @@ namespace AP_1_GSB
         public void BtnSupprimerNote_Clique(object sender, EventArgs e)
         {
             ficheFraisDuMois.SupprimerSelectionLigne();
-            
+
         }
         private void BtnModifier_Click(object sender, EventArgs e)
         {
@@ -202,8 +170,8 @@ namespace AP_1_GSB
             affichageHistorique.BringToFront();
             affichageHistorique.Show();
         }
-
         #endregion
+
 
         #region Comptable 
         private void AfficherInformationComptable()
@@ -212,7 +180,7 @@ namespace AP_1_GSB
             NomPrenom.Text = "Bienvenue " + utilisateur.Nom + " " + utilisateur.Prenom;
             PanelComptable.Visible = true;
             btnRefusFrais.Enabled = false;
-          
+            btnAccepterFrais.Enabled = false;
 
             affichageComptable = new SelectionEmploye();
             affichageComptable.TopLevel = false;
@@ -235,10 +203,14 @@ namespace AP_1_GSB
 
                 string version = "comptable";
                 btnRefusFrais.Enabled = true;
+                btnAccepterFrais.Enabled = true;
                 BtnAfficheFichesEmploye.Enabled = false;
-                //affichageComptable.Visible = false;
                 ficheFraisDuMois = new FicheFraisDuMois(employe, ficheEnCours, dateFin, version);
+                ficheFraisDuMois.ListesVide += () => btnRefusFrais.Enabled = false;
                 ficheFraisDuMois.VerifierListesVides();
+                ficheFraisDuMois.GriserBouton += () => btnRefusFrais.Enabled = false;
+                ficheFraisDuMois.GriserBouton += () => btnAccepterFrais.Enabled = false;
+                ficheFraisDuMois.GriserBouton += () => BtnAfficheFichesEmploye.Enabled = true;
                 ficheFraisDuMois.TopLevel = false;
                 PanelAffichage.Controls.Add(ficheFraisDuMois);
                 ficheFraisDuMois.FormBorderStyle = FormBorderStyle.None;
@@ -247,6 +219,14 @@ namespace AP_1_GSB
                 ficheFraisDuMois.Show();
             }
         }
+        private void btnRefusFrais_Click(object sender, EventArgs e)
+        {
+            ficheFraisDuMois.RefuserFrais();
+        }
+        private void btnAccepterFrais_Click(object sender, EventArgs e)
+        {
+            ficheFraisDuMois.AccepterFrais();
+        }
         #endregion
 
         private void BtnQuitter_Click(object sender, EventArgs e)
@@ -254,10 +234,6 @@ namespace AP_1_GSB
             Application.Exit();
         }
 
-        private void btnRefusFrais_Click(object sender, EventArgs e)
-        {
-            ficheFraisDuMois.RefuserFrais();
-        }
     }
 }
 

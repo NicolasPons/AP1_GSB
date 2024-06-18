@@ -257,21 +257,20 @@
             this.LblEmployeInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.LblEmployeInfo.Location = new System.Drawing.Point(480, 43);
             this.LblEmployeInfo.Name = "LblEmployeInfo";
-            this.LblEmployeInfo.Size = new System.Drawing.Size(222, 21);
+            this.LblEmployeInfo.Size = new System.Drawing.Size(226, 22);
             this.LblEmployeInfo.TabIndex = 13;
             this.LblEmployeInfo.Text = "Employé :  Nom Prenom";
             // 
             // rBtnEnCours
             // 
             this.rBtnEnCours.AutoSize = true;
-            this.rBtnEnCours.Checked = true;
             this.rBtnEnCours.Location = new System.Drawing.Point(44, 862);
             this.rBtnEnCours.Name = "rBtnEnCours";
             this.rBtnEnCours.Size = new System.Drawing.Size(69, 20);
             this.rBtnEnCours.TabIndex = 14;
-            this.rBtnEnCours.TabStop = true;
             this.rBtnEnCours.Text = "En cours";
             this.rBtnEnCours.UseVisualStyleBackColor = true;
+            this.rBtnEnCours.CheckedChanged += new System.EventHandler(this.rBtnEnCours_CheckedChanged);
             // 
             // rBtnAccepter
             // 
@@ -293,6 +292,7 @@
             this.rBtnRefuser.TabIndex = 16;
             this.rBtnRefuser.Text = "Refuser";
             this.rBtnRefuser.UseVisualStyleBackColor = true;
+            this.rBtnRefuser.CheckedChanged += new System.EventHandler(this.rBtnRefuser_CheckedChanged);
             // 
             // lblEtat
             // 

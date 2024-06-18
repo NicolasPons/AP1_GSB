@@ -150,7 +150,7 @@
             // 
             // btnValider
             // 
-            this.btnValider.Location = new System.Drawing.Point(262, 355);
+            this.btnValider.Location = new System.Drawing.Point(233, 352);
             this.btnValider.Name = "btnValider";
             this.btnValider.Size = new System.Drawing.Size(75, 23);
             this.btnValider.TabIndex = 17;
@@ -161,7 +161,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(204, 99);
+            this.label2.Location = new System.Drawing.Point(207, 99);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(188, 16);
             this.label2.TabIndex = 18;
@@ -188,7 +188,7 @@
             // LblDescription
             // 
             this.LblDescription.AutoSize = true;
-            this.LblDescription.Location = new System.Drawing.Point(207, 150);
+            this.LblDescription.Location = new System.Drawing.Point(204, 150);
             this.LblDescription.Name = "LblDescription";
             this.LblDescription.Size = new System.Drawing.Size(173, 16);
             this.LblDescription.TabIndex = 21;
@@ -197,7 +197,7 @@
             // LblTypeForfait
             // 
             this.LblTypeForfait.AutoSize = true;
-            this.LblTypeForfait.Location = new System.Drawing.Point(207, 149);
+            this.LblTypeForfait.Location = new System.Drawing.Point(207, 150);
             this.LblTypeForfait.Name = "LblTypeForfait";
             this.LblTypeForfait.Size = new System.Drawing.Size(196, 16);
             this.LblTypeForfait.TabIndex = 22;

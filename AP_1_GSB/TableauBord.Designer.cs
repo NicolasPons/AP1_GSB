@@ -35,13 +35,14 @@
             this.btnQuitter = new System.Windows.Forms.Button();
             this.PanelUtilisateur = new System.Windows.Forms.Panel();
             this.PanelComptable = new System.Windows.Forms.Panel();
+            this.btnRefusFrais = new System.Windows.Forms.Button();
             this.BtnAfficheFichesEmploye = new System.Windows.Forms.Button();
             this.BtnHistorique = new System.Windows.Forms.Button();
             this.BtnModifier = new System.Windows.Forms.Button();
             this.BtnSupprimerNote = new System.Windows.Forms.Button();
             this.btnAjouterNoteFrais = new System.Windows.Forms.Button();
             this.PanelAffichage = new System.Windows.Forms.Panel();
-            this.btnRefusFrais = new System.Windows.Forms.Button();
+            this.btnAccepterFrais = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.PanelUtilisateur.SuspendLayout();
@@ -125,12 +126,23 @@
             // 
             // PanelComptable
             // 
+            this.PanelComptable.Controls.Add(this.btnAccepterFrais);
             this.PanelComptable.Controls.Add(this.btnRefusFrais);
             this.PanelComptable.Controls.Add(this.BtnAfficheFichesEmploye);
             this.PanelComptable.Location = new System.Drawing.Point(0, 0);
             this.PanelComptable.Name = "PanelComptable";
             this.PanelComptable.Size = new System.Drawing.Size(200, 918);
             this.PanelComptable.TabIndex = 6;
+            // 
+            // btnRefusFrais
+            // 
+            this.btnRefusFrais.Location = new System.Drawing.Point(0, 80);
+            this.btnRefusFrais.Name = "btnRefusFrais";
+            this.btnRefusFrais.Size = new System.Drawing.Size(200, 74);
+            this.btnRefusFrais.TabIndex = 1;
+            this.btnRefusFrais.Text = "Sélectionner un frais à refuser";
+            this.btnRefusFrais.UseVisualStyleBackColor = true;
+            this.btnRefusFrais.Click += new System.EventHandler(this.btnRefusFrais_Click);
             // 
             // BtnAfficheFichesEmploye
             // 
@@ -192,15 +204,15 @@
             this.PanelAffichage.Size = new System.Drawing.Size(1264, 918);
             this.PanelAffichage.TabIndex = 2;
             // 
-            // btnRefusFrais
+            // btnAccepterFrais
             // 
-            this.btnRefusFrais.Location = new System.Drawing.Point(0, 80);
-            this.btnRefusFrais.Name = "btnRefusFrais";
-            this.btnRefusFrais.Size = new System.Drawing.Size(200, 74);
-            this.btnRefusFrais.TabIndex = 1;
-            this.btnRefusFrais.Text = "Sélectionner un frais à refuser";
-            this.btnRefusFrais.UseVisualStyleBackColor = true;
-            this.btnRefusFrais.Click += new System.EventHandler(this.btnRefusFrais_Click);
+            this.btnAccepterFrais.Location = new System.Drawing.Point(0, 160);
+            this.btnAccepterFrais.Name = "btnAccepterFrais";
+            this.btnAccepterFrais.Size = new System.Drawing.Size(200, 74);
+            this.btnAccepterFrais.TabIndex = 2;
+            this.btnAccepterFrais.Text = "Sélectionner un frais à accepter";
+            this.btnAccepterFrais.UseVisualStyleBackColor = true;
+            this.btnAccepterFrais.Click += new System.EventHandler(this.btnAccepterFrais_Click);
             // 
             // TableauBord
             // 
@@ -241,5 +253,6 @@
         private System.Windows.Forms.Panel PanelComptable;
         private System.Windows.Forms.Button BtnAfficheFichesEmploye;
         private System.Windows.Forms.Button btnRefusFrais;
+        private System.Windows.Forms.Button btnAccepterFrais;
     }
 }

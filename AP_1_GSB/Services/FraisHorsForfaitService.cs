@@ -132,16 +132,17 @@ namespace AP_1_GSB.Services
             return total;
         }
 
-        public static bool RefuserFraisHorsForfat(int idFrais)
+        public static bool ChangerEtatHorsForfait(int idFrais, string etat)
         {
             Data.SqlConnection.ConnexionSql();
-            string requete = "UPDATE frais_hors_forfait SET etat = 'REFUSER' WHERE id_hors_forfait = @idFrais;";
+            string requete = "UPDATE frais_hors_forfait SET etat = @etat WHERE id_hors_forfait = @idFrais;";
 
             try
             {
                 using (MySqlCommand cmd = new MySqlCommand(requete, Data.SqlConnection.Connection))
                 {
                     cmd.Parameters.AddWithValue("@idFrais", idFrais);
+                    cmd.Parameters.AddWithValue("@etat", etat);
                     if (cmd.ExecuteNonQuery() > 0)
                     {
                         return true;

@@ -17,7 +17,7 @@ namespace AP_1_GSB.Services
     {
         public static FicheFrais RecupererDerniereFiche(Utilisateur utilisateur, DateTime dateDebut, DateTime datetFin)
         {
-            FicheFrais ficheEnCours = new FicheFrais();
+            FicheFrais ficheEnCours = null;
             DateTime now = DateTime.Now;
 
             if (now.Day >= 11)
@@ -366,7 +366,7 @@ namespace AP_1_GSB.Services
             Data.SqlConnection.ConnexionSql();
 
             int idFiche = ficheEnCours.IdFicheFrais;
-            string requete = "UPDATE fiche_frais SET id_etat = @idEdat WHERE id_fiche_frais = @id_Fiche; ";
+            string requete = "UPDATE fiche_frais SET id_etat = @id_etat WHERE id_fiche_frais = @id_Fiche; ";
 
             try
             {
@@ -396,58 +396,3 @@ namespace AP_1_GSB.Services
 
 
 }
-
-// METHODE POUR RECUPERER UNE SEULE FICHE DE FRAIS
-//public static void RecupererFicheFrais(Utilisateur utilisateur)
-//{
-//    Data.SqlConnection.ConnexionSql();
-
-//    try
-//    {
-//        DateTime Date = DateTime.Now;
-//        int idUtilisateur = utilisateur.IdUtilisateur;
-//        string RequeteFicheFrais = "SELECT * FROM fiche_frais INNER JOIN type_etat ON type_etat.id_etat = fiche_frais.id_etat WHERE fiche_frais.id_utilisateur = @idUtilisateur AND MONTH(fiche_frais.date_fiche) = @mois";
-//        MySqlCommand cmd = new MySqlCommand(RequeteFicheFrais, Data.SqlConnection.Connection);
-//        cmd.Parameters.AddWithValue("@idUtilisateur", idUtilisateur);
-//        cmd.Parameters.AddWithValue("@mois", Date.Month);
-
-//        MySqlDataReader reader = cmd.ExecuteReader();
-//        List<FicheFrais> listeFicheFrais = new List<FicheFrais>();
-//        while (reader.Read())
-//        {
-//            string etat = (string)reader["nom"];
-//            EtatFicheFrais etatFicheFrais;
-
-//            switch (etat)
-//            {
-//                case "Accepter":
-//                    etatFicheFrais = EtatFicheFrais.Accepter;
-//                    break;
-//                case "Refuser":
-//                    etatFicheFrais = EtatFicheFrais.Refuser;
-//                    break;
-//                case "RefusPartiel":
-//                    etatFicheFrais = EtatFicheFrais.RefusPartiel;
-//                    break;
-//                default:
-//                    etatFicheFrais = EtatFicheFrais.Attente;
-//                    break;
-//            }
-
-//            FicheFrais fichefrais = new FicheFrais()
-//            {
-//                IdFicheFrais = (int)reader["id_fiche_frais"],
-//                Date = (DateTime)reader["date_fiche"],
-//                Etat = etatFicheFrais
-//            };
-//        }
-//    }
-//    catch (Exception ex)
-//    {
-//        MessageBox.Show("La requête a échoué : " + ex.Message);
-//    }
-//    finally
-//    {
-//        Data.SqlConnection.DeconnexionSql();
-//    }
-//}

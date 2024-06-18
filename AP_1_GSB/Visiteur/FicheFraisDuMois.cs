@@ -35,6 +35,7 @@ namespace AP_1_GSB.Visiteur
         readonly FicheFrais ficheEnCours;
         readonly string version;
         public event Action ListesVide;
+        public event Action GriserBouton;
         //public event Action CalculTotalFiche;
         public ListView ListViewForfait => this.listViewForfait;
         public ListView ListViewHorsForfait => this.listViewHorsForfait;
@@ -59,6 +60,7 @@ namespace AP_1_GSB.Visiteur
                 rBtnAccepter.Visible = false;
                 rBtnEnCours.Visible = false;
                 rBtnRefuser.Visible = false;
+                rBtnRefusPartiel.Visible = false;
                 LblEmployeInfo.Visible = false;
                 btnRetour.Visible = false;
 
@@ -86,8 +88,11 @@ namespace AP_1_GSB.Visiteur
                 lblEtat.Text = "L'état de la fiche est : " + etat;
             }
             else
+            {
                 LblEmployeInfo.Text = "Employé : " + utilisateur.Nom + " " + utilisateur.Prenom;
                 lblEtat.Visible = false;
+                VerifierEtatFiche();
+            }
         }
 
         public void MettreAJourListView()
@@ -380,12 +385,34 @@ namespace AP_1_GSB.Visiteur
 
         // En base, pour id_etat : 1 = hors_delai / 2 = en_cours / 3 = accepter / 4 = refuser / 5 = refus_partiel
 
+        public void VerifierEtatFiche()
+        {
+            switch (ficheEnCours.Etat)
+            {
+                case EtatFicheFrais.Accepter:
+                    rBtnAccepter.Checked = true;
+                    break;
+                case EtatFicheFrais.Refuser:
+                    rBtnRefuser.Checked = true;
+                    break;
+                case EtatFicheFrais.EnCours:
+                    rBtnEnCours.Checked = true;
+                    break;
+                case EtatFicheFrais.RefusPartiel:
+                    rBtnRefusPartiel.Checked = true;
+                    rBtnEnCours.Enabled = false;
+                    rBtnAccepter.Enabled = false;
+                    break;
+            }
+        }
+
         public void RefuserFrais()
         {
+            string etat = "REFUSER";
             if (listViewForfait.SelectedItems.Count > 0)
             {
                 int idFrais = (int)listViewForfait.SelectedItems[0].Tag;
-                FraisForfaitService.RefuserFraisForfat(idFrais);
+                FraisForfaitService.ChangerEtatFraisForfat(idFrais, etat);
 
                 foreach (FraisForfait frais in ficheEnCours.FraisForfaits)
                 {
@@ -396,15 +423,13 @@ namespace AP_1_GSB.Visiteur
                 FicheFraisService.ChangerEtatFiche(ficheEnCours, 5);
                 ficheEnCours.Etat = EtatFicheFrais.RefusPartiel;
                 rBtnRefusPartiel.Checked = true;
-                rBtnEnCours.Checked = false;
-                rBtnAccepter.Checked = false;
-                rBtnAccepter.Enabled = false;
-                rBtnEnCours.Enabled = false;
+                ChangerStatutRadioBtn(false, false, false);
+                GriserRadioBtn(false, false);
             }
             else if (listViewHorsForfait.SelectedItems.Count > 0)
             {
                 int idFrais = (int)listViewHorsForfait.SelectedItems[0].Tag;
-                FraisHorsForfaitService.RefuserFraisHorsForfat(idFrais);
+                FraisHorsForfaitService.ChangerEtatHorsForfait(idFrais, etat);
                 foreach (FraisHorsForfait frais in ficheEnCours.FraisHorsForfaits)
                 {
                     if (frais.IdFraisHorsForfait == idFrais)
@@ -415,30 +440,131 @@ namespace AP_1_GSB.Visiteur
                 FicheFraisService.ChangerEtatFiche(ficheEnCours, 5);
                 ficheEnCours.Etat = EtatFicheFrais.RefusPartiel;
                 rBtnRefusPartiel.Checked = true;
-                rBtnEnCours.Checked = false;
-                rBtnAccepter.Checked = false;
-                rBtnAccepter.Enabled = false;
-                rBtnEnCours.Enabled = false;
+                ChangerStatutRadioBtn(false, false, false);
+                GriserRadioBtn(false, false);
             }
             else
             {
                 MessageBox.Show("Veuillez sélectionner un frais à refuser");
             }
         }
-        private void rBtnAccepter_CheckedChanged(object sender, EventArgs e)
+
+        public void AccepterFrais()
         {
-            if (rBtnAccepter.Checked == true) 
+            string etat = "ACCEPTER";
+            if (listViewForfait.SelectedItems.Count > 0)
             {
-                
+                int idFrais = (int)listViewForfait.SelectedItems[0].Tag;
+                FraisForfaitService.ChangerEtatFraisForfat(idFrais, etat);
+
+                foreach (FraisForfait frais in ficheEnCours.FraisForfaits)
+                {
+                    if (frais.IdFraisForfait == idFrais)
+                        frais.Etat = EtatFraisForfait.Accepter;
+                }
+                MettreAJourListView();
+                VerifierEtatAccepter();
+                FicheFraisService.ChangerEtatFiche(ficheEnCours, 2);
+                ficheEnCours.Etat = EtatFicheFrais.EnCours;
+
+            }
+            else if (listViewHorsForfait.SelectedItems.Count > 0)
+            {
+                int idFrais = (int)listViewHorsForfait.SelectedItems[0].Tag;
+                FraisHorsForfaitService.ChangerEtatHorsForfait(idFrais, etat);
+                foreach (FraisHorsForfait frais in ficheEnCours.FraisHorsForfaits)
+                {
+                    if (frais.IdFraisHorsForfait == idFrais)
+                        frais.Etat = EtatFraisHorsForfait.Accepter;
+                }
+                MettreAJourListView();
+                VerifierEtatAccepter();
+                FicheFraisService.ChangerEtatFiche(ficheEnCours, 2);
+                ficheEnCours.Etat = EtatFicheFrais.EnCours;
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner un frais à refuser");
             }
         }
 
-        private void ChangerStatutRadioBtn(bool rBtnEnCours, bool rBtnAccepter, bool rBtnRefuser )
+        private void VerifierEtatAccepter()
         {
+            List<FraisForfait> listeForfait = new List<FraisForfait>();
+            foreach (FraisForfait frais in ficheEnCours.FraisForfaits)
+            {
+                if (frais.Etat == EtatFraisForfait.Refuser)
+                    listeForfait.Add(frais);
+            }
+            List<FraisHorsForfait> listeHorsForfait = new List<FraisHorsForfait>();
+            foreach (FraisHorsForfait frais in ficheEnCours.FraisHorsForfaits)
+            {
+                if (frais.Etat == EtatFraisHorsForfait.Refuser)
+                    listeHorsForfait.Add(frais);
+            }
+            if (listeForfait.Count == 0 && listeHorsForfait.Count == 0)
+                rBtnEnCours.Checked = true;
+            rBtnEnCours.Enabled = true;
+            rBtnAccepter.Enabled = true;
+            rBtnRefuser.Enabled = true;
+            rBtnRefusPartiel.Enabled = false;
+        }
 
+        // En base, pour id_etat : 1 = hors_delai / 2 = en_cours / 3 = accepter / 4 = refuser / 5 = refus_partiel
+        private void rBtnAccepter_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rBtnAccepter.Checked == true)
+            {
+                FicheFraisService.ChangerEtatFiche(ficheEnCours, 3);
+                ficheEnCours.Etat = EtatFicheFrais.Accepter;
+                ChangerStatutRadioBtn(false, true, false, false);
+                rBtnRefusPartiel.Enabled = false;
+            }
+        }
+        private void rBtnRefuser_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rBtnRefuser.Checked == true)
+            {
+                FicheFraisService.ChangerEtatFiche(ficheEnCours, 4);
+                ficheEnCours.Etat = EtatFicheFrais.Accepter;
+                ChangerStatutRadioBtn(false, false, true, false);
+                rBtnRefusPartiel.Enabled = false;
+            }
+        }
+        private void rBtnEnCours_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rBtnEnCours.Checked == true)
+            {
+                FicheFraisService.ChangerEtatFiche(ficheEnCours, 2);
+                ficheEnCours.Etat = EtatFicheFrais.Accepter;
+                ChangerStatutRadioBtn(true, false, false, false);
+                rBtnRefusPartiel.Enabled = false;
+            }
+        }
+
+        private void ChangerStatutRadioBtn(bool radioBtnEnCours, bool radioBtnAccepter, bool radioBtnRefuser)
+        {
+            rBtnEnCours.Checked = radioBtnEnCours;
+            rBtnAccepter.Checked = radioBtnAccepter;
+            rBtnRefuser.Checked = radioBtnRefuser;
+        }
+
+        private void ChangerStatutRadioBtn(bool radioBtnEnCours, bool radioBtnAccepter, bool radioBtnRefuser, bool radioBtnRefusPartiel)
+        {
+            rBtnEnCours.Checked = radioBtnEnCours;
+            rBtnAccepter.Checked = radioBtnAccepter;
+            rBtnRefuser.Checked = radioBtnRefuser;
+            rBtnRefusPartiel.Checked = radioBtnRefusPartiel;
+        }
+
+        private void GriserRadioBtn(bool radioBtnEnCours, bool radioBtnAccepter)
+        {
+            rBtnEnCours.Enabled = radioBtnEnCours;
+            rBtnAccepter.Enabled = radioBtnAccepter;
         }
         private void btnRetour_Click(object sender, EventArgs e)
         {
+            GriserBouton?.Invoke();
             this.SendToBack();
         }
         #endregion
