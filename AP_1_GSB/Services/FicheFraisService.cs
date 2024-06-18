@@ -392,6 +392,31 @@ namespace AP_1_GSB.Services
             return false;
         }
 
+        public static string EcrireEtat(FicheFrais ficheEnCours)
+        {
+            string etat = "";
+            switch (ficheEnCours.Etat)
+            {
+                case EtatFicheFrais.EnCours:
+                    etat = "En cours";
+                    break;
+                case EtatFicheFrais.Accepter:
+                    etat = "Acceptée";
+                    break;
+                case EtatFicheFrais.Refuser:
+                    etat = "Refusée";
+                    break;
+                case EtatFicheFrais.RefusPartiel:
+                    etat = "Refusée partiellement";
+                    break;
+                case EtatFicheFrais.HorsDelai:
+                    etat = "Hors délai";
+                    break;
+            }
+            return etat;
+        }
+
+
     }
 
 

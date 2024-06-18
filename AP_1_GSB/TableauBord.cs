@@ -107,6 +107,8 @@ namespace AP_1_GSB
         {
             if (ficheFraisDuMois.ListViewForfait.SelectedItems.Count > 0)
             {
+                ficheFraisDuMois.ListViewHorsForfait.SelectedItems.Clear();
+                ficheFraisDuMois.ListViewHorsForfait.SelectedIndices.Clear();
                 string versionPopUp = "modifierForfait";
                 forfaitAModifie = ficheFraisDuMois.SelectionForfaitAModifier();
                 OuvrirPopUp(versionPopUp, forfaitAModifie);
@@ -114,6 +116,8 @@ namespace AP_1_GSB
 
             else if (ficheFraisDuMois.ListViewHorsForfait.SelectedItems.Count > 0)
             {
+                ficheFraisDuMois.ListViewForfait.SelectedItems.Clear();
+                ficheFraisDuMois.ListViewForfait.SelectedIndices.Clear();
                 string versionPopUp = "modifierHorsForfait";
                 horsForfaitAModifie = ficheFraisDuMois.SelectionHorsForfaitAModifier();
                 OuvrirPopUp(versionPopUp, horsForfaitAModifie);

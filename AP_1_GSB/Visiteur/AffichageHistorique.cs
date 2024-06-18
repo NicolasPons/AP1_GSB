@@ -18,18 +18,20 @@ namespace AP_1_GSB.Visiteur
         {
             InitializeComponent();
             this.utilisateur = utilisateur;
-            
             AfficherFicheFrais(utilisateur);
         }
 
         public void AfficherFicheFrais (Utilisateur utilisateur)
         {
+            string etat = "";
             foreach (FicheFrais fiche in utilisateur.FichesFrais)
             {
+
+
                 DateTime dtFin = DateFin(fiche);
                 ListViewItem item = new ListViewItem("Du " +fiche.Date.ToString("dd MMMM yyyy")+ " au " + dtFin.ToString("dd MMMM yyyy"));
                 item.SubItems.Add("montant");
-                item.SubItems.Add(fiche.Etat.ToString());
+                item.SubItems.Add(etat = Services.FicheFraisService.EcrireEtat(fiche));
                 listViewFicheFrais.Items.Add(item);
             }
         }

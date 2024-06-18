@@ -64,27 +64,7 @@ namespace AP_1_GSB.Visiteur
                 LblEmployeInfo.Visible = false;
                 btnRetour.Visible = false;
 
-
-                string etat = "";
-
-                switch (ficheEnCours.Etat)
-                {
-                    case EtatFicheFrais.EnCours:
-                        etat = "En cours";
-                        break;
-                    case EtatFicheFrais.Accepter:
-                        etat = "Acceptée";
-                        break;
-                    case EtatFicheFrais.Refuser:
-                        etat = "Refusée";
-                        break;
-                    case EtatFicheFrais.RefusPartiel:
-                        etat = "Refusée partiellement";
-                        break;
-                    case EtatFicheFrais.HorsDelai:
-                        etat = "Hors délai";
-                        break;
-                }
+                string etat = FicheFraisService.EcrireEtat(ficheEnCours);
                 lblEtat.Text = "L'état de la fiche est : " + etat;
             }
             else
@@ -412,16 +392,31 @@ namespace AP_1_GSB.Visiteur
             if (listViewForfait.SelectedItems.Count > 0)
             {
                 int idFrais = (int)listViewForfait.SelectedItems[0].Tag;
-                FraisForfaitService.ChangerEtatFraisForfat(idFrais, etat);
-
+                FraisForfait fraisForfait = null;
                 foreach (FraisForfait frais in ficheEnCours.FraisForfaits)
                 {
                     if (frais.IdFraisForfait == idFrais)
-                        frais.Etat = EtatFraisForfait.Refuser;
+                    {
+                        fraisForfait = frais;
+                        break;
+                    }
                 }
-                MettreAJourListView();
+
+                if (fraisForfait.Etat == EtatFraisForfait.Refuser)
+                {
+                    MessageBox.Show("Le frais est déjà refusé");
+                    return;
+                }
+                else
+                {
+                    fraisForfait.Etat = EtatFraisForfait.Refuser;
+                }
+
+                FraisForfaitService.ChangerEtatFraisForfat(idFrais, etat);
+
                 FicheFraisService.ChangerEtatFiche(ficheEnCours, 5);
                 ficheEnCours.Etat = EtatFicheFrais.RefusPartiel;
+                MettreAJourListView();
                 rBtnRefusPartiel.Checked = true;
                 ChangerStatutRadioBtn(false, false, false);
                 GriserRadioBtn(false, false);
@@ -435,10 +430,10 @@ namespace AP_1_GSB.Visiteur
                     if (frais.IdFraisHorsForfait == idFrais)
                         frais.Etat = EtatFraisHorsForfait.Refuser;
                 }
-                MettreAJourListView();
 
                 FicheFraisService.ChangerEtatFiche(ficheEnCours, 5);
                 ficheEnCours.Etat = EtatFicheFrais.RefusPartiel;
+                MettreAJourListView();
                 rBtnRefusPartiel.Checked = true;
                 ChangerStatutRadioBtn(false, false, false);
                 GriserRadioBtn(false, false);
@@ -503,11 +498,13 @@ namespace AP_1_GSB.Visiteur
                     listeHorsForfait.Add(frais);
             }
             if (listeForfait.Count == 0 && listeHorsForfait.Count == 0)
+            {
                 rBtnEnCours.Checked = true;
-            rBtnEnCours.Enabled = true;
-            rBtnAccepter.Enabled = true;
-            rBtnRefuser.Enabled = true;
-            rBtnRefusPartiel.Enabled = false;
+                rBtnEnCours.Enabled = true;
+                rBtnAccepter.Enabled = true;
+                rBtnRefuser.Enabled = true;
+                rBtnRefusPartiel.Enabled = false;
+            }
         }
 
         // En base, pour id_etat : 1 = hors_delai / 2 = en_cours / 3 = accepter / 4 = refuser / 5 = refus_partiel
@@ -548,7 +545,6 @@ namespace AP_1_GSB.Visiteur
             rBtnAccepter.Checked = radioBtnAccepter;
             rBtnRefuser.Checked = radioBtnRefuser;
         }
-
         private void ChangerStatutRadioBtn(bool radioBtnEnCours, bool radioBtnAccepter, bool radioBtnRefuser, bool radioBtnRefusPartiel)
         {
             rBtnEnCours.Checked = radioBtnEnCours;
@@ -569,6 +565,17 @@ namespace AP_1_GSB.Visiteur
         }
         #endregion
 
+        private void listViewForfait_Leave(object sender, EventArgs e)
+        {
+            listViewForfait.SelectedItems.Clear();
+            listViewForfait.SelectedIndices.Clear();
+        }
+
+        private void listViewHorsForfait_Leave(object sender, EventArgs e)
+        {
+            listViewHorsForfait.SelectedItems.Clear();
+            listViewHorsForfait.SelectedIndices.Clear();
+        }
     }
 }
 

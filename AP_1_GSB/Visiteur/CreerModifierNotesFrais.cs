@@ -37,12 +37,11 @@ namespace AP_1_GSB.Visiteur
             InitialiserForm(dtFin);
             ChargerCombobox();
 
-
             LblDescription.Visible = false;
             LblMontant.Visible = false;
             LblQuantite.Visible = false;
             LblTypeForfait.Visible = false;
-            label2.Visible = false;
+            LblCategorieForfait.Visible = true;
             label3.Visible = false;
             SelectionTypeForfait.Visible = false;
             DescriptionHorsForfait.Visible = false;
@@ -72,9 +71,12 @@ namespace AP_1_GSB.Visiteur
             BtnJustificatif.Visible = true;
             DescriptionHorsForfait.Visible = false;
             SelectionFrais.Visible = false;
-            label2.Visible = false;
-            LblQuantite.Visible = false;
-            LblTypeForfait.Visible = false;
+            LblCategorieForfait.Visible = false;
+            LblQuantite.Visible = true;
+            LblTypeForfait.Visible = true;
+            LblMontant.Visible = false;
+            LblDescription.Visible = false;
+            
         }
         public CreerModifierNotesFrais(Utilisateur utilisateur, FicheFrais ficheEnCours, DateTime dtFin, string versionPopUp, FraisHorsForfait fraisHorsForfait)
         {
@@ -92,15 +94,18 @@ namespace AP_1_GSB.Visiteur
             DescriptionHorsForfait.Text = fraisHorsForfait.Description;
             QuantiteMontant.Value = (decimal)fraisHorsForfait.Montant;
 
-
+            SelectionTypeForfait.Visible = false;
             SelectionFrais.Visible = false;
             DescriptionHorsForfait.Visible = true;
             DateFrais.Visible = true;
             QuantiteMontant.Visible = true;
             BtnJustificatif.Visible = true;
             SelectionTypeForfait.Visible = false;
-            LblDescription.Visible = false;
-            LblMontant.Visible = false;
+            LblQuantite.Visible = false; 
+            LblTypeForfait.Visible = false;
+            LblCategorieForfait.Visible = false;
+            LblDescription.Visible = true;
+            LblMontant.Visible = true;
         }
 
         private void InitialiserForm(DateTime dtFin)
@@ -134,10 +139,12 @@ namespace AP_1_GSB.Visiteur
                 SelectionTypeForfait.SelectedIndex = 0;
                 DateFrais.Visible = true;
                 QuantiteMontant.Visible = true;
-                label2.Visible = true;
+                LblCategorieForfait.Visible = true;
                 label3.Visible = true;
                 BtnJustificatif.Visible = true;
                 DescriptionHorsForfait.Visible = false;
+                LblDescription.Visible = false;
+                LblMontant.Visible=false;
             }
             else
             {
@@ -146,10 +153,12 @@ namespace AP_1_GSB.Visiteur
                 DescriptionHorsForfait.Visible = true;
                 DateFrais.Visible = true;
                 QuantiteMontant.Visible = true;
-                label2.Visible = true;
+                LblCategorieForfait.Visible = true;
                 label3.Visible = true;
                 BtnJustificatif.Visible = true;
                 SelectionTypeForfait.Visible = false;
+                LblTypeForfait.Visible = false;
+                LblQuantite.Visible= false;
             }
         }
 

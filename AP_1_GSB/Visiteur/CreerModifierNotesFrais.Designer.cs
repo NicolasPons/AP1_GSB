@@ -38,7 +38,7 @@
             this.BtnJustificatif = new System.Windows.Forms.Button();
             this.DescriptionHorsForfait = new System.Windows.Forms.RichTextBox();
             this.btnValider = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.LblCategorieForfait = new System.Windows.Forms.Label();
             this.LblQuantite = new System.Windows.Forms.Label();
             this.LblMontant = new System.Windows.Forms.Label();
             this.LblDescription = new System.Windows.Forms.Label();
@@ -142,7 +142,7 @@
             // 
             // DescriptionHorsForfait
             // 
-            this.DescriptionHorsForfait.Location = new System.Drawing.Point(208, 169);
+            this.DescriptionHorsForfait.Location = new System.Drawing.Point(207, 169);
             this.DescriptionHorsForfait.Name = "DescriptionHorsForfait";
             this.DescriptionHorsForfait.Size = new System.Drawing.Size(100, 24);
             this.DescriptionHorsForfait.TabIndex = 16;
@@ -158,14 +158,14 @@
             this.btnValider.UseVisualStyleBackColor = true;
             this.btnValider.Click += new System.EventHandler(this.BtnValider_Click);
             // 
-            // label2
+            // LblCategorieForfait
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(207, 99);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(188, 16);
-            this.label2.TabIndex = 18;
-            this.label2.Text = "Sélectionner la catégorie de frais :";
+            this.LblCategorieForfait.AutoSize = true;
+            this.LblCategorieForfait.Location = new System.Drawing.Point(207, 99);
+            this.LblCategorieForfait.Name = "LblCategorieForfait";
+            this.LblCategorieForfait.Size = new System.Drawing.Size(188, 16);
+            this.LblCategorieForfait.TabIndex = 18;
+            this.LblCategorieForfait.Text = "Sélectionner la catégorie de frais :";
             // 
             // LblQuantite
             // 
@@ -222,7 +222,7 @@
             this.Controls.Add(this.LblDescription);
             this.Controls.Add(this.LblMontant);
             this.Controls.Add(this.LblQuantite);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.LblCategorieForfait);
             this.Controls.Add(this.btnValider);
             this.Controls.Add(this.DescriptionHorsForfait);
             this.Controls.Add(this.BtnJustificatif);
@@ -256,7 +256,7 @@
         private System.Windows.Forms.Button BtnJustificatif;
         private System.Windows.Forms.RichTextBox DescriptionHorsForfait;
         private System.Windows.Forms.Button btnValider;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label LblCategorieForfait;
         private System.Windows.Forms.Label LblQuantite;
         private System.Windows.Forms.Label LblMontant;
         private System.Windows.Forms.Label LblDescription;
