@@ -15,12 +15,42 @@ namespace AP_1_GSB.Services
 {
     public class FicheFraisService
     {
-        public static FicheFrais RecupererDerniereFiche(List<FicheFrais> fiches)
+        public static FicheFrais RecupererDerniereFiche(Utilisateur utilisateur, DateTime dateDebut, DateTime datetFin)
         {
-            if (fiches != null && fiches.Any())
-                return fiches.Last();
-            return null;
+            FicheFrais ficheEnCours = new FicheFrais();
+            DateTime now = DateTime.Now;
+
+            if (now.Day >= 11)
+            {
+                dateDebut = new DateTime(now.Year, now.Month, 11);
+                datetFin = new DateTime(now.Year, now.Month + 1, 10);
+            }
+            else
+            {
+                dateDebut = new DateTime(now.Year, now.Month - 1, 11);
+                datetFin = new DateTime(now.Year, now.Month, 10);
+            }
+
+            utilisateur.FichesFrais.ForEach
+                (
+                    ficheFrais =>
+                    {
+                        if (ficheFrais.Date >= dateDebut && ficheFrais.Date <= datetFin)
+                        {
+                            ficheEnCours = ficheFrais;
+                        }
+                    }
+                );
+
+            if (ficheEnCours == null)
+            {
+                utilisateur = Services.FicheFraisService.CreerFicheFraisMoisEnCours(utilisateur, dateDebut);
+                ficheEnCours = utilisateur.FichesFrais.Last();
+            }
+            return ficheEnCours;
         }
+
+
         private static Justificatif CreerJustificatif(MySqlDataReader reader)
         {
             Justificatif justi = null;

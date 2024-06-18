@@ -13,15 +13,17 @@ namespace AP_1_GSB.Comptable
 {
     public partial class SelectionEmploye : Form
     {
+        List<Utilisateur> visiteurs; 
         public SelectionEmploye()
         {
             InitializeComponent();
             ChargerListView();
+
         }
 
         private void ChargerListView()
         {
-            List<Utilisateur> visiteurs = new List<Utilisateur>();
+            visiteurs = new List<Utilisateur>();
             visiteurs = Services.VisiteurService.RecupererVisiteur();
 
             foreach (Utilisateur visisteur in visiteurs)
@@ -34,16 +36,20 @@ namespace AP_1_GSB.Comptable
             }
         }
 
-        public void SelectionnerEmploye()
+        public Utilisateur SelectionnerEmploye()
         {
+            Utilisateur employe;
             if (listViewAffichageUtilisateurs.SelectedItems.Count > 0)
             {
                 int IdEmploye = (int)listViewAffichageUtilisateurs.SelectedItems[0].Tag;
-
+                employe = visiteurs.FirstOrDefault( v => v.IdUtilisateur == IdEmploye ); 
+                
+                return employe;
             }
             else
             {
                 MessageBox.Show("Veuillez sélectionner un employé");
+                return null;
             }
         }
     }

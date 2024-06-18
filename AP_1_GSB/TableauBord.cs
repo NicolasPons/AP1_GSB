@@ -25,7 +25,8 @@ namespace AP_1_GSB
         FicheFrais ficheEnCours;
         FraisForfait forfaitAModifie;
         FraisHorsForfait horsForfaitAModifie;
-        DateTime dtFin;
+        DateTime DateDebut;
+        DateTime dateFin;
         public TableauBord(Utilisateur utilisateur)
         {
             this.utilisateur = utilisateur;
@@ -49,6 +50,22 @@ namespace AP_1_GSB
 
         #region Visiteur
 
+        private void RecupererDatesFiche()
+        {
+            DateTime now = DateTime.Now;
+
+            if (now.Day >= 11)
+            {
+                DateDebut = new DateTime(now.Year, now.Month, 11);
+                dateFin = new DateTime(now.Year, now.Month + 1, 10);
+            }
+            else
+            {
+                DateDebut = new DateTime(now.Year, now.Month - 1, 11);
+                dateFin = new DateTime(now.Year, now.Month, 10);
+            }
+        }
+
         private void AfficherInformationsUtilisateur()
         {
             //PanelUtilisateur.BringToFront();
@@ -58,41 +75,45 @@ namespace AP_1_GSB
             utilisateur = Services.FicheFraisService.RecupererFichesFrais(utilisateur);
 
             ficheEnCours = null;
-            DateTime now = DateTime.Now;
-            DateTime DateDebut;
+            RecupererDatesFiche();
 
-            if (now.Day >= 11)
-            {
-                DateDebut = new DateTime(now.Year, now.Month, 11);
-                dtFin = new DateTime(now.Year, now.Month + 1, 10);
-            }
-            else
-            {
-                DateDebut = new DateTime(now.Year, now.Month - 1, 11);
-                dtFin = new DateTime(now.Year, now.Month, 10);
-            }
+            ficheEnCours = Services.FicheFraisService.RecupererDerniereFiche(utilisateur, DateDebut, dateFin);
 
-            utilisateur.FichesFrais.ForEach
-                (
-                    ficheFrais =>
-                    {
-                        if (ficheFrais.Date >= DateDebut && ficheFrais.Date <= dtFin)
-                        {
-                            ficheEnCours = ficheFrais;
-                        }
-                    }
-                );
+            //DateTime now = DateTime.Now;
+            //DateTime DateDebut;
 
-            if (ficheEnCours == null)
-            {
-                utilisateur = Services.FicheFraisService.CreerFicheFraisMoisEnCours(utilisateur, DateDebut);
-                ficheEnCours = utilisateur.FichesFrais.Last();
-            }
+            //if (now.Day >= 11)
+            //{
+            //    DateDebut = new DateTime(now.Year, now.Month, 11);
+            //    dtFin = new DateTime(now.Year, now.Month + 1, 10);
+            //}
+            //else
+            //{
+            //    DateDebut = new DateTime(now.Year, now.Month - 1, 11);
+            //    dtFin = new DateTime(now.Year, now.Month, 10);
+            //}
+
+            //utilisateur.FichesFrais.ForEach
+            //    (
+            //        ficheFrais =>
+            //        {
+            //            if (ficheFrais.Date >= DateDebut && ficheFrais.Date <= dtFin)
+            //            {
+            //                ficheEnCours = ficheFrais;
+            //            }
+            //        }
+            //    );
+
+            //if (ficheEnCours == null)
+            //{
+            //    utilisateur = Services.FicheFraisService.CreerFicheFraisMoisEnCours(utilisateur, DateDebut);
+            //    ficheEnCours = utilisateur.FichesFrais.Last();
+            //}
 
             utilisateur = Services.FicheFraisService.RecupererNotesForfait(utilisateur, ficheEnCours);
             utilisateur = Services.FicheFraisService.RecupererNotesHorsForfait(utilisateur, ficheEnCours);
 
-            ficheFraisDuMois = new FicheFraisDuMois(utilisateur, ficheEnCours, dtFin);
+            ficheFraisDuMois = new FicheFraisDuMois(utilisateur, ficheEnCours, dateFin);
             ficheFraisDuMois.ListesVide += () => BtnSupprimerNote.Enabled = false;
             ficheFraisDuMois.ListesVide += () => BtnModifier.Enabled = false;
             ficheFraisDuMois.VerifierListesVides();
@@ -134,7 +155,7 @@ namespace AP_1_GSB
         }
         private void OuvrirPopUp(string versionPopUp)
         {
-            CreerModifierNotesFrais ajouterNoteFrais = new CreerModifierNotesFrais(utilisateur, ficheEnCours, dtFin, versionPopUp);
+            CreerModifierNotesFrais ajouterNoteFrais = new CreerModifierNotesFrais(utilisateur, ficheEnCours, dateFin, versionPopUp);
             ajouterNoteFrais.NoteDeFraisAjoutee += ficheFraisDuMois.MettreAJourListView;
             ajouterNoteFrais.NoteDeFraisAjoutee += () => BtnSupprimerNote.Enabled = true;
             ajouterNoteFrais.NoteDeFraisAjoutee += () => BtnModifier.Enabled = true;
@@ -145,7 +166,7 @@ namespace AP_1_GSB
         }
         private void OuvrirPopUp(string versionPopUp, FraisForfait fraisForfait)
         {
-            CreerModifierNotesFrais ajouterNoteFrais = new CreerModifierNotesFrais(utilisateur, ficheEnCours, dtFin, versionPopUp, fraisForfait);
+            CreerModifierNotesFrais ajouterNoteFrais = new CreerModifierNotesFrais(utilisateur, ficheEnCours, dateFin, versionPopUp, fraisForfait);
             ajouterNoteFrais.NoteDeFraisAjoutee += ficheFraisDuMois.MettreAJourListView;
             ajouterNoteFrais.NoteDeFraisAjoutee += () => BtnSupprimerNote.Enabled = true;
             ajouterNoteFrais.NoteDeFraisAjoutee += () => BtnModifier.Enabled = true;
@@ -157,7 +178,7 @@ namespace AP_1_GSB
 
         private void OuvrirPopUp(string versionPopUp, FraisHorsForfait fraisHorsForfait)
         {
-            CreerModifierNotesFrais ajouterNoteFrais = new CreerModifierNotesFrais(utilisateur, ficheEnCours, dtFin, versionPopUp, fraisHorsForfait);
+            CreerModifierNotesFrais ajouterNoteFrais = new CreerModifierNotesFrais(utilisateur, ficheEnCours, dateFin, versionPopUp, fraisHorsForfait);
             ajouterNoteFrais.NoteDeFraisAjoutee += ficheFraisDuMois.MettreAJourListView;
             ajouterNoteFrais.NoteDeFraisAjoutee += () => BtnSupprimerNote.Enabled = true;
             ajouterNoteFrais.NoteDeFraisAjoutee += () => BtnModifier.Enabled = true;
@@ -185,22 +206,23 @@ namespace AP_1_GSB
         #region Comptable 
         private void AfficherInformationComptable()
         {
-            PanelUtilisateur.Hide();
             //Label ou image signifiant qu'on est sur un compte comptable 
             NomPrenom.Text = "Bienvenue " + utilisateur.Nom + " " + utilisateur.Prenom;
+            PanelUtilisateur.Hide();
+            PanelComptable.BringToFront();
+
             affichageComptable = new SelectionEmploye();
             affichageComptable.TopLevel = false;
             PanelAffichage.Controls.Add(affichageComptable);
             affichageComptable.FormBorderStyle = FormBorderStyle.None;
             affichageComptable.Dock = DockStyle.Fill;
             affichageComptable.Show();
-
-
         }
 
         private void BtnSelectionVisiteur_Click(object sender, EventArgs e)
         {
-            affichageComptable.SelectionnerEmploye();
+            Utilisateur employe = affichageComptable.SelectionnerEmploye();
+            MessageBox.Show("Les informations " + employe.Nom );
         }
         #endregion
 
