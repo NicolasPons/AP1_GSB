@@ -35,6 +35,7 @@
             this.btnQuitter = new System.Windows.Forms.Button();
             this.PanelUtilisateur = new System.Windows.Forms.Panel();
             this.PanelComptable = new System.Windows.Forms.Panel();
+            this.btnAccepterFrais = new System.Windows.Forms.Button();
             this.btnRefusFrais = new System.Windows.Forms.Button();
             this.BtnAfficheFichesEmploye = new System.Windows.Forms.Button();
             this.BtnHistorique = new System.Windows.Forms.Button();
@@ -42,11 +43,11 @@
             this.BtnSupprimerNote = new System.Windows.Forms.Button();
             this.btnAjouterNoteFrais = new System.Windows.Forms.Button();
             this.PanelAffichage = new System.Windows.Forms.Panel();
-            this.btnAccepterFrais = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.PanelUtilisateur.SuspendLayout();
             this.PanelComptable.SuspendLayout();
+            this.PanelAffichage.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -112,7 +113,6 @@
             // PanelUtilisateur
             // 
             this.PanelUtilisateur.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.PanelUtilisateur.Controls.Add(this.PanelComptable);
             this.PanelUtilisateur.Controls.Add(this.BtnHistorique);
             this.PanelUtilisateur.Controls.Add(this.BtnModifier);
             this.PanelUtilisateur.Controls.Add(this.BtnSupprimerNote);
@@ -129,10 +129,20 @@
             this.PanelComptable.Controls.Add(this.btnAccepterFrais);
             this.PanelComptable.Controls.Add(this.btnRefusFrais);
             this.PanelComptable.Controls.Add(this.BtnAfficheFichesEmploye);
-            this.PanelComptable.Location = new System.Drawing.Point(0, 0);
+            this.PanelComptable.Location = new System.Drawing.Point(3, 5);
             this.PanelComptable.Name = "PanelComptable";
             this.PanelComptable.Size = new System.Drawing.Size(200, 918);
             this.PanelComptable.TabIndex = 6;
+            // 
+            // btnAccepterFrais
+            // 
+            this.btnAccepterFrais.Location = new System.Drawing.Point(0, 160);
+            this.btnAccepterFrais.Name = "btnAccepterFrais";
+            this.btnAccepterFrais.Size = new System.Drawing.Size(200, 74);
+            this.btnAccepterFrais.TabIndex = 2;
+            this.btnAccepterFrais.Text = "Sélectionner un frais à accepter";
+            this.btnAccepterFrais.UseVisualStyleBackColor = true;
+            this.btnAccepterFrais.Click += new System.EventHandler(this.btnAccepterFrais_Click);
             // 
             // btnRefusFrais
             // 
@@ -197,22 +207,13 @@
             // 
             // PanelAffichage
             // 
+            this.PanelAffichage.Controls.Add(this.PanelComptable);
             this.PanelAffichage.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.PanelAffichage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelAffichage.Location = new System.Drawing.Point(200, 54);
             this.PanelAffichage.Name = "PanelAffichage";
             this.PanelAffichage.Size = new System.Drawing.Size(1264, 918);
             this.PanelAffichage.TabIndex = 2;
-            // 
-            // btnAccepterFrais
-            // 
-            this.btnAccepterFrais.Location = new System.Drawing.Point(0, 160);
-            this.btnAccepterFrais.Name = "btnAccepterFrais";
-            this.btnAccepterFrais.Size = new System.Drawing.Size(200, 74);
-            this.btnAccepterFrais.TabIndex = 2;
-            this.btnAccepterFrais.Text = "Sélectionner un frais à accepter";
-            this.btnAccepterFrais.UseVisualStyleBackColor = true;
-            this.btnAccepterFrais.Click += new System.EventHandler(this.btnAccepterFrais_Click);
             // 
             // TableauBord
             // 
@@ -233,6 +234,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.PanelUtilisateur.ResumeLayout(false);
             this.PanelComptable.ResumeLayout(false);
+            this.PanelAffichage.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

@@ -1,4 +1,5 @@
 ﻿using AP_1_GSB.Data.Models;
+using AP_1_GSB.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +15,7 @@ namespace AP_1_GSB.Visiteur
     public partial class AffichageHistorique : Form
     {
         Utilisateur utilisateur;
+        public event Action degriserBouton;
         public AffichageHistorique(Utilisateur utilisateur)
         {
             InitializeComponent();
@@ -24,14 +26,15 @@ namespace AP_1_GSB.Visiteur
         public void AfficherFicheFrais (Utilisateur utilisateur)
         {
             string etat = "";
+            
             foreach (FicheFrais fiche in utilisateur.FichesFrais)
             {
-
+                float montant = FicheFraisService.CalculerTotalFiche(fiche);
 
                 DateTime dtFin = DateFin(fiche);
                 ListViewItem item = new ListViewItem("Du " +fiche.Date.ToString("dd MMMM yyyy")+ " au " + dtFin.ToString("dd MMMM yyyy"));
-                item.SubItems.Add("montant");
-                item.SubItems.Add(etat = Services.FicheFraisService.EcrireEtat(fiche));
+                item.SubItems.Add(montant.ToString("F2") + "€");
+                item.SubItems.Add(etat = Services.FicheFraisService.EcrireEtatFiche(fiche));
                 listViewFicheFrais.Items.Add(item);
             }
         }
@@ -43,6 +46,7 @@ namespace AP_1_GSB.Visiteur
 
         private void BtnRetour_Click(object sender, EventArgs e)
         {
+            degriserBouton?.Invoke();
             this.SendToBack();
         }
     }

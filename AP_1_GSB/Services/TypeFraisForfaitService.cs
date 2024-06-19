@@ -46,7 +46,7 @@ namespace AP_1_GSB.Services
             }
             catch (SqlException ex)
             { 
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null; 
             }
             finally

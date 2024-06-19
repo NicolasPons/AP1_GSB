@@ -123,7 +123,7 @@ namespace AP_1_GSB.Services
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Erreur lors de la récupération de la fiche de frais : " + ex.Message);
+                    MessageBox.Show("Erreur lors de la récupération de la fiche de frais : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
                 }
                 finally
@@ -218,7 +218,7 @@ namespace AP_1_GSB.Services
                 }
                 catch (MySqlException ex)
                 {
-                    MessageBox.Show("Erreur lors de la récupération des notes de frais forfait : " + ex.Message);
+                    MessageBox.Show("Erreur lors de la récupération des notes de frais forfait : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
                 }
 
@@ -229,9 +229,77 @@ namespace AP_1_GSB.Services
             }
             else
             {
-                MessageBox.Show("Fiche de frais non trouvé");
+                MessageBox.Show("Fiche de frais non trouvé", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Data.SqlConnection.DeconnexionSql();
                 return null;
+            }
+        }
+
+        public static FicheFrais RecupererNotesForfait(FicheFrais FicheEnCours)
+        {
+            Data.SqlConnection.ConnexionSql();
+            
+            {
+                try
+                {
+                    int idFicheFrais = FicheEnCours.IdFicheFrais;
+                    string RequeteNotesForfait = "SELECT id_frais_forfait, quantite, date, etat, frais_forfait.id_justificatif, justificatif.fichier," +
+                                                "type_frais_forfait.id_type_forfait, type_frais_forfait.nom, type_frais_forfait.montant " +
+                                                "FROM `frais_forfait` " +
+                                                "LEFT JOIN justificatif ON justificatif.id_justificatif = frais_forfait.id_justificatif " +
+                                                "INNER JOIN type_frais_forfait on frais_forfait.id_type_forfait = type_frais_forfait.id_type_forfait " +
+                                                "WHERE frais_forfait.id_fiche_frais = @idFicheFrais";
+                    using (MySqlCommand cmd = new MySqlCommand(RequeteNotesForfait, Data.SqlConnection.Connection))
+                    {
+                        cmd.Parameters.AddWithValue("@idFicheFrais", idFicheFrais);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            List<FraisForfait> listeNotesFrais = new List<FraisForfait>();
+                            while (reader.Read())
+                            {
+
+                                TypeFraisForfait typeFraisForfait = new TypeFraisForfait()
+                                {
+                                    IdFraisForfait = (int)reader["id_type_forfait"],
+                                    Nom = (string)reader["nom"],
+                                    Montant = (float)reader["montant"]
+                                };
+
+                                if (typeFraisForfait.Nom == "frais_km")
+                                {
+                                    typeFraisForfait.Nom = "Frais kilométrique";
+                                }
+                                else if (typeFraisForfait.Nom == "Nuitee")
+                                {
+                                    typeFraisForfait.Nom = "Nuitée";
+                                }
+
+                                FraisForfait noteFrais = new FraisForfait()
+                                {
+                                    IdFraisForfait = (int)reader["id_frais_forfait"],
+                                    Quantite = (int)reader["quantite"],
+                                    Date = (DateTime)reader["date"],
+                                    TypeForfait = typeFraisForfait,
+                                };
+                                listeNotesFrais.Add(noteFrais);
+                            }
+                            FicheEnCours.FraisForfaits = listeNotesFrais;
+                        }
+                        return FicheEnCours;
+                    }
+               
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Erreur lors de la récupération des notes de frais forfait : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+
+                finally
+                {
+                    Data.SqlConnection.DeconnexionSql();
+                }
             }
         }
         public static Utilisateur RecupererNotesHorsForfait(Utilisateur utilisateur, FicheFrais FicheEnCours)
@@ -293,7 +361,7 @@ namespace AP_1_GSB.Services
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Erreur lors de la récupération des notes de frais hors forfait : " + ex.Message);
+                    MessageBox.Show("Erreur lors de la récupération des notes de frais hors forfait : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
                 }
                 finally
@@ -303,9 +371,59 @@ namespace AP_1_GSB.Services
             }
             else
             {
-                MessageBox.Show("Fiche de frais non trouvé");
+                MessageBox.Show("Fiche de frais non trouvé", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Data.SqlConnection.DeconnexionSql();
                 return null;
+            }
+        }
+
+        public static FicheFrais RecupererNotesHorsForfait(FicheFrais FicheEnCours)
+        {
+            Data.SqlConnection.ConnexionSql();
+
+            {
+                try
+                {
+                    int idFicheFrais = FicheEnCours.IdFicheFrais;
+
+                    string RequeteNotesForfait = "SELECT id_hors_forfait, description, frais_hors_forfait.montant, date, frais_hors_forfait.etat, frais_hors_forfait.id_justificatif, justificatif.fichier " +
+                                                 "FROM frais_hors_forfait LEFT JOIN justificatif ON justificatif.id_justificatif = frais_hors_forfait.id_justificatif " +
+                                                 "WHERE frais_hors_forfait.id_fiche_frais = @idFicheFrais";
+                    using (MySqlCommand cmd = new MySqlCommand(RequeteNotesForfait, Data.SqlConnection.Connection))
+                    {
+                        cmd.Parameters.AddWithValue("@idFicheFrais", idFicheFrais);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            List<FraisHorsForfait> listeHorsForfait = new List<FraisHorsForfait>();
+                            while (reader.Read())
+                            {
+                              
+
+                                FraisHorsForfait fraisHorsForfait = new FraisHorsForfait()
+                                {
+                                    IdFraisHorsForfait = (int)reader["id_hors_forfait"],
+                                    Description = (string)reader["description"],
+                                    Montant = (float)reader["montant"],
+                                    Date = (DateTime)reader["date"],
+                              
+                                };
+                                listeHorsForfait.Add(fraisHorsForfait);
+                            }
+                            FicheEnCours.FraisHorsForfaits = listeHorsForfait;
+                        }
+                    }
+                    return FicheEnCours;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erreur lors de la récupération des notes de frais hors forfait : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+                finally
+                {
+                    Data.SqlConnection.DeconnexionSql();
+                }
             }
         }
 
@@ -338,7 +456,7 @@ namespace AP_1_GSB.Services
             }
             catch (Exception e)
             {
-                MessageBox.Show("La génération automatique de la fiche de frais du mois en cour a échoué : " + e.Message);
+                MessageBox.Show("La génération automatique de la fiche de frais du mois en cour a échoué : " + e.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
             finally
@@ -349,6 +467,9 @@ namespace AP_1_GSB.Services
 
         public static float CalculerTotalFiche(FicheFrais ficheEnCours)
         {
+
+            ficheEnCours = RecupererNotesForfait(ficheEnCours);
+            ficheEnCours = RecupererNotesHorsForfait(ficheEnCours);
             float totalFiche = 0;
             foreach (FraisHorsForfait frais in ficheEnCours.FraisHorsForfaits)
             {
@@ -361,6 +482,8 @@ namespace AP_1_GSB.Services
             }
             return totalFiche;
         }
+
+
         public static bool ChangerEtatFiche(FicheFrais ficheEnCours, int idEtat)
         {
             Data.SqlConnection.ConnexionSql();
@@ -382,7 +505,7 @@ namespace AP_1_GSB.Services
 
             catch (MySqlException ex)
             {
-                MessageBox.Show("Erreur lors du changement d'état :" + ex.Message);
+                MessageBox.Show("Erreur lors du changement d'état :" + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             finally
@@ -392,7 +515,7 @@ namespace AP_1_GSB.Services
             return false;
         }
 
-        public static string EcrireEtat(FicheFrais ficheEnCours)
+        public static string EcrireEtatFiche(FicheFrais ficheEnCours)
         {
             string etat = "";
             switch (ficheEnCours.Etat)
@@ -416,8 +539,5 @@ namespace AP_1_GSB.Services
             return etat;
         }
 
-
     }
-
-
 }

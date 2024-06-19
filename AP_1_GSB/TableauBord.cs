@@ -27,6 +27,7 @@ namespace AP_1_GSB
         FraisHorsForfait horsForfaitAModifie;
         DateTime DateDebut;
         DateTime dateFin;
+      
         public TableauBord(Utilisateur utilisateur)
         {
             this.utilisateur = utilisateur;
@@ -165,14 +166,27 @@ namespace AP_1_GSB
 
         private void BtnHistorique_Click(object sender, EventArgs e)
         {
+            
+            GriserBouton(false, false, false);
+
+
             AffichageHistorique affichageHistorique = new AffichageHistorique(utilisateur);
+            affichageHistorique.degriserBouton += () => GriserBouton(true, true, true);
             affichageHistorique.StartPosition = FormStartPosition.Manual;
             affichageHistorique.TopLevel = false;
             PanelAffichage.Controls.Add(affichageHistorique);
             affichageHistorique.FormBorderStyle = FormBorderStyle.None;
             affichageHistorique.Dock = DockStyle.Fill;
+
             affichageHistorique.BringToFront();
             affichageHistorique.Show();
+        }
+
+        private void GriserBouton(bool btnAJout, bool btnSupprimer, bool btnModif)
+        {
+            btnAjouterNoteFrais.Enabled = btnAJout;
+            BtnSupprimerNote.Enabled = btnSupprimer;
+            BtnModifier.Enabled = btnModif;
         }
         #endregion
 

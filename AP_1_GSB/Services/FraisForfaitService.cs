@@ -72,7 +72,7 @@ namespace AP_1_GSB.Services
             }
             catch (MySqlException e)
             {
-                MessageBox.Show("Erreur lors de la connexion à la base de donné : " + e.Message);
+                MessageBox.Show("Erreur lors de la connexion à la base de donné : " + e.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             finally
@@ -116,7 +116,7 @@ namespace AP_1_GSB.Services
             }
             catch (MySqlException e)
             {
-                MessageBox.Show("Erreur lors de la connexion à la base de donné : " + e.Message);
+                MessageBox.Show("Erreur lors de la connexion à la base de donné : " + e.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             finally
@@ -155,7 +155,7 @@ namespace AP_1_GSB.Services
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show("Erreur lors du refus de frais : " + ex.Message);
+                MessageBox.Show("Erreur lors du refus de frais : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             finally
@@ -163,6 +163,24 @@ namespace AP_1_GSB.Services
                 Data.SqlConnection.DeconnexionSql();
             }
             return false;
+        }
+
+        public static string EcrireEtatFraisForfait(FraisForfait frais)
+        {
+            string etat = "";
+            switch (frais.Etat)
+            {
+                case EtatFraisForfait.Attente:
+                    etat = "En cours";
+                    break;
+                case EtatFraisForfait.Accepter:
+                    etat = "Accepté";
+                    break;
+                case EtatFraisForfait.Refuser:
+                    etat = "Refusé";
+                    break;
+            }
+            return etat;
         }
     }
 }

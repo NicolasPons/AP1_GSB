@@ -68,7 +68,7 @@ namespace AP_1_GSB.Services
                 
                 catch (MySqlException e)
                 {
-                    MessageBox.Show("Erreur lors de la connexion : " + e.Message);
+                    MessageBox.Show("Erreur lors de la connexion : " + e.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
                 }
                 finally

@@ -64,7 +64,7 @@ namespace AP_1_GSB.Visiteur
                 LblEmployeInfo.Visible = false;
                 btnRetour.Visible = false;
 
-                string etat = FicheFraisService.EcrireEtat(ficheEnCours);
+                string etat = FicheFraisService.EcrireEtatFiche(ficheEnCours);
                 lblEtat.Text = "L'état de la fiche est : " + etat;
             }
             else
@@ -82,30 +82,32 @@ namespace AP_1_GSB.Visiteur
 
             foreach (FraisHorsForfait fraisHorsForfait in ficheEnCours.FraisHorsForfaits)
             {
+                string etat = Services.FraisHorsForfaitService.EcrireEtatFraiHorsForfait(fraisHorsForfait);
                 ListViewItem item = new ListViewItem(fraisHorsForfait.Description);
                 item.SubItems.Add(fraisHorsForfait.Montant.ToString());
                 item.SubItems.Add(fraisHorsForfait.Date.ToString("dd/MM/yyyy"));
-                item.SubItems.Add(fraisHorsForfait.Etat.ToString());
+                item.SubItems.Add(etat);
                 //item.SubItems.Add(fraisHorsForfait.Justificatif)
                 item.Tag = fraisHorsForfait.IdFraisHorsForfait;
                 listViewHorsForfait.Items.Add(item);
             }
             float totalForfait = FraisForfaitService.CalculerTotalForfait(ficheEnCours);
-            LblTotalForfait.Text = totalForfait.ToString() + " €";
+            LblTotalForfait.Text = totalForfait.ToString("F2") + " €";
 
             foreach (FraisForfait fraisForfait in ficheEnCours.FraisForfaits)
             {
+                string etat = Services.FraisForfaitService.EcrireEtatFraisForfait(fraisForfait);
                 ListViewItem item = new ListViewItem(fraisForfait.TypeForfait.Nom);
                 item.SubItems.Add(fraisForfait.Quantite.ToString());
                 item.SubItems.Add(fraisForfait.Date.ToString("dd/MM/yyyy"));
-                item.SubItems.Add(fraisForfait.Etat.ToString());
+                item.SubItems.Add(etat);
                 //item.SubItems.Add(fraisHorsForfait.Justificatif)
                 item.Tag = fraisForfait.IdFraisForfait;
                 listViewForfait.Items.Add(item);
             }
 
             float totalHorsForfait = FraisHorsForfaitService.CalculerTotalHorsForfait(ficheEnCours);
-            LblTotalHorsForfait.Text = totalHorsForfait.ToString() + " €";
+            LblTotalHorsForfait.Text = totalHorsForfait.ToString("F2") + " €";
             float totalFiche = FicheFraisService.CalculerTotalFiche(ficheEnCours);
             LblTotalFiche.Text = totalFiche.ToString("F2");
 
@@ -293,7 +295,7 @@ namespace AP_1_GSB.Visiteur
 
             if (listViewForfait.SelectedItems.Count == 0)
             {
-                MessageBox.Show("Veuillez sélectionner un frais forfait à supprimer");
+                MessageBox.Show("Veuillez sélectionner un frais forfait à supprimer", "Aucune sélection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             int idFraisASupprimer = (int)listViewForfait.SelectedItems[0].Tag;
@@ -303,23 +305,23 @@ namespace AP_1_GSB.Visiteur
 
             if (FraisASupprimer == null)
             {
-                MessageBox.Show("Erreur : frais forfait non trouvé");
+                MessageBox.Show("Erreur : frais forfait non trouvé", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             bool ValeurRetour = Services.FraisForfaitService.SupprimerFraisForfait(FraisASupprimer);
             if (ValeurRetour)
             {
-                MessageBox.Show("Note de frais forfait supprimée");
+                MessageBox.Show("Note de frais forfait supprimée", "Supression", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ficheEnCours.FraisForfaits.Remove(FraisASupprimer);
                 float total = FraisForfaitService.CalculerTotalForfait(ficheEnCours);
-                LblTotalForfait.Text = total.ToString() + " €";
+                LblTotalForfait.Text = total.ToString("F2") + " €";
                 float totalFiche = FicheFraisService.CalculerTotalFiche(ficheEnCours);
                 LblTotalFiche.Text = totalFiche.ToString("F2");
             }
             else
             {
-                MessageBox.Show("Erreur lors de la suppression de la note de frais");
+                MessageBox.Show("Erreur lors de la suppression de la note de frais", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             VerifierListesVides();
@@ -333,7 +335,7 @@ namespace AP_1_GSB.Visiteur
 
             if (listViewHorsForfait.SelectedItems.Count == 0)
             {
-                MessageBox.Show("Veuillez sélectionner un frais hors forfait à supprimer");
+                MessageBox.Show("Veuillez sélectionner un frais hors forfait à supprimer", "Aucune sélection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             else
@@ -347,14 +349,14 @@ namespace AP_1_GSB.Visiteur
             {
                 ficheEnCours.FraisHorsForfaits.Remove(FraisASupprimer);
                 float totalHorsForfait = FraisHorsForfaitService.CalculerTotalHorsForfait(ficheEnCours);
-                LblTotalHorsForfait.Text = totalHorsForfait.ToString() + " €";
+                LblTotalHorsForfait.Text = totalHorsForfait.ToString("F2") + " €";
                 float totalFiche = FicheFraisService.CalculerTotalFiche(ficheEnCours);
                 LblTotalFiche.Text = totalFiche.ToString("F2");
-                MessageBox.Show("Note de frais hors forfait supprimée");
+                MessageBox.Show("Note de frais hors forfait supprimée", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                MessageBox.Show("Erreur lors de la suppression de la note de frais");
+                MessageBox.Show("Erreur lors de la suppression de la note de frais", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             VerifierListesVides();
         }
@@ -404,7 +406,7 @@ namespace AP_1_GSB.Visiteur
 
                 if (fraisForfait.Etat == EtatFraisForfait.Refuser)
                 {
-                    MessageBox.Show("Le frais est déjà refusé");
+                    MessageBox.Show("Le frais est déjà refusé", "Frais refusé", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 else
@@ -440,7 +442,7 @@ namespace AP_1_GSB.Visiteur
             }
             else
             {
-                MessageBox.Show("Veuillez sélectionner un frais à refuser");
+                MessageBox.Show("Veuillez sélectionner un frais à refuser", "Aucune sélection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -479,7 +481,7 @@ namespace AP_1_GSB.Visiteur
             }
             else
             {
-                MessageBox.Show("Veuillez sélectionner un frais à refuser");
+                MessageBox.Show("Veuillez sélectionner un frais à refuser", "Aucune sélection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

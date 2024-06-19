@@ -21,7 +21,7 @@ namespace AP_1_GSB.Data
             }
             catch (MySqlException e)
             {
-                MessageBox.Show(e.Message, "La connexion à la base de donnée a échoué");
+                MessageBox.Show(e.Message, "La connexion à la base de donnée a échoué"); 
             }
         }
 

@@ -43,7 +43,7 @@ namespace AP_1_GSB.Services
             }
             catch (MySqlException e)
             {
-                MessageBox.Show("Erreur lors de la récupération des données : " + e.Message);
+                MessageBox.Show("Erreur lors de la récupération des données : " + e.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
             finally
