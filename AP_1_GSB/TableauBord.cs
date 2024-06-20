@@ -11,6 +11,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AP_1_GSB.Administrateur;
 
 namespace AP_1_GSB
 {
@@ -27,7 +28,11 @@ namespace AP_1_GSB
         FraisHorsForfait horsForfaitAModifie;
         DateTime DateDebut;
         DateTime dateFin;
-      
+        AffichageHistorique affichageHistorique = null;
+        CreerModifierNotesFrais creerModifierNoteFrais = null;
+        AjouterModifierTypeFraisForfait ajouterModifierTypeFraisForfait = null;
+        InterfacePrincipaleAdmin interfaceAdmin;
+
         public TableauBord(Utilisateur utilisateur)
         {
             this.utilisateur = utilisateur;
@@ -36,15 +41,15 @@ namespace AP_1_GSB
             switch (utilisateur.Role)
             {
                 case UtilisateurRole.Visiteur:
-                    AfficherInformationsUtilisateur();
+                    AfficherInterfaceUtilisateur();
                     break;
 
                 case UtilisateurRole.Comptable:
-                    AfficherInformationComptable();
+                    AfficherInterfaceComptable();
                     break;
 
                 case UtilisateurRole.Administrateur:
-                    MessageBox.Show("administrateur");
+                    AfficherInterfaceAdministrateur();
                     break;
             }
         }
@@ -67,10 +72,11 @@ namespace AP_1_GSB
             }
         }
 
-        private void AfficherInformationsUtilisateur()
+        private void AfficherInterfaceUtilisateur()
         {
             //PanelUtilisateur.BringToFront();
             PanelComptable.Hide();
+            panelAdministrateur.Hide();
             NomPrenom.Text = "Bienvenue " + utilisateur.Nom + " " + utilisateur.Prenom;
 
             utilisateur = Services.FicheFraisService.RecupererFichesFrais(utilisateur);
@@ -97,7 +103,7 @@ namespace AP_1_GSB
         public void BtnAjouterNoteFrais_Clique(object sender, EventArgs e)
         {
             string VersionPopUp = "creer";
-            OuvrirPopUp(VersionPopUp);
+            AfficherPopUpCreationModification(VersionPopUp);
         }
         public void BtnSupprimerNote_Clique(object sender, EventArgs e)
         {
@@ -112,7 +118,7 @@ namespace AP_1_GSB
                 ficheFraisDuMois.ListViewHorsForfait.SelectedIndices.Clear();
                 string versionPopUp = "modifierForfait";
                 forfaitAModifie = ficheFraisDuMois.SelectionForfaitAModifier();
-                OuvrirPopUp(versionPopUp, forfaitAModifie);
+                AfficherPopUpCreationModification(versionPopUp, forfaitAModifie);
             }
 
             else if (ficheFraisDuMois.ListViewHorsForfait.SelectedItems.Count > 0)
@@ -121,63 +127,73 @@ namespace AP_1_GSB
                 ficheFraisDuMois.ListViewForfait.SelectedIndices.Clear();
                 string versionPopUp = "modifierHorsForfait";
                 horsForfaitAModifie = ficheFraisDuMois.SelectionHorsForfaitAModifier();
-                OuvrirPopUp(versionPopUp, horsForfaitAModifie);
+                AfficherPopUpCreationModification(versionPopUp, horsForfaitAModifie);
             }
             else
             {
                 MessageBox.Show("Veuillez sélectionner un frais à modifier.", "Aucune sélection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        private void OuvrirPopUp(string versionPopUp)
+        private void AfficherPopUpCreationModification(string versionPopUp)
         {
-            CreerModifierNotesFrais ajouterNoteFrais = new CreerModifierNotesFrais(utilisateur, ficheEnCours, dateFin, versionPopUp);
-            ajouterNoteFrais.NoteDeFraisAjoutee += ficheFraisDuMois.MettreAJourListView;
-            ajouterNoteFrais.NoteDeFraisAjoutee += () => BtnSupprimerNote.Enabled = true;
-            ajouterNoteFrais.NoteDeFraisAjoutee += () => BtnModifier.Enabled = true;
-            ajouterNoteFrais.StartPosition = FormStartPosition.Manual;
-            ajouterNoteFrais.Location = new System.Drawing.Point(this.Location.X + 400, this.Location.Y + 250);
-            ajouterNoteFrais.TopLevel = true;
-            ajouterNoteFrais.Show();
+            if (creerModifierNoteFrais == null || creerModifierNoteFrais.IsDisposed)
+            {
+                creerModifierNoteFrais = new CreerModifierNotesFrais(utilisateur, ficheEnCours, dateFin, versionPopUp);
+                creerModifierNoteFrais.NoteDeFraisAjoutee += ficheFraisDuMois.MettreAJourListView;
+                creerModifierNoteFrais.NoteDeFraisAjoutee += () => BtnSupprimerNote.Enabled = true;
+                creerModifierNoteFrais.NoteDeFraisAjoutee += () => BtnModifier.Enabled = true;
+                creerModifierNoteFrais.StartPosition = FormStartPosition.Manual;
+                creerModifierNoteFrais.Location = new System.Drawing.Point(this.Location.X + 400, this.Location.Y + 250);
+                creerModifierNoteFrais.TopLevel = true;
+            }
+            creerModifierNoteFrais.Show();
         }
-        private void OuvrirPopUp(string versionPopUp, FraisForfait fraisForfait)
+        private void AfficherPopUpCreationModification(string versionPopUp, FraisForfait fraisForfait)
         {
-            CreerModifierNotesFrais ajouterNoteFrais = new CreerModifierNotesFrais(utilisateur, ficheEnCours, dateFin, versionPopUp, fraisForfait);
-            ajouterNoteFrais.NoteDeFraisAjoutee += ficheFraisDuMois.MettreAJourListView;
-            ajouterNoteFrais.NoteDeFraisAjoutee += () => BtnSupprimerNote.Enabled = true;
-            ajouterNoteFrais.NoteDeFraisAjoutee += () => BtnModifier.Enabled = true;
-            ajouterNoteFrais.StartPosition = FormStartPosition.Manual;
-            ajouterNoteFrais.Location = new System.Drawing.Point(this.Location.X + 400, this.Location.Y + 250);
-            ajouterNoteFrais.TopLevel = true;
-            ajouterNoteFrais.Show();
+            if (creerModifierNoteFrais == null || creerModifierNoteFrais.IsDisposed)
+            {
+                creerModifierNoteFrais = new CreerModifierNotesFrais(utilisateur, ficheEnCours, dateFin, versionPopUp, fraisForfait);
+                creerModifierNoteFrais.NoteDeFraisAjoutee += ficheFraisDuMois.MettreAJourListView;
+                creerModifierNoteFrais.NoteDeFraisAjoutee += () => BtnSupprimerNote.Enabled = true;
+                creerModifierNoteFrais.NoteDeFraisAjoutee += () => BtnModifier.Enabled = true;
+                creerModifierNoteFrais.StartPosition = FormStartPosition.Manual;
+                creerModifierNoteFrais.Location = new System.Drawing.Point(this.Location.X + 400, this.Location.Y + 250);
+                creerModifierNoteFrais.TopLevel = true;
+
+            }
+            creerModifierNoteFrais.Show();
         }
 
-        private void OuvrirPopUp(string versionPopUp, FraisHorsForfait fraisHorsForfait)
+        private void AfficherPopUpCreationModification(string versionPopUp, FraisHorsForfait fraisHorsForfait)
         {
-            CreerModifierNotesFrais ajouterNoteFrais = new CreerModifierNotesFrais(utilisateur, ficheEnCours, dateFin, versionPopUp, fraisHorsForfait);
-            ajouterNoteFrais.NoteDeFraisAjoutee += ficheFraisDuMois.MettreAJourListView;
-            ajouterNoteFrais.NoteDeFraisAjoutee += () => BtnSupprimerNote.Enabled = true;
-            ajouterNoteFrais.NoteDeFraisAjoutee += () => BtnModifier.Enabled = true;
-            ajouterNoteFrais.StartPosition = FormStartPosition.Manual;
-            ajouterNoteFrais.Location = new System.Drawing.Point(this.Location.X + 400, this.Location.Y + 250);
-            ajouterNoteFrais.TopLevel = true;
-            ajouterNoteFrais.Show();
+            if (creerModifierNoteFrais == null || creerModifierNoteFrais.IsDisposed)
+            {
+                creerModifierNoteFrais = new CreerModifierNotesFrais(utilisateur, ficheEnCours, dateFin, versionPopUp, fraisHorsForfait);
+                creerModifierNoteFrais.NoteDeFraisAjoutee += ficheFraisDuMois.MettreAJourListView;
+                creerModifierNoteFrais.NoteDeFraisAjoutee += () => BtnSupprimerNote.Enabled = true;
+                creerModifierNoteFrais.NoteDeFraisAjoutee += () => BtnModifier.Enabled = true;
+                creerModifierNoteFrais.StartPosition = FormStartPosition.Manual;
+                creerModifierNoteFrais.Location = new System.Drawing.Point(this.Location.X + 400, this.Location.Y + 250);
+                creerModifierNoteFrais.TopLevel = true;
+                creerModifierNoteFrais.Show();
+            }
         }
-
 
         private void BtnHistorique_Click(object sender, EventArgs e)
         {
-            
+
             GriserBouton(false, false, false);
 
-
-            AffichageHistorique affichageHistorique = new AffichageHistorique(utilisateur);
-            affichageHistorique.degriserBouton += () => GriserBouton(true, true, true);
-            affichageHistorique.StartPosition = FormStartPosition.Manual;
-            affichageHistorique.TopLevel = false;
-            PanelAffichage.Controls.Add(affichageHistorique);
-            affichageHistorique.FormBorderStyle = FormBorderStyle.None;
-            affichageHistorique.Dock = DockStyle.Fill;
-
+            if (affichageHistorique == null)
+            {
+                affichageHistorique = new AffichageHistorique(utilisateur);
+                affichageHistorique.degriserBouton += () => GriserBouton(true, true, true);
+                affichageHistorique.StartPosition = FormStartPosition.Manual;
+                affichageHistorique.TopLevel = false;
+                PanelAffichage.Controls.Add(affichageHistorique);
+                affichageHistorique.FormBorderStyle = FormBorderStyle.None;
+                affichageHistorique.Dock = DockStyle.Fill;
+            }
             affichageHistorique.BringToFront();
             affichageHistorique.Show();
         }
@@ -192,11 +208,12 @@ namespace AP_1_GSB
 
 
         #region Comptable 
-        private void AfficherInformationComptable()
+        private void AfficherInterfaceComptable()
         {
             //Label ou image signifiant qu'on est sur un compte comptable 
             NomPrenom.Text = "Bienvenue " + utilisateur.Nom + " " + utilisateur.Prenom;
             PanelComptable.Visible = true;
+
             btnRefusFrais.Enabled = false;
             btnAccepterFrais.Enabled = false;
 
@@ -225,6 +242,7 @@ namespace AP_1_GSB
                 BtnAfficheFichesEmploye.Enabled = false;
                 ficheFraisDuMois = new FicheFraisDuMois(employe, ficheEnCours, dateFin, version);
                 ficheFraisDuMois.ListesVide += () => btnRefusFrais.Enabled = false;
+                ficheFraisDuMois.ListesVide += () => btnAccepterFrais.Enabled = false;
                 ficheFraisDuMois.VerifierListesVides();
                 ficheFraisDuMois.GriserBouton += () => btnRefusFrais.Enabled = false;
                 ficheFraisDuMois.GriserBouton += () => btnAccepterFrais.Enabled = false;
@@ -247,6 +265,35 @@ namespace AP_1_GSB
         }
         #endregion
 
+        #region Administrateur
+        private void AfficherInterfaceAdministrateur()
+        {
+            panelAdministrateur.Visible = true;
+            NomPrenom.Text = "Profil administrateur";
+
+            interfaceAdmin = new InterfacePrincipaleAdmin();
+            interfaceAdmin.TopLevel = false;
+            PanelAffichage.Controls.Add(interfaceAdmin);
+            interfaceAdmin.FormBorderStyle = FormBorderStyle.None;
+            interfaceAdmin.Dock = DockStyle.Fill;
+            interfaceAdmin.Show();
+        }
+        private void btnAjouterTypeFrais_Clique(object sender, EventArgs e)
+        {
+            string version = "Ajouter";
+
+            if (ajouterModifierTypeFraisForfait == null || ajouterModifierTypeFraisForfait.IsDisposed)
+            {
+                ajouterModifierTypeFraisForfait = new AjouterModifierTypeFraisForfait(version);
+                ajouterModifierTypeFraisForfait.StartPosition = FormStartPosition.Manual;
+                ajouterModifierTypeFraisForfait.TypeFraisForfaitEvenement += interfaceAdmin.MettreAJourListViewAdmin;
+                ajouterModifierTypeFraisForfait.Location = new System.Drawing.Point(this.Location.X + 400, this.Location.Y + 250);
+                ajouterModifierTypeFraisForfait.TopLevel = true;
+            }
+            ajouterModifierTypeFraisForfait.Show();
+        }
+
+        #endregion
         private void BtnQuitter_Click(object sender, EventArgs e)
         {
             Application.Exit();

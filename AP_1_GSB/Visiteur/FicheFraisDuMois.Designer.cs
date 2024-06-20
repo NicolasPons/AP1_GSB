@@ -90,7 +90,7 @@
             this.listViewForfait.TabIndex = 1;
             this.listViewForfait.UseCompatibleStateImageBehavior = false;
             this.listViewForfait.View = System.Windows.Forms.View.Details;
-            this.listViewForfait.Leave += new System.EventHandler(this.listViewForfait_Leave);
+            this.listViewForfait.Enter += new System.EventHandler(this.listViewForfait_Enter);
             // 
             // Type_frais_forfait
             // 
@@ -135,12 +135,13 @@
             this.listViewHorsForfait.HideSelection = false;
             this.listViewHorsForfait.Location = new System.Drawing.Point(44, 504);
             this.listViewHorsForfait.Margin = new System.Windows.Forms.Padding(4);
+            this.listViewHorsForfait.MultiSelect = false;
             this.listViewHorsForfait.Name = "listViewHorsForfait";
             this.listViewHorsForfait.Size = new System.Drawing.Size(1155, 310);
             this.listViewHorsForfait.TabIndex = 2;
             this.listViewHorsForfait.UseCompatibleStateImageBehavior = false;
             this.listViewHorsForfait.View = System.Windows.Forms.View.Details;
-            this.listViewHorsForfait.Leave += new System.EventHandler(this.listViewHorsForfait_Leave);
+            this.listViewHorsForfait.Enter += new System.EventHandler(this.listViewHorsForfait_Enter);
             // 
             // Description
             // 

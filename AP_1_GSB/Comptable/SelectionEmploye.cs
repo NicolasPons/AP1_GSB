@@ -25,7 +25,7 @@ namespace AP_1_GSB.Comptable
         private void ChargerListView()
         {
             visiteurs = new List<Utilisateur>();
-            visiteurs = Services.VisiteurService.RecupererVisiteur();
+            visiteurs = Services.UtilisateurService.RecupererVisiteurs();
 
             foreach (Utilisateur visisteur in visiteurs)
             {

@@ -280,6 +280,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administrateur\AjouterModifierTypeFraisForfait.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrateur\AjouterModifierTypeFraisForfait.Designer.cs">
+      <DependentUpon>AjouterModifierTypeFraisForfait.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administrateur\InterfacePrincipaleAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrateur\InterfacePrincipaleAdmin.Designer.cs">
+      <DependentUpon>InterfacePrincipaleAdmin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Comptable\SelectionEmploye.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -289,7 +301,6 @@
     <Compile Include="Services\TypeFraisForfaitService.cs" />
     <Compile Include="Services\JustificatifService.cs" />
     <Compile Include="Services\UtilisateurService.cs" />
-    <Compile Include="Services\VisiteurService.cs" />
     <Compile Include="TableauBord.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -333,6 +344,12 @@
     <Compile Include="Visiteur\FicheFraisDuMois.Designer.cs">
       <DependentUpon>FicheFraisDuMois.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Administrateur\AjouterModifierTypeFraisForfait.resx">
+      <DependentUpon>AjouterModifierTypeFraisForfait.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrateur\InterfacePrincipaleAdmin.resx">
+      <DependentUpon>InterfacePrincipaleAdmin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Comptable\SelectionEmploye.resx">
       <DependentUpon>SelectionEmploye.cs</DependentUpon>
     </EmbeddedResource>
@@ -362,6 +379,8 @@
       <DependentUpon>FicheFraisDuMois.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\AP_1_GSB.Data.Models.TypeFraisForfait.datasource" />
+    <None Include="Properties\DataSources\AP_1_GSB.Data.Models.Utilisateur.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -69,6 +69,7 @@ namespace AP_1_GSB.Visiteur
             }
             else
             {
+
                 LblEmployeInfo.Text = "Employé : " + utilisateur.Nom + " " + utilisateur.Prenom;
                 lblEtat.Visible = false;
                 VerifierEtatFiche();
@@ -115,7 +116,6 @@ namespace AP_1_GSB.Visiteur
         private void BtnPDF_Click(object sender, EventArgs e)
         {
             string dest = "fiche_de_frais.pdf";
-
 
             using (PdfWriter writer = new PdfWriter(dest))
             {
@@ -565,18 +565,17 @@ namespace AP_1_GSB.Visiteur
             GriserBouton?.Invoke();
             this.SendToBack();
         }
+
         #endregion
 
-        private void listViewForfait_Leave(object sender, EventArgs e)
+        private void listViewHorsForfait_Enter(object sender, EventArgs e)
         {
             listViewForfait.SelectedItems.Clear();
-            listViewForfait.SelectedIndices.Clear();
         }
 
-        private void listViewHorsForfait_Leave(object sender, EventArgs e)
+        private void listViewForfait_Enter(object sender, EventArgs e)
         {
             listViewHorsForfait.SelectedItems.Clear();
-            listViewHorsForfait.SelectedIndices.Clear();
         }
     }
 }

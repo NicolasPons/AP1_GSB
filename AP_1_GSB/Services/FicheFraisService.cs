@@ -51,7 +51,7 @@ namespace AP_1_GSB.Services
         }
 
 
-        private static Justificatif CreerJustificatif(MySqlDataReader reader)
+        private static Justificatif CreerObjetJustificatif(MySqlDataReader reader)
         {
             Justificatif justi = null;
             if (reader["id_justificatif"] != DBNull.Value)
@@ -179,7 +179,7 @@ namespace AP_1_GSB.Services
                                         break;
                                 }
 
-                                Justificatif justi = CreerJustificatif(reader);
+                                Justificatif justi = CreerObjetJustificatif(reader);
 
                                 //CREER METHODE YA ZEUBI
 
@@ -340,7 +340,7 @@ namespace AP_1_GSB.Services
                                 }
 
                                 Justificatif justi = null;
-                                justi = CreerJustificatif(reader);
+                                justi = CreerObjetJustificatif(reader);
 
                                 FraisHorsForfait fraisHorsForfait = new FraisHorsForfait()
                                 {

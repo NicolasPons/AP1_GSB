@@ -46,7 +46,8 @@ namespace AP_1_GSB
                         break;
 
                     case UtilisateurRole.Administrateur:
-                        MessageBox.Show("administrateur");
+                        TableauBord TableauBordAdministrateur = new TableauBord(utilisateur);
+                        TableauBordAdministrateur.Show();
                         break;
                 }
             }
