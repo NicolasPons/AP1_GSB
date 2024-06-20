@@ -111,6 +111,97 @@ namespace AP_1_GSB.Services
             }
         }
 
+        public static bool CreerUtilisateur(Utilisateur utilisateur)
+        {
+            Data.SqlConnection.ConnexionSql();
 
+            int role = (int)utilisateur.Role + 1;
+
+            try
+            {
+                string requete = "INSERT INTO Utilisateur (identifiant, mdp, nom, prenom, email, id_role) VALUES (@identifiant, @mdp, @nom, @prenom, @email, @role)";
+                using (MySqlCommand cmd = new MySqlCommand(requete, Data.SqlConnection.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@identifiant", utilisateur.Identifiant);
+                    cmd.Parameters.AddWithValue("@mdp", utilisateur.Mdp);
+                    cmd.Parameters.AddWithValue("@nom", utilisateur.Nom);
+                    cmd.Parameters.AddWithValue("@prenom", utilisateur.Prenom);
+                    cmd.Parameters.AddWithValue("@email", utilisateur.Email);
+                    cmd.Parameters.AddWithValue("@role", role);
+                    if (cmd.ExecuteNonQuery() >0)
+                       return true;    
+                }
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show("Erreur lors de la création de l'utilisateur : " + e.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            finally
+            {
+                Data.SqlConnection.DeconnexionSql();
+            }
+            return false;
+        }
+
+        public static bool ModifierUtilisateur(Utilisateur utilisateur)
+        {
+            Data.SqlConnection.ConnexionSql();
+            int role = (int)utilisateur.Role + 1;
+
+            try
+            {
+                string requete = "UPDATE Utilisateur SET identifiant = @identifiant, mdp = @mdp, nom = @nom, prenom = @prenom, email = @email, id_role = @role WHERE id_utilisateur = @id";
+                using (MySqlCommand cmd = new MySqlCommand(requete, Data.SqlConnection.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@identifiant", utilisateur.Identifiant);
+                    cmd.Parameters.AddWithValue("@mdp", utilisateur.Mdp);
+                    cmd.Parameters.AddWithValue("@nom", utilisateur.Nom);
+                    cmd.Parameters.AddWithValue("@prenom", utilisateur.Prenom);
+                    cmd.Parameters.AddWithValue("@email", utilisateur.Email);
+                    cmd.Parameters.AddWithValue("@role", role);
+                    cmd.Parameters.AddWithValue("@id", utilisateur.IdUtilisateur);
+                    if (cmd.ExecuteNonQuery() >0)
+                       return true;    
+                }
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show("Erreur lors de la modification de l'utilisateur : " + e.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            finally
+            {
+                Data.SqlConnection.DeconnexionSql();
+            }
+            return false;
+        }
+
+
+        public static bool SupprimerUtilisateur(Utilisateur utilisateur)
+        {
+            Data.SqlConnection.ConnexionSql();
+
+            try
+            {
+                string requete = "DELETE FROM Utilisateur WHERE id_utilisateur = @id";
+                using (MySqlCommand cmd = new MySqlCommand(requete, Data.SqlConnection.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@id", utilisateur.IdUtilisateur);
+                    cmd.ExecuteNonQuery();
+                }
+
+                return true;
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show("Erreur lors de la suppression de l'utilisateur : " + e.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            finally
+            {
+                Data.SqlConnection.DeconnexionSql();
+            }
+        }
     }
 }

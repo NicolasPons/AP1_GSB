@@ -286,6 +286,12 @@
     <Compile Include="Administrateur\AjouterModifierTypeFraisForfait.Designer.cs">
       <DependentUpon>AjouterModifierTypeFraisForfait.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrateur\CreerModifierUtilisateur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrateur\CreerModifierUtilisateur.Designer.cs">
+      <DependentUpon>CreerModifierUtilisateur.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administrateur\InterfacePrincipaleAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -346,6 +352,9 @@
     </Compile>
     <EmbeddedResource Include="Administrateur\AjouterModifierTypeFraisForfait.resx">
       <DependentUpon>AjouterModifierTypeFraisForfait.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrateur\CreerModifierUtilisateur.resx">
+      <DependentUpon>CreerModifierUtilisateur.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administrateur\InterfacePrincipaleAdmin.resx">
       <DependentUpon>InterfacePrincipaleAdmin.cs</DependentUpon>

@@ -30,29 +30,29 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.NomPrenom = new System.Windows.Forms.Label();
+            this.PanelComptable = new System.Windows.Forms.Panel();
+            this.btnAccepterFrais = new System.Windows.Forms.Button();
+            this.btnRefusFrais = new System.Windows.Forms.Button();
+            this.BtnAfficheFichesEmploye = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnQuitter = new System.Windows.Forms.Button();
             this.PanelUtilisateur = new System.Windows.Forms.Panel();
-            this.PanelComptable = new System.Windows.Forms.Panel();
             this.panelAdministrateur = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnSupprimerUtilisateur = new System.Windows.Forms.Button();
             this.btnModifierUtilisateur = new System.Windows.Forms.Button();
             this.btnAjoutUtilisateur = new System.Windows.Forms.Button();
             this.btnModifierTypeFrais = new System.Windows.Forms.Button();
             this.btnAjouterTypeFrais = new System.Windows.Forms.Button();
-            this.btnAccepterFrais = new System.Windows.Forms.Button();
-            this.btnRefusFrais = new System.Windows.Forms.Button();
-            this.BtnAfficheFichesEmploye = new System.Windows.Forms.Button();
             this.BtnHistorique = new System.Windows.Forms.Button();
             this.BtnModifier = new System.Windows.Forms.Button();
             this.BtnSupprimerNote = new System.Windows.Forms.Button();
             this.btnAjouterNoteFrais = new System.Windows.Forms.Button();
             this.PanelAffichage = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
+            this.PanelComptable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.PanelUtilisateur.SuspendLayout();
-            this.PanelComptable.SuspendLayout();
             this.panelAdministrateur.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,6 +81,46 @@
             this.NomPrenom.Size = new System.Drawing.Size(292, 26);
             this.NomPrenom.TabIndex = 9;
             this.NomPrenom.Text = "Bienvenue Jean Michel Jarre";
+            // 
+            // PanelComptable
+            // 
+            this.PanelComptable.Controls.Add(this.btnAccepterFrais);
+            this.PanelComptable.Controls.Add(this.btnRefusFrais);
+            this.PanelComptable.Controls.Add(this.BtnAfficheFichesEmploye);
+            this.PanelComptable.Location = new System.Drawing.Point(0, 54);
+            this.PanelComptable.Name = "PanelComptable";
+            this.PanelComptable.Size = new System.Drawing.Size(200, 918);
+            this.PanelComptable.TabIndex = 6;
+            // 
+            // btnAccepterFrais
+            // 
+            this.btnAccepterFrais.Location = new System.Drawing.Point(0, 160);
+            this.btnAccepterFrais.Name = "btnAccepterFrais";
+            this.btnAccepterFrais.Size = new System.Drawing.Size(200, 74);
+            this.btnAccepterFrais.TabIndex = 2;
+            this.btnAccepterFrais.Text = "Sélectionner un frais à accepter";
+            this.btnAccepterFrais.UseVisualStyleBackColor = true;
+            this.btnAccepterFrais.Click += new System.EventHandler(this.btnAccepterFrais_Click);
+            // 
+            // btnRefusFrais
+            // 
+            this.btnRefusFrais.Location = new System.Drawing.Point(0, 80);
+            this.btnRefusFrais.Name = "btnRefusFrais";
+            this.btnRefusFrais.Size = new System.Drawing.Size(200, 74);
+            this.btnRefusFrais.TabIndex = 1;
+            this.btnRefusFrais.Text = "Sélectionner un frais à refuser";
+            this.btnRefusFrais.UseVisualStyleBackColor = true;
+            this.btnRefusFrais.Click += new System.EventHandler(this.btnRefusFrais_Click);
+            // 
+            // BtnAfficheFichesEmploye
+            // 
+            this.BtnAfficheFichesEmploye.Location = new System.Drawing.Point(0, -2);
+            this.BtnAfficheFichesEmploye.Name = "BtnAfficheFichesEmploye";
+            this.BtnAfficheFichesEmploye.Size = new System.Drawing.Size(200, 74);
+            this.BtnAfficheFichesEmploye.TabIndex = 0;
+            this.BtnAfficheFichesEmploye.Text = "Afficher la fiche de l\'employé";
+            this.BtnAfficheFichesEmploye.UseVisualStyleBackColor = true;
+            this.BtnAfficheFichesEmploye.Click += new System.EventHandler(this.BtnAfficherFichesEmplye_Clique);
             // 
             // label1
             // 
@@ -132,19 +172,9 @@
             this.PanelUtilisateur.Size = new System.Drawing.Size(200, 918);
             this.PanelUtilisateur.TabIndex = 1;
             // 
-            // PanelComptable
-            // 
-            this.PanelComptable.Controls.Add(this.btnAccepterFrais);
-            this.PanelComptable.Controls.Add(this.btnRefusFrais);
-            this.PanelComptable.Controls.Add(this.BtnAfficheFichesEmploye);
-            this.PanelComptable.Location = new System.Drawing.Point(0, 54);
-            this.PanelComptable.Name = "PanelComptable";
-            this.PanelComptable.Size = new System.Drawing.Size(200, 918);
-            this.PanelComptable.TabIndex = 6;
-            // 
             // panelAdministrateur
             // 
-            this.panelAdministrateur.Controls.Add(this.button1);
+            this.panelAdministrateur.Controls.Add(this.btnSupprimerUtilisateur);
             this.panelAdministrateur.Controls.Add(this.btnModifierUtilisateur);
             this.panelAdministrateur.Controls.Add(this.btnAjoutUtilisateur);
             this.panelAdministrateur.Controls.Add(this.btnModifierTypeFrais);
@@ -154,14 +184,15 @@
             this.panelAdministrateur.Size = new System.Drawing.Size(200, 918);
             this.panelAdministrateur.TabIndex = 7;
             // 
-            // button1
+            // btnSupprimerUtilisateur
             // 
-            this.button1.Location = new System.Drawing.Point(0, 320);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(200, 72);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Supprimer un utilisateur";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnSupprimerUtilisateur.Location = new System.Drawing.Point(0, 320);
+            this.btnSupprimerUtilisateur.Name = "btnSupprimerUtilisateur";
+            this.btnSupprimerUtilisateur.Size = new System.Drawing.Size(200, 72);
+            this.btnSupprimerUtilisateur.TabIndex = 4;
+            this.btnSupprimerUtilisateur.Text = "Supprimer un utilisateur";
+            this.btnSupprimerUtilisateur.UseVisualStyleBackColor = true;
+            this.btnSupprimerUtilisateur.Click += new System.EventHandler(this.btnSupprimerUtilisateur_Clique);
             // 
             // btnModifierUtilisateur
             // 
@@ -171,6 +202,7 @@
             this.btnModifierUtilisateur.TabIndex = 3;
             this.btnModifierUtilisateur.Text = "Modifier un utilisateur";
             this.btnModifierUtilisateur.UseVisualStyleBackColor = true;
+            this.btnModifierUtilisateur.Click += new System.EventHandler(this.btnModifierUtilisateur_Clique);
             // 
             // btnAjoutUtilisateur
             // 
@@ -180,6 +212,7 @@
             this.btnAjoutUtilisateur.TabIndex = 2;
             this.btnAjoutUtilisateur.Text = "Ajouter un utilisateur";
             this.btnAjoutUtilisateur.UseVisualStyleBackColor = true;
+            this.btnAjoutUtilisateur.Click += new System.EventHandler(this.btnAjoutUtilisateur_Clique);
             // 
             // btnModifierTypeFrais
             // 
@@ -200,36 +233,6 @@
             this.btnAjouterTypeFrais.Text = "Ajouter un type de frais";
             this.btnAjouterTypeFrais.UseVisualStyleBackColor = true;
             this.btnAjouterTypeFrais.Click += new System.EventHandler(this.btnAjouterTypeFrais_Clique);
-            // 
-            // btnAccepterFrais
-            // 
-            this.btnAccepterFrais.Location = new System.Drawing.Point(0, 160);
-            this.btnAccepterFrais.Name = "btnAccepterFrais";
-            this.btnAccepterFrais.Size = new System.Drawing.Size(200, 74);
-            this.btnAccepterFrais.TabIndex = 2;
-            this.btnAccepterFrais.Text = "Sélectionner un frais à accepter";
-            this.btnAccepterFrais.UseVisualStyleBackColor = true;
-            this.btnAccepterFrais.Click += new System.EventHandler(this.btnAccepterFrais_Click);
-            // 
-            // btnRefusFrais
-            // 
-            this.btnRefusFrais.Location = new System.Drawing.Point(0, 80);
-            this.btnRefusFrais.Name = "btnRefusFrais";
-            this.btnRefusFrais.Size = new System.Drawing.Size(200, 74);
-            this.btnRefusFrais.TabIndex = 1;
-            this.btnRefusFrais.Text = "Sélectionner un frais à refuser";
-            this.btnRefusFrais.UseVisualStyleBackColor = true;
-            this.btnRefusFrais.Click += new System.EventHandler(this.btnRefusFrais_Click);
-            // 
-            // BtnAfficheFichesEmploye
-            // 
-            this.BtnAfficheFichesEmploye.Location = new System.Drawing.Point(0, -2);
-            this.BtnAfficheFichesEmploye.Name = "BtnAfficheFichesEmploye";
-            this.BtnAfficheFichesEmploye.Size = new System.Drawing.Size(200, 74);
-            this.BtnAfficheFichesEmploye.TabIndex = 0;
-            this.BtnAfficheFichesEmploye.Text = "Afficher la fiche de l\'employé";
-            this.BtnAfficheFichesEmploye.UseVisualStyleBackColor = true;
-            this.BtnAfficheFichesEmploye.Click += new System.EventHandler(this.BtnAfficherFichesEmplye_Clique);
             // 
             // BtnHistorique
             // 
@@ -297,9 +300,9 @@
             this.Text = "DashBoard";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.PanelComptable.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.PanelUtilisateur.ResumeLayout(false);
-            this.PanelComptable.ResumeLayout(false);
             this.panelAdministrateur.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -324,7 +327,7 @@
         private System.Windows.Forms.Button btnAccepterFrais;
         private System.Windows.Forms.Panel panelAdministrateur;
         private System.Windows.Forms.Button btnAjouterTypeFrais;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSupprimerUtilisateur;
         private System.Windows.Forms.Button btnModifierUtilisateur;
         private System.Windows.Forms.Button btnAjoutUtilisateur;
         private System.Windows.Forms.Button btnModifierTypeFrais;

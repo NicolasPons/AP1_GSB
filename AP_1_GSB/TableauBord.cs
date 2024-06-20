@@ -31,6 +31,7 @@ namespace AP_1_GSB
         AffichageHistorique affichageHistorique = null;
         CreerModifierNotesFrais creerModifierNoteFrais = null;
         AjouterModifierTypeFraisForfait ajouterModifierTypeFraisForfait = null;
+        CreerModifierUtilisateur creerModifierUtilisateur = null;
         InterfacePrincipaleAdmin interfaceAdmin;
 
         public TableauBord(Utilisateur utilisateur)
@@ -133,7 +134,7 @@ namespace AP_1_GSB
                 //horsForfaitAModifie = ficheFraisDuMois.SelectionHorsForfaitAModifier();
                 int idHorsForfait = (int)ficheFraisDuMois.ListViewHorsForfait.SelectedItems[0].Tag;
                 FraisHorsForfait fraisHorsForfait = ficheEnCours.FraisHorsForfaits.FirstOrDefault(item => item.IdFraisHorsForfait == idHorsForfait);
-               
+
                 AfficherPopUpCreationModification(versionPopUp, fraisHorsForfait);
             }
             else
@@ -301,11 +302,11 @@ namespace AP_1_GSB
         }
         private void btnModifierTypeFrais_Click(object sender, EventArgs e)
         {
-            List<TypeFraisForfait> TypesFraisForfait = new List<TypeFraisForfait>();
-            TypesFraisForfait = Services.TypeFraisForfaitService.RecupererTypeFraisForfait();
             string version = "modfier";
             if (interfaceAdmin.ListViewTypeFraisForfait.SelectedItems.Count > 0)
             {
+                List<TypeFraisForfait> TypesFraisForfait = new List<TypeFraisForfait>();
+                TypesFraisForfait = Services.TypeFraisForfaitService.RecupererTypeFraisForfait();
                 int idTypFrais = (int)interfaceAdmin.ListViewTypeFraisForfait.SelectedItems[0].Tag;
                 TypeFraisForfait typeFraisForfait = TypesFraisForfait.FirstOrDefault(frais => frais.IdFraisForfait == idTypFrais);
 
@@ -321,9 +322,23 @@ namespace AP_1_GSB
             }
             else
             {
-                MessageBox.Show("Veuillez sélectionner un type de frais à modifier");
+                MessageBox.Show("Veuillez sélectionner un type de frais à modifier", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
+        }
+        private void btnAjoutUtilisateur_Clique(object sender, EventArgs e)
+        {
+            string version = "ajouter";
+
+            if (creerModifierUtilisateur == null || creerModifierUtilisateur.IsDisposed)
+            {
+                creerModifierUtilisateur = new CreerModifierUtilisateur(version);
+                creerModifierUtilisateur.StartPosition = FormStartPosition.Manual;
+                creerModifierUtilisateur.UtilisateurEvenement += interfaceAdmin.MettreAJourListViewAdmin;
+                creerModifierUtilisateur.Location = new System.Drawing.Point(this.Location.X + 400, this.Location.Y + 250);
+                creerModifierUtilisateur.TopLevel = true;
+            }
+            creerModifierUtilisateur.Show();
         }
 
         #endregion
@@ -332,6 +347,62 @@ namespace AP_1_GSB
             Application.Exit();
         }
 
+        private void btnModifierUtilisateur_Clique(object sender, EventArgs e)
+        {
+            string version = "modifier";
+            if (interfaceAdmin.ListViewUtilisateur.SelectedItems.Count > 0)
+            {
+                List<Utilisateur> utilisateurs = new List<Utilisateur>();
+                utilisateurs = Services.UtilisateurService.RecupererUtilisateurs();
+                int idUtilisateur = (int)interfaceAdmin.ListViewUtilisateur.SelectedItems[0].Tag;
+                Utilisateur utilisateur = utilisateurs.FirstOrDefault(item => item.IdUtilisateur == idUtilisateur);
+
+                if (creerModifierUtilisateur == null || creerModifierUtilisateur.IsDisposed)
+                {
+                    creerModifierUtilisateur = new CreerModifierUtilisateur(version, utilisateur);
+                    creerModifierUtilisateur.StartPosition = FormStartPosition.Manual;
+                    creerModifierUtilisateur.UtilisateurEvenement += interfaceAdmin.MettreAJourListViewAdmin;
+                    creerModifierUtilisateur.Location = new System.Drawing.Point(this.Location.X + 400, this.Location.Y + 250);
+                    creerModifierUtilisateur.TopLevel = true;
+                }
+                creerModifierUtilisateur.Show();
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner un utilisateur à modifier", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+        }
+
+        private void btnSupprimerUtilisateur_Clique(object sender, EventArgs e)
+        {
+            if (interfaceAdmin.ListViewUtilisateur.SelectedItems.Count > 0)
+            {
+                List<Utilisateur> utilisateurs = new List<Utilisateur>();
+                utilisateurs = Services.UtilisateurService.RecupererUtilisateurs();
+                int idUtilisateur = (int)interfaceAdmin.ListViewUtilisateur.SelectedItems[0].Tag;
+                Utilisateur utilisateur = utilisateurs.FirstOrDefault(item => item.IdUtilisateur == idUtilisateur);
+
+                DialogResult dialogResult = MessageBox.Show("Voulez-vous vraiment supprimer cet utilisateur ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    if (Services.UtilisateurService.SupprimerUtilisateur(utilisateur))
+                    {
+                        MessageBox.Show("Utilisateur supprimé avec succès", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        interfaceAdmin.MettreAJourListViewAdmin();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erreur lors de la suppression de l'utilisateur", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner un utilisateur à supprimer", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+        }
     }
 }
 

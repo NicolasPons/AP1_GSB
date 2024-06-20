@@ -34,7 +34,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AjouterModifierTypeFraisForfait));
             this.typeFraisForfaitBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.typeFraisForfaitBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
@@ -53,19 +52,20 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnQuitter = new System.Windows.Forms.Button();
             this.btnValider = new System.Windows.Forms.Button();
+            this.typeFraisForfaitBindingSource = new System.Windows.Forms.BindingSource(this.components);
             montantLabel1 = new System.Windows.Forms.Label();
             nomLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.typeFraisForfaitBindingNavigator)).BeginInit();
             this.typeFraisForfaitBindingNavigator.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.typeFraisForfaitBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.montantNumericUpDown)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.typeFraisForfaitBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // montantLabel1
             // 
             montantLabel1.AutoSize = true;
-            montantLabel1.Location = new System.Drawing.Point(86, 140);
+            montantLabel1.Location = new System.Drawing.Point(67, 125);
             montantLabel1.Name = "montantLabel1";
             montantLabel1.Size = new System.Drawing.Size(49, 13);
             montantLabel1.TabIndex = 5;
@@ -74,7 +74,7 @@
             // nomLabel
             // 
             nomLabel.AutoSize = true;
-            nomLabel.Location = new System.Drawing.Point(103, 108);
+            nomLabel.Location = new System.Drawing.Point(84, 93);
             nomLabel.Name = "nomLabel";
             nomLabel.Size = new System.Drawing.Size(32, 13);
             nomLabel.TabIndex = 6;
@@ -107,7 +107,7 @@
             this.typeFraisForfaitBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.typeFraisForfaitBindingNavigator.Name = "typeFraisForfaitBindingNavigator";
             this.typeFraisForfaitBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.typeFraisForfaitBindingNavigator.Size = new System.Drawing.Size(400, 26);
+            this.typeFraisForfaitBindingNavigator.Size = new System.Drawing.Size(310, 29);
             this.typeFraisForfaitBindingNavigator.TabIndex = 0;
             this.typeFraisForfaitBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -117,17 +117,13 @@
             this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(26, 23);
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(26, 26);
             this.bindingNavigatorAddNewItem.Text = "Ajouter nouveau";
-            // 
-            // typeFraisForfaitBindingSource
-            // 
-            this.typeFraisForfaitBindingSource.DataSource = typeof(AP_1_GSB.Data.Models.TypeFraisForfait);
             // 
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(44, 23);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(44, 26);
             this.bindingNavigatorCountItem.Text = "de {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Nombre total d\'éléments";
             // 
@@ -137,7 +133,7 @@
             this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
             this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(26, 23);
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(26, 26);
             this.bindingNavigatorDeleteItem.Text = "Supprimer";
             // 
             // bindingNavigatorMoveFirstItem
@@ -146,7 +142,7 @@
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(26, 23);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(26, 26);
             this.bindingNavigatorMoveFirstItem.Text = "Placer en premier";
             // 
             // bindingNavigatorMovePreviousItem
@@ -155,13 +151,13 @@
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(26, 23);
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(26, 26);
             this.bindingNavigatorMovePreviousItem.Text = "Déplacer vers le haut";
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 26);
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 29);
             // 
             // bindingNavigatorPositionItem
             // 
@@ -176,7 +172,7 @@
             // bindingNavigatorSeparator1
             // 
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 26);
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 29);
             // 
             // bindingNavigatorMoveNextItem
             // 
@@ -184,7 +180,7 @@
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(26, 23);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(26, 26);
             this.bindingNavigatorMoveNextItem.Text = "Déplacer vers le bas";
             // 
             // bindingNavigatorMoveLastItem
@@ -193,13 +189,13 @@
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(26, 23);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(26, 26);
             this.bindingNavigatorMoveLastItem.Text = "Placer en dernier";
             // 
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 26);
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 29);
             // 
             // typeFraisForfaitBindingNavigatorSaveItem
             // 
@@ -207,14 +203,14 @@
             this.typeFraisForfaitBindingNavigatorSaveItem.Enabled = false;
             this.typeFraisForfaitBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("typeFraisForfaitBindingNavigatorSaveItem.Image")));
             this.typeFraisForfaitBindingNavigatorSaveItem.Name = "typeFraisForfaitBindingNavigatorSaveItem";
-            this.typeFraisForfaitBindingNavigatorSaveItem.Size = new System.Drawing.Size(26, 23);
+            this.typeFraisForfaitBindingNavigatorSaveItem.Size = new System.Drawing.Size(26, 26);
             this.typeFraisForfaitBindingNavigatorSaveItem.Text = "Enregistrer les données";
             // 
             // montantNumericUpDown
             // 
             this.montantNumericUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.typeFraisForfaitBindingSource, "Montant", true));
             this.montantNumericUpDown.DecimalPlaces = 3;
-            this.montantNumericUpDown.Location = new System.Drawing.Point(141, 140);
+            this.montantNumericUpDown.Location = new System.Drawing.Point(122, 125);
             this.montantNumericUpDown.Maximum = new decimal(new int[] {
             5000,
             0,
@@ -227,7 +223,7 @@
             // nomTextBox
             // 
             this.nomTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.typeFraisForfaitBindingSource, "Nom", true));
-            this.nomTextBox.Location = new System.Drawing.Point(141, 105);
+            this.nomTextBox.Location = new System.Drawing.Point(122, 90);
             this.nomTextBox.Name = "nomTextBox";
             this.nomTextBox.Size = new System.Drawing.Size(100, 20);
             this.nomTextBox.TabIndex = 7;
@@ -235,20 +231,20 @@
             // lblModifierType
             // 
             this.lblModifierType.AutoSize = true;
-            this.lblModifierType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.163636F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblModifierType.Location = new System.Drawing.Point(77, 11);
+            this.lblModifierType.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.854546F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblModifierType.Location = new System.Drawing.Point(34, 18);
             this.lblModifierType.Name = "lblModifierType";
-            this.lblModifierType.Size = new System.Drawing.Size(227, 17);
+            this.lblModifierType.Size = new System.Drawing.Size(200, 15);
             this.lblModifierType.TabIndex = 8;
             this.lblModifierType.Text = "Modification d\'un type de frais";
             // 
             // lblCreer
             // 
             this.lblCreer.AutoSize = true;
-            this.lblCreer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.163636F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCreer.Location = new System.Drawing.Point(64, 11);
+            this.lblCreer.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.854546F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCreer.Location = new System.Drawing.Point(15, 18);
             this.lblCreer.Name = "lblCreer";
-            this.lblCreer.Size = new System.Drawing.Size(268, 17);
+            this.lblCreer.Size = new System.Drawing.Size(233, 15);
             this.lblCreer.TabIndex = 9;
             this.lblCreer.Text = "Creation d\'un nouveau type de frais";
             // 
@@ -270,7 +266,7 @@
             this.btnQuitter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQuitter.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold);
             this.btnQuitter.ForeColor = System.Drawing.Color.White;
-            this.btnQuitter.Location = new System.Drawing.Point(359, 11);
+            this.btnQuitter.Location = new System.Drawing.Point(269, 11);
             this.btnQuitter.Margin = new System.Windows.Forms.Padding(2);
             this.btnQuitter.Name = "btnQuitter";
             this.btnQuitter.Size = new System.Drawing.Size(30, 28);
@@ -281,7 +277,7 @@
             // 
             // btnValider
             // 
-            this.btnValider.Location = new System.Drawing.Point(141, 176);
+            this.btnValider.Location = new System.Drawing.Point(122, 161);
             this.btnValider.Name = "btnValider";
             this.btnValider.Size = new System.Drawing.Size(75, 23);
             this.btnValider.TabIndex = 11;
@@ -289,11 +285,15 @@
             this.btnValider.UseVisualStyleBackColor = true;
             this.btnValider.Click += new System.EventHandler(this.btnValider_Click);
             // 
+            // typeFraisForfaitBindingSource
+            // 
+            this.typeFraisForfaitBindingSource.DataSource = typeof(AP_1_GSB.Data.Models.TypeFraisForfait);
+            // 
             // AjouterModifierTypeFraisForfait
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(400, 225);
+            this.ClientSize = new System.Drawing.Size(310, 252);
             this.Controls.Add(this.btnValider);
             this.Controls.Add(this.panel1);
             this.Controls.Add(nomLabel);
@@ -307,10 +307,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.typeFraisForfaitBindingNavigator)).EndInit();
             this.typeFraisForfaitBindingNavigator.ResumeLayout(false);
             this.typeFraisForfaitBindingNavigator.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.typeFraisForfaitBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.montantNumericUpDown)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.typeFraisForfaitBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
