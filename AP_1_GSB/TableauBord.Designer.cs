@@ -36,6 +36,10 @@
             this.PanelUtilisateur = new System.Windows.Forms.Panel();
             this.PanelComptable = new System.Windows.Forms.Panel();
             this.panelAdministrateur = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnModifierUtilisateur = new System.Windows.Forms.Button();
+            this.btnAjoutUtilisateur = new System.Windows.Forms.Button();
+            this.btnModifierTypeFrais = new System.Windows.Forms.Button();
             this.btnAjouterTypeFrais = new System.Windows.Forms.Button();
             this.btnAccepterFrais = new System.Windows.Forms.Button();
             this.btnRefusFrais = new System.Windows.Forms.Button();
@@ -45,10 +49,6 @@
             this.BtnSupprimerNote = new System.Windows.Forms.Button();
             this.btnAjouterNoteFrais = new System.Windows.Forms.Button();
             this.PanelAffichage = new System.Windows.Forms.Panel();
-            this.btnModifierTypeFrais = new System.Windows.Forms.Button();
-            this.btnAjoutUtilisateur = new System.Windows.Forms.Button();
-            this.btnModifierUtilisateur = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.PanelUtilisateur.SuspendLayout();
@@ -60,6 +60,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.panel1.Controls.Add(this.NomPrenom);
+            this.panel1.Controls.Add(this.PanelComptable);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.btnQuitter);
@@ -119,7 +120,7 @@
             // PanelUtilisateur
             // 
             this.PanelUtilisateur.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.PanelUtilisateur.Controls.Add(this.PanelComptable);
+            this.PanelUtilisateur.Controls.Add(this.panelAdministrateur);
             this.PanelUtilisateur.Controls.Add(this.BtnHistorique);
             this.PanelUtilisateur.Controls.Add(this.BtnModifier);
             this.PanelUtilisateur.Controls.Add(this.BtnSupprimerNote);
@@ -133,11 +134,10 @@
             // 
             // PanelComptable
             // 
-            this.PanelComptable.Controls.Add(this.panelAdministrateur);
             this.PanelComptable.Controls.Add(this.btnAccepterFrais);
             this.PanelComptable.Controls.Add(this.btnRefusFrais);
             this.PanelComptable.Controls.Add(this.BtnAfficheFichesEmploye);
-            this.PanelComptable.Location = new System.Drawing.Point(0, 0);
+            this.PanelComptable.Location = new System.Drawing.Point(0, 54);
             this.PanelComptable.Name = "PanelComptable";
             this.PanelComptable.Size = new System.Drawing.Size(200, 918);
             this.PanelComptable.TabIndex = 6;
@@ -149,10 +149,47 @@
             this.panelAdministrateur.Controls.Add(this.btnAjoutUtilisateur);
             this.panelAdministrateur.Controls.Add(this.btnModifierTypeFrais);
             this.panelAdministrateur.Controls.Add(this.btnAjouterTypeFrais);
-            this.panelAdministrateur.Location = new System.Drawing.Point(0, 0);
+            this.panelAdministrateur.Location = new System.Drawing.Point(0, 2);
             this.panelAdministrateur.Name = "panelAdministrateur";
             this.panelAdministrateur.Size = new System.Drawing.Size(200, 918);
             this.panelAdministrateur.TabIndex = 7;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(0, 320);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(200, 72);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Supprimer un utilisateur";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // btnModifierUtilisateur
+            // 
+            this.btnModifierUtilisateur.Location = new System.Drawing.Point(0, 240);
+            this.btnModifierUtilisateur.Name = "btnModifierUtilisateur";
+            this.btnModifierUtilisateur.Size = new System.Drawing.Size(200, 72);
+            this.btnModifierUtilisateur.TabIndex = 3;
+            this.btnModifierUtilisateur.Text = "Modifier un utilisateur";
+            this.btnModifierUtilisateur.UseVisualStyleBackColor = true;
+            // 
+            // btnAjoutUtilisateur
+            // 
+            this.btnAjoutUtilisateur.Location = new System.Drawing.Point(0, 162);
+            this.btnAjoutUtilisateur.Name = "btnAjoutUtilisateur";
+            this.btnAjoutUtilisateur.Size = new System.Drawing.Size(200, 72);
+            this.btnAjoutUtilisateur.TabIndex = 2;
+            this.btnAjoutUtilisateur.Text = "Ajouter un utilisateur";
+            this.btnAjoutUtilisateur.UseVisualStyleBackColor = true;
+            // 
+            // btnModifierTypeFrais
+            // 
+            this.btnModifierTypeFrais.Location = new System.Drawing.Point(0, 80);
+            this.btnModifierTypeFrais.Name = "btnModifierTypeFrais";
+            this.btnModifierTypeFrais.Size = new System.Drawing.Size(200, 72);
+            this.btnModifierTypeFrais.TabIndex = 1;
+            this.btnModifierTypeFrais.Text = "Modifier un type de frais";
+            this.btnModifierTypeFrais.UseVisualStyleBackColor = true;
+            this.btnModifierTypeFrais.Click += new System.EventHandler(this.btnModifierTypeFrais_Click);
             // 
             // btnAjouterTypeFrais
             // 
@@ -243,42 +280,6 @@
             this.PanelAffichage.Name = "PanelAffichage";
             this.PanelAffichage.Size = new System.Drawing.Size(1264, 918);
             this.PanelAffichage.TabIndex = 2;
-            // 
-            // btnModifierTypeFrais
-            // 
-            this.btnModifierTypeFrais.Location = new System.Drawing.Point(0, 80);
-            this.btnModifierTypeFrais.Name = "btnModifierTypeFrais";
-            this.btnModifierTypeFrais.Size = new System.Drawing.Size(200, 72);
-            this.btnModifierTypeFrais.TabIndex = 1;
-            this.btnModifierTypeFrais.Text = "Modifier un type de frais";
-            this.btnModifierTypeFrais.UseVisualStyleBackColor = true;
-            // 
-            // btnAjoutUtilisateur
-            // 
-            this.btnAjoutUtilisateur.Location = new System.Drawing.Point(0, 162);
-            this.btnAjoutUtilisateur.Name = "btnAjoutUtilisateur";
-            this.btnAjoutUtilisateur.Size = new System.Drawing.Size(200, 72);
-            this.btnAjoutUtilisateur.TabIndex = 2;
-            this.btnAjoutUtilisateur.Text = "Ajouter un utilisateur";
-            this.btnAjoutUtilisateur.UseVisualStyleBackColor = true;
-            // 
-            // btnModifierUtilisateur
-            // 
-            this.btnModifierUtilisateur.Location = new System.Drawing.Point(0, 240);
-            this.btnModifierUtilisateur.Name = "btnModifierUtilisateur";
-            this.btnModifierUtilisateur.Size = new System.Drawing.Size(200, 72);
-            this.btnModifierUtilisateur.TabIndex = 3;
-            this.btnModifierUtilisateur.Text = "Modifier un utilisateur";
-            this.btnModifierUtilisateur.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(0, 320);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(200, 72);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Supprimer un utilisateur";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // TableauBord
             // 

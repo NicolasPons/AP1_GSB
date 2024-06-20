@@ -253,19 +253,19 @@ namespace AP_1_GSB.Visiteur
 
         #region utilisateur 
 
-        public FraisHorsForfait SelectionHorsForfaitAModifier()
-        {
-            int idHorsForfait = (int)ListViewHorsForfait.SelectedItems[0].Tag;
-            FraisHorsForfait fraisHorsForfait = ficheEnCours.FraisHorsForfaits.FirstOrDefault(item => item.IdFraisHorsForfait == idHorsForfait);
-            return fraisHorsForfait;
-        }
+        //public FraisHorsForfait SelectionHorsForfaitAModifier()
+        //{
+        //    //int idHorsForfait = (int)ListViewHorsForfait.SelectedItems[0].Tag;
+        //    //FraisHorsForfait fraisHorsForfait = ficheEnCours.FraisHorsForfaits.FirstOrDefault(item => item.IdFraisHorsForfait == idHorsForfait);
+        //    //return fraisHorsForfait;
+        //}
 
-        public FraisForfait SelectionForfaitAModifier()
-        {
-            int idForfait = (int)listViewForfait.SelectedItems[0].Tag;
-            FraisForfait fraisForfait = ficheEnCours.FraisForfaits.FirstOrDefault(item => item.IdFraisForfait == idForfait);
-            return fraisForfait;
-        }
+        //public FraisForfait SelectionForfaitAModifier()
+        //{
+        //    int idForfait = (int)listViewForfait.SelectedItems[0].Tag;
+        //    FraisForfait fraisForfait = ficheEnCours.FraisForfaits.FirstOrDefault(item => item.IdFraisForfait == idForfait);
+        //    return fraisForfait;
+        //}
 
         public void VerifierListesVides()
         {

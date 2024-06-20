@@ -14,42 +14,94 @@ namespace AP_1_GSB.Administrateur
 {
     public partial class AjouterModifierTypeFraisForfait : Form
     {
+        TypeFraisForfait typeFraisForfaitAModifier;
         public event Action TypeFraisForfaitEvenement;
+        string version;
         public AjouterModifierTypeFraisForfait(string version)
         {
             InitializeComponent();
+            lblModifierType.Visible = false;
+            this.version = version;
             typeFraisForfaitBindingSource.DataSource = new TypeFraisForfait();
         }
-        public AjouterModifierTypeFraisForfait(int id, string version)
+        public AjouterModifierTypeFraisForfait(string version, TypeFraisForfait typeFraisForfaitAModifier)
         {
             InitializeComponent();
+            lblCreer.Visible = false;
+            this.typeFraisForfaitAModifier = typeFraisForfaitAModifier;
+            this.version = version;
+            typeFraisForfaitBindingSource.DataSource = typeFraisForfaitAModifier;
+            ChargerComposants(typeFraisForfaitAModifier);
         }
 
+        private void ChargerComposants(TypeFraisForfait type)
+        {
+            nomTextBox.DataBindings.Clear();
+            montantNumericUpDown.DataBindings.Clear();
+
+            nomTextBox.DataBindings.Add("Text", typeFraisForfaitBindingSource, "Nom", true, DataSourceUpdateMode.OnPropertyChanged);
+            montantNumericUpDown.DataBindings.Add("Value", typeFraisForfaitBindingSource, "Montant", true, DataSourceUpdateMode.OnPropertyChanged);
+        }
         private void btnValider_Click(object sender, EventArgs e)
         {
-            typeFraisForfaitBindingSource.EndEdit(); 
-
-            TypeFraisForfait typeFraisForfait = typeFraisForfaitBindingSource.Current as TypeFraisForfait;
-            if (typeFraisForfait != null)
+            if (version == "ajouter")
             {
-                ValidationContext context = new ValidationContext(typeFraisForfait, null, null);
-                IList<ValidationResult> errors = new List<ValidationResult>();
-                if (!Validator.TryValidateObject(typeFraisForfait, context, errors, true))
+                typeFraisForfaitBindingSource.EndEdit();
+
+                TypeFraisForfait typeFraisForfait = typeFraisForfaitBindingSource.Current as TypeFraisForfait;
+                if (typeFraisForfait != null)
                 {
-                    foreach (ValidationResult validationResult in errors)
+                    ValidationContext context = new ValidationContext(typeFraisForfait, null, null);
+                    IList<ValidationResult> errors = new List<ValidationResult>();
+                    if (!Validator.TryValidateObject(typeFraisForfait, context, errors, true))
                     {
-                        MessageBox.Show(validationResult.ErrorMessage, "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        foreach (ValidationResult validationResult in errors)
+                        {
+                            MessageBox.Show(validationResult.ErrorMessage, "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                    else
+                    {
+                        bool valeurRetour = Services.TypeFraisForfaitService.CreerTypeFraisForfait(typeFraisForfait);
+                        if (valeurRetour)
+                            MessageBox.Show("Type de frais forfait créé avec succés");
+                        TypeFraisForfaitEvenement?.Invoke();
+                        this.Close();
                     }
                 }
-                else
+            }
+            else
+            {
+                typeFraisForfaitBindingSource.EndEdit();
+
+                TypeFraisForfait typeFraisForfaitModifie = typeFraisForfaitBindingSource.Current as TypeFraisForfait;
+                if (typeFraisForfaitModifie != null)
                 {
-                    bool valeurRetour = Services.TypeFraisForfaitService.CreerTypeFraisForfait(typeFraisForfait);
-                    if (valeurRetour)
-                        MessageBox.Show("Type de frais forfait créé avec succés");
-                    TypeFraisForfaitEvenement?.Invoke();
-                    this.Close();
+                    ValidationContext context = new ValidationContext(typeFraisForfaitModifie, null, null);
+                    IList<ValidationResult> errors = new List<ValidationResult>();
+                    if (!Validator.TryValidateObject(typeFraisForfaitModifie, context, errors, true))
+                    {
+                        foreach (ValidationResult validationResult in errors)
+                        {
+                            MessageBox.Show(validationResult.ErrorMessage, "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                    else
+                    {
+                        typeFraisForfaitModifie.IdFraisForfait = typeFraisForfaitAModifier.IdFraisForfait;
+                        bool valeurRetour = Services.TypeFraisForfaitService.ModifierTypeFraisForfait(typeFraisForfaitModifie);
+                        if (valeurRetour)
+                            MessageBox.Show("Type de frais forfait modifié avec succés");
+                        TypeFraisForfaitEvenement?.Invoke();
+                        this.Close();
+                    }
                 }
             }
+        }
+
+        private void btnQuitter_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

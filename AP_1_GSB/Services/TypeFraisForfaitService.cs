@@ -86,5 +86,36 @@ namespace AP_1_GSB.Services
             return false;
         }
 
+        public static bool ModifierTypeFraisForfait(TypeFraisForfait typeFraisForfait)
+        {
+            Data.SqlConnection.ConnexionSql();
+            string requete = "UPDATE type_frais_forfait SET nom = @nom , montant = @montant WHERE id_type_forfait = @id;  ";
+
+            try
+            {
+                using (MySqlCommand cmd = new MySqlCommand(requete, Data.SqlConnection.Connection))
+                {
+                    cmd.Parameters.AddWithValue("id", typeFraisForfait.IdFraisForfait);
+                    cmd.Parameters.AddWithValue("@nom", typeFraisForfait.Nom);
+                    cmd.Parameters.AddWithValue("@montant", typeFraisForfait.Montant);
+
+                    if (cmd.ExecuteNonQuery() > 0)
+                    {
+                        return true;
+                    };
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Erreur lors de la connexion à la base de donnée :" + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            finally
+            {
+                Data.SqlConnection.DeconnexionSql();
+            }
+            return false;
+        }
+
     }
 }

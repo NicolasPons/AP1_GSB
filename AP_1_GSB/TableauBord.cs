@@ -24,8 +24,8 @@ namespace AP_1_GSB
         FicheFraisDuMois ficheFraisDuMois;
         SelectionEmploye affichageComptable;
         FicheFrais ficheEnCours;
-        FraisForfait forfaitAModifie;
-        FraisHorsForfait horsForfaitAModifie;
+        //FraisForfait forfaitAModifie;
+        //FraisHorsForfait horsForfaitAModifie;
         DateTime DateDebut;
         DateTime dateFin;
         AffichageHistorique affichageHistorique = null;
@@ -110,24 +110,31 @@ namespace AP_1_GSB
             ficheFraisDuMois.SupprimerSelectionLigne();
 
         }
+
+        //TESTER LA FONCTION AVEC LES LIGNES COMMENTEES  
         private void BtnModifier_Click(object sender, EventArgs e)
         {
             if (ficheFraisDuMois.ListViewForfait.SelectedItems.Count > 0)
             {
-                ficheFraisDuMois.ListViewHorsForfait.SelectedItems.Clear();
-                ficheFraisDuMois.ListViewHorsForfait.SelectedIndices.Clear();
+                //ficheFraisDuMois.ListViewHorsForfait.SelectedItems.Clear();
+                //ficheFraisDuMois.ListViewHorsForfait.SelectedIndices.Clear();
                 string versionPopUp = "modifierForfait";
-                forfaitAModifie = ficheFraisDuMois.SelectionForfaitAModifier();
-                AfficherPopUpCreationModification(versionPopUp, forfaitAModifie);
+                //forfaitAModifie = ficheFraisDuMois.SelectionForfaitAModifier();
+                int idForfait = (int)ficheFraisDuMois.ListViewForfait.SelectedItems[0].Tag;
+                FraisForfait fraisForfait = ficheEnCours.FraisForfaits.FirstOrDefault(item => item.IdFraisForfait == idForfait);
+                AfficherPopUpCreationModification(versionPopUp, fraisForfait);
             }
 
             else if (ficheFraisDuMois.ListViewHorsForfait.SelectedItems.Count > 0)
             {
-                ficheFraisDuMois.ListViewForfait.SelectedItems.Clear();
-                ficheFraisDuMois.ListViewForfait.SelectedIndices.Clear();
+                //ficheFraisDuMois.ListViewForfait.SelectedItems.Clear();
+                //ficheFraisDuMois.ListViewForfait.SelectedIndices.Clear();
                 string versionPopUp = "modifierHorsForfait";
-                horsForfaitAModifie = ficheFraisDuMois.SelectionHorsForfaitAModifier();
-                AfficherPopUpCreationModification(versionPopUp, horsForfaitAModifie);
+                //horsForfaitAModifie = ficheFraisDuMois.SelectionHorsForfaitAModifier();
+                int idHorsForfait = (int)ficheFraisDuMois.ListViewHorsForfait.SelectedItems[0].Tag;
+                FraisHorsForfait fraisHorsForfait = ficheEnCours.FraisHorsForfaits.FirstOrDefault(item => item.IdFraisHorsForfait == idHorsForfait);
+               
+                AfficherPopUpCreationModification(versionPopUp, fraisHorsForfait);
             }
             else
             {
@@ -280,7 +287,7 @@ namespace AP_1_GSB
         }
         private void btnAjouterTypeFrais_Clique(object sender, EventArgs e)
         {
-            string version = "Ajouter";
+            string version = "ajouter";
 
             if (ajouterModifierTypeFraisForfait == null || ajouterModifierTypeFraisForfait.IsDisposed)
             {
@@ -291,6 +298,32 @@ namespace AP_1_GSB
                 ajouterModifierTypeFraisForfait.TopLevel = true;
             }
             ajouterModifierTypeFraisForfait.Show();
+        }
+        private void btnModifierTypeFrais_Click(object sender, EventArgs e)
+        {
+            List<TypeFraisForfait> TypesFraisForfait = new List<TypeFraisForfait>();
+            TypesFraisForfait = Services.TypeFraisForfaitService.RecupererTypeFraisForfait();
+            string version = "modfier";
+            if (interfaceAdmin.ListViewTypeFraisForfait.SelectedItems.Count > 0)
+            {
+                int idTypFrais = (int)interfaceAdmin.ListViewTypeFraisForfait.SelectedItems[0].Tag;
+                TypeFraisForfait typeFraisForfait = TypesFraisForfait.FirstOrDefault(frais => frais.IdFraisForfait == idTypFrais);
+
+                if (ajouterModifierTypeFraisForfait == null || ajouterModifierTypeFraisForfait.IsDisposed)
+                {
+                    ajouterModifierTypeFraisForfait = new AjouterModifierTypeFraisForfait(version, typeFraisForfait);
+                    ajouterModifierTypeFraisForfait.StartPosition = FormStartPosition.Manual;
+                    ajouterModifierTypeFraisForfait.TypeFraisForfaitEvenement += interfaceAdmin.MettreAJourListViewAdmin;
+                    ajouterModifierTypeFraisForfait.Location = new System.Drawing.Point(this.Location.X + 400, this.Location.Y + 250);
+                    ajouterModifierTypeFraisForfait.TopLevel = true;
+                }
+                ajouterModifierTypeFraisForfait.Show();
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner un type de frais à modifier");
+                return;
+            }
         }
 
         #endregion

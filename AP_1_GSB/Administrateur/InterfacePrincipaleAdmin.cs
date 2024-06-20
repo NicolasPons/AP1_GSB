@@ -13,6 +13,9 @@ namespace AP_1_GSB.Administrateur
 {
     public partial class InterfacePrincipaleAdmin : Form
     {
+        public ListView ListViewTypeFraisForfait => this.listViewTypeFraisForfait;
+        public ListView ListViewUtilisateur => this.listViewUtilisateur;
+
         public InterfacePrincipaleAdmin()
         {
             InitializeComponent();
