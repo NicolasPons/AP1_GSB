@@ -484,7 +484,7 @@ namespace AP_1_GSB.Services
         }
 
 
-        public static bool ChangerEtatFiche(FicheFrais ficheEnCours, int idEtat)
+        public static void ChangerEtatFiche(FicheFrais ficheEnCours, int idEtat)
         {
             Data.SqlConnection.ConnexionSql();
 
@@ -497,22 +497,17 @@ namespace AP_1_GSB.Services
                 {
                     cmd.Parameters.AddWithValue("@id_Fiche", idFiche);
                     cmd.Parameters.AddWithValue("@id_etat", idEtat);
-
-                    if (cmd.ExecuteNonQuery() > 0)
-                        return true;
+                    cmd.ExecuteNonQuery();
                 }
             }
-
             catch (MySqlException ex)
             {
                 MessageBox.Show("Erreur lors du changement d'état :" + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
             }
             finally
             {
                 Data.SqlConnection.DeconnexionSql();
             }
-            return false;
         }
 
         public static string EcrireEtatFiche(FicheFrais ficheEnCours)

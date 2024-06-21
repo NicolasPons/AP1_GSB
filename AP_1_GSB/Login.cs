@@ -17,6 +17,8 @@ namespace AP_1_GSB
 {
     public partial class Login : Form
     {
+        public TextBox SaisieUtilisateur => this.saisieUtilisateur;
+        public TextBox SaisieMdp => this.saisieMdp;
         public Login()
         {
             InitializeComponent();
@@ -36,19 +38,19 @@ namespace AP_1_GSB
                 switch (utilisateur.Role)
                 {
                     case UtilisateurRole.Visiteur:
-                        TableauBord TableauBordUtilisateur = new TableauBord(utilisateur);
+                        TableauBord TableauBordUtilisateur = new TableauBord(utilisateur, this);
                         TableauBordUtilisateur.Show();
                         break;
 
                     case UtilisateurRole.Comptable:
-                        TableauBord TableauBordComptable = new TableauBord(utilisateur);
+                        TableauBord TableauBordComptable = new TableauBord(utilisateur, this);
                         TableauBordComptable.Show();
                         break;
 
                     case UtilisateurRole.Administrateur:
-                        TableauBord TableauBordAdministrateur = new TableauBord(utilisateur);
+                        TableauBord TableauBordAdministrateur = new TableauBord(utilisateur, this);
                         TableauBordAdministrateur.Show();
-                        break;
+                        break; 
                 }
             }
             else

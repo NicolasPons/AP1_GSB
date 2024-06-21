@@ -20,9 +20,10 @@ namespace AP_1_GSB
     //VERIFIER L'ID RETOURNE PAR EXECUTESCALAR ET COMPARER AVEC LA VALEUR 
     public partial class TableauBord : Form
     {
+        Login loginForm;
         Utilisateur utilisateur;
         FicheFraisDuMois ficheFraisDuMois;
-        SelectionEmploye affichageComptable;
+        InterfacePrincipaleComptable affichageComptable;
         FicheFrais ficheEnCours;
         //FraisForfait forfaitAModifie;
         //FraisHorsForfait horsForfaitAModifie;
@@ -34,9 +35,10 @@ namespace AP_1_GSB
         CreerModifierUtilisateur creerModifierUtilisateur = null;
         InterfacePrincipaleAdmin interfaceAdmin;
 
-        public TableauBord(Utilisateur utilisateur)
+        public TableauBord(Utilisateur utilisateur, Login loginForm)
         {
             this.utilisateur = utilisateur;
+            this.loginForm = loginForm;
             InitializeComponent();
 
             switch (utilisateur.Role)
@@ -221,11 +223,13 @@ namespace AP_1_GSB
             //Label ou image signifiant qu'on est sur un compte comptable 
             NomPrenom.Text = "Bienvenue " + utilisateur.Nom + " " + utilisateur.Prenom;
             PanelComptable.Visible = true;
-
+            PanelComptable.BringToFront();
+            panelAdministrateur.Hide();
+       
             btnRefusFrais.Enabled = false;
             btnAccepterFrais.Enabled = false;
 
-            affichageComptable = new SelectionEmploye();
+            affichageComptable = new InterfacePrincipaleComptable();
             affichageComptable.TopLevel = false;
             PanelAffichage.Controls.Add(affichageComptable);
             affichageComptable.FormBorderStyle = FormBorderStyle.None;
@@ -277,6 +281,8 @@ namespace AP_1_GSB
         private void AfficherInterfaceAdministrateur()
         {
             panelAdministrateur.Visible = true;
+            panelAdministrateur.BringToFront();
+            PanelComptable.Hide();
             NomPrenom.Text = "Profil administrateur";
 
             interfaceAdmin = new InterfacePrincipaleAdmin();
@@ -340,13 +346,6 @@ namespace AP_1_GSB
             }
             creerModifierUtilisateur.Show();
         }
-
-        #endregion
-        private void BtnQuitter_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
         private void btnModifierUtilisateur_Clique(object sender, EventArgs e)
         {
             string version = "modifier";
@@ -403,6 +402,20 @@ namespace AP_1_GSB
                 return;
             }
         }
+
+        #endregion
+        private void btnRetourLogin_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            loginForm.SaisieMdp.Clear();
+            loginForm.SaisieUtilisateur.Clear();
+            loginForm.Show();
+        }
+        private void BtnQuitter_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
     }
 }
 

@@ -62,8 +62,8 @@ namespace AP_1_GSB.Administrateur
                     }
                     else
                     {
-                        bool valeurRetour = Services.TypeFraisForfaitService.CreerTypeFraisForfait(typeFraisForfait);
-                        if (valeurRetour)
+                          
+                        if (Services.TypeFraisForfaitService.CreerTypeFraisForfait(typeFraisForfait))
                             MessageBox.Show("Type de frais forfait créé avec succés");
                         TypeFraisForfaitEvenement?.Invoke();
                         this.Close();
@@ -89,8 +89,7 @@ namespace AP_1_GSB.Administrateur
                     else
                     {
                         typeFraisForfaitModifie.IdFraisForfait = typeFraisForfaitAModifier.IdFraisForfait;
-                        bool valeurRetour = Services.TypeFraisForfaitService.ModifierTypeFraisForfait(typeFraisForfaitModifie);
-                        if (valeurRetour)
+                        if (Services.TypeFraisForfaitService.ModifierTypeFraisForfait(typeFraisForfaitModifie))
                             MessageBox.Show("Type de frais forfait modifié avec succés");
                         TypeFraisForfaitEvenement?.Invoke();
                         this.Close();

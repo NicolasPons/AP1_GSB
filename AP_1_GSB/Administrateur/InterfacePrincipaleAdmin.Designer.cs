@@ -50,7 +50,7 @@
             this.listViewTypeFraisForfait.HideSelection = false;
             this.listViewTypeFraisForfait.Location = new System.Drawing.Point(840, 78);
             this.listViewTypeFraisForfait.Name = "listViewTypeFraisForfait";
-            this.listViewTypeFraisForfait.Size = new System.Drawing.Size(208, 267);
+            this.listViewTypeFraisForfait.Size = new System.Drawing.Size(204, 267);
             this.listViewTypeFraisForfait.TabIndex = 0;
             this.listViewTypeFraisForfait.UseCompatibleStateImageBehavior = false;
             this.listViewTypeFraisForfait.View = System.Windows.Forms.View.Details;
@@ -58,12 +58,12 @@
             // type
             // 
             this.type.Text = "Type de frais";
-            this.type.Width = 130;
+            this.type.Width = 100;
             // 
             // montant
             // 
             this.montant.Text = "Montant";
-            this.montant.Width = 177;
+            this.montant.Width = 100;
             // 
             // listViewUtilisateur
             // 
@@ -105,7 +105,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(75, 59);
+            this.label1.Location = new System.Drawing.Point(160, 59);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(107, 13);
             this.label1.TabIndex = 2;
@@ -114,7 +114,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(837, 59);
+            this.label2.Location = new System.Drawing.Point(883, 59);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(120, 13);
             this.label2.TabIndex = 3;

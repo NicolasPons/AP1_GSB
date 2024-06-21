@@ -298,11 +298,11 @@
     <Compile Include="Administrateur\InterfacePrincipaleAdmin.Designer.cs">
       <DependentUpon>InterfacePrincipaleAdmin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Comptable\SelectionEmploye.cs">
+    <Compile Include="Comptable\InterfacePrincipaleComptable.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Comptable\SelectionEmploye.Designer.cs">
-      <DependentUpon>SelectionEmploye.cs</DependentUpon>
+    <Compile Include="Comptable\InterfacePrincipaleComptable.Designer.cs">
+      <DependentUpon>InterfacePrincipaleComptable.cs</DependentUpon>
     </Compile>
     <Compile Include="Services\TypeFraisForfaitService.cs" />
     <Compile Include="Services\JustificatifService.cs" />
@@ -359,8 +359,8 @@
     <EmbeddedResource Include="Administrateur\InterfacePrincipaleAdmin.resx">
       <DependentUpon>InterfacePrincipaleAdmin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Comptable\SelectionEmploye.resx">
-      <DependentUpon>SelectionEmploye.cs</DependentUpon>
+    <EmbeddedResource Include="Comptable\InterfacePrincipaleComptable.resx">
+      <DependentUpon>InterfacePrincipaleComptable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TableauBord.resx">
       <DependentUpon>TableauBord.cs</DependentUpon>

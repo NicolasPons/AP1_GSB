@@ -12,10 +12,10 @@ using System.Windows.Forms;
 
 namespace AP_1_GSB.Comptable
 {
-    public partial class SelectionEmploye : Form
+    public partial class InterfacePrincipaleComptable : Form
     {
         List<Utilisateur> visiteurs; 
-        public SelectionEmploye()
+        public InterfacePrincipaleComptable()
         {
             InitializeComponent();
             ChargerListView();

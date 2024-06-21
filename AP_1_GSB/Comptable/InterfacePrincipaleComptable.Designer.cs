@@ -1,6 +1,6 @@
 ﻿namespace AP_1_GSB.Comptable
 {
-    partial class SelectionEmploye
+    partial class InterfacePrincipaleComptable
     {
         /// <summary>
         /// Required designer variable.
@@ -37,7 +37,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(50, 29);
+            this.label1.Location = new System.Drawing.Point(482, 56);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(271, 13);
             this.label1.TabIndex = 0;
@@ -51,9 +51,9 @@
             this.listViewAffichageUtilisateurs.FullRowSelect = true;
             this.listViewAffichageUtilisateurs.GridLines = true;
             this.listViewAffichageUtilisateurs.HideSelection = false;
-            this.listViewAffichageUtilisateurs.Location = new System.Drawing.Point(53, 85);
+            this.listViewAffichageUtilisateurs.Location = new System.Drawing.Point(508, 86);
             this.listViewAffichageUtilisateurs.Name = "listViewAffichageUtilisateurs";
-            this.listViewAffichageUtilisateurs.Size = new System.Drawing.Size(1043, 461);
+            this.listViewAffichageUtilisateurs.Size = new System.Drawing.Size(205, 273);
             this.listViewAffichageUtilisateurs.TabIndex = 1;
             this.listViewAffichageUtilisateurs.UseCompatibleStateImageBehavior = false;
             this.listViewAffichageUtilisateurs.View = System.Windows.Forms.View.Details;
@@ -61,14 +61,14 @@
             // Nom
             // 
             this.Nom.Text = "Nom";
-            this.Nom.Width = 123;
+            this.Nom.Width = 100;
             // 
             // Prenom
             // 
             this.Prenom.Text = "Prenom";
-            this.Prenom.Width = 195;
+            this.Prenom.Width = 100;
             // 
-            // AffichageComptable
+            // InterfacePrincipaleComptable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -76,7 +76,7 @@
             this.Controls.Add(this.listViewAffichageUtilisateurs);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "AffichageComptable";
+            this.Name = "InterfacePrincipaleComptable";
             this.Text = "abel";
             this.ResumeLayout(false);
             this.PerformLayout();

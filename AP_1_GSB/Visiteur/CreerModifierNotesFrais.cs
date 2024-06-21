@@ -193,9 +193,8 @@ namespace AP_1_GSB.Visiteur
                     type = SelectionTypeForfait.SelectedIndex + 1;
                     dateFrais = DateFrais.Value;
                     quantite = int.Parse(QuantiteMontant.Text);
-                    bool valeurRetour = FraisForfaitService.AjouterFraisForfait(IdFiche, type, dateFrais, quantite, FichierBinaire);
 
-                    if (valeurRetour)
+                    if (FraisForfaitService.AjouterFraisForfait(IdFiche, type, dateFrais, quantite, FichierBinaire))
                     {
                         MessageBox.Show("Frais créé avec succés.");
                         utilisateur = FicheFraisService.RecupererNotesForfait(utilisateur, ficheEnCours);
@@ -212,9 +211,8 @@ namespace AP_1_GSB.Visiteur
                     description = DescriptionHorsForfait.Text;
                     dateFrais = DateFrais.Value;
                     montant = int.Parse(QuantiteMontant.Text);
-                    bool valeurRetour = FraisHorsForfaitService.AjouterFraisHorsForfait(IdFiche, description, dateFrais, montant, FichierBinaire);
 
-                    if (valeurRetour)
+                    if (FraisHorsForfaitService.AjouterFraisHorsForfait(IdFiche, description, dateFrais, montant, FichierBinaire))
                     {
                         MessageBox.Show("Frais créé avec succés.");
                         utilisateur = FicheFraisService.RecupererNotesHorsForfait(utilisateur, ficheEnCours);
@@ -233,9 +231,8 @@ namespace AP_1_GSB.Visiteur
                 type = SelectionTypeForfait.SelectedIndex + 1;
                 dateFrais = DateFrais.Value;
                 quantite = int.Parse(QuantiteMontant.Text);
-                bool valeurRetour = FraisForfaitService.ModifierFraisForfait(IdFiche, type, dateFrais, quantite, FichierBinaire);
 
-                if (valeurRetour)
+                if (FraisForfaitService.ModifierFraisForfait(IdFiche, type, dateFrais, quantite, FichierBinaire))
                 {
                     MessageBox.Show("Frais modifié avec succés.");
                     utilisateur = FicheFraisService.RecupererNotesForfait(utilisateur, ficheEnCours);
@@ -253,9 +250,8 @@ namespace AP_1_GSB.Visiteur
                 description = DescriptionHorsForfait.Text;
                 dateFrais = DateFrais.Value;
                 montant = int.Parse(QuantiteMontant.Text);
-                bool valeurRetour = FraisHorsForfaitService.ModifierFraisHorsForfait(IdFiche, description, dateFrais, montant, FichierBinaire);
 
-                if (valeurRetour)
+                if (FraisHorsForfaitService.ModifierFraisHorsForfait(IdFiche, description, dateFrais, montant, FichierBinaire))
                 {
                     MessageBox.Show("Frais modifié avec succés.");
                     utilisateur = FicheFraisService.RecupererNotesHorsForfait(utilisateur, ficheEnCours);

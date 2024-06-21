@@ -15,25 +15,27 @@ namespace AP_1_GSB.Services
         {
             int IdFrais = frais.IdFraisHorsForfait;
 
-            if (frais != null && frais.IdFraisHorsForfait > 0)
+            if (frais == null && IdFrais < 1)
             {
-                Data.SqlConnection.ConnexionSql();
-
-                string requete = "DELETE FROM frais_hors_forfait  WHERE id_hors_forfait = @IdFraisHorsForfait";
-
-                using (MySqlCommand cmd = new MySqlCommand(requete, Data.SqlConnection.Connection))
-                {
-                    cmd.Parameters.AddWithValue("@IdFraisHorsForfait", IdFrais);
-
-                    if (cmd.ExecuteNonQuery() > 0)
-                    {
-                        return true;
-                    }
-                }
                 return false;
+            }
+
+            Data.SqlConnection.ConnexionSql();
+
+            string requete = "DELETE FROM frais_hors_forfait  WHERE id_hors_forfait = @IdFraisHorsForfait";
+
+            using (MySqlCommand cmd = new MySqlCommand(requete, Data.SqlConnection.Connection))
+            {
+                cmd.Parameters.AddWithValue("@IdFraisHorsForfait", IdFrais);
+
+                if (cmd.ExecuteNonQuery() > 0)
+                {
+                    return true;
+                }
             }
             return false;
         }
+
         public static bool AjouterFraisHorsForfait(int IdFiche, string description, DateTime dateFrais, int montant, byte[] FichierBinaire)
         {
             int idJustificatif = 0;
@@ -132,7 +134,7 @@ namespace AP_1_GSB.Services
             return total;
         }
 
-        public static bool ChangerEtatHorsForfait(int idFrais, string etat)
+        public static void ChangerEtatHorsForfait(int idFrais, string etat)
         {
             Data.SqlConnection.ConnexionSql();
             string requete = "UPDATE frais_hors_forfait SET etat = @etat WHERE id_hors_forfait = @idFrais;";
@@ -143,22 +145,19 @@ namespace AP_1_GSB.Services
                 {
                     cmd.Parameters.AddWithValue("@idFrais", idFrais);
                     cmd.Parameters.AddWithValue("@etat", etat);
-                    if (cmd.ExecuteNonQuery() > 0)
-                    {
-                        return true;
-                    }
+                    cmd.ExecuteNonQuery();
+                  
                 }
             }
             catch (MySqlException ex)
             {
                 MessageBox.Show("Erreur lors du refus de frais : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                
             }
             finally
             {
                 Data.SqlConnection.DeconnexionSql();
             }
-            return false;
         }
         public static string EcrireEtatFraiHorsForfait(FraisHorsForfait frais)
         {

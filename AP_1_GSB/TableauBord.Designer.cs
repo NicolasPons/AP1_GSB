@@ -49,6 +49,7 @@
             this.BtnSupprimerNote = new System.Windows.Forms.Button();
             this.btnAjouterNoteFrais = new System.Windows.Forms.Button();
             this.PanelAffichage = new System.Windows.Forms.Panel();
+            this.btnRetourLogin = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.PanelComptable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -59,8 +60,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.panel1.Controls.Add(this.btnRetourLogin);
             this.panel1.Controls.Add(this.NomPrenom);
-            this.panel1.Controls.Add(this.PanelComptable);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.btnQuitter);
@@ -76,7 +77,7 @@
             this.NomPrenom.AutoSize = true;
             this.NomPrenom.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.NomPrenom.ForeColor = System.Drawing.Color.White;
-            this.NomPrenom.Location = new System.Drawing.Point(1036, 17);
+            this.NomPrenom.Location = new System.Drawing.Point(996, 18);
             this.NomPrenom.Name = "NomPrenom";
             this.NomPrenom.Size = new System.Drawing.Size(292, 26);
             this.NomPrenom.TabIndex = 9;
@@ -98,7 +99,7 @@
             this.btnAccepterFrais.Name = "btnAccepterFrais";
             this.btnAccepterFrais.Size = new System.Drawing.Size(200, 74);
             this.btnAccepterFrais.TabIndex = 2;
-            this.btnAccepterFrais.Text = "Sélectionner un frais à accepter";
+            this.btnAccepterFrais.Text = "Accepter un frais";
             this.btnAccepterFrais.UseVisualStyleBackColor = true;
             this.btnAccepterFrais.Click += new System.EventHandler(this.btnAccepterFrais_Click);
             // 
@@ -108,7 +109,7 @@
             this.btnRefusFrais.Name = "btnRefusFrais";
             this.btnRefusFrais.Size = new System.Drawing.Size(200, 74);
             this.btnRefusFrais.TabIndex = 1;
-            this.btnRefusFrais.Text = "Sélectionner un frais à refuser";
+            this.btnRefusFrais.Text = "Refuser un frais";
             this.btnRefusFrais.UseVisualStyleBackColor = true;
             this.btnRefusFrais.Click += new System.EventHandler(this.btnRefusFrais_Click);
             // 
@@ -127,7 +128,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(109, 12);
+            this.label1.Location = new System.Drawing.Point(43, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(168, 26);
             this.label1.TabIndex = 8;
@@ -136,7 +137,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::AP_1_GSB.Properties.Resources._532_5328945_menu_bar_icon_white_;
-            this.pictureBox1.Location = new System.Drawing.Point(42, 11);
+            this.pictureBox1.Location = new System.Drawing.Point(3, 11);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(34, 37);
             this.pictureBox1.TabIndex = 7;
@@ -160,7 +161,6 @@
             // PanelUtilisateur
             // 
             this.PanelUtilisateur.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.PanelUtilisateur.Controls.Add(this.panelAdministrateur);
             this.PanelUtilisateur.Controls.Add(this.BtnHistorique);
             this.PanelUtilisateur.Controls.Add(this.BtnModifier);
             this.PanelUtilisateur.Controls.Add(this.BtnSupprimerNote);
@@ -179,7 +179,7 @@
             this.panelAdministrateur.Controls.Add(this.btnAjoutUtilisateur);
             this.panelAdministrateur.Controls.Add(this.btnModifierTypeFrais);
             this.panelAdministrateur.Controls.Add(this.btnAjouterTypeFrais);
-            this.panelAdministrateur.Location = new System.Drawing.Point(0, 2);
+            this.panelAdministrateur.Location = new System.Drawing.Point(0, 54);
             this.panelAdministrateur.Name = "panelAdministrateur";
             this.panelAdministrateur.Size = new System.Drawing.Size(200, 918);
             this.panelAdministrateur.TabIndex = 7;
@@ -284,6 +284,20 @@
             this.PanelAffichage.Size = new System.Drawing.Size(1264, 918);
             this.PanelAffichage.TabIndex = 2;
             // 
+            // btnRetourLogin
+            // 
+            this.btnRetourLogin.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRetourLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRetourLogin.Font = new System.Drawing.Font("Verdana", 16.2F, System.Drawing.FontStyle.Bold);
+            this.btnRetourLogin.ForeColor = System.Drawing.Color.White;
+            this.btnRetourLogin.Location = new System.Drawing.Point(1352, 6);
+            this.btnRetourLogin.Name = "btnRetourLogin";
+            this.btnRetourLogin.Size = new System.Drawing.Size(39, 43);
+            this.btnRetourLogin.TabIndex = 10;
+            this.btnRetourLogin.Text = "<-";
+            this.btnRetourLogin.UseVisualStyleBackColor = true;
+            this.btnRetourLogin.Click += new System.EventHandler(this.btnRetourLogin_Click);
+            // 
             // TableauBord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -292,6 +306,8 @@
             this.ClientSize = new System.Drawing.Size(1464, 972);
             this.Controls.Add(this.PanelAffichage);
             this.Controls.Add(this.PanelUtilisateur);
+            this.Controls.Add(this.panelAdministrateur);
+            this.Controls.Add(this.PanelComptable);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -331,5 +347,6 @@
         private System.Windows.Forms.Button btnModifierUtilisateur;
         private System.Windows.Forms.Button btnAjoutUtilisateur;
         private System.Windows.Forms.Button btnModifierTypeFrais;
+        private System.Windows.Forms.Button btnRetourLogin;
     }
 }

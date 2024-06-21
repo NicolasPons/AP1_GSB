@@ -309,8 +309,7 @@ namespace AP_1_GSB.Visiteur
                 return;
             }
 
-            bool ValeurRetour = Services.FraisForfaitService.SupprimerFraisForfait(FraisASupprimer);
-            if (ValeurRetour)
+            if (Services.FraisForfaitService.SupprimerFraisForfait(FraisASupprimer))
             {
                 MessageBox.Show("Note de frais forfait supprimée", "Supression", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ficheEnCours.FraisForfaits.Remove(FraisASupprimer);
@@ -344,15 +343,15 @@ namespace AP_1_GSB.Visiteur
                 listViewHorsForfait.Items.Remove(listViewHorsForfait.SelectedItems[0]);
                 FraisASupprimer = ficheEnCours.FraisHorsForfaits.Find(f => f.IdFraisHorsForfait == idFraisASupprimer);
             }
-            bool ValeurRetour = Services.FraisHorsForfaitService.SupprimerFraisHorsForfait(FraisASupprimer);
-            if (ValeurRetour)
+            
+            if (Services.FraisHorsForfaitService.SupprimerFraisHorsForfait(FraisASupprimer))
             {
                 ficheEnCours.FraisHorsForfaits.Remove(FraisASupprimer);
                 float totalHorsForfait = FraisHorsForfaitService.CalculerTotalHorsForfait(ficheEnCours);
                 LblTotalHorsForfait.Text = totalHorsForfait.ToString("F2") + " €";
                 float totalFiche = FicheFraisService.CalculerTotalFiche(ficheEnCours);
                 LblTotalFiche.Text = totalFiche.ToString("F2");
-                MessageBox.Show("Note de frais hors forfait supprimée", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Note de frais hors forfait supprimée", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
@@ -426,6 +425,7 @@ namespace AP_1_GSB.Visiteur
             else if (listViewHorsForfait.SelectedItems.Count > 0)
             {
                 int idFrais = (int)listViewHorsForfait.SelectedItems[0].Tag;
+
                 FraisHorsForfaitService.ChangerEtatHorsForfait(idFrais, etat);
                 foreach (FraisHorsForfait frais in ficheEnCours.FraisHorsForfaits)
                 {
