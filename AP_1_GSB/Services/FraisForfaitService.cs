@@ -11,6 +11,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using System.Drawing;
 
 namespace AP_1_GSB.Services
 {
@@ -198,6 +200,24 @@ namespace AP_1_GSB.Services
                     break;
             }
             return etat;
+        }
+
+        public static Image AfficherJustificatif(byte[] blob)
+        {
+            if (blob != null)
+            {
+                using (MemoryStream ms = new MemoryStream(blob))
+                {
+                    Image image = Image.FromStream(ms);
+                    return image;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Aucun justificatif n'est disponible pour ce frais", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return null;
+            }
+
         }
     }
 }

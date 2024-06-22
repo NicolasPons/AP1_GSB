@@ -12,6 +12,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AP_1_GSB.Administrateur;
+using System.IO;
+using AP_1_GSB.Services;
+using AP_1_GSB;
+
 
 namespace AP_1_GSB
 {
@@ -34,6 +38,7 @@ namespace AP_1_GSB
         AjouterModifierTypeFraisForfait ajouterModifierTypeFraisForfait = null;
         CreerModifierUtilisateur creerModifierUtilisateur = null;
         InterfacePrincipaleAdmin interfaceAdmin;
+        AfficherJustificatif affichageJustificatif = null;
 
         public TableauBord(Utilisateur utilisateur, Login loginForm)
         {
@@ -62,11 +67,11 @@ namespace AP_1_GSB
         private void RecupererDatesFiche()
         {
 
-      
+
             DateTime now = DateTime.Now;
 
             if (now.Day >= 11)
-            {   
+            {
                 DateDebut = new DateTime(now.Year, now.Month, 11);
                 dateFin = new DateTime(now.Year, now.Month + 1, 10);
             }
@@ -179,10 +184,60 @@ namespace AP_1_GSB
                 creerModifierNoteFrais.StartPosition = FormStartPosition.Manual;
                 creerModifierNoteFrais.Location = new System.Drawing.Point(this.Location.X + 400, this.Location.Y + 250);
                 creerModifierNoteFrais.TopLevel = true;
-                creerModifierNoteFrais.Show();
             }
+            creerModifierNoteFrais.Show();
         }
 
+        private void BtnVoirJustificatifUtilisateur_Click(object sender, EventArgs e)
+        {
+            if (ficheFraisDuMois.ListViewForfait.SelectedItems.Count > 0)
+            {
+                int idForfait = (int)ficheFraisDuMois.ListViewForfait.SelectedItems[0].Tag;
+                FraisForfait fraisForfait = ficheEnCours.FraisForfaits.FirstOrDefault(item => item.IdFraisForfait == idForfait);
+                if (fraisForfait.justificatif != null)
+                {
+
+                    if (affichageJustificatif == null || affichageJustificatif.IsDisposed)
+                    {
+                        affichageJustificatif = new AfficherJustificatif(fraisForfait);
+                        affichageJustificatif.StartPosition = FormStartPosition.Manual;
+                        affichageJustificatif.Location = new System.Drawing.Point(this.Location.X + 400, this.Location.Y + 250);
+                        affichageJustificatif.TopLevel = true;
+                    }
+                    affichageJustificatif.Show();
+
+                }
+                else
+                {
+                    MessageBox.Show("Aucun justificatif n'a été ajouté pour ce frais.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+
+            else if (ficheFraisDuMois.ListViewHorsForfait.SelectedItems.Count > 0)
+            {
+                int idHorsForfait = (int)ficheFraisDuMois.ListViewHorsForfait.SelectedItems[0].Tag;
+                FraisHorsForfait fraisHorsForfait = ficheEnCours.FraisHorsForfaits.FirstOrDefault(item => item.IdFraisHorsForfait == idHorsForfait);
+                if (fraisHorsForfait.Justificatif != null)
+                {
+                    if (affichageJustificatif == null || affichageJustificatif.IsDisposed)
+                    {
+                        affichageJustificatif = new AfficherJustificatif(fraisHorsForfait);
+                        affichageJustificatif.StartPosition = FormStartPosition.Manual;
+                        affichageJustificatif.Location = new System.Drawing.Point(this.Location.X + 400, this.Location.Y + 250);
+                        affichageJustificatif.TopLevel = true;
+                    }
+                    affichageJustificatif.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Aucun justificatif n'a été ajouté pour ce frais.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner un frais.", "Aucune sélection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
         private void BtnHistorique_Click(object sender, EventArgs e)
         {
 
@@ -202,6 +257,7 @@ namespace AP_1_GSB
             affichageHistorique.Show();
         }
 
+
         private void GriserBouton(bool btnAJout, bool btnSupprimer, bool btnModif)
         {
             btnAjouterNoteFrais.Enabled = btnAJout;
@@ -219,7 +275,7 @@ namespace AP_1_GSB
             PanelComptable.Visible = true;
             PanelComptable.BringToFront();
             panelAdministrateur.Hide();
-       
+
             btnRefusFrais.Enabled = false;
             btnAccepterFrais.Enabled = false;
 

@@ -298,6 +298,12 @@
     <Compile Include="Administrateur\InterfacePrincipaleAdmin.Designer.cs">
       <DependentUpon>InterfacePrincipaleAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="AfficherJustificatif.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AfficherJustificatif.Designer.cs">
+      <DependentUpon>AfficherJustificatif.cs</DependentUpon>
+    </Compile>
     <Compile Include="Comptable\InterfacePrincipaleComptable.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -358,6 +364,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administrateur\InterfacePrincipaleAdmin.resx">
       <DependentUpon>InterfacePrincipaleAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AfficherJustificatif.resx">
+      <DependentUpon>AfficherJustificatif.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Comptable\InterfacePrincipaleComptable.resx">
       <DependentUpon>InterfacePrincipaleComptable.cs</DependentUpon>

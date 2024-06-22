@@ -25,7 +25,6 @@ namespace AP_1_GSB.Visiteur
         FicheFrais ficheEnCours;
         string version;
         byte[] fichierBinaire = null;
-        int idFiche;
         int idType;
         public CreerModifierNoteFrais(Utilisateur utilisateur, FicheFrais ficheEnCours, DateTime dtFin, string version)
         {

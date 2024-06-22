@@ -36,6 +36,8 @@ namespace AP_1_GSB.Visiteur
         readonly string version;
         public event Action ListesVide;
         public event Action GriserBouton;
+
+
         //public event Action CalculTotalFiche;
         public ListView ListViewForfait => this.listViewForfait;
         public ListView ListViewHorsForfait => this.listViewHorsForfait;
@@ -47,7 +49,6 @@ namespace AP_1_GSB.Visiteur
             this.version = version;
             InitializeComponent();
             MettreAJourListView();
-            //CalculTotalFiche += EvenementCalculTotal;
             AfficherInformationForm();
             DateFicheFrais.Text = "Fiche de frais du " + ficheEnCours.Date.ToString("dd MMMM yyyy") + " au " + dtFin.ToString("dd MMMM yyyy");
         }
@@ -83,10 +84,10 @@ namespace AP_1_GSB.Visiteur
 
             foreach (FraisHorsForfait fraisHorsForfait in ficheEnCours.FraisHorsForfaits)
             {
-                 string justificatifManquant = "Pas de justificatif";
+                string etatJustificatif = "Pas de justificatif";
                 if (fraisHorsForfait.Justificatif != null)
                 {
-                    justificatifManquant = "Justificatif présent";
+                    etatJustificatif = "Justificatif présent";
                 }
 
                 string etat = Services.FraisHorsForfaitService.EcrireEtatFraiHorsForfait(fraisHorsForfait);
@@ -94,27 +95,28 @@ namespace AP_1_GSB.Visiteur
                 item.SubItems.Add(fraisHorsForfait.Montant.ToString());
                 item.SubItems.Add(fraisHorsForfait.Date.ToString("dd/MM/yyyy"));
                 item.SubItems.Add(etat);
-                item.SubItems.Add(justificatifManquant);
+                item.SubItems.Add(etatJustificatif);
                 item.Tag = fraisHorsForfait.IdFraisHorsForfait;
                 listViewHorsForfait.Items.Add(item);
             }
             float totalForfait = FraisForfaitService.CalculerTotalForfait(ficheEnCours);
             LblTotalForfait.Text = totalForfait.ToString("F2") + " €";
 
+
             foreach (FraisForfait fraisForfait in ficheEnCours.FraisForfaits)
             {
 
-                string justificatifManquant = "Pas de justificatif";
+                string etatJustificatif = "Pas de justificatif";
                 if (fraisForfait.justificatif != null)
                 {
-                    justificatifManquant = "Justificatif présent";
+                    etatJustificatif = "Justificatif présent";
                 }
                 string etat = Services.FraisForfaitService.EcrireEtatFraisForfait(fraisForfait);
                 ListViewItem item = new ListViewItem(fraisForfait.TypeForfait.Nom);
                 item.SubItems.Add(fraisForfait.Quantite.ToString());
                 item.SubItems.Add(fraisForfait.Date.ToString("dd/MM/yyyy"));
                 item.SubItems.Add(etat);
-                item.SubItems.Add(justificatifManquant);
+                item.SubItems.Add(etatJustificatif);
                 item.Tag = fraisForfait.IdFraisForfait;
                 listViewForfait.Items.Add(item);
             }
@@ -257,27 +259,9 @@ namespace AP_1_GSB.Visiteur
 
         #endregion
 
-        //private void EvenementCalculTotal()
-        //{
-        //    float totalFiche = FicheFraisService.CalculerTotalFiche(ficheEnCours);
-        //    LblTotalFiche.Text = totalFiche.ToString("F2");
-        //}
+
 
         #region utilisateur 
-
-        //public FraisHorsForfait SelectionHorsForfaitAModifier()
-        //{
-        //    //int idHorsForfait = (int)ListViewHorsForfait.SelectedItems[0].Tag;
-        //    //FraisHorsForfait fraisHorsForfait = ficheEnCours.FraisHorsForfaits.FirstOrDefault(item => item.IdFraisHorsForfait == idHorsForfait);
-        //    //return fraisHorsForfait;
-        //}
-
-        //public FraisForfait SelectionForfaitAModifier()
-        //{
-        //    int idForfait = (int)listViewForfait.SelectedItems[0].Tag;
-        //    FraisForfait fraisForfait = ficheEnCours.FraisForfaits.FirstOrDefault(item => item.IdFraisForfait == idForfait);
-        //    return fraisForfait;
-        //}
 
         public void VerifierListesVides()
         {
@@ -355,7 +339,7 @@ namespace AP_1_GSB.Visiteur
                 listViewHorsForfait.Items.Remove(listViewHorsForfait.SelectedItems[0]);
                 FraisASupprimer = ficheEnCours.FraisHorsForfaits.Find(f => f.IdFraisHorsForfait == idFraisASupprimer);
             }
-            
+
             if (Services.FraisHorsForfaitService.SupprimerFraisHorsForfait(FraisASupprimer))
             {
                 ficheEnCours.FraisHorsForfaits.Remove(FraisASupprimer);
@@ -454,23 +438,35 @@ namespace AP_1_GSB.Visiteur
             }
             else
             {
-                MessageBox.Show("Veuillez sélectionner un frais à refuser", "Aucune sélection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Veuillez sélectionner un frais à refuser", "Aucune sélection", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         public void AccepterFrais()
         {
-            string etat = "ACCEPTER";
+              string etat = "ACCEPTER";
             if (listViewForfait.SelectedItems.Count > 0)
             {
                 int idFrais = (int)listViewForfait.SelectedItems[0].Tag;
                 FraisForfaitService.ChangerEtatFraisForfat(idFrais, etat);
 
+                FraisForfait fraisForfait = null;
                 foreach (FraisForfait frais in ficheEnCours.FraisForfaits)
                 {
                     if (frais.IdFraisForfait == idFrais)
-                        frais.Etat = EtatFraisForfait.Accepter;
+                        fraisForfait = frais;
                 }
+
+                if (fraisForfait.Etat == EtatFraisForfait.Accepter)
+                {
+                    MessageBox.Show("Le frais est déjà accepté", "Frais accepté", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else
+                {
+                    fraisForfait.Etat = EtatFraisForfait.Accepter;
+                }
+
                 MettreAJourListView();
                 VerifierEtatAccepter();
                 FicheFraisService.ChangerEtatFiche(ficheEnCours, 2);
@@ -481,10 +477,22 @@ namespace AP_1_GSB.Visiteur
             {
                 int idFrais = (int)listViewHorsForfait.SelectedItems[0].Tag;
                 FraisHorsForfaitService.ChangerEtatHorsForfait(idFrais, etat);
+
+                FraisHorsForfait fraisHorsForfait = null;
                 foreach (FraisHorsForfait frais in ficheEnCours.FraisHorsForfaits)
                 {
                     if (frais.IdFraisHorsForfait == idFrais)
-                        frais.Etat = EtatFraisHorsForfait.Accepter;
+                        fraisHorsForfait = frais;
+                }
+
+                if (fraisHorsForfait.Etat == EtatFraisHorsForfait.Accepter)
+                {
+                    MessageBox.Show("Le frais est déjà accepté", "Frais accepté", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else
+                {
+                    fraisHorsForfait.Etat = EtatFraisHorsForfait.Accepter;
                 }
                 MettreAJourListView();
                 VerifierEtatAccepter();
@@ -493,7 +501,7 @@ namespace AP_1_GSB.Visiteur
             }
             else
             {
-                MessageBox.Show("Veuillez sélectionner un frais à refuser", "Aucune sélection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Veuillez sélectionner un frais à accepter", "Aucune sélection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

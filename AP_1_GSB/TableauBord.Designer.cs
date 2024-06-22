@@ -29,32 +29,36 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnRetourLogin = new System.Windows.Forms.Button();
             this.NomPrenom = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnQuitter = new System.Windows.Forms.Button();
             this.PanelComptable = new System.Windows.Forms.Panel();
             this.btnAccepterFrais = new System.Windows.Forms.Button();
             this.btnRefusFrais = new System.Windows.Forms.Button();
             this.BtnAfficheFichesEmploye = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnQuitter = new System.Windows.Forms.Button();
             this.PanelUtilisateur = new System.Windows.Forms.Panel();
+            this.BtnVoirJustificatifUtilisateur = new System.Windows.Forms.Button();
+            this.BtnHistorique = new System.Windows.Forms.Button();
+            this.BtnModifier = new System.Windows.Forms.Button();
+            this.BtnSupprimerNote = new System.Windows.Forms.Button();
+            this.btnAjouterNoteFrais = new System.Windows.Forms.Button();
             this.panelAdministrateur = new System.Windows.Forms.Panel();
             this.btnSupprimerUtilisateur = new System.Windows.Forms.Button();
             this.btnModifierUtilisateur = new System.Windows.Forms.Button();
             this.btnAjoutUtilisateur = new System.Windows.Forms.Button();
             this.btnModifierTypeFrais = new System.Windows.Forms.Button();
             this.btnAjouterTypeFrais = new System.Windows.Forms.Button();
-            this.BtnHistorique = new System.Windows.Forms.Button();
-            this.BtnModifier = new System.Windows.Forms.Button();
-            this.BtnSupprimerNote = new System.Windows.Forms.Button();
-            this.btnAjouterNoteFrais = new System.Windows.Forms.Button();
             this.PanelAffichage = new System.Windows.Forms.Panel();
-            this.btnRetourLogin = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
-            this.PanelComptable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.PanelComptable.SuspendLayout();
             this.PanelUtilisateur.SuspendLayout();
             this.panelAdministrateur.SuspendLayout();
+            this.PanelAffichage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -72,6 +76,20 @@
             this.panel1.Size = new System.Drawing.Size(1464, 54);
             this.panel1.TabIndex = 0;
             // 
+            // btnRetourLogin
+            // 
+            this.btnRetourLogin.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRetourLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRetourLogin.Font = new System.Drawing.Font("Verdana", 16.2F, System.Drawing.FontStyle.Bold);
+            this.btnRetourLogin.ForeColor = System.Drawing.Color.White;
+            this.btnRetourLogin.Location = new System.Drawing.Point(1352, 6);
+            this.btnRetourLogin.Name = "btnRetourLogin";
+            this.btnRetourLogin.Size = new System.Drawing.Size(39, 43);
+            this.btnRetourLogin.TabIndex = 10;
+            this.btnRetourLogin.Text = "<-";
+            this.btnRetourLogin.UseVisualStyleBackColor = true;
+            this.btnRetourLogin.Click += new System.EventHandler(this.btnRetourLogin_Click);
+            // 
             // NomPrenom
             // 
             this.NomPrenom.AutoSize = true;
@@ -82,6 +100,41 @@
             this.NomPrenom.Size = new System.Drawing.Size(292, 26);
             this.NomPrenom.TabIndex = 9;
             this.NomPrenom.Text = "Bienvenue Jean Michel Jarre";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(43, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(168, 26);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Tableau de bord";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::AP_1_GSB.Properties.Resources._532_5328945_menu_bar_icon_white_;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 11);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(34, 37);
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
+            // 
+            // btnQuitter
+            // 
+            this.btnQuitter.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnQuitter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnQuitter.Font = new System.Drawing.Font("Verdana", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnQuitter.ForeColor = System.Drawing.Color.White;
+            this.btnQuitter.Location = new System.Drawing.Point(1396, 6);
+            this.btnQuitter.Margin = new System.Windows.Forms.Padding(2);
+            this.btnQuitter.Name = "btnQuitter";
+            this.btnQuitter.Size = new System.Drawing.Size(39, 43);
+            this.btnQuitter.TabIndex = 6;
+            this.btnQuitter.Text = "X";
+            this.btnQuitter.UseVisualStyleBackColor = true;
+            this.btnQuitter.Click += new System.EventHandler(this.BtnQuitter_Click);
             // 
             // PanelComptable
             // 
@@ -123,44 +176,10 @@
             this.BtnAfficheFichesEmploye.UseVisualStyleBackColor = true;
             this.BtnAfficheFichesEmploye.Click += new System.EventHandler(this.BtnAfficherFichesEmplye_Clique);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(43, 11);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(168, 26);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Tableau de bord";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::AP_1_GSB.Properties.Resources._532_5328945_menu_bar_icon_white_;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 11);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(34, 37);
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.TabStop = false;
-            // 
-            // btnQuitter
-            // 
-            this.btnQuitter.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnQuitter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnQuitter.Font = new System.Drawing.Font("Verdana", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnQuitter.ForeColor = System.Drawing.Color.White;
-            this.btnQuitter.Location = new System.Drawing.Point(1396, 6);
-            this.btnQuitter.Margin = new System.Windows.Forms.Padding(2);
-            this.btnQuitter.Name = "btnQuitter";
-            this.btnQuitter.Size = new System.Drawing.Size(39, 43);
-            this.btnQuitter.TabIndex = 6;
-            this.btnQuitter.Text = "X";
-            this.btnQuitter.UseVisualStyleBackColor = true;
-            this.btnQuitter.Click += new System.EventHandler(this.BtnQuitter_Click);
-            // 
             // PanelUtilisateur
             // 
             this.PanelUtilisateur.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.PanelUtilisateur.Controls.Add(this.BtnVoirJustificatifUtilisateur);
             this.PanelUtilisateur.Controls.Add(this.BtnHistorique);
             this.PanelUtilisateur.Controls.Add(this.BtnModifier);
             this.PanelUtilisateur.Controls.Add(this.BtnSupprimerNote);
@@ -171,6 +190,57 @@
             this.PanelUtilisateur.Name = "PanelUtilisateur";
             this.PanelUtilisateur.Size = new System.Drawing.Size(200, 918);
             this.PanelUtilisateur.TabIndex = 1;
+            // 
+            // BtnVoirJustificatifUtilisateur
+            // 
+            this.BtnVoirJustificatifUtilisateur.Location = new System.Drawing.Point(0, 240);
+            this.BtnVoirJustificatifUtilisateur.Name = "BtnVoirJustificatifUtilisateur";
+            this.BtnVoirJustificatifUtilisateur.Size = new System.Drawing.Size(200, 74);
+            this.BtnVoirJustificatifUtilisateur.TabIndex = 6;
+            this.BtnVoirJustificatifUtilisateur.Text = "Voir justificatif";
+            this.BtnVoirJustificatifUtilisateur.UseVisualStyleBackColor = true;
+            this.BtnVoirJustificatifUtilisateur.Click += new System.EventHandler(this.BtnVoirJustificatifUtilisateur_Click);
+            // 
+            // BtnHistorique
+            // 
+            this.BtnHistorique.Location = new System.Drawing.Point(0, 320);
+            this.BtnHistorique.Name = "BtnHistorique";
+            this.BtnHistorique.Size = new System.Drawing.Size(200, 74);
+            this.BtnHistorique.TabIndex = 5;
+            this.BtnHistorique.Text = "Afficher l\'historique";
+            this.BtnHistorique.UseVisualStyleBackColor = true;
+            this.BtnHistorique.Click += new System.EventHandler(this.BtnHistorique_Click);
+            // 
+            // BtnModifier
+            // 
+            this.BtnModifier.Location = new System.Drawing.Point(0, 160);
+            this.BtnModifier.Name = "BtnModifier";
+            this.BtnModifier.Size = new System.Drawing.Size(200, 74);
+            this.BtnModifier.TabIndex = 4;
+            this.BtnModifier.Text = "Modifier une note";
+            this.BtnModifier.UseVisualStyleBackColor = true;
+            this.BtnModifier.Click += new System.EventHandler(this.BtnModifier_Click);
+            // 
+            // BtnSupprimerNote
+            // 
+            this.BtnSupprimerNote.Location = new System.Drawing.Point(0, 80);
+            this.BtnSupprimerNote.Name = "BtnSupprimerNote";
+            this.BtnSupprimerNote.Size = new System.Drawing.Size(200, 74);
+            this.BtnSupprimerNote.TabIndex = 3;
+            this.BtnSupprimerNote.Text = "Supprimer une note";
+            this.BtnSupprimerNote.UseVisualStyleBackColor = true;
+            this.BtnSupprimerNote.Click += new System.EventHandler(this.BtnSupprimerNote_Clique);
+            // 
+            // btnAjouterNoteFrais
+            // 
+            this.btnAjouterNoteFrais.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.854546F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAjouterNoteFrais.Location = new System.Drawing.Point(0, 0);
+            this.btnAjouterNoteFrais.Name = "btnAjouterNoteFrais";
+            this.btnAjouterNoteFrais.Size = new System.Drawing.Size(200, 74);
+            this.btnAjouterNoteFrais.TabIndex = 2;
+            this.btnAjouterNoteFrais.Text = "Ajouter des notes de frais";
+            this.btnAjouterNoteFrais.UseVisualStyleBackColor = true;
+            this.btnAjouterNoteFrais.Click += new System.EventHandler(this.BtnAjouterNoteFrais_Clique);
             // 
             // panelAdministrateur
             // 
@@ -234,49 +304,9 @@
             this.btnAjouterTypeFrais.UseVisualStyleBackColor = true;
             this.btnAjouterTypeFrais.Click += new System.EventHandler(this.btnAjouterTypeFrais_Clique);
             // 
-            // BtnHistorique
-            // 
-            this.BtnHistorique.Location = new System.Drawing.Point(0, 240);
-            this.BtnHistorique.Name = "BtnHistorique";
-            this.BtnHistorique.Size = new System.Drawing.Size(200, 74);
-            this.BtnHistorique.TabIndex = 5;
-            this.BtnHistorique.Text = "Afficher l\'historique";
-            this.BtnHistorique.UseVisualStyleBackColor = true;
-            this.BtnHistorique.Click += new System.EventHandler(this.BtnHistorique_Click);
-            // 
-            // BtnModifier
-            // 
-            this.BtnModifier.Location = new System.Drawing.Point(0, 160);
-            this.BtnModifier.Name = "BtnModifier";
-            this.BtnModifier.Size = new System.Drawing.Size(200, 74);
-            this.BtnModifier.TabIndex = 4;
-            this.BtnModifier.Text = "Modifier une note";
-            this.BtnModifier.UseVisualStyleBackColor = true;
-            this.BtnModifier.Click += new System.EventHandler(this.BtnModifier_Click);
-            // 
-            // BtnSupprimerNote
-            // 
-            this.BtnSupprimerNote.Location = new System.Drawing.Point(0, 80);
-            this.BtnSupprimerNote.Name = "BtnSupprimerNote";
-            this.BtnSupprimerNote.Size = new System.Drawing.Size(200, 74);
-            this.BtnSupprimerNote.TabIndex = 3;
-            this.BtnSupprimerNote.Text = "Supprimer une note";
-            this.BtnSupprimerNote.UseVisualStyleBackColor = true;
-            this.BtnSupprimerNote.Click += new System.EventHandler(this.BtnSupprimerNote_Clique);
-            // 
-            // btnAjouterNoteFrais
-            // 
-            this.btnAjouterNoteFrais.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.854546F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAjouterNoteFrais.Location = new System.Drawing.Point(0, 0);
-            this.btnAjouterNoteFrais.Name = "btnAjouterNoteFrais";
-            this.btnAjouterNoteFrais.Size = new System.Drawing.Size(200, 74);
-            this.btnAjouterNoteFrais.TabIndex = 2;
-            this.btnAjouterNoteFrais.Text = "Ajouter des notes de frais";
-            this.btnAjouterNoteFrais.UseVisualStyleBackColor = true;
-            this.btnAjouterNoteFrais.Click += new System.EventHandler(this.BtnAjouterNoteFrais_Clique);
-            // 
             // PanelAffichage
             // 
+            this.PanelAffichage.Controls.Add(this.pictureBox2);
             this.PanelAffichage.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.PanelAffichage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelAffichage.Location = new System.Drawing.Point(200, 54);
@@ -284,19 +314,13 @@
             this.PanelAffichage.Size = new System.Drawing.Size(1264, 918);
             this.PanelAffichage.TabIndex = 2;
             // 
-            // btnRetourLogin
+            // pictureBox2
             // 
-            this.btnRetourLogin.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRetourLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRetourLogin.Font = new System.Drawing.Font("Verdana", 16.2F, System.Drawing.FontStyle.Bold);
-            this.btnRetourLogin.ForeColor = System.Drawing.Color.White;
-            this.btnRetourLogin.Location = new System.Drawing.Point(1352, 6);
-            this.btnRetourLogin.Name = "btnRetourLogin";
-            this.btnRetourLogin.Size = new System.Drawing.Size(39, 43);
-            this.btnRetourLogin.TabIndex = 10;
-            this.btnRetourLogin.Text = "<-";
-            this.btnRetourLogin.UseVisualStyleBackColor = true;
-            this.btnRetourLogin.Click += new System.EventHandler(this.btnRetourLogin_Click);
+            this.pictureBox2.Location = new System.Drawing.Point(295, 120);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(100, 50);
+            this.pictureBox2.TabIndex = 0;
+            this.pictureBox2.TabStop = false;
             // 
             // TableauBord
             // 
@@ -316,10 +340,12 @@
             this.Text = "DashBoard";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.PanelComptable.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.PanelComptable.ResumeLayout(false);
             this.PanelUtilisateur.ResumeLayout(false);
             this.panelAdministrateur.ResumeLayout(false);
+            this.PanelAffichage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -348,5 +374,7 @@
         private System.Windows.Forms.Button btnAjoutUtilisateur;
         private System.Windows.Forms.Button btnModifierTypeFrais;
         private System.Windows.Forms.Button btnRetourLogin;
+        private System.Windows.Forms.Button BtnVoirJustificatifUtilisateur;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }

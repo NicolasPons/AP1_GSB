@@ -181,9 +181,9 @@ namespace AP_1_GSB.Services
 
                                 Justificatif justi = CreerObjetJustificatif(reader);
 
+
+
                                 //CREER METHODE YA ZEUBI
-
-
                                 TypeFraisForfait typeFraisForfait = new TypeFraisForfait()
                                 {
                                     IdFraisForfait = (int)reader["id_type_forfait"],
@@ -258,6 +258,23 @@ namespace AP_1_GSB.Services
                             List<FraisForfait> listeNotesFrais = new List<FraisForfait>();
                             while (reader.Read())
                             {
+                                string etatNoteFrais = ((string)reader["etat"]).ToLower();
+                                EtatFraisForfait etatNote;
+
+                                switch (etatNoteFrais)
+                                {
+                                    case "accepter":
+                                        etatNote = EtatFraisForfait.Accepter;
+                                        break;
+                                    case "refuser":
+                                        etatNote = EtatFraisForfait.Refuser;
+                                        break;
+                                    default:
+                                        etatNote = EtatFraisForfait.Attente;
+                                        break;
+                                }
+
+                                Justificatif justi = CreerObjetJustificatif(reader);
 
                                 TypeFraisForfait typeFraisForfait = new TypeFraisForfait()
                                 {
@@ -280,7 +297,9 @@ namespace AP_1_GSB.Services
                                     IdFraisForfait = (int)reader["id_frais_forfait"],
                                     Quantite = (int)reader["quantite"],
                                     Date = (DateTime)reader["date"],
+                                    Etat = etatNote,
                                     TypeForfait = typeFraisForfait,
+                                    justificatif = justi,
                                 };
                                 listeNotesFrais.Add(noteFrais);
                             }
@@ -339,6 +358,8 @@ namespace AP_1_GSB.Services
                                         break;
                                 }
 
+
+
                                 Justificatif justi = null;
                                 justi = CreerObjetJustificatif(reader);
 
@@ -386,7 +407,7 @@ namespace AP_1_GSB.Services
                 {
                     int idFicheFrais = FicheEnCours.IdFicheFrais;
 
-                    string RequeteNotesForfait = "SELECT id_hors_forfait, description, frais_hors_forfait.montant, date, frais_hors_forfait.etat, frais_hors_forfait.id_justificatif, justificatif.fichier " +
+                    string RequeteNotesForfait = "SELECT id_hors_forfait, description, frais_hors_forfait.montant, date, etat, frais_hors_forfait.etat, frais_hors_forfait.id_justificatif, justificatif.fichier " +
                                                  "FROM frais_hors_forfait LEFT JOIN justificatif ON justificatif.id_justificatif = frais_hors_forfait.id_justificatif " +
                                                  "WHERE frais_hors_forfait.id_fiche_frais = @idFicheFrais";
                     using (MySqlCommand cmd = new MySqlCommand(RequeteNotesForfait, Data.SqlConnection.Connection))
@@ -398,7 +419,24 @@ namespace AP_1_GSB.Services
                             List<FraisHorsForfait> listeHorsForfait = new List<FraisHorsForfait>();
                             while (reader.Read())
                             {
-                              
+
+                                string etatNoteFrais = ((string)reader["etat"]).ToLower();
+                                EtatFraisHorsForfait etatNote;
+
+                                switch (etatNoteFrais)
+                                {
+                                    case "accepter":
+                                        etatNote = EtatFraisHorsForfait.Accepter;
+                                        break;
+                                    case "refuser":
+                                        etatNote = EtatFraisHorsForfait.Refuser;
+                                        break;
+                                    default:
+                                        etatNote = EtatFraisHorsForfait.Attente;
+                                        break;
+                                }
+
+                                Justificatif justi = CreerObjetJustificatif(reader);
 
                                 FraisHorsForfait fraisHorsForfait = new FraisHorsForfait()
                                 {
@@ -406,7 +444,9 @@ namespace AP_1_GSB.Services
                                     Description = (string)reader["description"],
                                     Montant = (float)reader["montant"],
                                     Date = (DateTime)reader["date"],
-                              
+                                    Etat = etatNote,
+                                    Justificatif = justi,
+
                                 };
                                 listeHorsForfait.Add(fraisHorsForfait);
                             }
