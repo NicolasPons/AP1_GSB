@@ -338,9 +338,13 @@
     <Compile Include="Visiteur\AffichageHistorique.Designer.cs">
       <DependentUpon>AffichageHistorique.cs</DependentUpon>
     </Compile>
-    <Compile Include="Visiteur\CreerModifierNotesFrais.cs">
+    <Compile Include="Visiteur\CreerModifierNoteFrais2.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Visiteur\CreerModifierNoteFrais2.Designer.cs">
+      <DependentUpon>CreerModifierNoteFrais2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Visiteur\CreerModifierNotesFrais.cs" />
     <Compile Include="Visiteur\CreerModifierNotesFrais.Designer.cs">
       <DependentUpon>CreerModifierNotesFrais.cs</DependentUpon>
     </Compile>
@@ -381,6 +385,9 @@
     <EmbeddedResource Include="Visiteur\AffichageHistorique.resx">
       <DependentUpon>AffichageHistorique.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Visiteur\CreerModifierNoteFrais2.resx">
+      <DependentUpon>CreerModifierNoteFrais2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Visiteur\CreerModifierNotesFrais.resx">
       <DependentUpon>CreerModifierNotesFrais.cs</DependentUpon>
     </EmbeddedResource>
@@ -388,6 +395,8 @@
       <DependentUpon>FicheFraisDuMois.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\AP_1_GSB.Data.Models.FraisForfait.datasource" />
+    <None Include="Properties\DataSources\AP_1_GSB.Data.Models.FraisHorsForfait.datasource" />
     <None Include="Properties\DataSources\AP_1_GSB.Data.Models.TypeFraisForfait.datasource" />
     <None Include="Properties\DataSources\AP_1_GSB.Data.Models.Utilisateur.datasource" />
     <None Include="Properties\Settings.settings">

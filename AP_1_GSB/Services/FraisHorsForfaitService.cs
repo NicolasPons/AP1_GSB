@@ -36,7 +36,7 @@ namespace AP_1_GSB.Services
             return false;
         }
 
-        public static bool AjouterFraisHorsForfait(int IdFiche, string description, DateTime dateFrais, int montant, byte[] FichierBinaire)
+        public static bool AjouterFraisHorsForfait(int IdFiche, FraisHorsForfait frais, byte[] FichierBinaire)
         {
             int idJustificatif = 0;
             if (FichierBinaire != null)
@@ -54,9 +54,9 @@ namespace AP_1_GSB.Services
             {
                 using (MySqlCommand cmd = new MySqlCommand(RequeteCreationFraisHorsForfait, Data.SqlConnection.Connection))
                 {
-                    cmd.Parameters.AddWithValue("@description", description);
-                    cmd.Parameters.AddWithValue("@montant", montant);
-                    cmd.Parameters.AddWithValue("@date", dateFrais);
+                    cmd.Parameters.AddWithValue("@description", frais.Description);
+                    cmd.Parameters.AddWithValue("@montant", frais.Montant);
+                    cmd.Parameters.AddWithValue("@date", frais.Date);
                     cmd.Parameters.AddWithValue("@etat", "ATTENTE");
                     cmd.Parameters.AddWithValue("@IdFiche", IdFiche);
                     cmd.Parameters.AddWithValue("@idJustificatif", idJustificatif == 0 ? (object)DBNull.Value : idJustificatif);
@@ -80,7 +80,7 @@ namespace AP_1_GSB.Services
             return false;
         }
 
-        public static bool ModifierFraisHorsForfait(int IdFrais, string description, DateTime dateFrais, int montant, byte[] FichierBinaire)
+        public static bool ModifierFraisHorsForfait(FraisHorsForfait frais, byte[] FichierBinaire)
         {
             int idJustificatif = 0;
             if (FichierBinaire != null)
@@ -98,11 +98,11 @@ namespace AP_1_GSB.Services
             {
                 using (MySqlCommand cmd = new MySqlCommand(RequeteModificationFraisHorsForfait, Data.SqlConnection.Connection))
                 {
-                    cmd.Parameters.AddWithValue("@description", description);
-                    cmd.Parameters.AddWithValue("@montant", montant);
-                    cmd.Parameters.AddWithValue("@date", dateFrais);
+                    cmd.Parameters.AddWithValue("@description", frais.Description);
+                    cmd.Parameters.AddWithValue("@montant", frais.Montant);
+                    cmd.Parameters.AddWithValue("@date", frais.Date);
                     cmd.Parameters.AddWithValue("@idJustificatif", idJustificatif == 0 ? (object)DBNull.Value : idJustificatif);
-                    cmd.Parameters.AddWithValue("@IdFrais", IdFrais);
+                    cmd.Parameters.AddWithValue("@IdFrais", frais.IdFraisHorsForfait);
 
                     if (cmd.ExecuteNonQuery() > 0)
                     {

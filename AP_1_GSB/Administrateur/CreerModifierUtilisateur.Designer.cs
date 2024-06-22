@@ -41,16 +41,16 @@
             this.lblCreerUtilisateur = new System.Windows.Forms.Label();
             this.btnValider = new System.Windows.Forms.Button();
             this.identifiantTextBox = new System.Windows.Forms.TextBox();
-            this.utilisateurBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mdpTextBox = new System.Windows.Forms.TextBox();
             this.nomTextBox = new System.Windows.Forms.TextBox();
             this.prenomTextBox = new System.Windows.Forms.TextBox();
             this.roleComboBox = new System.Windows.Forms.ComboBox();
-            this.utilisateurBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
             this.emailTextBox = new System.Windows.Forms.TextBox();
+            this.fichesFraisBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.utilisateurBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.utilisateurBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
             this.utilisateurBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.utilisateurBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.fichesFraisBindingSource = new System.Windows.Forms.BindingSource(this.components);
             identifiantLabel = new System.Windows.Forms.Label();
             mdpLabel = new System.Windows.Forms.Label();
             nomLabel = new System.Windows.Forms.Label();
@@ -58,11 +58,11 @@
             roleLabel = new System.Windows.Forms.Label();
             emailLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fichesFraisBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.utilisateurBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.utilisateurBindingSource3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.utilisateurBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.utilisateurBindingSource2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fichesFraisBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // identifiantLabel
@@ -143,7 +143,7 @@
             this.btnQuitter.TabIndex = 13;
             this.btnQuitter.Text = "X";
             this.btnQuitter.UseVisualStyleBackColor = true;
-            this.btnQuitter.Click += new System.EventHandler(this.btnQuitter_Click);
+            this.btnQuitter.Click += new System.EventHandler(this.BtnQuitter_Click);
             // 
             // lblModifierUtilisateur
             // 
@@ -152,7 +152,7 @@
             this.lblModifierUtilisateur.ForeColor = System.Drawing.Color.White;
             this.lblModifierUtilisateur.Location = new System.Drawing.Point(129, 38);
             this.lblModifierUtilisateur.Name = "lblModifierUtilisateur";
-            this.lblModifierUtilisateur.Size = new System.Drawing.Size(249, 22);
+            this.lblModifierUtilisateur.Size = new System.Drawing.Size(263, 23);
             this.lblModifierUtilisateur.TabIndex = 1;
             this.lblModifierUtilisateur.Text = "Modification d\'un utilisateur";
             // 
@@ -163,7 +163,7 @@
             this.lblCreerUtilisateur.ForeColor = System.Drawing.Color.White;
             this.lblCreerUtilisateur.Location = new System.Drawing.Point(145, 38);
             this.lblCreerUtilisateur.Name = "lblCreerUtilisateur";
-            this.lblCreerUtilisateur.Size = new System.Drawing.Size(216, 22);
+            this.lblCreerUtilisateur.Size = new System.Drawing.Size(227, 23);
             this.lblCreerUtilisateur.TabIndex = 0;
             this.lblCreerUtilisateur.Text = "Creation d\'un utilisateur";
             // 
@@ -175,19 +175,16 @@
             this.btnValider.TabIndex = 1;
             this.btnValider.Text = "Valider";
             this.btnValider.UseVisualStyleBackColor = true;
-            this.btnValider.Click += new System.EventHandler(this.btnValider_Click);
+            this.btnValider.Click += new System.EventHandler(this.BtnValider_Click);
             // 
             // identifiantTextBox
             // 
+            this.identifiantTextBox.AccessibleDescription = "";
             this.identifiantTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.utilisateurBindingSource, "Identifiant", true));
             this.identifiantTextBox.Location = new System.Drawing.Point(74, 131);
             this.identifiantTextBox.Name = "identifiantTextBox";
             this.identifiantTextBox.Size = new System.Drawing.Size(121, 20);
             this.identifiantTextBox.TabIndex = 6;
-            // 
-            // utilisateurBindingSource
-            // 
-            this.utilisateurBindingSource.DataSource = typeof(AP_1_GSB.Data.Models.Utilisateur);
             // 
             // mdpTextBox
             // 
@@ -227,10 +224,6 @@
             this.roleComboBox.Size = new System.Drawing.Size(121, 21);
             this.roleComboBox.TabIndex = 14;
             // 
-            // utilisateurBindingSource3
-            // 
-            this.utilisateurBindingSource3.DataSource = typeof(AP_1_GSB.Data.Models.Utilisateur);
-            // 
             // emailTextBox
             // 
             this.emailTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.utilisateurBindingSource, "Email", true));
@@ -239,6 +232,19 @@
             this.emailTextBox.Size = new System.Drawing.Size(121, 20);
             this.emailTextBox.TabIndex = 4;
             // 
+            // fichesFraisBindingSource
+            // 
+            this.fichesFraisBindingSource.DataMember = "FichesFrais";
+            this.fichesFraisBindingSource.DataSource = this.utilisateurBindingSource2;
+            // 
+            // utilisateurBindingSource
+            // 
+            this.utilisateurBindingSource.DataSource = typeof(AP_1_GSB.Data.Models.Utilisateur);
+            // 
+            // utilisateurBindingSource3
+            // 
+            this.utilisateurBindingSource3.DataSource = typeof(AP_1_GSB.Data.Models.Utilisateur);
+            // 
             // utilisateurBindingSource1
             // 
             this.utilisateurBindingSource1.DataSource = typeof(AP_1_GSB.Data.Models.Utilisateur);
@@ -246,11 +252,6 @@
             // utilisateurBindingSource2
             // 
             this.utilisateurBindingSource2.DataSource = typeof(AP_1_GSB.Data.Models.Utilisateur);
-            // 
-            // fichesFraisBindingSource
-            // 
-            this.fichesFraisBindingSource.DataMember = "FichesFrais";
-            this.fichesFraisBindingSource.DataSource = this.utilisateurBindingSource2;
             // 
             // CreerModifierUtilisateur
             // 
@@ -276,11 +277,11 @@
             this.Text = "CreerModifierUtilisateur";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fichesFraisBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.utilisateurBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.utilisateurBindingSource3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.utilisateurBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.utilisateurBindingSource2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fichesFraisBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

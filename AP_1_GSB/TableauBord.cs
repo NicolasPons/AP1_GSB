@@ -30,7 +30,7 @@ namespace AP_1_GSB
         DateTime DateDebut;
         DateTime dateFin;
         AffichageHistorique affichageHistorique = null;
-        CreerModifierNotesFrais creerModifierNoteFrais = null;
+        CreerModifierNoteFrais2 creerModifierNoteFrais = null;
         AjouterModifierTypeFraisForfait ajouterModifierTypeFraisForfait = null;
         CreerModifierUtilisateur creerModifierUtilisateur = null;
         InterfacePrincipaleAdmin interfaceAdmin;
@@ -61,10 +61,12 @@ namespace AP_1_GSB
 
         private void RecupererDatesFiche()
         {
+
+      
             DateTime now = DateTime.Now;
 
             if (now.Day >= 11)
-            {
+            {   
                 DateDebut = new DateTime(now.Year, now.Month, 11);
                 dateFin = new DateTime(now.Year, now.Month + 1, 10);
             }
@@ -114,26 +116,18 @@ namespace AP_1_GSB
 
         }
 
-        //TESTER LA FONCTION AVEC LES LIGNES COMMENTEES  
         private void BtnModifier_Click(object sender, EventArgs e)
         {
             if (ficheFraisDuMois.ListViewForfait.SelectedItems.Count > 0)
             {
-                //ficheFraisDuMois.ListViewHorsForfait.SelectedItems.Clear();
-                //ficheFraisDuMois.ListViewHorsForfait.SelectedIndices.Clear();
-                string versionPopUp = "modifierForfait";
-                //forfaitAModifie = ficheFraisDuMois.SelectionForfaitAModifier();
                 int idForfait = (int)ficheFraisDuMois.ListViewForfait.SelectedItems[0].Tag;
                 FraisForfait fraisForfait = ficheEnCours.FraisForfaits.FirstOrDefault(item => item.IdFraisForfait == idForfait);
-                AfficherPopUpCreationModification(versionPopUp, fraisForfait);
+                AfficherPopUpCreationModification("modifierForfait", fraisForfait);
             }
 
             else if (ficheFraisDuMois.ListViewHorsForfait.SelectedItems.Count > 0)
             {
-                //ficheFraisDuMois.ListViewForfait.SelectedItems.Clear();
-                //ficheFraisDuMois.ListViewForfait.SelectedIndices.Clear();
                 string versionPopUp = "modifierHorsForfait";
-                //horsForfaitAModifie = ficheFraisDuMois.SelectionHorsForfaitAModifier();
                 int idHorsForfait = (int)ficheFraisDuMois.ListViewHorsForfait.SelectedItems[0].Tag;
                 FraisHorsForfait fraisHorsForfait = ficheEnCours.FraisHorsForfaits.FirstOrDefault(item => item.IdFraisHorsForfait == idHorsForfait);
 
@@ -148,7 +142,7 @@ namespace AP_1_GSB
         {
             if (creerModifierNoteFrais == null || creerModifierNoteFrais.IsDisposed)
             {
-                creerModifierNoteFrais = new CreerModifierNotesFrais(utilisateur, ficheEnCours, dateFin, versionPopUp);
+                creerModifierNoteFrais = new CreerModifierNoteFrais2(utilisateur, ficheEnCours, dateFin, versionPopUp);
                 creerModifierNoteFrais.NoteDeFraisAjoutee += ficheFraisDuMois.MettreAJourListView;
                 creerModifierNoteFrais.NoteDeFraisAjoutee += () => BtnSupprimerNote.Enabled = true;
                 creerModifierNoteFrais.NoteDeFraisAjoutee += () => BtnModifier.Enabled = true;
@@ -162,7 +156,7 @@ namespace AP_1_GSB
         {
             if (creerModifierNoteFrais == null || creerModifierNoteFrais.IsDisposed)
             {
-                creerModifierNoteFrais = new CreerModifierNotesFrais(utilisateur, ficheEnCours, dateFin, versionPopUp, fraisForfait);
+                creerModifierNoteFrais = new CreerModifierNoteFrais2(utilisateur, ficheEnCours, dateFin, versionPopUp, fraisForfait);
                 creerModifierNoteFrais.NoteDeFraisAjoutee += ficheFraisDuMois.MettreAJourListView;
                 creerModifierNoteFrais.NoteDeFraisAjoutee += () => BtnSupprimerNote.Enabled = true;
                 creerModifierNoteFrais.NoteDeFraisAjoutee += () => BtnModifier.Enabled = true;
@@ -178,7 +172,7 @@ namespace AP_1_GSB
         {
             if (creerModifierNoteFrais == null || creerModifierNoteFrais.IsDisposed)
             {
-                creerModifierNoteFrais = new CreerModifierNotesFrais(utilisateur, ficheEnCours, dateFin, versionPopUp, fraisHorsForfait);
+                creerModifierNoteFrais = new CreerModifierNoteFrais2(utilisateur, ficheEnCours, dateFin, versionPopUp, fraisHorsForfait);
                 creerModifierNoteFrais.NoteDeFraisAjoutee += ficheFraisDuMois.MettreAJourListView;
                 creerModifierNoteFrais.NoteDeFraisAjoutee += () => BtnSupprimerNote.Enabled = true;
                 creerModifierNoteFrais.NoteDeFraisAjoutee += () => BtnModifier.Enabled = true;

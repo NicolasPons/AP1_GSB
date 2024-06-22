@@ -30,13 +30,13 @@ namespace AP_1_GSB.Administrateur
         {
             InitializeComponent();
             lblCreerUtilisateur.Visible = false;
-            ChargerComposants(utilisateurAModifier);
+            ChargerComposants();
             this.version = version;
             this.utilisateurAModifier = utilisateurAModifier;
             utilisateurBindingSource.DataSource = utilisateurAModifier;
         }
 
-        private void ChargerComposants(Utilisateur utilisateur)
+        private void ChargerComposants()
         {
             identifiantTextBox.DataBindings.Clear();
             mdpTextBox.DataBindings.Clear();
@@ -54,7 +54,7 @@ namespace AP_1_GSB.Administrateur
 
         }
 
-        private void btnValider_Click(object sender, EventArgs e)
+        private void BtnValider_Click(object sender, EventArgs e)
         {
             if (version == "ajouter")
             {
@@ -66,9 +66,16 @@ namespace AP_1_GSB.Administrateur
                     IList<ValidationResult> errors = new List<ValidationResult>();
                     if (!Validator.TryValidateObject(utilisateur, context, errors, true))
                     {
-                        foreach (ValidationResult validationResult in errors)
+                        if (errors.Count > 1)
                         {
-                            MessageBox.Show(validationResult.ErrorMessage, "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show("Plusieurs saisies sont incorrects. Veuillez recommencer s'il vous plait.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else
+                        {
+                            foreach (ValidationResult validationResult in errors)
+                            {
+                                MessageBox.Show(validationResult.ErrorMessage, "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                         }
                     }
                     else
@@ -89,9 +96,16 @@ namespace AP_1_GSB.Administrateur
                     IList<ValidationResult> errors = new List<ValidationResult>();
                     if (!Validator.TryValidateObject(utilisateurModifie, context, errors, true))
                     {
-                        foreach (ValidationResult validationResult in errors)
+                        if (errors.Count > 1)
                         {
-                            MessageBox.Show(validationResult.ErrorMessage, "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show("Plusieurs saisies sont incorrects. Veuillez recommencer s'il vous plait", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else
+                        {
+                            foreach (ValidationResult validationResult in errors)
+                            {
+                                MessageBox.Show(validationResult.ErrorMessage, "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                         }
                     }
                     else
@@ -110,7 +124,7 @@ namespace AP_1_GSB.Administrateur
             }
         }
 
-        private void btnQuitter_Click(object sender, EventArgs e)
+        private void BtnQuitter_Click(object sender, EventArgs e)
         {
             this.Close();
         }

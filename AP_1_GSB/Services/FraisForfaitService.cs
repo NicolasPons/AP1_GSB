@@ -52,8 +52,9 @@ namespace AP_1_GSB.Services
             }
         }
 
-        public static bool AjouterFraisForfait(int IdFiche, int typeForfait, DateTime date, int quantite, byte[] justificatif)
+        public static bool AjouterFraisForfait(int IdFiche, int idType, FraisForfait frais, byte[] justificatif)
         {
+
             int idJustificatif = 0;
             if (justificatif != null)
             {
@@ -71,10 +72,10 @@ namespace AP_1_GSB.Services
             {
                 using (MySqlCommand cmd = new MySqlCommand(RequeteCreationFraisForfait, Data.SqlConnection.Connection))
                 {
-                    cmd.Parameters.AddWithValue("@quantite", quantite);
-                    cmd.Parameters.AddWithValue("@Date", date);
+                    cmd.Parameters.AddWithValue("@quantite", frais.Quantite);
+                    cmd.Parameters.AddWithValue("@Date", frais.Date);
                     cmd.Parameters.AddWithValue("@etat", "ATTENTE");
-                    cmd.Parameters.AddWithValue("@id_type_forfait", typeForfait);
+                    cmd.Parameters.AddWithValue("@id_type_forfait", idType);
                     cmd.Parameters.AddWithValue("@id_fiche_frais", IdFiche);
                     cmd.Parameters.AddWithValue("@id_Justificatif", idJustificatif == 0 ? (object)DBNull.Value : idJustificatif);
 
@@ -94,8 +95,9 @@ namespace AP_1_GSB.Services
             return false;
         }
 
-        public static bool ModifierFraisForfait(int IdFrais, int typeForfait, DateTime date, int quantite, byte[] justificatif)
+        public static bool ModifierFraisForfait(int idType, FraisForfait frais, byte[] justificatif)
         {
+
             int idJustificatif = 0;
             if (justificatif != null)
             {
@@ -113,12 +115,12 @@ namespace AP_1_GSB.Services
             {
                 using (MySqlCommand cmd = new MySqlCommand(RequeteModificationFraisForfait, Data.SqlConnection.Connection))
                 {
-                    cmd.Parameters.AddWithValue("@quantite", quantite);
-                    cmd.Parameters.AddWithValue("@Date", date);
+                    cmd.Parameters.AddWithValue("@quantite", frais.Quantite);
+                    cmd.Parameters.AddWithValue("@Date", frais.Date);
                     cmd.Parameters.AddWithValue("@etat", "ATTENTE");
-                    cmd.Parameters.AddWithValue("@id_type_forfait", typeForfait);
+                    cmd.Parameters.AddWithValue("@id_type_forfait", idType);
                     cmd.Parameters.AddWithValue("@id_justificatif", idJustificatif == 0 ? (object)DBNull.Value : idJustificatif);
-                    cmd.Parameters.AddWithValue("@IdFraisForfait", IdFrais);
+                    cmd.Parameters.AddWithValue("@IdFraisForfait", frais.IdFraisForfait);
 
                     if (cmd.ExecuteNonQuery() > 0)
                     {
@@ -137,6 +139,8 @@ namespace AP_1_GSB.Services
             }
             return false;
         }
+
+       
 
         public static float CalculerTotalForfait(FicheFrais ficheEncours)
         {

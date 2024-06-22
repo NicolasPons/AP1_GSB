@@ -19,7 +19,6 @@ namespace AP_1_GSB.Comptable
         {
             InitializeComponent();
             ChargerListView();
-
         }
 
         private void ChargerListView()
