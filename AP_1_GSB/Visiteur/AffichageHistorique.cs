@@ -16,12 +16,15 @@ namespace AP_1_GSB.Visiteur
     {
         Utilisateur utilisateur;
         public event Action degriserBouton;
-        public AffichageHistorique(Utilisateur utilisateur)
+        public AffichageHistorique(Utilisateur utilisateur, FicheFrais ficheEnCours, ListView ListfraisForfait, ListView ListfraisHorsForfait)
         {
             InitializeComponent();
             this.utilisateur = utilisateur;
             AfficherFicheFrais(utilisateur);
         }
+
+            //FicheFraisService.CreerPDF(utilisateur, ficheEnCours, ListfraisForfait, ListfraisHorsForfait);
+        
 
         public void AfficherFicheFrais (Utilisateur utilisateur)
         {

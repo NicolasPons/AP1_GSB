@@ -310,6 +310,7 @@
     <Compile Include="Comptable\InterfacePrincipaleComptable.Designer.cs">
       <DependentUpon>InterfacePrincipaleComptable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Services\PdfGenerationService.cs" />
     <Compile Include="Services\TypeFraisForfaitService.cs" />
     <Compile Include="Services\JustificatifService.cs" />
     <Compile Include="Services\UtilisateurService.cs" />

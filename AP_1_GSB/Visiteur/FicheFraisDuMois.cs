@@ -28,7 +28,6 @@ namespace AP_1_GSB.Visiteur
 
     //VERIFIER SI LA SUPPRESSION SUPPRIME LA BONNE LIGNE EN BASE 
     //Après modifications sur le form, évenement CalculTotalFiche cassé = à retravailler 
-    // Gérer l'affichage des justificatifs 
     public partial class FicheFraisDuMois : Form
     {
         readonly Utilisateur utilisateur;
@@ -129,123 +128,125 @@ namespace AP_1_GSB.Visiteur
         }
         private void BtnPDF_Click(object sender, EventArgs e)
         {
-            string dest = "fiche_de_frais.pdf";
 
-            using (PdfWriter writer = new PdfWriter(dest))
-            {
-                PdfDocument pdf = new PdfDocument(writer);
-                Document document = new Document(pdf);
+            FicheFraisService.CreerPDF(utilisateur, ficheEnCours, listViewForfait, listViewHorsForfait);
+            //string dest = "fiche_de_frais.pdf";
 
-                //// Ajouter le logo
-                //Image logo = new Image(ImageDataFactory.Create("path/to/your/logo.png"));
-                //logo.SetHeight(50);
-                //logo.SetHorizontalAlignment(HorizontalAlignment.LEFT);
-                //document.Add(logo);
+            //using (PdfWriter writer = new PdfWriter(dest))
+            //{
+            //    PdfDocument pdf = new PdfDocument(writer);
+            //    Document document = new Document(pdf);
 
-                document.Add(new Paragraph("Fiche de frais")
-                    .SetTextAlignment(TextAlignment.CENTER)
-                    .SetFontSize(20));
-                document.Add(new LineSeparator(new SolidLine()));
-                document.Add(new Paragraph("\n"));
+            //    //// Ajouter le logo
+            //    //Image logo = new Image(ImageDataFactory.Create("path/to/your/logo.png"));
+            //    //logo.SetHeight(50);
+            //    //logo.SetHorizontalAlignment(HorizontalAlignment.LEFT);
+            //    //document.Add(logo);
 
-                Table noteFraisTable = new Table(UnitValue.CreatePercentArray(new float[] { 1, 1 }));
-                Cell headerCellInfoTable = new Cell(1, 2).Add(new Paragraph("Information fiche"))
-                               .SetTextAlignment(TextAlignment.CENTER)
-                               .SetFontColor(iText.Kernel.Colors.ColorConstants.WHITE)
-                               .SetBackgroundColor(iText.Kernel.Colors.ColorConstants.BLUE)
-                               .SetBold();
-                noteFraisTable.AddHeaderCell(headerCellInfoTable);
+            //    document.Add(new Paragraph("Fiche de frais")
+            //        .SetTextAlignment(TextAlignment.CENTER)
+            //        .SetFontSize(20));
+            //    document.Add(new LineSeparator(new SolidLine()));
+            //    document.Add(new Paragraph("\n"));
 
-                noteFraisTable.AddCell(CreateCell("NOTE DE FRAIS N°"));
-                noteFraisTable.AddCell(CreateCell("" + ficheEnCours.IdFicheFrais));
-                noteFraisTable.AddCell(CreateCell("Date de la note de frais"));
-                noteFraisTable.AddCell(CreateCell(ficheEnCours.Date.ToString("dd/MM/yyyy")));
+            //    Table noteFraisTable = new Table(UnitValue.CreatePercentArray(new float[] { 1, 1 }));
+            //    Cell headerCellInfoTable = new Cell(1, 2).Add(new Paragraph("Information fiche"))
+            //                   .SetTextAlignment(TextAlignment.CENTER)
+            //                   .SetFontColor(iText.Kernel.Colors.ColorConstants.WHITE)
+            //                   .SetBackgroundColor(iText.Kernel.Colors.ColorConstants.BLUE)
+            //                   .SetBold();
+            //    noteFraisTable.AddHeaderCell(headerCellInfoTable);
 
-                document.Add(noteFraisTable);
+            //    noteFraisTable.AddCell(CreateCell("NOTE DE FRAIS N°"));
+            //    noteFraisTable.AddCell(CreateCell("" + ficheEnCours.IdFicheFrais));
+            //    noteFraisTable.AddCell(CreateCell("Date de la note de frais"));
+            //    noteFraisTable.AddCell(CreateCell(ficheEnCours.Date.ToString("dd/MM/yyyy")));
 
-
-                document.Add(new Paragraph("\n"));
-
-                Table collaborateurTable = new Table(UnitValue.CreatePercentArray(new float[] { 1, 1 }));
-                Cell headerCellEmploye = new Cell(1, 2).Add(new Paragraph("Information employé"))
-                               .SetTextAlignment(TextAlignment.CENTER)
-                               .SetFontColor(iText.Kernel.Colors.ColorConstants.WHITE)
-                               .SetBackgroundColor(iText.Kernel.Colors.ColorConstants.BLUE)
-                               .SetBold();
-                collaborateurTable.AddHeaderCell(headerCellEmploye);
-                collaborateurTable.AddCell(CreateCell("Nom"));
-                collaborateurTable.AddCell(CreateCell(utilisateur.Nom));
-                collaborateurTable.AddCell(CreateCell("Prénom"));
-                collaborateurTable.AddCell(CreateCell(utilisateur.Prenom));
-                collaborateurTable.AddCell(CreateCell("E-mail"));
-                collaborateurTable.AddCell(CreateCell(utilisateur.Email));
-
-                float yPosition = 750;
-                float margin = 20;
-                float tableWidth = 250;
-
-                collaborateurTable.SetFixedPosition(1, 315, 660, tableWidth);
-                noteFraisTable.SetFixedPosition(1, margin + tableWidth + margin, yPosition, tableWidth);
+            //    document.Add(noteFraisTable);
 
 
+            //    document.Add(new Paragraph("\n"));
 
-                document.Add(collaborateurTable);
+            //    Table collaborateurTable = new Table(UnitValue.CreatePercentArray(new float[] { 1, 1 }));
+            //    Cell headerCellEmploye = new Cell(1, 2).Add(new Paragraph("Information employé"))
+            //                   .SetTextAlignment(TextAlignment.CENTER)
+            //                   .SetFontColor(iText.Kernel.Colors.ColorConstants.WHITE)
+            //                   .SetBackgroundColor(iText.Kernel.Colors.ColorConstants.BLUE)
+            //                   .SetBold();
+            //    collaborateurTable.AddHeaderCell(headerCellEmploye);
+            //    collaborateurTable.AddCell(CreateCell("Nom"));
+            //    collaborateurTable.AddCell(CreateCell(utilisateur.Nom));
+            //    collaborateurTable.AddCell(CreateCell("Prénom"));
+            //    collaborateurTable.AddCell(CreateCell(utilisateur.Prenom));
+            //    collaborateurTable.AddCell(CreateCell("E-mail"));
+            //    collaborateurTable.AddCell(CreateCell(utilisateur.Email));
 
-                document.Add(new Paragraph("\n"));
+            //    float yPosition = 750;
+            //    float margin = 20;
+            //    float tableWidth = 250;
 
-                Table remboursementTable = new Table(UnitValue.CreatePercentArray(new float[] { 1, 1 }));
-                remboursementTable.AddCell(CreateCell("Date de remboursement prévue"));
-                remboursementTable.AddCell(CreateCell(""));
-                remboursementTable.AddCell(CreateCell("Montant du remboursement"));
-                remboursementTable.AddCell(CreateCell(""));
-                document.Add(remboursementTable);
+            //    collaborateurTable.SetFixedPosition(1, 315, 660, tableWidth);
+            //    noteFraisTable.SetFixedPosition(1, margin + tableWidth + margin, yPosition, tableWidth);
 
-                document.Add(new Paragraph("\n"));
 
-                document.Add(new Paragraph("Frais Forfait")
-                    .SetTextAlignment(TextAlignment.CENTER)
-                    .SetFontSize(14)
-                    .SetBold());
-                Table fraisForfaitTable = new Table(UnitValue.CreatePercentArray(new float[] { 1, 1, 1, 1 })).UseAllAvailableWidth();
-                fraisForfaitTable.AddHeaderCell(CreateHeaderCell("Type"));
-                fraisForfaitTable.AddHeaderCell(CreateHeaderCell("Quantité"));
-                fraisForfaitTable.AddHeaderCell(CreateHeaderCell("Date"));
-                fraisForfaitTable.AddHeaderCell(CreateHeaderCell("Etat"));
 
-                foreach (ListViewItem item in listViewForfait.Items)
-                {
-                    fraisForfaitTable.AddCell(CreateCell(item.SubItems[0].Text));
-                    fraisForfaitTable.AddCell(CreateCell(item.SubItems[1].Text));
-                    fraisForfaitTable.AddCell(CreateCell(item.SubItems[2].Text));
-                    fraisForfaitTable.AddCell(CreateCell(item.SubItems[3].Text));
-                }
+            //    document.Add(collaborateurTable);
 
-                document.Add(fraisForfaitTable);
+            //    document.Add(new Paragraph("\n"));
 
-                document.Add(new Paragraph("\n"));
+            //    Table remboursementTable = new Table(UnitValue.CreatePercentArray(new float[] { 1, 1 }));
+            //    remboursementTable.AddCell(CreateCell("Date de remboursement prévue"));
+            //    remboursementTable.AddCell(CreateCell(""));
+            //    remboursementTable.AddCell(CreateCell("Montant du remboursement"));
+            //    remboursementTable.AddCell(CreateCell(""));
+            //    document.Add(remboursementTable);
 
-                document.Add(new Paragraph("Frais Hors Forfait")
-                    .SetTextAlignment(TextAlignment.CENTER)
-                    .SetFontSize(14)
-                    .SetBold());
-                Table fraisHorsForfaitTable = new Table(UnitValue.CreatePercentArray(new float[] { 1, 1, 1, 1 })).UseAllAvailableWidth();
-                fraisHorsForfaitTable.AddHeaderCell(CreateHeaderCell("Description"));
-                fraisHorsForfaitTable.AddHeaderCell(CreateHeaderCell("Montant"));
-                fraisHorsForfaitTable.AddHeaderCell(CreateHeaderCell("Date"));
-                fraisHorsForfaitTable.AddHeaderCell(CreateHeaderCell("Etat"));
+            //    document.Add(new Paragraph("\n"));
 
-                foreach (ListViewItem item in listViewHorsForfait.Items)
-                {
-                    fraisHorsForfaitTable.AddCell(CreateCell(item.SubItems[0].Text));
-                    fraisHorsForfaitTable.AddCell(CreateCell(item.SubItems[1].Text));
-                    fraisHorsForfaitTable.AddCell(CreateCell(item.SubItems[2].Text));
-                    fraisHorsForfaitTable.AddCell(CreateCell(item.SubItems[3].Text));
-                }
+            //    document.Add(new Paragraph("Frais Forfait")
+            //        .SetTextAlignment(TextAlignment.CENTER)
+            //        .SetFontSize(14)
+            //        .SetBold());
+            //    Table fraisForfaitTable = new Table(UnitValue.CreatePercentArray(new float[] { 1, 1, 1, 1 })).UseAllAvailableWidth();
+            //    fraisForfaitTable.AddHeaderCell(CreateHeaderCell("Type"));
+            //    fraisForfaitTable.AddHeaderCell(CreateHeaderCell("Quantité"));
+            //    fraisForfaitTable.AddHeaderCell(CreateHeaderCell("Date"));
+            //    fraisForfaitTable.AddHeaderCell(CreateHeaderCell("Etat"));
 
-                document.Add(fraisHorsForfaitTable);
-                document.Close();
-            }
-            Process.Start(new ProcessStartInfo(dest) { UseShellExecute = true });
+            //    foreach (ListViewItem item in listViewForfait.Items)
+            //    {
+            //        fraisForfaitTable.AddCell(CreateCell(item.SubItems[0].Text));
+            //        fraisForfaitTable.AddCell(CreateCell(item.SubItems[1].Text));
+            //        fraisForfaitTable.AddCell(CreateCell(item.SubItems[2].Text));
+            //        fraisForfaitTable.AddCell(CreateCell(item.SubItems[3].Text));
+            //    }
+
+            //    document.Add(fraisForfaitTable);
+
+            //    document.Add(new Paragraph("\n"));
+
+            //    document.Add(new Paragraph("Frais Hors Forfait")
+            //        .SetTextAlignment(TextAlignment.CENTER)
+            //        .SetFontSize(14)
+            //        .SetBold());
+            //    Table fraisHorsForfaitTable = new Table(UnitValue.CreatePercentArray(new float[] { 1, 1, 1, 1 })).UseAllAvailableWidth();
+            //    fraisHorsForfaitTable.AddHeaderCell(CreateHeaderCell("Description"));
+            //    fraisHorsForfaitTable.AddHeaderCell(CreateHeaderCell("Montant"));
+            //    fraisHorsForfaitTable.AddHeaderCell(CreateHeaderCell("Date"));
+            //    fraisHorsForfaitTable.AddHeaderCell(CreateHeaderCell("Etat"));
+
+            //    foreach (ListViewItem item in listViewHorsForfait.Items)
+            //    {
+            //        fraisHorsForfaitTable.AddCell(CreateCell(item.SubItems[0].Text));
+            //        fraisHorsForfaitTable.AddCell(CreateCell(item.SubItems[1].Text));
+            //        fraisHorsForfaitTable.AddCell(CreateCell(item.SubItems[2].Text));
+            //        fraisHorsForfaitTable.AddCell(CreateCell(item.SubItems[3].Text));
+            //    }
+
+            //    document.Add(fraisHorsForfaitTable);
+            //    document.Close();
+            //}
+            //Process.Start(new ProcessStartInfo(dest) { UseShellExecute = true });
         }
 
         private Cell CreateCell(string content)
@@ -444,7 +445,7 @@ namespace AP_1_GSB.Visiteur
 
         public void AccepterFrais()
         {
-              string etat = "ACCEPTER";
+            string etat = "ACCEPTER";
             if (listViewForfait.SelectedItems.Count > 0)
             {
                 int idFrais = (int)listViewForfait.SelectedItems[0].Tag;
