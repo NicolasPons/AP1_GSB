@@ -38,6 +38,12 @@ namespace AP_1_GSB.Services
 
         public static bool AjouterFraisHorsForfait(int IdFiche, FraisHorsForfait frais, byte[] FichierBinaire)
         {
+
+            if (frais.Date == new DateTime(1, 1, 1)) 
+            {
+                frais.Date = DateTime.Now;
+            }
+
             int idJustificatif = 0;
             if (FichierBinaire != null)
             {
@@ -82,6 +88,11 @@ namespace AP_1_GSB.Services
 
         public static bool ModifierFraisHorsForfait(FraisHorsForfait frais, byte[] FichierBinaire)
         {
+
+            if (frais.Date == new DateTime(1, 1, 1)) 
+            {
+                frais.Date = DateTime.Now;
+            }
             int idJustificatif = 0;
             if (FichierBinaire != null)
             {

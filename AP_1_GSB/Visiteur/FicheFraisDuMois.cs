@@ -83,12 +83,18 @@ namespace AP_1_GSB.Visiteur
 
             foreach (FraisHorsForfait fraisHorsForfait in ficheEnCours.FraisHorsForfaits)
             {
+                 string justificatifManquant = "Pas de justificatif";
+                if (fraisHorsForfait.Justificatif != null)
+                {
+                    justificatifManquant = "Justificatif présent";
+                }
+
                 string etat = Services.FraisHorsForfaitService.EcrireEtatFraiHorsForfait(fraisHorsForfait);
                 ListViewItem item = new ListViewItem(fraisHorsForfait.Description);
                 item.SubItems.Add(fraisHorsForfait.Montant.ToString());
                 item.SubItems.Add(fraisHorsForfait.Date.ToString("dd/MM/yyyy"));
                 item.SubItems.Add(etat);
-                //item.SubItems.Add(fraisHorsForfait.Justificatif)
+                item.SubItems.Add(justificatifManquant);
                 item.Tag = fraisHorsForfait.IdFraisHorsForfait;
                 listViewHorsForfait.Items.Add(item);
             }
@@ -97,12 +103,18 @@ namespace AP_1_GSB.Visiteur
 
             foreach (FraisForfait fraisForfait in ficheEnCours.FraisForfaits)
             {
+
+                string justificatifManquant = "Pas de justificatif";
+                if (fraisForfait.justificatif != null)
+                {
+                    justificatifManquant = "Justificatif présent";
+                }
                 string etat = Services.FraisForfaitService.EcrireEtatFraisForfait(fraisForfait);
                 ListViewItem item = new ListViewItem(fraisForfait.TypeForfait.Nom);
                 item.SubItems.Add(fraisForfait.Quantite.ToString());
                 item.SubItems.Add(fraisForfait.Date.ToString("dd/MM/yyyy"));
                 item.SubItems.Add(etat);
-                //item.SubItems.Add(fraisHorsForfait.Justificatif)
+                item.SubItems.Add(justificatifManquant);
                 item.Tag = fraisForfait.IdFraisForfait;
                 listViewForfait.Items.Add(item);
             }

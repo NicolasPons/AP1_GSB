@@ -54,7 +54,10 @@ namespace AP_1_GSB.Services
 
         public static bool AjouterFraisForfait(int IdFiche, int idType, FraisForfait frais, byte[] justificatif)
         {
-
+            if (frais.Date == new DateTime(1, 1, 1)) 
+            {
+                frais.Date = DateTime.Now;
+            }
             int idJustificatif = 0;
             if (justificatif != null)
             {
@@ -97,7 +100,10 @@ namespace AP_1_GSB.Services
 
         public static bool ModifierFraisForfait(int idType, FraisForfait frais, byte[] justificatif)
         {
-
+            if (frais.Date == new DateTime(1, 1, 1)) 
+            {
+                frais.Date = DateTime.Now;
+            }
             int idJustificatif = 0;
             if (justificatif != null)
             {
@@ -140,7 +146,7 @@ namespace AP_1_GSB.Services
             return false;
         }
 
-       
+
 
         public static float CalculerTotalForfait(FicheFrais ficheEncours)
         {

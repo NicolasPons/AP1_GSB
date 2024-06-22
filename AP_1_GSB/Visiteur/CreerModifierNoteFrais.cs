@@ -16,7 +16,7 @@ using System.Windows.Forms;
 
 namespace AP_1_GSB.Visiteur
 {
-    public partial class CreerModifierNoteFrais2 : Form
+    public partial class CreerModifierNoteFrais : Form
     {
         public event Action NoteDeFraisAjoutee;
         FraisForfait FraisForfaitAModifier;
@@ -27,7 +27,7 @@ namespace AP_1_GSB.Visiteur
         byte[] fichierBinaire = null;
         int idFiche;
         int idType;
-        public CreerModifierNoteFrais2(Utilisateur utilisateur, FicheFrais ficheEnCours, DateTime dtFin, string version)
+        public CreerModifierNoteFrais(Utilisateur utilisateur, FicheFrais ficheEnCours, DateTime dtFin, string version)
         {
             this.utilisateur = utilisateur;
             this.ficheEnCours = ficheEnCours;
@@ -39,7 +39,7 @@ namespace AP_1_GSB.Visiteur
             fraisHorsForfaitBindingSource.DataSource = new FraisHorsForfait();
         }
 
-        public CreerModifierNoteFrais2(Utilisateur utilisateur, FicheFrais ficheEnCours, DateTime dtFin, string version, FraisForfait FraisForfaitAModifier)
+        public CreerModifierNoteFrais(Utilisateur utilisateur, FicheFrais ficheEnCours, DateTime dtFin, string version, FraisForfait FraisForfaitAModifier)
         {
             this.utilisateur = utilisateur;
             this.version = version;
@@ -49,6 +49,9 @@ namespace AP_1_GSB.Visiteur
             ChargerCombobox();
             InitialiserForm(dtFin);
             fraisForfaitBindingSource.DataSource = FraisForfaitAModifier;
+
+            if (FraisForfaitAModifier.justificatif != null )
+                lblMiseAJourJustificatif.Text = "Justificatif ajouté";
 
             ComboBoxTypeForfait.Text = FraisForfaitAModifier.TypeForfait.Nom;
 
@@ -61,11 +64,11 @@ namespace AP_1_GSB.Visiteur
             LblTypeForfait.Visible = true;
             BtnValider.Visible = true;
             lblMiseAJourJustificatif.Visible = true;
-            lblMiseAJourJustificatif.Visible = true;
             BtnJustificatif.Visible = true;
+            lblJustificatif.Visible = true;
 
         }
-        public CreerModifierNoteFrais2(Utilisateur utilisateur, FicheFrais ficheEnCours, DateTime dtFin, string version,  FraisHorsForfait FraisHorsForfaitAModifier)
+        public CreerModifierNoteFrais(Utilisateur utilisateur, FicheFrais ficheEnCours, DateTime dtFin, string version, FraisHorsForfait FraisHorsForfaitAModifier)
         {
             this.utilisateur = utilisateur;
             this.version = version;
@@ -75,6 +78,9 @@ namespace AP_1_GSB.Visiteur
             ChargerCombobox();
             InitialiserForm(dtFin);
             fraisHorsForfaitBindingSource.DataSource = FraisHorsForfaitAModifier;
+
+            if (FraisHorsForfaitAModifier.Justificatif != null)
+                lblMiseAJourJustificatif.Text = "Justificatif ajouté";
 
             ComboBoxSelectionForfaitHorsForfait.SelectedIndex = 1;
             ComboBoxSelectionForfaitHorsForfait.Enabled = false;
@@ -89,6 +95,7 @@ namespace AP_1_GSB.Visiteur
             BtnJustificatif.Visible = true;
             lblMiseAJourJustificatif.Visible = true;
             BtnValider.Visible = true;
+            lblJustificatif.Visible = true;
         }
 
         public void InitialiserForm(DateTime dtFin)
@@ -113,6 +120,7 @@ namespace AP_1_GSB.Visiteur
             BtnValider.Visible = false;
             quantiteNumericUpDown.Visible = false;
             lblMiseAJourJustificatif.Visible = false;
+            lblJustificatif.Visible = false;
 
             if (version == "creer")
             {
@@ -201,12 +209,16 @@ namespace AP_1_GSB.Visiteur
                     if (!Validator.TryValidateObject(fraisForfait, context, errors, true))
                     {
                         if (errors.Count > 1)
+                        {
                             MessageBox.Show("Plusieurs saisies sont incorrects. Veuillez recommencer");
+                            return;
+                        }
                         else
                         {
                             foreach (ValidationResult validationResult in errors)
                             {
                                 MessageBox.Show(validationResult.ErrorMessage, "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return;
                             }
                         }
                     }
@@ -219,6 +231,7 @@ namespace AP_1_GSB.Visiteur
                             MessageBox.Show("Frais créé avec succés.");
                             utilisateur = FicheFraisService.RecupererNotesForfait(utilisateur, ficheEnCours);
                             NoteDeFraisAjoutee?.Invoke();
+                            this.Close();
                         }
                     }
                 }
@@ -233,12 +246,16 @@ namespace AP_1_GSB.Visiteur
                     if (!Validator.TryValidateObject(fraisHorsForfait, context, errors, true))
                     {
                         if (errors.Count > 1)
+                        {
                             MessageBox.Show("Plusieurs saisies sont incorrects. Veuillez recommencer");
+                            return;
+                        }
                         else
                         {
                             foreach (ValidationResult validationResult in errors)
                             {
                                 MessageBox.Show(validationResult.ErrorMessage, "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return;
                             }
                         }
                     }
@@ -250,6 +267,7 @@ namespace AP_1_GSB.Visiteur
                             MessageBox.Show("Frais créé avec succés.");
                             utilisateur = FicheFraisService.RecupererNotesHorsForfait(utilisateur, ficheEnCours);
                             NoteDeFraisAjoutee?.Invoke();
+                            this.Close();
                         }
                     }
                 }
@@ -267,26 +285,29 @@ namespace AP_1_GSB.Visiteur
                 {
                     if (errors.Count > 1)
                     {
-                        MessageBox.Show("Plusieurs saisies sont incorrects. Veuillez recommencer s'il vous plait", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Plusieurs saisies sont incorrects. Veuillez recommencer");
+                        return;
                     }
                     else
                     {
                         foreach (ValidationResult validationResult in errors)
                         {
                             MessageBox.Show(validationResult.ErrorMessage, "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
                         }
                     }
                 }
                 else
                 {
                     idType = (int)ComboBoxTypeForfait.SelectedValue;
-                    
+
                     fraisForfaitModifier.IdFraisForfait = FraisForfaitAModifier.IdFraisForfait;
                     if (FraisForfaitService.ModifierFraisForfait(idType, fraisForfaitModifier, fichierBinaire))
                     {
                         MessageBox.Show("Frais forfait modifié avec succés.", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         utilisateur = FicheFraisService.RecupererNotesForfait(utilisateur, ficheEnCours);
                         NoteDeFraisAjoutee?.Invoke();
+                        this.Close();
                     }
                 }
 
@@ -303,25 +324,28 @@ namespace AP_1_GSB.Visiteur
                 {
                     if (errors.Count > 1)
                     {
-                        MessageBox.Show("Plusieurs saisies sont incorrects. Veuillez recommencer s'il vous plait", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Plusieurs saisies sont incorrects. Veuillez recommencer");
+                        return;
                     }
                     else
                     {
                         foreach (ValidationResult validationResult in errors)
                         {
                             MessageBox.Show(validationResult.ErrorMessage, "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
                         }
                     }
                 }
                 else
                 {
-                    
+
                     fraisHorsForfaitModifie.IdFraisHorsForfait = FraisHorsForfaitAModifier.IdFraisHorsForfait;
                     if (FraisHorsForfaitService.ModifierFraisHorsForfait(fraisHorsForfaitModifie, fichierBinaire))
                     {
                         MessageBox.Show("Frais hors forfait modifié avec succés.", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         utilisateur = FicheFraisService.RecupererNotesHorsForfait(utilisateur, ficheEnCours);
                         NoteDeFraisAjoutee?.Invoke();
+                        this.Close();
                     }
                 }
 
@@ -334,15 +358,12 @@ namespace AP_1_GSB.Visiteur
             {
                 case "creer":
                     CreerForfait();
-                    this.Close();
                     break;
                 case "modifierForfait":
                     ModifierForfait();
-                    this.Close();
                     break;
                 case "modifierHorsForfait":
                     ModifierHorsForfait();
-                    this.Close();
                     break;
             }
         }
@@ -354,4 +375,4 @@ namespace AP_1_GSB.Visiteur
 
     }
 }
-            
+
