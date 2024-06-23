@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InterfacePrincipaleComptable));
             this.label1 = new System.Windows.Forms.Label();
             this.listViewAffichageUtilisateurs = new System.Windows.Forms.ListView();
             this.Nom = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -37,11 +38,13 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(482, 56);
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 11.78182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.label1.Location = new System.Drawing.Point(374, 102);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(271, 13);
+            this.label1.Size = new System.Drawing.Size(249, 22);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Veuillez rechercher un utilisateur pour agir sur ces fiches";
+            this.label1.Text = "Sélectionner un utilisateur : ";
             // 
             // listViewAffichageUtilisateurs
             // 
@@ -51,7 +54,7 @@
             this.listViewAffichageUtilisateurs.FullRowSelect = true;
             this.listViewAffichageUtilisateurs.GridLines = true;
             this.listViewAffichageUtilisateurs.HideSelection = false;
-            this.listViewAffichageUtilisateurs.Location = new System.Drawing.Point(508, 86);
+            this.listViewAffichageUtilisateurs.Location = new System.Drawing.Point(395, 145);
             this.listViewAffichageUtilisateurs.Name = "listViewAffichageUtilisateurs";
             this.listViewAffichageUtilisateurs.Size = new System.Drawing.Size(205, 273);
             this.listViewAffichageUtilisateurs.TabIndex = 1;
@@ -72,10 +75,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1264, 918);
+            this.ClientSize = new System.Drawing.Size(1000, 722);
             this.Controls.Add(this.listViewAffichageUtilisateurs);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "InterfacePrincipaleComptable";
             this.Text = "abel";
             this.ResumeLayout(false);

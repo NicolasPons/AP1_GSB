@@ -58,14 +58,23 @@ namespace AP_1_GSB
                     AfficherInterfaceAdministrateur();
                     break;
             }
+
+            Control parentControl = BtnSupprimerNoteVisiteur.Parent;
+
+            if (parentControl != null)
+            {
+                MessageBox.Show("Le parent du panel est : " + parentControl.Name);
+            }
+            else
+            {
+                MessageBox.Show("Le panel n'a pas de parent.");
+            }
         }
 
         #region Visiteur
 
         private void RecupererDatesFiche()
         {
-
-
             DateTime now = DateTime.Now;
 
             if (now.Day >= 11)
@@ -82,10 +91,22 @@ namespace AP_1_GSB
 
         private void AfficherInterfaceUtilisateur()
         {
-            //PanelUtilisateur.BringToFront();
-            PanelComptable.Hide();
-            panelAdministrateur.Hide();
-            NomPrenom.Text = "Bienvenue " + utilisateur.Nom + " " + utilisateur.Prenom;
+            AssignerEvenementBouton();
+
+            panelMenu.Controls.Add(PanelUtilisateur);
+            panelMenu.Controls.Add(panelAdministrateur);
+            panelMenu.Controls.Add(PanelComptable);
+            panelMenu.Controls.Add(PanelUtilsateurLogo);
+            panelMenu.Dock = DockStyle.Left;
+            PanelUtilsateurLogo.Dock = DockStyle.Top;
+            PanelUtilisateur.Dock = DockStyle.Bottom;
+            panelAdministrateur.Visible = false;
+            PanelComptable.Visible = false;
+            PanelUtilisateur.Visible = true;
+            PanelUtilsateurLogo.Visible = true;
+
+            LblNom.Text = "" + utilisateur.Nom;
+            LblPrenom.Text = "" + utilisateur.Prenom;
 
             utilisateur = Services.FicheFraisService.RecupererFichesFrais(utilisateur);
 
@@ -99,8 +120,8 @@ namespace AP_1_GSB
             string version = "utilisateur";
 
             ficheFraisDuMois = new FicheFraisDuMois(utilisateur, ficheEnCours, dateFin, version);
-            ficheFraisDuMois.ListesVide += () => BtnSupprimerNote.Enabled = false;
-            ficheFraisDuMois.ListesVide += () => BtnModifier.Enabled = false;
+            ficheFraisDuMois.ListesVide += () => BtnSupprimerNoteVisiteur.Enabled = false;
+            ficheFraisDuMois.ListesVide += () => BtnModifierNoteVisiteur.Enabled = false;
             ficheFraisDuMois.VerifierListesVides();
             ficheFraisDuMois.TopLevel = false;
             PanelAffichage.Controls.Add(ficheFraisDuMois);
@@ -147,8 +168,8 @@ namespace AP_1_GSB
             {
                 creerModifierNoteFrais = new CreerModifierNoteFrais(utilisateur, ficheEnCours, dateFin, versionPopUp);
                 creerModifierNoteFrais.NoteDeFraisAjoutee += ficheFraisDuMois.MettreAJourListView;
-                creerModifierNoteFrais.NoteDeFraisAjoutee += () => BtnSupprimerNote.Enabled = true;
-                creerModifierNoteFrais.NoteDeFraisAjoutee += () => BtnModifier.Enabled = true;
+                creerModifierNoteFrais.NoteDeFraisAjoutee += () => BtnSupprimerNoteVisiteur.Enabled = true;
+                creerModifierNoteFrais.NoteDeFraisAjoutee += () => BtnModifierNoteVisiteur.Enabled = true;
                 creerModifierNoteFrais.StartPosition = FormStartPosition.Manual;
                 creerModifierNoteFrais.Location = new System.Drawing.Point(this.Location.X + 400, this.Location.Y + 250);
                 creerModifierNoteFrais.TopLevel = true;
@@ -161,8 +182,8 @@ namespace AP_1_GSB
             {
                 creerModifierNoteFrais = new CreerModifierNoteFrais(utilisateur, ficheEnCours, dateFin, versionPopUp, fraisForfait);
                 creerModifierNoteFrais.NoteDeFraisAjoutee += ficheFraisDuMois.MettreAJourListView;
-                creerModifierNoteFrais.NoteDeFraisAjoutee += () => BtnSupprimerNote.Enabled = true;
-                creerModifierNoteFrais.NoteDeFraisAjoutee += () => BtnModifier.Enabled = true;
+                creerModifierNoteFrais.NoteDeFraisAjoutee += () => BtnSupprimerNoteVisiteur.Enabled = true;
+                creerModifierNoteFrais.NoteDeFraisAjoutee += () => BtnModifierNoteVisiteur.Enabled = true;
                 creerModifierNoteFrais.StartPosition = FormStartPosition.Manual;
                 creerModifierNoteFrais.Location = new System.Drawing.Point(this.Location.X + 400, this.Location.Y + 250);
                 creerModifierNoteFrais.TopLevel = true;
@@ -177,8 +198,8 @@ namespace AP_1_GSB
             {
                 creerModifierNoteFrais = new CreerModifierNoteFrais(utilisateur, ficheEnCours, dateFin, versionPopUp, fraisHorsForfait);
                 creerModifierNoteFrais.NoteDeFraisAjoutee += ficheFraisDuMois.MettreAJourListView;
-                creerModifierNoteFrais.NoteDeFraisAjoutee += () => BtnSupprimerNote.Enabled = true;
-                creerModifierNoteFrais.NoteDeFraisAjoutee += () => BtnModifier.Enabled = true;
+                creerModifierNoteFrais.NoteDeFraisAjoutee += () => BtnSupprimerNoteVisiteur.Enabled = true;
+                creerModifierNoteFrais.NoteDeFraisAjoutee += () => BtnModifierNoteVisiteur.Enabled = true;
                 creerModifierNoteFrais.StartPosition = FormStartPosition.Manual;
                 creerModifierNoteFrais.Location = new System.Drawing.Point(this.Location.X + 400, this.Location.Y + 250);
                 creerModifierNoteFrais.TopLevel = true;
@@ -212,9 +233,14 @@ namespace AP_1_GSB
 
         private void GriserBouton(bool btnAJout, bool btnSupprimer, bool btnModif)
         {
-            btnAjouterNoteFrais.Enabled = btnAJout;
-            BtnSupprimerNote.Enabled = btnSupprimer;
-            BtnModifier.Enabled = btnModif;
+            BtnAjouterNoteFraisVisiteur.Enabled = btnAJout;
+            BtnSupprimerNoteVisiteur.Enabled = btnSupprimer;
+            BtnModifierNoteVisiteur.Enabled = btnModif;
+        }
+
+        private void BtnRetourLoginUtilisateur_Click(object sender, EventArgs e)
+        {
+            RetourLogin();
         }
         #endregion
 
@@ -222,11 +248,23 @@ namespace AP_1_GSB
         #region Comptable 
         private void AfficherInterfaceComptable()
         {
-            //Label ou image signifiant qu'on est sur un compte comptable 
-            NomPrenom.Text = "Bienvenue " + utilisateur.Nom + " " + utilisateur.Prenom;
+            panelMenu.Controls.Add(PanelUtilisateur);
+            panelMenu.Controls.Add(panelAdministrateur);
+            panelMenu.Controls.Add(PanelComptable);
+            panelMenu.Controls.Add(PanelUtilsateurLogo);
+            panelMenu.Dock = DockStyle.Left;
+            PanelUtilsateurLogo.Dock = DockStyle.Top;
+            PanelComptable.Dock = DockStyle.Bottom;
+            panelAdministrateur.Visible = false;
             PanelComptable.Visible = true;
-            PanelComptable.BringToFront();
-            panelAdministrateur.Hide();
+            PanelUtilsateurLogo.Visible = true;
+            PanelUtilisateur.Visible = false;
+            AssignerEvenementBouton();
+
+
+            LblNom.Text = "" + utilisateur.Nom;
+            LblPrenom.Text = "" + utilisateur.Prenom;
+
 
             btnRefusFrais.Enabled = false;
             btnAccepterFrais.Enabled = false;
@@ -281,15 +319,38 @@ namespace AP_1_GSB
         {
             AfficherJustificatif();
         }
+
+        private void BtnRetourLoginComptable_Click(object sender, EventArgs e)
+        {
+            RetourLogin();
+        }
         #endregion
 
         #region Administrateur
+
         private void AfficherInterfaceAdministrateur()
         {
+
+            panelMenu.Controls.Add(PanelUtilisateur);
+            panelMenu.Controls.Add(panelAdministrateur);
+            panelMenu.Controls.Add(PanelComptable);
+            panelMenu.Controls.Add(PanelUtilsateurLogo);
+            panelMenu.Dock = DockStyle.Left;
+            PanelUtilsateurLogo.Dock = DockStyle.Top;
+            panelAdministrateur.Dock = DockStyle.Bottom;
+            PanelUtilsateurLogo.Visible = true;
+            panelAdministrateur.Visible = true;
+            PanelComptable.Visible = false;
+            PanelUtilisateur.Visible = false;
+            AssignerEvenementBouton();
+
+
             panelAdministrateur.Visible = true;
             panelAdministrateur.BringToFront();
+            PanelUtilisateur.SendToBack();
             PanelComptable.Hide();
-            NomPrenom.Text = "Profil administrateur";
+            LblNom.Text = "" + utilisateur.Nom;
+            LblPrenom.Text = "" + utilisateur.Prenom;
 
             interfaceAdmin = new InterfacePrincipaleAdmin();
             interfaceAdmin.TopLevel = false;
@@ -408,6 +469,10 @@ namespace AP_1_GSB
                 return;
             }
         }
+        private void BtnRetourLoginAdministrateur_Click(object sender, EventArgs e)
+        {
+            RetourLogin();
+        }
 
         #endregion
 
@@ -460,7 +525,8 @@ namespace AP_1_GSB
                 MessageBox.Show("Veuillez sélectionner un frais.", "Aucune sélection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        private void btnRetourLogin_Click(object sender, EventArgs e)
+
+        private void RetourLogin()
         {
             this.Close();
             loginForm.SaisieMdp.Clear();
@@ -472,6 +538,130 @@ namespace AP_1_GSB
             Application.Exit();
         }
 
+        #region Design 
+        private void MiseEnFormeBoutons(Button ButtonSender)
+        {
+            Control ControlParent = ButtonSender.Parent;
+
+            foreach (Control control in ControlParent.Controls)
+            {
+                if (control is Button button)
+                {
+                    button.Font = new System.Drawing.Font("Century Gothic", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                }
+            }
+        }
+
+        private void MiseEnFormeBoutonActif(Button ButtonSender)
+        {
+            MiseEnFormeBoutons(ButtonSender); 
+            ButtonSender.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0))); 
+        }
+
+        private void Btn_EntrerCurseur(object sender, EventArgs e)
+        {
+            Button BoutonSender = sender as Button;
+            if (BoutonSender != null)
+            {
+                MiseEnFormeBoutonActif(BoutonSender);
+            }
+        }
+
+        private void Btn_SortirCurseur(object sender, EventArgs e)
+        {
+            Button BoutonSender = sender as Button;
+            if (BoutonSender != null)
+            {
+                MiseEnFormeBoutons(BoutonSender);
+            }
+        }
+
+        private void AssignerEvenementBouton()
+        {
+
+            if (utilisateur.Role == UtilisateurRole.Visiteur)
+            {
+                foreach (Button bouton in PanelUtilisateur.Controls)
+                {
+                    bouton.MouseEnter += Btn_EntrerCurseur;
+                    bouton.MouseLeave += Btn_SortirCurseur;
+                }
+            }
+            else if (utilisateur.Role == UtilisateurRole.Comptable)
+            {
+                foreach (Button bouton in PanelComptable.Controls)
+                {
+                    bouton.MouseEnter += Btn_EntrerCurseur;
+                    bouton.MouseLeave += Btn_SortirCurseur;
+                }
+            }
+            else 
+            {
+                foreach (Button bouton in panelAdministrateur.Controls)
+                {
+                    bouton.MouseEnter += Btn_EntrerCurseur;
+                    bouton.MouseLeave += Btn_SortirCurseur;
+                }
+            }
+        }
+
+
+
+        //private void BtnSupprimerNote_MouseEnter(object sender, EventArgs e)
+        //{
+        //    MiseEnFormeBouton();
+        //    BtnSupprimerNoteVisiteur.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        //}
+        //private void BtnAjouterNoteFraisVisiteur_MouseEnter(object sender, EventArgs e)
+        //{
+        //    MiseEnFormeBouton();
+        //    BtnAjouterNoteFraisVisiteur.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        //}
+
+        //private void BtnModifierNoteVisiteur_MouseEnter(object sender, EventArgs e)
+        //{
+        //    MiseEnFormeBouton();
+        //    BtnModifierNoteVisiteur.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        //}
+
+        //private void BtnAfficherHistoriqueVisiteur_MouseEnter(object sender, EventArgs e)
+        //{
+        //    MiseEnFormeBouton();
+        //    BtnAfficherHistoriqueVisiteur.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        //}
+
+        //private void BtnAfficherJustificatifUtilisateur_MouseEnter(object sender, EventArgs e)
+        //{
+        //    MiseEnFormeBouton();
+        //    BtnAfficherJustificatifUtilisateur.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        //}
+
+        //private void BtnAjouterNoteFraisVisiteur_MouseLeave(object sender, EventArgs e)
+        //{
+        //    MiseEnFormeBouton();
+        //}
+
+        //private void BtnSupprimerNoteVisiteur_MouseLeave(object sender, EventArgs e)
+        //{
+        //    MiseEnFormeBouton();
+        //}
+
+        //private void BtnModifierNoteVisiteur_MouseLeave(object sender, EventArgs e)
+        //{
+        //    MiseEnFormeBouton();
+        //}
+
+        //private void BtnAfficherHistoriqueVisiteur_MouseLeave(object sender, EventArgs e)
+        //{
+        //    MiseEnFormeBouton();
+        //}
+
+        //private void BtnAfficherJustificatifUtilisateur_MouseLeave(object sender, EventArgs e)
+        //{
+        //    MiseEnFormeBouton();
+        //}
+
+        #endregion
     }
 }
 

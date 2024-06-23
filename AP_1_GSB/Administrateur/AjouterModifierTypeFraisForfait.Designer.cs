@@ -107,7 +107,7 @@
             this.typeFraisForfaitBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.typeFraisForfaitBindingNavigator.Name = "typeFraisForfaitBindingNavigator";
             this.typeFraisForfaitBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.typeFraisForfaitBindingNavigator.Size = new System.Drawing.Size(310, 29);
+            this.typeFraisForfaitBindingNavigator.Size = new System.Drawing.Size(310, 26);
             this.typeFraisForfaitBindingNavigator.TabIndex = 0;
             this.typeFraisForfaitBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -117,13 +117,13 @@
             this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(26, 26);
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(26, 23);
             this.bindingNavigatorAddNewItem.Text = "Ajouter nouveau";
             // 
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(44, 26);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(44, 23);
             this.bindingNavigatorCountItem.Text = "de {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Nombre total d\'éléments";
             // 
@@ -133,7 +133,7 @@
             this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
             this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(26, 26);
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(26, 23);
             this.bindingNavigatorDeleteItem.Text = "Supprimer";
             // 
             // bindingNavigatorMoveFirstItem
@@ -142,7 +142,7 @@
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(26, 26);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(26, 23);
             this.bindingNavigatorMoveFirstItem.Text = "Placer en premier";
             // 
             // bindingNavigatorMovePreviousItem
@@ -151,13 +151,13 @@
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(26, 26);
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(26, 23);
             this.bindingNavigatorMovePreviousItem.Text = "Déplacer vers le haut";
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 29);
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 26);
             // 
             // bindingNavigatorPositionItem
             // 
@@ -172,7 +172,7 @@
             // bindingNavigatorSeparator1
             // 
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 29);
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 26);
             // 
             // bindingNavigatorMoveNextItem
             // 
@@ -180,7 +180,7 @@
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(26, 26);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(26, 23);
             this.bindingNavigatorMoveNextItem.Text = "Déplacer vers le bas";
             // 
             // bindingNavigatorMoveLastItem
@@ -189,13 +189,13 @@
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(26, 26);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(26, 23);
             this.bindingNavigatorMoveLastItem.Text = "Placer en dernier";
             // 
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 29);
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 26);
             // 
             // typeFraisForfaitBindingNavigatorSaveItem
             // 
@@ -203,7 +203,7 @@
             this.typeFraisForfaitBindingNavigatorSaveItem.Enabled = false;
             this.typeFraisForfaitBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("typeFraisForfaitBindingNavigatorSaveItem.Image")));
             this.typeFraisForfaitBindingNavigatorSaveItem.Name = "typeFraisForfaitBindingNavigatorSaveItem";
-            this.typeFraisForfaitBindingNavigatorSaveItem.Size = new System.Drawing.Size(26, 26);
+            this.typeFraisForfaitBindingNavigatorSaveItem.Size = new System.Drawing.Size(26, 23);
             this.typeFraisForfaitBindingNavigatorSaveItem.Text = "Enregistrer les données";
             // 
             // montantNumericUpDown
@@ -234,7 +234,7 @@
             this.lblModifierType.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.854546F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblModifierType.Location = new System.Drawing.Point(34, 18);
             this.lblModifierType.Name = "lblModifierType";
-            this.lblModifierType.Size = new System.Drawing.Size(200, 15);
+            this.lblModifierType.Size = new System.Drawing.Size(214, 16);
             this.lblModifierType.TabIndex = 8;
             this.lblModifierType.Text = "Modification d\'un type de frais";
             // 
@@ -244,7 +244,7 @@
             this.lblCreer.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.854546F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCreer.Location = new System.Drawing.Point(15, 18);
             this.lblCreer.Name = "lblCreer";
-            this.lblCreer.Size = new System.Drawing.Size(233, 15);
+            this.lblCreer.Size = new System.Drawing.Size(251, 16);
             this.lblCreer.TabIndex = 9;
             this.lblCreer.Text = "Creation d\'un nouveau type de frais";
             // 
@@ -257,7 +257,7 @@
             this.panel1.ForeColor = System.Drawing.Color.White;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(400, 50);
+            this.panel1.Size = new System.Drawing.Size(310, 50);
             this.panel1.TabIndex = 10;
             // 
             // btnQuitter
@@ -302,6 +302,7 @@
             this.Controls.Add(this.montantNumericUpDown);
             this.Controls.Add(this.typeFraisForfaitBindingNavigator);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AjouterModifierTypeFraisForfait";
             this.Text = "AjouterModifierTypeFraisForfait";
             ((System.ComponentModel.ISupportInitialize)(this.typeFraisForfaitBindingNavigator)).EndInit();

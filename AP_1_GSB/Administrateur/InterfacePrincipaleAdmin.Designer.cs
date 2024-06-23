@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InterfacePrincipaleAdmin));
             this.listViewTypeFraisForfait = new System.Windows.Forms.ListView();
             this.type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.montant = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -48,7 +49,7 @@
             this.listViewTypeFraisForfait.FullRowSelect = true;
             this.listViewTypeFraisForfait.GridLines = true;
             this.listViewTypeFraisForfait.HideSelection = false;
-            this.listViewTypeFraisForfait.Location = new System.Drawing.Point(840, 78);
+            this.listViewTypeFraisForfait.Location = new System.Drawing.Point(638, 96);
             this.listViewTypeFraisForfait.Name = "listViewTypeFraisForfait";
             this.listViewTypeFraisForfait.Size = new System.Drawing.Size(204, 267);
             this.listViewTypeFraisForfait.TabIndex = 0;
@@ -75,7 +76,7 @@
             this.listViewUtilisateur.FullRowSelect = true;
             this.listViewUtilisateur.GridLines = true;
             this.listViewUtilisateur.HideSelection = false;
-            this.listViewUtilisateur.Location = new System.Drawing.Point(75, 78);
+            this.listViewUtilisateur.Location = new System.Drawing.Point(69, 96);
             this.listViewUtilisateur.Name = "listViewUtilisateur";
             this.listViewUtilisateur.Size = new System.Drawing.Size(269, 267);
             this.listViewUtilisateur.TabIndex = 1;
@@ -105,18 +106,22 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(160, 59);
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 11.78182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.label1.Location = new System.Drawing.Point(107, 60);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 13);
+            this.label1.Size = new System.Drawing.Size(189, 22);
             this.label1.TabIndex = 2;
             this.label1.Text = "Liste des utilisateurs :";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(883, 59);
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 11.78182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.label2.Location = new System.Drawing.Point(634, 60);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(120, 13);
+            this.label2.Size = new System.Drawing.Size(215, 22);
             this.label2.TabIndex = 3;
             this.label2.Text = "Liste des types de frais :";
             // 
@@ -124,12 +129,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1246, 874);
+            this.ClientSize = new System.Drawing.Size(1000, 722);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listViewUtilisateur);
             this.Controls.Add(this.listViewTypeFraisForfait);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "InterfacePrincipaleAdmin";
             this.Text = "InteracePrincipaleAdmin";
             this.ResumeLayout(false);

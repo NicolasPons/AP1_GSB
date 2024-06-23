@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.panel1 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -173,7 +174,7 @@
             this.panel4.Location = new System.Drawing.Point(225, 192);
             this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(338, 37);
+            this.panel4.Size = new System.Drawing.Size(337, 37);
             this.panel4.TabIndex = 9;
             // 
             // saisieMdp
@@ -184,7 +185,7 @@
             this.saisieMdp.Location = new System.Drawing.Point(46, 6);
             this.saisieMdp.Margin = new System.Windows.Forms.Padding(2);
             this.saisieMdp.Name = "saisieMdp";
-            this.saisieMdp.Size = new System.Drawing.Size(283, 27);
+            this.saisieMdp.Size = new System.Drawing.Size(291, 27);
             this.saisieMdp.TabIndex = 0;
             this.saisieMdp.UseSystemPasswordChar = true;
             // 
@@ -206,7 +207,7 @@
             this.panel3.Location = new System.Drawing.Point(225, 150);
             this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(338, 37);
+            this.panel3.Size = new System.Drawing.Size(337, 37);
             this.panel3.TabIndex = 8;
             // 
             // saisieUtilisateur
@@ -218,7 +219,7 @@
             this.saisieUtilisateur.Margin = new System.Windows.Forms.Padding(2);
             this.saisieUtilisateur.Name = "saisieUtilisateur";
             this.saisieUtilisateur.ShortcutsEnabled = false;
-            this.saisieUtilisateur.Size = new System.Drawing.Size(283, 27);
+            this.saisieUtilisateur.Size = new System.Drawing.Size(291, 27);
             this.saisieUtilisateur.TabIndex = 0;
             // 
             // pictureBox2
@@ -285,6 +286,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

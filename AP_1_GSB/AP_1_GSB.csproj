@@ -310,7 +310,6 @@
     <Compile Include="Comptable\InterfacePrincipaleComptable.Designer.cs">
       <DependentUpon>InterfacePrincipaleComptable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Services\PdfGenerationService.cs" />
     <Compile Include="Services\TypeFraisForfaitService.cs" />
     <Compile Include="Services\JustificatifService.cs" />
     <Compile Include="Services\UtilisateurService.cs" />
@@ -438,6 +437,22 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="BDD\gsb_ap1.sql" />
+    <None Include="Resources\icons8-utilisateur-50.png" />
+    <None Include="Resources\icons8-croix-251.png" />
+    <None Include="Resources\delete-garbage-office-svgrepo-com.png" />
+    <Content Include="Resources\gsbtransparentIcon.ico" />
+    <None Include="Resources\icons8-document-252.png" />
+    <None Include="Resources\icons8-connexion-25.png" />
+    <None Include="Resources\icons8-ajouter-251.png" />
+    <None Include="Resources\icons8-image-251.png" />
+    <None Include="Resources\icons8-document-251.png" />
+    <None Include="Resources\icons8-créer-un-nouveau-25.png" />
+    <None Include="Resources\icons8-supprimer-25.png" />
+    <None Include="Resources\icons8-ajouter-25.png" />
+    <None Include="Resources\icons8-image-25.png" />
+    <None Include="Resources\icons8-vérifié-25.png" />
+    <None Include="Resources\icons8-croix-25.png" />
+    <None Include="Resources\icons8-document-25.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interface\" />

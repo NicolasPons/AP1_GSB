@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FicheFraisDuMois));
             this.DateFicheFrais = new System.Windows.Forms.Label();
             this.listViewForfait = new System.Windows.Forms.ListView();
             this.Type_frais_forfait = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -62,12 +63,12 @@
             // DateFicheFrais
             // 
             this.DateFicheFrais.AutoSize = true;
-            this.DateFicheFrais.Font = new System.Drawing.Font("Century Gothic", 13.74545F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DateFicheFrais.Font = new System.Drawing.Font("Century Gothic", 12.74545F, System.Drawing.FontStyle.Bold);
             this.DateFicheFrais.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.DateFicheFrais.Location = new System.Drawing.Point(378, 18);
+            this.DateFicheFrais.Location = new System.Drawing.Point(292, 27);
             this.DateFicheFrais.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.DateFicheFrais.Name = "DateFicheFrais";
-            this.DateFicheFrais.Size = new System.Drawing.Size(468, 25);
+            this.DateFicheFrais.Size = new System.Drawing.Size(442, 23);
             this.DateFicheFrais.TabIndex = 0;
             this.DateFicheFrais.Text = "Fiche de frais du 10 Mai 2025 au 00 Mai 2025";
             // 
@@ -82,11 +83,11 @@
             this.listViewForfait.FullRowSelect = true;
             this.listViewForfait.GridLines = true;
             this.listViewForfait.HideSelection = false;
-            this.listViewForfait.Location = new System.Drawing.Point(44, 115);
+            this.listViewForfait.Location = new System.Drawing.Point(44, 100);
             this.listViewForfait.Margin = new System.Windows.Forms.Padding(4);
             this.listViewForfait.MultiSelect = false;
             this.listViewForfait.Name = "listViewForfait";
-            this.listViewForfait.Size = new System.Drawing.Size(1155, 303);
+            this.listViewForfait.Size = new System.Drawing.Size(915, 225);
             this.listViewForfait.TabIndex = 1;
             this.listViewForfait.UseCompatibleStateImageBehavior = false;
             this.listViewForfait.View = System.Windows.Forms.View.Details;
@@ -133,11 +134,11 @@
             this.listViewHorsForfait.FullRowSelect = true;
             this.listViewHorsForfait.GridLines = true;
             this.listViewHorsForfait.HideSelection = false;
-            this.listViewHorsForfait.Location = new System.Drawing.Point(44, 504);
+            this.listViewHorsForfait.Location = new System.Drawing.Point(44, 386);
             this.listViewHorsForfait.Margin = new System.Windows.Forms.Padding(4);
             this.listViewHorsForfait.MultiSelect = false;
             this.listViewHorsForfait.Name = "listViewHorsForfait";
-            this.listViewHorsForfait.Size = new System.Drawing.Size(1155, 310);
+            this.listViewHorsForfait.Size = new System.Drawing.Size(915, 225);
             this.listViewHorsForfait.TabIndex = 2;
             this.listViewHorsForfait.UseCompatibleStateImageBehavior = false;
             this.listViewHorsForfait.View = System.Windows.Forms.View.Details;
@@ -176,30 +177,30 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.74545F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.label1.Location = new System.Drawing.Point(39, 74);
+            this.label1.Location = new System.Drawing.Point(40, 72);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(215, 25);
+            this.label1.Size = new System.Drawing.Size(184, 24);
             this.label1.TabIndex = 3;
             this.label1.Text = "Note de frais forfait";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.74545F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.label3.Location = new System.Drawing.Point(43, 465);
+            this.label3.Location = new System.Drawing.Point(40, 358);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(268, 25);
+            this.label3.Size = new System.Drawing.Size(231, 24);
             this.label3.TabIndex = 5;
             this.label3.Text = "Note de frais hors forfait";
             // 
             // BtnPDF
             // 
-            this.BtnPDF.Location = new System.Drawing.Point(1078, 59);
+            this.BtnPDF.Location = new System.Drawing.Point(838, 43);
             this.BtnPDF.Name = "BtnPDF";
             this.BtnPDF.Size = new System.Drawing.Size(121, 40);
             this.BtnPDF.TabIndex = 6;
@@ -210,7 +211,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(1052, 422);
+            this.label2.Location = new System.Drawing.Point(808, 330);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(98, 16);
             this.label2.TabIndex = 7;
@@ -219,7 +220,7 @@
             // LblTotalForfait
             // 
             this.LblTotalForfait.AutoSize = true;
-            this.LblTotalForfait.Location = new System.Drawing.Point(1156, 422);
+            this.LblTotalForfait.Location = new System.Drawing.Point(912, 331);
             this.LblTotalForfait.Name = "LblTotalForfait";
             this.LblTotalForfait.Size = new System.Drawing.Size(43, 16);
             this.LblTotalForfait.TabIndex = 8;
@@ -228,7 +229,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(1028, 818);
+            this.label4.Location = new System.Drawing.Point(784, 625);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(122, 16);
             this.label4.TabIndex = 9;
@@ -237,7 +238,7 @@
             // LblTotalHorsForfait
             // 
             this.LblTotalHorsForfait.AutoSize = true;
-            this.LblTotalHorsForfait.Location = new System.Drawing.Point(1156, 818);
+            this.LblTotalHorsForfait.Location = new System.Drawing.Point(912, 625);
             this.LblTotalHorsForfait.Name = "LblTotalHorsForfait";
             this.LblTotalHorsForfait.Size = new System.Drawing.Size(43, 16);
             this.LblTotalHorsForfait.TabIndex = 10;
@@ -248,7 +249,7 @@
             this.LblTotalFiche.AutoSize = true;
             this.LblTotalFiche.Font = new System.Drawing.Font("Century Gothic", 10F);
             this.LblTotalFiche.ForeColor = System.Drawing.Color.Firebrick;
-            this.LblTotalFiche.Location = new System.Drawing.Point(1136, 861);
+            this.LblTotalFiche.Location = new System.Drawing.Point(902, 647);
             this.LblTotalFiche.Name = "LblTotalFiche";
             this.LblTotalFiche.Size = new System.Drawing.Size(57, 21);
             this.LblTotalFiche.TabIndex = 11;
@@ -257,18 +258,18 @@
             // LblEmployeInfo
             // 
             this.LblEmployeInfo.AutoSize = true;
-            this.LblEmployeInfo.Font = new System.Drawing.Font("Century Gothic", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblEmployeInfo.Font = new System.Drawing.Font("Century Gothic", 10.78182F);
             this.LblEmployeInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.LblEmployeInfo.Location = new System.Drawing.Point(480, 43);
+            this.LblEmployeInfo.Location = new System.Drawing.Point(40, 27);
             this.LblEmployeInfo.Name = "LblEmployeInfo";
-            this.LblEmployeInfo.Size = new System.Drawing.Size(226, 22);
+            this.LblEmployeInfo.Size = new System.Drawing.Size(205, 21);
             this.LblEmployeInfo.TabIndex = 13;
             this.LblEmployeInfo.Text = "Employé :  Nom Prenom";
             // 
             // rBtnEnCours
             // 
             this.rBtnEnCours.AutoSize = true;
-            this.rBtnEnCours.Location = new System.Drawing.Point(44, 862);
+            this.rBtnEnCours.Location = new System.Drawing.Point(44, 650);
             this.rBtnEnCours.Name = "rBtnEnCours";
             this.rBtnEnCours.Size = new System.Drawing.Size(69, 20);
             this.rBtnEnCours.TabIndex = 14;
@@ -279,7 +280,7 @@
             // rBtnAccepter
             // 
             this.rBtnAccepter.AutoSize = true;
-            this.rBtnAccepter.Location = new System.Drawing.Point(119, 862);
+            this.rBtnAccepter.Location = new System.Drawing.Point(119, 650);
             this.rBtnAccepter.Name = "rBtnAccepter";
             this.rBtnAccepter.Size = new System.Drawing.Size(75, 20);
             this.rBtnAccepter.TabIndex = 15;
@@ -290,7 +291,7 @@
             // rBtnRefuser
             // 
             this.rBtnRefuser.AutoSize = true;
-            this.rBtnRefuser.Location = new System.Drawing.Point(200, 862);
+            this.rBtnRefuser.Location = new System.Drawing.Point(200, 650);
             this.rBtnRefuser.Name = "rBtnRefuser";
             this.rBtnRefuser.Size = new System.Drawing.Size(63, 20);
             this.rBtnRefuser.TabIndex = 16;
@@ -302,7 +303,7 @@
             // 
             this.lblEtat.AutoSize = true;
             this.lblEtat.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.lblEtat.Location = new System.Drawing.Point(443, 861);
+            this.lblEtat.Location = new System.Drawing.Point(43, 646);
             this.lblEtat.Name = "lblEtat";
             this.lblEtat.Size = new System.Drawing.Size(261, 22);
             this.lblEtat.TabIndex = 17;
@@ -313,7 +314,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 10F);
             this.label5.ForeColor = System.Drawing.Color.Firebrick;
-            this.label5.Location = new System.Drawing.Point(1027, 861);
+            this.label5.Location = new System.Drawing.Point(793, 647);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(103, 21);
             this.label5.TabIndex = 12;
@@ -321,7 +322,7 @@
             // 
             // btnRetour
             // 
-            this.btnRetour.Location = new System.Drawing.Point(835, 857);
+            this.btnRetour.Location = new System.Drawing.Point(888, 677);
             this.btnRetour.Name = "btnRetour";
             this.btnRetour.Size = new System.Drawing.Size(71, 33);
             this.btnRetour.TabIndex = 18;
@@ -332,7 +333,7 @@
             // rBtnRefusPartiel
             // 
             this.rBtnRefusPartiel.AutoSize = true;
-            this.rBtnRefusPartiel.Location = new System.Drawing.Point(269, 864);
+            this.rBtnRefusPartiel.Location = new System.Drawing.Point(269, 652);
             this.rBtnRefusPartiel.Name = "rBtnRefusPartiel";
             this.rBtnRefusPartiel.Size = new System.Drawing.Size(90, 20);
             this.rBtnRefusPartiel.TabIndex = 19;
@@ -344,7 +345,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1264, 918);
+            this.ClientSize = new System.Drawing.Size(1000, 722);
             this.Controls.Add(this.rBtnRefusPartiel);
             this.Controls.Add(this.btnRetour);
             this.Controls.Add(this.lblEtat);
@@ -367,6 +368,7 @@
             this.Font = new System.Drawing.Font("Century Gothic", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FicheFraisDuMois";
             this.Text = "AjouterNoteFrais";

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AfficherJustificatif));
             this.btnQuitter = new System.Windows.Forms.Button();
             this.PictureBoxJustificatif = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxJustificatif)).BeginInit();
@@ -64,6 +65,7 @@
             this.Controls.Add(this.PictureBoxJustificatif);
             this.Controls.Add(this.btnQuitter);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AfficherJustificatif";
             this.Text = "AfficherJustificatif";
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxJustificatif)).EndInit();

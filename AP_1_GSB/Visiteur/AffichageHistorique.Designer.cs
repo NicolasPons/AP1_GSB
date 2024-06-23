@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AffichageHistorique));
             this.listViewFicheFrais = new System.Windows.Forms.ListView();
             this.Date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Montant = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -45,9 +46,10 @@
             this.listViewFicheFrais.GridLines = true;
             this.listViewFicheFrais.HideSelection = false;
             this.listViewFicheFrais.HoverSelection = true;
-            this.listViewFicheFrais.Location = new System.Drawing.Point(238, 128);
+            this.listViewFicheFrais.Location = new System.Drawing.Point(97, 118);
+            this.listViewFicheFrais.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.listViewFicheFrais.Name = "listViewFicheFrais";
-            this.listViewFicheFrais.Size = new System.Drawing.Size(740, 400);
+            this.listViewFicheFrais.Size = new System.Drawing.Size(795, 474);
             this.listViewFicheFrais.TabIndex = 0;
             this.listViewFicheFrais.UseCompatibleStateImageBehavior = false;
             this.listViewFicheFrais.View = System.Windows.Forms.View.Details;
@@ -55,32 +57,36 @@
             // Date
             // 
             this.Date.Text = "Date";
-            this.Date.Width = 150;
+            this.Date.Width = 171;
             // 
             // Montant
             // 
             this.Montant.Text = "Montant";
-            this.Montant.Width = 100;
+            this.Montant.Width = 155;
             // 
             // Etat
             // 
             this.Etat.Text = "Etat";
-            this.Etat.Width = 100;
+            this.Etat.Width = 186;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(525, 84);
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.label1.Location = new System.Drawing.Point(342, 75);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(157, 13);
+            this.label1.Size = new System.Drawing.Size(297, 23);
             this.label1.TabIndex = 1;
             this.label1.Text = "Historique de vos fiches de frais";
             // 
             // BtnRetour
             // 
-            this.BtnRetour.Location = new System.Drawing.Point(1039, 716);
+            this.BtnRetour.Location = new System.Drawing.Point(754, 600);
+            this.BtnRetour.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnRetour.Name = "BtnRetour";
-            this.BtnRetour.Size = new System.Drawing.Size(118, 39);
+            this.BtnRetour.Size = new System.Drawing.Size(138, 48);
             this.BtnRetour.TabIndex = 2;
             this.BtnRetour.Text = "Retour";
             this.BtnRetour.UseVisualStyleBackColor = true;
@@ -88,13 +94,16 @@
             // 
             // AffichageHistorique
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1246, 874);
+            this.ClientSize = new System.Drawing.Size(1000, 722);
             this.Controls.Add(this.BtnRetour);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listViewFicheFrais);
+            this.Font = new System.Drawing.Font("Century Gothic", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "AffichageHistorique";
             this.Text = "AffichageHistorique";
             this.ResumeLayout(false);
