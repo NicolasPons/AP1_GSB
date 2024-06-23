@@ -34,6 +34,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AjouterModifierTypeFraisForfait));
             this.typeFraisForfaitBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.typeFraisForfaitBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
@@ -52,20 +53,19 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnQuitter = new System.Windows.Forms.Button();
             this.btnValider = new System.Windows.Forms.Button();
-            this.typeFraisForfaitBindingSource = new System.Windows.Forms.BindingSource(this.components);
             montantLabel1 = new System.Windows.Forms.Label();
             nomLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.typeFraisForfaitBindingNavigator)).BeginInit();
             this.typeFraisForfaitBindingNavigator.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.typeFraisForfaitBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.montantNumericUpDown)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.typeFraisForfaitBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // montantLabel1
             // 
             montantLabel1.AutoSize = true;
-            montantLabel1.Location = new System.Drawing.Point(67, 125);
+            montantLabel1.Location = new System.Drawing.Point(51, 119);
             montantLabel1.Name = "montantLabel1";
             montantLabel1.Size = new System.Drawing.Size(49, 13);
             montantLabel1.TabIndex = 5;
@@ -74,7 +74,7 @@
             // nomLabel
             // 
             nomLabel.AutoSize = true;
-            nomLabel.Location = new System.Drawing.Point(84, 93);
+            nomLabel.Location = new System.Drawing.Point(68, 87);
             nomLabel.Name = "nomLabel";
             nomLabel.Size = new System.Drawing.Size(32, 13);
             nomLabel.TabIndex = 6;
@@ -107,7 +107,7 @@
             this.typeFraisForfaitBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.typeFraisForfaitBindingNavigator.Name = "typeFraisForfaitBindingNavigator";
             this.typeFraisForfaitBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.typeFraisForfaitBindingNavigator.Size = new System.Drawing.Size(310, 26);
+            this.typeFraisForfaitBindingNavigator.Size = new System.Drawing.Size(311, 26);
             this.typeFraisForfaitBindingNavigator.TabIndex = 0;
             this.typeFraisForfaitBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -119,6 +119,10 @@
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(26, 23);
             this.bindingNavigatorAddNewItem.Text = "Ajouter nouveau";
+            // 
+            // typeFraisForfaitBindingSource
+            // 
+            this.typeFraisForfaitBindingSource.DataSource = typeof(AP_1_GSB.Data.Models.TypeFraisForfait);
             // 
             // bindingNavigatorCountItem
             // 
@@ -210,7 +214,7 @@
             // 
             this.montantNumericUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.typeFraisForfaitBindingSource, "Montant", true));
             this.montantNumericUpDown.DecimalPlaces = 3;
-            this.montantNumericUpDown.Location = new System.Drawing.Point(122, 125);
+            this.montantNumericUpDown.Location = new System.Drawing.Point(106, 119);
             this.montantNumericUpDown.Maximum = new decimal(new int[] {
             5000,
             0,
@@ -223,7 +227,7 @@
             // nomTextBox
             // 
             this.nomTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.typeFraisForfaitBindingSource, "Nom", true));
-            this.nomTextBox.Location = new System.Drawing.Point(122, 90);
+            this.nomTextBox.Location = new System.Drawing.Point(106, 84);
             this.nomTextBox.Name = "nomTextBox";
             this.nomTextBox.Size = new System.Drawing.Size(100, 20);
             this.nomTextBox.TabIndex = 7;
@@ -250,7 +254,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(61)))));
             this.panel1.Controls.Add(this.btnQuitter);
             this.panel1.Controls.Add(this.lblModifierType);
             this.panel1.Controls.Add(this.lblCreer);
@@ -277,23 +281,23 @@
             // 
             // btnValider
             // 
-            this.btnValider.Location = new System.Drawing.Point(122, 161);
+            this.btnValider.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(61)))));
+            this.btnValider.FlatAppearance.BorderSize = 0;
+            this.btnValider.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnValider.ForeColor = System.Drawing.Color.White;
+            this.btnValider.Location = new System.Drawing.Point(106, 145);
             this.btnValider.Name = "btnValider";
-            this.btnValider.Size = new System.Drawing.Size(75, 23);
+            this.btnValider.Size = new System.Drawing.Size(79, 34);
             this.btnValider.TabIndex = 11;
             this.btnValider.Text = "Valider";
-            this.btnValider.UseVisualStyleBackColor = true;
+            this.btnValider.UseVisualStyleBackColor = false;
             this.btnValider.Click += new System.EventHandler(this.btnValider_Click);
-            // 
-            // typeFraisForfaitBindingSource
-            // 
-            this.typeFraisForfaitBindingSource.DataSource = typeof(AP_1_GSB.Data.Models.TypeFraisForfait);
             // 
             // AjouterModifierTypeFraisForfait
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(310, 252);
+            this.ClientSize = new System.Drawing.Size(311, 205);
             this.Controls.Add(this.btnValider);
             this.Controls.Add(this.panel1);
             this.Controls.Add(nomLabel);
@@ -308,10 +312,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.typeFraisForfaitBindingNavigator)).EndInit();
             this.typeFraisForfaitBindingNavigator.ResumeLayout(false);
             this.typeFraisForfaitBindingNavigator.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.typeFraisForfaitBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.montantNumericUpDown)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.typeFraisForfaitBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

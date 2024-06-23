@@ -47,7 +47,7 @@
             this.listViewFicheFrais.HideSelection = false;
             this.listViewFicheFrais.HoverSelection = true;
             this.listViewFicheFrais.Location = new System.Drawing.Point(97, 118);
-            this.listViewFicheFrais.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listViewFicheFrais.Margin = new System.Windows.Forms.Padding(4);
             this.listViewFicheFrais.Name = "listViewFicheFrais";
             this.listViewFicheFrais.Size = new System.Drawing.Size(795, 474);
             this.listViewFicheFrais.TabIndex = 0;
@@ -73,7 +73,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
             this.label1.Location = new System.Drawing.Point(342, 75);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
@@ -83,13 +83,21 @@
             // 
             // BtnRetour
             // 
+            this.BtnRetour.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(61)))));
+            this.BtnRetour.FlatAppearance.BorderSize = 0;
+            this.BtnRetour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnRetour.Font = new System.Drawing.Font("Century Gothic", 8F);
+            this.BtnRetour.ForeColor = System.Drawing.Color.White;
+            this.BtnRetour.Image = global::AP_1_GSB.Properties.Resources.icons8_retour_25;
             this.BtnRetour.Location = new System.Drawing.Point(754, 600);
-            this.BtnRetour.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnRetour.Margin = new System.Windows.Forms.Padding(4);
             this.BtnRetour.Name = "BtnRetour";
             this.BtnRetour.Size = new System.Drawing.Size(138, 48);
             this.BtnRetour.TabIndex = 2;
-            this.BtnRetour.Text = "Retour";
-            this.BtnRetour.UseVisualStyleBackColor = true;
+            this.BtnRetour.Text = "   Retour";
+            this.BtnRetour.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnRetour.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnRetour.UseVisualStyleBackColor = false;
             this.BtnRetour.Click += new System.EventHandler(this.BtnRetour_Click);
             // 
             // AffichageHistorique
@@ -103,7 +111,7 @@
             this.Font = new System.Drawing.Font("Century Gothic", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AffichageHistorique";
             this.Text = "AffichageHistorique";
             this.ResumeLayout(false);

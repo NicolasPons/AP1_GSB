@@ -12,6 +12,7 @@ using AP_1_GSB.Data.Models;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI.Relational;
+using AP_1_GSB.Services;
 
 namespace AP_1_GSB
 {
@@ -22,22 +23,21 @@ namespace AP_1_GSB
         public Login()
         {
             InitializeComponent();
+            MiseEnFormeBoutonsPourLogin();
         }
 
-        private void BtnQuitterAppCiquer(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
 
         private void BtnSeConnecterCliquer(object sender, EventArgs e)
         {
             Utilisateur utilisateur = Services.AuthentificationService.VerificationUtilisateur(saisieUtilisateur.Text, saisieMdp.Text);
-            
+
             if (utilisateur != null)
             {
                 switch (utilisateur.Role)
                 {
                     case UtilisateurRole.Visiteur:
+                        //test test = new test();
+                        //test.Show();
                         TableauBord TableauBordUtilisateur = new TableauBord(utilisateur, this);
                         TableauBordUtilisateur.Show();
                         break;
@@ -50,7 +50,7 @@ namespace AP_1_GSB
                     case UtilisateurRole.Administrateur:
                         TableauBord TableauBordAdministrateur = new TableauBord(utilisateur, this);
                         TableauBordAdministrateur.Show();
-                        break; 
+                        break;
                 }
             }
             else
@@ -58,6 +58,20 @@ namespace AP_1_GSB
                 return;
             }
             this.Hide();
+        }
+        private void MiseEnFormeBoutonsPourLogin()
+        {
+            Design design = new Design();
+                BtnValiderLogin.MouseEnter += design.Btn_EntrerCurseur;
+                BtnValiderLogin.MouseLeave += design.Btn_SortirCurseur;
+                design.MiseEnFormeBoutons(BtnValiderLogin);
+        }
+
+
+
+        private void BtnQuitterAppCiquer(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

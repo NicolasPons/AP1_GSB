@@ -310,6 +310,7 @@
     <Compile Include="Comptable\InterfacePrincipaleComptable.Designer.cs">
       <DependentUpon>InterfacePrincipaleComptable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Services\Design.cs" />
     <Compile Include="Services\TypeFraisForfaitService.cs" />
     <Compile Include="Services\JustificatifService.cs" />
     <Compile Include="Services\UtilisateurService.cs" />
@@ -338,6 +339,12 @@
     <Compile Include="Services\FraisForfaitService.cs" />
     <Compile Include="Services\FicheFraisService.cs" />
     <Compile Include="Services\FraisHorsForfaitService.cs" />
+    <Compile Include="test.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="test.Designer.cs">
+      <DependentUpon>test.cs</DependentUpon>
+    </Compile>
     <Compile Include="Visiteur\AffichageHistorique.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -387,6 +394,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="test.resx">
+      <DependentUpon>test.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Visiteur\AffichageHistorique.resx">
       <DependentUpon>AffichageHistorique.cs</DependentUpon>
     </EmbeddedResource>
@@ -437,6 +447,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="BDD\gsb_ap1.sql" />
+    <None Include="Resources\icons8-fermer-la-fenêtre-25.png" />
+    <None Include="Resources\icons8-connexion-50.png" />
+    <None Include="Resources\icons8-retour-25.png" />
+    <None Include="Resources\icons8-male-user-25.png" />
+    <None Include="Resources\icons8-cadenas-25.png" />
+    <None Include="Resources\icons8-connexion.gif" />
     <None Include="Resources\icons8-utilisateur-50.png" />
     <None Include="Resources\icons8-croix-251.png" />
     <None Include="Resources\delete-garbage-office-svgrepo-com.png" />

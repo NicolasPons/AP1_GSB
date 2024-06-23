@@ -56,15 +56,15 @@
             this.rBtnRefuser = new System.Windows.Forms.RadioButton();
             this.lblEtat = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.btnRetour = new System.Windows.Forms.Button();
             this.rBtnRefusPartiel = new System.Windows.Forms.RadioButton();
+            this.btnRetour = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // DateFicheFrais
             // 
             this.DateFicheFrais.AutoSize = true;
             this.DateFicheFrais.Font = new System.Drawing.Font("Century Gothic", 12.74545F, System.Drawing.FontStyle.Bold);
-            this.DateFicheFrais.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.DateFicheFrais.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
             this.DateFicheFrais.Location = new System.Drawing.Point(292, 27);
             this.DateFicheFrais.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.DateFicheFrais.Name = "DateFicheFrais";
@@ -97,31 +97,31 @@
             // 
             this.Type_frais_forfait.Text = "Type frais forfait";
             this.Type_frais_forfait.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Type_frais_forfait.Width = 230;
+            this.Type_frais_forfait.Width = 150;
             // 
             // Quantite
             // 
             this.Quantite.Text = "Quantite";
             this.Quantite.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Quantite.Width = 230;
+            this.Quantite.Width = 100;
             // 
             // Date
             // 
             this.Date.Text = "Date";
             this.Date.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Date.Width = 230;
+            this.Date.Width = 180;
             // 
             // Etat
             // 
             this.Etat.Text = "Etat";
             this.Etat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Etat.Width = 230;
+            this.Etat.Width = 210;
             // 
             // Justificatif
             // 
             this.Justificatif.Text = "Justificatif";
             this.Justificatif.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Justificatif.Width = 230;
+            this.Justificatif.Width = 265;
             // 
             // listViewHorsForfait
             // 
@@ -148,25 +148,25 @@
             // 
             this.Description.Text = "Description";
             this.Description.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Description.Width = 230;
+            this.Description.Width = 200;
             // 
             // Montant
             // 
             this.Montant.Text = "Montant";
             this.Montant.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Montant.Width = 230;
+            this.Montant.Width = 105;
             // 
             // DateHorsForfait
             // 
             this.DateHorsForfait.Text = "Date";
             this.DateHorsForfait.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.DateHorsForfait.Width = 230;
+            this.DateHorsForfait.Width = 228;
             // 
             // EtatHF
             // 
             this.EtatHF.Text = "Etat";
             this.EtatHF.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.EtatHF.Width = 230;
+            this.EtatHF.Width = 147;
             // 
             // JustificatifHF
             // 
@@ -178,7 +178,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
             this.label1.Location = new System.Drawing.Point(40, 72);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
@@ -190,7 +190,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
             this.label3.Location = new System.Drawing.Point(40, 358);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
@@ -200,12 +200,17 @@
             // 
             // BtnPDF
             // 
+            this.BtnPDF.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(61)))));
+            this.BtnPDF.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.BtnPDF.FlatAppearance.BorderSize = 0;
+            this.BtnPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnPDF.ForeColor = System.Drawing.Color.White;
             this.BtnPDF.Location = new System.Drawing.Point(838, 43);
             this.BtnPDF.Name = "BtnPDF";
             this.BtnPDF.Size = new System.Drawing.Size(121, 40);
             this.BtnPDF.TabIndex = 6;
             this.BtnPDF.Text = "Export PDF";
-            this.BtnPDF.UseVisualStyleBackColor = true;
+            this.BtnPDF.UseVisualStyleBackColor = false;
             this.BtnPDF.Click += new System.EventHandler(this.BtnPDF_Click);
             // 
             // label2
@@ -259,7 +264,7 @@
             // 
             this.LblEmployeInfo.AutoSize = true;
             this.LblEmployeInfo.Font = new System.Drawing.Font("Century Gothic", 10.78182F);
-            this.LblEmployeInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.LblEmployeInfo.ForeColor = System.Drawing.Color.Black;
             this.LblEmployeInfo.Location = new System.Drawing.Point(40, 27);
             this.LblEmployeInfo.Name = "LblEmployeInfo";
             this.LblEmployeInfo.Size = new System.Drawing.Size(205, 21);
@@ -320,16 +325,6 @@
             this.label5.TabIndex = 12;
             this.label5.Text = "Total fiche : ";
             // 
-            // btnRetour
-            // 
-            this.btnRetour.Location = new System.Drawing.Point(888, 677);
-            this.btnRetour.Name = "btnRetour";
-            this.btnRetour.Size = new System.Drawing.Size(71, 33);
-            this.btnRetour.TabIndex = 18;
-            this.btnRetour.Text = "Retour ";
-            this.btnRetour.UseVisualStyleBackColor = true;
-            this.btnRetour.Click += new System.EventHandler(this.btnRetour_Click);
-            // 
             // rBtnRefusPartiel
             // 
             this.rBtnRefusPartiel.AutoSize = true;
@@ -339,6 +334,22 @@
             this.rBtnRefusPartiel.TabIndex = 19;
             this.rBtnRefusPartiel.Text = "Refus partiel";
             this.rBtnRefusPartiel.UseVisualStyleBackColor = true;
+            // 
+            // btnRetour
+            // 
+            this.btnRetour.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(61)))));
+            this.btnRetour.FlatAppearance.BorderSize = 0;
+            this.btnRetour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRetour.ForeColor = System.Drawing.Color.White;
+            this.btnRetour.Image = global::AP_1_GSB.Properties.Resources.icons8_retour_25;
+            this.btnRetour.Location = new System.Drawing.Point(879, 671);
+            this.btnRetour.Name = "btnRetour";
+            this.btnRetour.Size = new System.Drawing.Size(80, 39);
+            this.btnRetour.TabIndex = 18;
+            this.btnRetour.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRetour.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRetour.UseVisualStyleBackColor = false;
+            this.btnRetour.Click += new System.EventHandler(this.btnRetour_Click);
             // 
             // FicheFraisDuMois
             // 
@@ -371,7 +382,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FicheFraisDuMois";
-            this.Text = "AjouterNoteFrais";
             this.ResumeLayout(false);
             this.PerformLayout();
 

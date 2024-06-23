@@ -25,8 +25,6 @@ using AP_1_GSB.Services;
 using AP_1_GSB.Comptable;
 namespace AP_1_GSB.Visiteur
 {
-
-    //VERIFIER SI LA SUPPRESSION SUPPRIME LA BONNE LIGNE EN BASE 
     //Après modifications sur le form, évenement CalculTotalFiche cassé = à retravailler 
     public partial class FicheFraisDuMois : Form
     {
@@ -35,8 +33,6 @@ namespace AP_1_GSB.Visiteur
         readonly string version;
         public event Action ListesVide;
         public event Action GriserBouton;
-
-
         //public event Action CalculTotalFiche;
         public ListView ListViewForfait => this.listViewForfait;
         public ListView ListViewHorsForfait => this.listViewHorsForfait;
@@ -48,9 +44,30 @@ namespace AP_1_GSB.Visiteur
             this.version = version;
             InitializeComponent();
             MettreAJourListView();
+            //ListViewForfait.ColumnWidthChanging += ListView_ColumnWidthChanging;
+            //listViewHorsForfait.ColumnWidthChanging += ListView_ColumnWidthChanging;
             AfficherInformationForm();
+            MiseEnFormeBoutonsPourLogin();
             DateFicheFrais.Text = "Fiche de frais du " + ficheEnCours.Date.ToString("dd MMMM yyyy") + " au " + dtFin.ToString("dd MMMM yyyy");
         }
+        //private void ListView_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
+        //{
+        //    //e.Cancel = true;
+        //    // Vous pouvez également forcer la largeur de la colonne à rester constante si nécessaire
+        //    e.NewWidth = ListViewForfait.Columns[e.ColumnIndex].Width;
+        //}
+        private void MiseEnFormeBoutonsPourLogin()
+        {
+            Design design = new Design();
+            BtnPDF.MouseEnter += design.Btn_EntrerCurseur;
+            BtnPDF.MouseLeave += design.Btn_SortirCurseur;
+            design.MiseEnFormeBoutons(BtnPDF);
+            btnRetour.MouseEnter += design.Btn_EntrerCurseur;
+            btnRetour.MouseLeave += design.Btn_SortirCurseur;
+            design.MiseEnFormeBoutons(btnRetour);
+        }
+
+
 
         #region General
         private void AfficherInformationForm()

@@ -73,13 +73,14 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(61)))));
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.btnQuitter);
+            this.panel1.ForeColor = System.Drawing.Color.White;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(518, 81);
+            this.panel1.Size = new System.Drawing.Size(482, 81);
             this.panel1.TabIndex = 9;
             // 
             // btnQuitter
@@ -144,12 +145,13 @@
             // 
             // BtnValider
             // 
-            this.BtnValider.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.BtnValider.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(61)))));
+            this.BtnValider.FlatAppearance.BorderSize = 0;
             this.BtnValider.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnValider.ForeColor = System.Drawing.Color.White;
-            this.BtnValider.Location = new System.Drawing.Point(161, 299);
+            this.BtnValider.Location = new System.Drawing.Point(210, 295);
             this.BtnValider.Name = "BtnValider";
-            this.BtnValider.Size = new System.Drawing.Size(164, 41);
+            this.BtnValider.Size = new System.Drawing.Size(136, 36);
             this.BtnValider.TabIndex = 16;
             this.BtnValider.Text = "Valider";
             this.BtnValider.UseVisualStyleBackColor = false;
@@ -157,12 +159,16 @@
             // 
             // BtnJustificatif
             // 
+            this.BtnJustificatif.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(61)))));
+            this.BtnJustificatif.FlatAppearance.BorderSize = 0;
+            this.BtnJustificatif.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnJustificatif.ForeColor = System.Drawing.SystemColors.Control;
             this.BtnJustificatif.Location = new System.Drawing.Point(210, 239);
             this.BtnJustificatif.Name = "BtnJustificatif";
             this.BtnJustificatif.Size = new System.Drawing.Size(150, 23);
             this.BtnJustificatif.TabIndex = 18;
             this.BtnJustificatif.Text = "Choisir un fichier";
-            this.BtnJustificatif.UseVisualStyleBackColor = true;
+            this.BtnJustificatif.UseVisualStyleBackColor = false;
             this.BtnJustificatif.Click += new System.EventHandler(this.BtnJustificatif_Click);
             // 
             // DtTimePickerHorsForfait

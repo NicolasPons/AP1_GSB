@@ -122,7 +122,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(61)))));
             this.panel1.Controls.Add(this.btnQuitter);
             this.panel1.Controls.Add(this.lblModifierUtilisateur);
             this.panel1.Controls.Add(this.lblCreerUtilisateur);
@@ -170,12 +170,16 @@
             // 
             // btnValider
             // 
+            this.btnValider.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(61)))));
+            this.btnValider.FlatAppearance.BorderSize = 0;
+            this.btnValider.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnValider.ForeColor = System.Drawing.Color.White;
             this.btnValider.Location = new System.Drawing.Point(184, 231);
             this.btnValider.Name = "btnValider";
             this.btnValider.Size = new System.Drawing.Size(94, 42);
             this.btnValider.TabIndex = 1;
             this.btnValider.Text = "Valider";
-            this.btnValider.UseVisualStyleBackColor = true;
+            this.btnValider.UseVisualStyleBackColor = false;
             this.btnValider.Click += new System.EventHandler(this.BtnValider_Click);
             // 
             // identifiantTextBox

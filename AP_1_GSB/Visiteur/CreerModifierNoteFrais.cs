@@ -65,6 +65,7 @@ namespace AP_1_GSB.Visiteur
             lblMiseAJourJustificatif.Visible = true;
             BtnJustificatif.Visible = true;
             lblJustificatif.Visible = true;
+            
 
         }
         public CreerModifierNoteFrais(Utilisateur utilisateur, FicheFrais ficheEnCours, DateTime dtFin, string version, FraisHorsForfait FraisHorsForfaitAModifier)

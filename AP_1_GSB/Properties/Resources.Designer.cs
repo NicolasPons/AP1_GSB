@@ -133,9 +133,39 @@ namespace AP_1_GSB.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_cadenas_25 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-cadenas-25", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_connexion {
+            get {
+                object obj = ResourceManager.GetObject("icons8-connexion", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_connexion_25 {
             get {
                 object obj = ResourceManager.GetObject("icons8-connexion-25", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_connexion_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-connexion-50", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -203,6 +233,16 @@ namespace AP_1_GSB.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_fermer_la_fenêtre_25 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-fermer-la-fenêtre-25", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_image_25 {
             get {
                 object obj = ResourceManager.GetObject("icons8-image-25", resourceCulture);
@@ -216,6 +256,26 @@ namespace AP_1_GSB.Properties {
         internal static System.Drawing.Bitmap icons8_image_251 {
             get {
                 object obj = ResourceManager.GetObject("icons8-image-251", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_male_user_25 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-male-user-25", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_retour_25 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-retour-25", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
