@@ -47,7 +47,7 @@ namespace AP_1_GSB.Visiteur
             //ListViewForfait.ColumnWidthChanging += ListView_ColumnWidthChanging;
             //listViewHorsForfait.ColumnWidthChanging += ListView_ColumnWidthChanging;
             AfficherInformationForm();
-            MiseEnFormeBoutonsPourLogin();
+            MiseEnFormeBoutons();
             DateFicheFrais.Text = "Fiche de frais du " + ficheEnCours.Date.ToString("dd MMMM yyyy") + " au " + dtFin.ToString("dd MMMM yyyy");
         }
         //private void ListView_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
@@ -56,7 +56,7 @@ namespace AP_1_GSB.Visiteur
         //    // Vous pouvez également forcer la largeur de la colonne à rester constante si nécessaire
         //    e.NewWidth = ListViewForfait.Columns[e.ColumnIndex].Width;
         //}
-        private void MiseEnFormeBoutonsPourLogin()
+        private void MiseEnFormeBoutons()
         {
             Design design = new Design();
             BtnPDF.MouseEnter += design.Btn_EntrerCurseur;
@@ -539,7 +539,7 @@ namespace AP_1_GSB.Visiteur
             }
             if (listeForfait.Count == 0 && listeHorsForfait.Count == 0)
             {
-                rBtnEnCours.Checked = true;
+                rBtnAccepter.Checked = true;
                 rBtnEnCours.Enabled = true;
                 rBtnAccepter.Enabled = true;
                 rBtnRefuser.Enabled = true;

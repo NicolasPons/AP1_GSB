@@ -67,8 +67,6 @@ namespace AP_1_GSB
                 design.MiseEnFormeBoutons(BtnValiderLogin);
         }
 
-
-
         private void BtnQuitterAppCiquer(object sender, EventArgs e)
         {
             Application.Exit();

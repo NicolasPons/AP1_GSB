@@ -107,6 +107,15 @@ namespace AP_1_GSB
             LblProfilUtilisateur.Text = "Profil : " + utilisateur.Role.ToString();
 
             utilisateur = Services.FicheFraisService.RecupererFichesFrais(utilisateur);
+            foreach (FicheFrais fiche in utilisateur.FichesFrais)
+            {
+                DateTime dateFin = new DateTime(fiche.Date.Year, fiche.Date.AddMonths(1).Month, 10);
+                if (dateFin < DateTime.Now)
+                {
+                    fiche.Etat = EtatFicheFrais.HorsDelai;
+                    FicheFraisService.ChangerEtatFiche(fiche, 1);
+                }
+            }
 
 
             ficheEnCours = null;
@@ -212,12 +221,12 @@ namespace AP_1_GSB
         private void BtnHistorique_Click(object sender, EventArgs e)
         {
 
-            GriserBouton(false, false, false);
+            GriserBouton(false, false, false, false);
 
             if (affichageHistorique == null)
             {
                 affichageHistorique = new AffichageHistorique(utilisateur, ficheEnCours, ficheFraisDuMois.ListViewForfait, ficheFraisDuMois.ListViewHorsForfait);
-                affichageHistorique.degriserBouton += () => GriserBouton(true, true, true);
+                affichageHistorique.degriserBouton += () => GriserBouton(true, true, true, true);
                 affichageHistorique.StartPosition = FormStartPosition.Manual;
                 affichageHistorique.TopLevel = false;
                 PanelAffichage.Controls.Add(affichageHistorique);
@@ -229,11 +238,12 @@ namespace AP_1_GSB
         }
 
 
-        private void GriserBouton(bool btnAJout, bool btnSupprimer, bool btnModif)
+        private void GriserBouton(bool btnAJout, bool btnSupprimer, bool btnModif, bool btnJustif)
         {
             BtnAjouterNoteFraisVisiteur.Enabled = btnAJout;
             BtnSupprimerNoteVisiteur.Enabled = btnSupprimer;
             BtnModifierNoteVisiteur.Enabled = btnModif;
+            BtnAfficherJustificatifUtilisateur.Enabled = btnJustif;
         }
 
         private void BtnRetourLoginUtilisateur_Click(object sender, EventArgs e)
@@ -277,7 +287,7 @@ namespace AP_1_GSB
 
         private void BtnAfficherFichesEmplye_Clique(object sender, EventArgs e)
         {
-            Utilisateur employe = affichageComptable.SelectionnerEmploye();
+            Utilisateur employe = affichageComptable.SelectionnerVisiteur();
             if (employe != null)
             {
                 employe = Services.FicheFraisService.RecupererFichesFrais(employe);

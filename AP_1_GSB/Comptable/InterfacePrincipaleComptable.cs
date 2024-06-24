@@ -36,7 +36,7 @@ namespace AP_1_GSB.Comptable
             }
         }
 
-        public Utilisateur SelectionnerEmploye()
+        public Utilisateur SelectionnerVisiteur()
         {
             Utilisateur employe;
             if (listViewAffichageUtilisateurs.SelectedItems.Count > 0)

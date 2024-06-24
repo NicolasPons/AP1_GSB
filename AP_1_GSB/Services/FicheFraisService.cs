@@ -21,6 +21,8 @@ using iText.Layout.Element;
 using iText.Kernel.Pdf.Canvas.Draw;
 using iText.Layout.Borders;
 using iText.Kernel.Colors;
+using System.Security.Policy;
+using Mysqlx.Crud;
 
 namespace AP_1_GSB.Services
 {
@@ -671,7 +673,7 @@ namespace AP_1_GSB.Services
                 document.Add(collaborateurTable);
                 document.Add(new Paragraph("\n"));
 
-                float montantTotal = CalculerTotalFiche(ficheEnCours);  
+                float montantTotal = CalculerTotalFiche(ficheEnCours);
                 float montantRefuse = CalculerMontantFraisRefuser(ficheEnCours);
                 float montantAccepter = montantTotal - montantRefuse;
                 DateTime dateRemboursement = new DateTime(ficheEnCours.Date.Year, ficheEnCours.Date.AddMonths(1).Month, 28);

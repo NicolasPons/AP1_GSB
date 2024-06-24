@@ -447,6 +447,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="BDD\gsb_ap1.sql" />
+    <None Include="Resources\icons8-fermer-la-fenêtre-50.png" />
     <None Include="Resources\icons8-fermer-la-fenêtre-25.png" />
     <None Include="Resources\icons8-connexion-50.png" />
     <None Include="Resources\icons8-retour-25.png" />

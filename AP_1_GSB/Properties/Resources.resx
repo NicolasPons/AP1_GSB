@@ -130,6 +130,9 @@
   <data name="icons8-cadenas-25" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-cadenas-25.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icons8-croix-251" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-croix-251.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="icons8-image-25" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-image-25.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -175,8 +178,8 @@
   <data name="comdlpng69564631" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\comdlpng69564631.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-connexion" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-connexion.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8-fermer-la-fenêtre-25" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-fermer-la-fenêtre-25.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="User-Avatar-Profile-PNG-Isolated (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\User-Avatar-Profile-PNG-Isolated (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -184,8 +187,8 @@
   <data name="User-Avatar-Profile-PNG-Isolated-Transparent-HD-Photo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\User-Avatar-Profile-PNG-Isolated-Transparent-HD-Photo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-croix-251" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-croix-251.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8-supprimer-25" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-supprimer-25.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-document-251" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-document-251.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -193,13 +196,13 @@
   <data name="icons8-retour-25" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-retour-25.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-supprimer-25" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-supprimer-25.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8-connexion" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-connexion.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-ajouter-251" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-ajouter-251.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-fermer-la-fenêtre-25" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-fermer-la-fenêtre-25.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8-fermer-la-fenêtre-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-fermer-la-fenêtre-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

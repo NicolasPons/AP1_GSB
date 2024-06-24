@@ -63,20 +63,21 @@ namespace AP_1_GSB.Administrateur
                 if (utilisateur != null)
                 {
                     ValidationContext context = new ValidationContext(utilisateur, null, null);
-                    IList<ValidationResult> errors = new List<ValidationResult>();
-                    if (!Validator.TryValidateObject(utilisateur, context, errors, true))
+                    IList<ValidationResult> erreurs = new List<ValidationResult>();
+                    if (!Validator.TryValidateObject(utilisateur, context, erreurs, true))
                     {
-                        if (errors.Count > 1)
+                        List<String> MessagesErreur = new List<String>();
+                        string MessageAAfficher = " ";
+                        foreach (ValidationResult erreur in erreurs)
                         {
-                            MessageBox.Show("Plusieurs saisies sont incorrects. Veuillez recommencer s'il vous plait.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessagesErreur.Add("- " + erreur.ErrorMessage + " \n ");
                         }
-                        else
+
+                        for (int i = 0; i < erreurs.Count; i ++)
                         {
-                            foreach (ValidationResult validationResult in errors)
-                            {
-                                MessageBox.Show(validationResult.ErrorMessage, "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                             MessageAAfficher = "" + MessageAAfficher + MessagesErreur[i];
                         }
+                        MessageBox.Show("Il y a une ou plusieurs saisies incorrects : \n" + MessageAAfficher);
                     }
                     else
                     {
@@ -93,20 +94,21 @@ namespace AP_1_GSB.Administrateur
                 if (utilisateurModifie != null)
                 {
                     ValidationContext context = new ValidationContext(utilisateurModifie, null, null);
-                    IList<ValidationResult> errors = new List<ValidationResult>();
-                    if (!Validator.TryValidateObject(utilisateurModifie, context, errors, true))
+                    IList<ValidationResult> erreurs = new List<ValidationResult>();
+                    if (!Validator.TryValidateObject(utilisateurModifie, context, erreurs, true))
                     {
-                        if (errors.Count > 1)
+                        List<String> MessagesErreur = new List<String>();
+                        string MessageAAfficher = " ";
+                        foreach (ValidationResult erreur in erreurs)
                         {
-                            MessageBox.Show("Plusieurs saisies sont incorrects. Veuillez recommencer s'il vous plait", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessagesErreur.Add("- " + erreur.ErrorMessage + " \n ");
                         }
-                        else
+
+                        for (int i = 0; i < erreurs.Count; i++)
                         {
-                            foreach (ValidationResult validationResult in errors)
-                            {
-                                MessageBox.Show(validationResult.ErrorMessage, "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                            MessageAAfficher = "" + MessageAAfficher + MessagesErreur[i];
                         }
+                        MessageBox.Show("Il y a une ou plusieurs saisies incorrects : \n" + MessageAAfficher);
                     }
                     else
                     {

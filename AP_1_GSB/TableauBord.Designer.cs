@@ -30,8 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TableauBord));
             this.panelEnTete = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.LblTitre = new System.Windows.Forms.Label();
-            this.btnQuitter = new System.Windows.Forms.Button();
             this.LblNom = new System.Windows.Forms.Label();
             this.PanelUtilsateurLogo = new System.Windows.Forms.Panel();
             this.LblProfilUtilisateur = new System.Windows.Forms.Label();
@@ -59,7 +59,7 @@
             this.btnAccepterFrais = new System.Windows.Forms.Button();
             this.btnRefusFrais = new System.Windows.Forms.Button();
             this.BtnAfficheFichesEmploye = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btnQuitter = new System.Windows.Forms.Button();
             this.panelEnTete.SuspendLayout();
             this.PanelUtilsateurLogo.SuspendLayout();
             this.PanelComptable.SuspendLayout();
@@ -83,6 +83,17 @@
             this.panelEnTete.TabIndex = 0;
             this.panelEnTete.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelEnTete_MouseDown);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 9.163636F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(386, 57);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(123, 19);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Le soin des coûts";
+            // 
             // LblTitre
             // 
             this.LblTitre.AutoSize = true;
@@ -93,21 +104,6 @@
             this.LblTitre.Size = new System.Drawing.Size(341, 26);
             this.LblTitre.TabIndex = 8;
             this.LblTitre.Text = "Gestion des fiches de Frais - GSB";
-            // 
-            // btnQuitter
-            // 
-            this.btnQuitter.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnQuitter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnQuitter.Font = new System.Drawing.Font("Verdana", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnQuitter.ForeColor = System.Drawing.Color.White;
-            this.btnQuitter.Location = new System.Drawing.Point(950, 19);
-            this.btnQuitter.Margin = new System.Windows.Forms.Padding(2);
-            this.btnQuitter.Name = "btnQuitter";
-            this.btnQuitter.Size = new System.Drawing.Size(39, 43);
-            this.btnQuitter.TabIndex = 6;
-            this.btnQuitter.Text = "X";
-            this.btnQuitter.UseVisualStyleBackColor = true;
-            this.btnQuitter.Click += new System.EventHandler(this.BtnQuitter_Click);
             // 
             // LblNom
             // 
@@ -223,7 +219,7 @@
             // PictureBoxLogo
             // 
             this.PictureBoxLogo.Image = global::AP_1_GSB.Properties.Resources.icons8_utilisateur_50;
-            this.PictureBoxLogo.Location = new System.Drawing.Point(12, 7);
+            this.PictureBoxLogo.Location = new System.Drawing.Point(12, 13);
             this.PictureBoxLogo.Name = "PictureBoxLogo";
             this.PictureBoxLogo.Size = new System.Drawing.Size(53, 50);
             this.PictureBoxLogo.TabIndex = 0;
@@ -572,16 +568,20 @@
             this.BtnAfficheFichesEmploye.UseVisualStyleBackColor = true;
             this.BtnAfficheFichesEmploye.Click += new System.EventHandler(this.BtnAfficherFichesEmplye_Clique);
             // 
-            // label1
+            // btnQuitter
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 9.163636F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(386, 57);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(123, 19);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Le soin des coûts";
+            this.btnQuitter.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnQuitter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnQuitter.Font = new System.Drawing.Font("Verdana", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnQuitter.ForeColor = System.Drawing.Color.White;
+            this.btnQuitter.Image = global::AP_1_GSB.Properties.Resources.icons8_fermer_la_fenêtre_50;
+            this.btnQuitter.Location = new System.Drawing.Point(950, 20);
+            this.btnQuitter.Margin = new System.Windows.Forms.Padding(2);
+            this.btnQuitter.Name = "btnQuitter";
+            this.btnQuitter.Size = new System.Drawing.Size(39, 43);
+            this.btnQuitter.TabIndex = 6;
+            this.btnQuitter.UseVisualStyleBackColor = true;
+            this.btnQuitter.Click += new System.EventHandler(this.BtnQuitter_Click);
             // 
             // TableauBord
             // 
