@@ -409,6 +409,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\AP_1_GSB.Data.Models.FraisForfait.datasource" />
     <None Include="Properties\DataSources\AP_1_GSB.Data.Models.FraisHorsForfait.datasource" />
+    <None Include="Properties\DataSources\AP_1_GSB.Data.Models.Justificatif.datasource" />
     <None Include="Properties\DataSources\AP_1_GSB.Data.Models.TypeFraisForfait.datasource" />
     <None Include="Properties\DataSources\AP_1_GSB.Data.Models.Utilisateur.datasource" />
     <None Include="Properties\Settings.settings">
@@ -447,6 +448,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="BDD\gsb_ap1.sql" />
+    <None Include="Resources\icons8-effacer-25.png" />
     <None Include="Resources\icons8-fermer-la-fenêtre-50.png" />
     <None Include="Resources\icons8-fermer-la-fenêtre-25.png" />
     <None Include="Resources\icons8-connexion-50.png" />

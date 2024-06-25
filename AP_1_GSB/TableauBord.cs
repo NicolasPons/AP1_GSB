@@ -569,7 +569,7 @@ namespace AP_1_GSB
         {
             MiseEnFormeBoutons(BoutonSender);
             BoutonSender.BackColor = Color.FromArgb(255, 183, 77);
-            BoutonSender.Font = new Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0))); 
+            BoutonSender.Font = new Font("Century Gothic", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0))); 
         }
 
         private void Btn_EntrerCurseur(object sender, EventArgs e)

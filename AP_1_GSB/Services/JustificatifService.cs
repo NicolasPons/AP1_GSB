@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AP_1_GSB.Services
 { 
@@ -34,7 +35,7 @@ namespace AP_1_GSB.Services
             }
             catch (MySqlException e)
             {
-                Console.WriteLine(e.Message);
+                MessageBox.Show("Erreur lors de la connexion à la base de données" + e.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;    
             }
             finally

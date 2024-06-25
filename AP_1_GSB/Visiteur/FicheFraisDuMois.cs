@@ -119,23 +119,47 @@ namespace AP_1_GSB.Visiteur
             LblTotalForfait.Text = totalForfait.ToString("F2") + " €";
 
 
+            //foreach (FraisForfait fraisForfait in ficheEnCours.FraisForfaits)
+            //{
+
+            //    string etatJustificatif = "Pas de justificatif";
+            //    if (fraisForfait.justificatif != null)
+            //    {
+            //        etatJustificatif = "Justificatif présent";
+            //    }
+            //    string etat = Services.FraisForfaitService.EcrireEtatFraisForfait(fraisForfait);
+            //    ListViewItem item = new ListViewItem(fraisForfait.TypeForfait.Nom);
+            //    item.SubItems.Add(fraisForfait.Quantite.ToString());
+            //    item.SubItems.Add(fraisForfait.Date.ToString("dd/MM/yyyy"));
+            //    item.SubItems.Add(etat);
+            //    item.SubItems.Add(etatJustificatif);
+            //    item.Tag = fraisForfait.IdFraisForfait;
+            //    listViewForfait.Items.Add(item);
+            //}
+
+            DataGridNoteFrais.Rows.Clear(); // Nettoie les lignes existantes pour éviter les doublons
+
             foreach (FraisForfait fraisForfait in ficheEnCours.FraisForfaits)
             {
-
                 string etatJustificatif = "Pas de justificatif";
                 if (fraisForfait.justificatif != null)
                 {
                     etatJustificatif = "Justificatif présent";
                 }
                 string etat = Services.FraisForfaitService.EcrireEtatFraisForfait(fraisForfait);
-                ListViewItem item = new ListViewItem(fraisForfait.TypeForfait.Nom);
-                item.SubItems.Add(fraisForfait.Quantite.ToString());
-                item.SubItems.Add(fraisForfait.Date.ToString("dd/MM/yyyy"));
-                item.SubItems.Add(etat);
-                item.SubItems.Add(etatJustificatif);
-                item.Tag = fraisForfait.IdFraisForfait;
-                listViewForfait.Items.Add(item);
+                string[] row = new string[] 
+                {
+                    fraisForfait.TypeForfait.Nom,
+                    fraisForfait.Quantite.ToString(),
+                    fraisForfait.Date.ToString("dd/MM/yyyy"),
+                    etat,
+                    etatJustificatif
+                };
+
+                DataGridNoteFrais.Rows.Add(row); // Ajoute une nouvelle ligne avec les données
             }
+
+
 
             float totalHorsForfait = FraisHorsForfaitService.CalculerTotalHorsForfait(ficheEnCours);
             LblTotalHorsForfait.Text = totalHorsForfait.ToString("F2") + " €";

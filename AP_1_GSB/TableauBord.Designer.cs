@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TableauBord));
-            this.panelEnTete = new System.Windows.Forms.Panel();
+            this.PanelEnTete = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.LblTitre = new System.Windows.Forms.Label();
             this.LblNom = new System.Windows.Forms.Label();
@@ -60,7 +60,7 @@
             this.btnRefusFrais = new System.Windows.Forms.Button();
             this.BtnAfficheFichesEmploye = new System.Windows.Forms.Button();
             this.btnQuitter = new System.Windows.Forms.Button();
-            this.panelEnTete.SuspendLayout();
+            this.PanelEnTete.SuspendLayout();
             this.PanelUtilsateurLogo.SuspendLayout();
             this.PanelComptable.SuspendLayout();
             this.panelAdministrateur.SuspendLayout();
@@ -70,18 +70,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             this.SuspendLayout();
             // 
-            // panelEnTete
+            // PanelEnTete
             // 
-            this.panelEnTete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(61)))));
-            this.panelEnTete.Controls.Add(this.label1);
-            this.panelEnTete.Controls.Add(this.LblTitre);
-            this.panelEnTete.Controls.Add(this.btnQuitter);
-            this.panelEnTete.Location = new System.Drawing.Point(200, -9);
-            this.panelEnTete.Margin = new System.Windows.Forms.Padding(2);
-            this.panelEnTete.Name = "panelEnTete";
-            this.panelEnTete.Size = new System.Drawing.Size(1000, 87);
-            this.panelEnTete.TabIndex = 0;
-            this.panelEnTete.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelEnTete_MouseDown);
+            this.PanelEnTete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(61)))));
+            this.PanelEnTete.Controls.Add(this.label1);
+            this.PanelEnTete.Controls.Add(this.LblTitre);
+            this.PanelEnTete.Controls.Add(this.btnQuitter);
+            this.PanelEnTete.Location = new System.Drawing.Point(200, -9);
+            this.PanelEnTete.Margin = new System.Windows.Forms.Padding(2);
+            this.PanelEnTete.Name = "PanelEnTete";
+            this.PanelEnTete.Size = new System.Drawing.Size(1000, 87);
+            this.PanelEnTete.TabIndex = 0;
+            this.PanelEnTete.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelEnTete_MouseDown);
             // 
             // label1
             // 
@@ -421,7 +421,7 @@
             this.BtnModifierNoteVisiteur.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.BtnModifierNoteVisiteur.Size = new System.Drawing.Size(200, 74);
             this.BtnModifierNoteVisiteur.TabIndex = 4;
-            this.BtnModifierNoteVisiteur.Text = "  Modifier une note";
+            this.BtnModifierNoteVisiteur.Text = " Modifier une note";
             this.BtnModifierNoteVisiteur.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnModifierNoteVisiteur.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnModifierNoteVisiteur.UseVisualStyleBackColor = true;
@@ -434,14 +434,14 @@
             this.BtnSupprimerNoteVisiteur.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnSupprimerNoteVisiteur.Font = new System.Drawing.Font("Century Gothic", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnSupprimerNoteVisiteur.ForeColor = System.Drawing.Color.White;
-            this.BtnSupprimerNoteVisiteur.Image = global::AP_1_GSB.Properties.Resources.icons8_supprimer_25;
+            this.BtnSupprimerNoteVisiteur.Image = global::AP_1_GSB.Properties.Resources.icons8_effacer_25;
             this.BtnSupprimerNoteVisiteur.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnSupprimerNoteVisiteur.Location = new System.Drawing.Point(0, 74);
             this.BtnSupprimerNoteVisiteur.Name = "BtnSupprimerNoteVisiteur";
             this.BtnSupprimerNoteVisiteur.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.BtnSupprimerNoteVisiteur.Size = new System.Drawing.Size(200, 74);
             this.BtnSupprimerNoteVisiteur.TabIndex = 3;
-            this.BtnSupprimerNoteVisiteur.Text = "  Supprimer une note";
+            this.BtnSupprimerNoteVisiteur.Text = " Supprimer une note";
             this.BtnSupprimerNoteVisiteur.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnSupprimerNoteVisiteur.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnSupprimerNoteVisiteur.UseVisualStyleBackColor = true;
@@ -461,7 +461,7 @@
             this.BtnAjouterNoteFraisVisiteur.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.BtnAjouterNoteFraisVisiteur.Size = new System.Drawing.Size(200, 74);
             this.BtnAjouterNoteFraisVisiteur.TabIndex = 2;
-            this.BtnAjouterNoteFraisVisiteur.Text = "  Ajouter des notes de frais";
+            this.BtnAjouterNoteFraisVisiteur.Text = " Ajouter une note";
             this.BtnAjouterNoteFraisVisiteur.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnAjouterNoteFraisVisiteur.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnAjouterNoteFraisVisiteur.UseVisualStyleBackColor = true;
@@ -592,14 +592,14 @@
             this.ControlBox = false;
             this.Controls.Add(this.panelMenu);
             this.Controls.Add(this.PanelAffichage);
-            this.Controls.Add(this.panelEnTete);
+            this.Controls.Add(this.PanelEnTete);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "TableauBord";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.panelEnTete.ResumeLayout(false);
-            this.panelEnTete.PerformLayout();
+            this.PanelEnTete.ResumeLayout(false);
+            this.PanelEnTete.PerformLayout();
             this.PanelUtilsateurLogo.ResumeLayout(false);
             this.PanelUtilsateurLogo.PerformLayout();
             this.PanelComptable.ResumeLayout(false);
@@ -614,7 +614,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panelEnTete;
+        private System.Windows.Forms.Panel PanelEnTete;
         private System.Windows.Forms.Panel PanelAffichage;
         private System.Windows.Forms.Button btnQuitter;
         private System.Windows.Forms.Label LblTitre;

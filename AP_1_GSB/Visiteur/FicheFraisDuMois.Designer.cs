@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FicheFraisDuMois));
             this.DateFicheFrais = new System.Windows.Forms.Label();
             this.listViewForfait = new System.Windows.Forms.ListView();
@@ -58,6 +61,13 @@
             this.label5 = new System.Windows.Forms.Label();
             this.rBtnRefusPartiel = new System.Windows.Forms.RadioButton();
             this.btnRetour = new System.Windows.Forms.Button();
+            this.DataGridNoteFrais = new System.Windows.Forms.DataGridView();
+            this.Typefraisforfait = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuantiteDG = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DateDGFrais = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EtatDG = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.JustiDG = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridNoteFrais)).BeginInit();
             this.SuspendLayout();
             // 
             // DateFicheFrais
@@ -205,7 +215,7 @@
             this.BtnPDF.FlatAppearance.BorderSize = 0;
             this.BtnPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnPDF.ForeColor = System.Drawing.Color.White;
-            this.BtnPDF.Location = new System.Drawing.Point(838, 43);
+            this.BtnPDF.Location = new System.Drawing.Point(838, 31);
             this.BtnPDF.Name = "BtnPDF";
             this.BtnPDF.Size = new System.Drawing.Size(121, 40);
             this.BtnPDF.TabIndex = 6;
@@ -234,7 +244,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(784, 625);
+            this.label4.Location = new System.Drawing.Point(784, 615);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(122, 16);
             this.label4.TabIndex = 9;
@@ -243,7 +253,7 @@
             // LblTotalHorsForfait
             // 
             this.LblTotalHorsForfait.AutoSize = true;
-            this.LblTotalHorsForfait.Location = new System.Drawing.Point(912, 625);
+            this.LblTotalHorsForfait.Location = new System.Drawing.Point(912, 615);
             this.LblTotalHorsForfait.Name = "LblTotalHorsForfait";
             this.LblTotalHorsForfait.Size = new System.Drawing.Size(43, 16);
             this.LblTotalHorsForfait.TabIndex = 10;
@@ -252,11 +262,11 @@
             // LblTotalFiche
             // 
             this.LblTotalFiche.AutoSize = true;
-            this.LblTotalFiche.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.LblTotalFiche.Font = new System.Drawing.Font("Century Gothic", 11.12727F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblTotalFiche.ForeColor = System.Drawing.Color.Firebrick;
-            this.LblTotalFiche.Location = new System.Drawing.Point(902, 647);
+            this.LblTotalFiche.Location = new System.Drawing.Point(903, 669);
             this.LblTotalFiche.Name = "LblTotalFiche";
-            this.LblTotalFiche.Size = new System.Drawing.Size(57, 21);
+            this.LblTotalFiche.Size = new System.Drawing.Size(60, 21);
             this.LblTotalFiche.TabIndex = 11;
             this.LblTotalFiche.Text = "label5";
             // 
@@ -265,7 +275,7 @@
             this.LblEmployeInfo.AutoSize = true;
             this.LblEmployeInfo.Font = new System.Drawing.Font("Century Gothic", 10.78182F);
             this.LblEmployeInfo.ForeColor = System.Drawing.Color.Black;
-            this.LblEmployeInfo.Location = new System.Drawing.Point(40, 27);
+            this.LblEmployeInfo.Location = new System.Drawing.Point(384, 50);
             this.LblEmployeInfo.Name = "LblEmployeInfo";
             this.LblEmployeInfo.Size = new System.Drawing.Size(205, 21);
             this.LblEmployeInfo.TabIndex = 13;
@@ -317,11 +327,11 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.label5.Font = new System.Drawing.Font("Century Gothic", 11.12727F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Firebrick;
-            this.label5.Location = new System.Drawing.Point(793, 647);
+            this.label5.Location = new System.Drawing.Point(794, 669);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(103, 21);
+            this.label5.Size = new System.Drawing.Size(111, 21);
             this.label5.TabIndex = 12;
             this.label5.Text = "Total fiche : ";
             // 
@@ -342,7 +352,7 @@
             this.btnRetour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRetour.ForeColor = System.Drawing.Color.White;
             this.btnRetour.Image = global::AP_1_GSB.Properties.Resources.icons8_retour_25;
-            this.btnRetour.Location = new System.Drawing.Point(879, 671);
+            this.btnRetour.Location = new System.Drawing.Point(47, 23);
             this.btnRetour.Name = "btnRetour";
             this.btnRetour.Size = new System.Drawing.Size(80, 39);
             this.btnRetour.TabIndex = 18;
@@ -351,12 +361,101 @@
             this.btnRetour.UseVisualStyleBackColor = false;
             this.btnRetour.Click += new System.EventHandler(this.btnRetour_Click);
             // 
+            // DataGridNoteFrais
+            // 
+            this.DataGridNoteFrais.AllowUserToAddRows = false;
+            this.DataGridNoteFrais.AllowUserToDeleteRows = false;
+            this.DataGridNoteFrais.AllowUserToOrderColumns = true;
+            this.DataGridNoteFrais.AllowUserToResizeColumns = false;
+            this.DataGridNoteFrais.AllowUserToResizeRows = false;
+            this.DataGridNoteFrais.BackgroundColor = System.Drawing.Color.White;
+            this.DataGridNoteFrais.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DataGridNoteFrais.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 7.854546F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridNoteFrais.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.DataGridNoteFrais.ColumnHeadersHeight = 30;
+            this.DataGridNoteFrais.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Typefraisforfait,
+            this.QuantiteDG,
+            this.DateDGFrais,
+            this.EtatDG,
+            this.JustiDG});
+            this.DataGridNoteFrais.EnableHeadersVisualStyles = false;
+            this.DataGridNoteFrais.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.DataGridNoteFrais.Location = new System.Drawing.Point(44, 130);
+            this.DataGridNoteFrais.Name = "DataGridNoteFrais";
+            this.DataGridNoteFrais.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(61)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridNoteFrais.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.DataGridNoteFrais.RowHeadersVisible = false;
+            this.DataGridNoteFrais.RowHeadersWidth = 47;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightSlateGray;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            this.DataGridNoteFrais.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.DataGridNoteFrais.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DataGridNoteFrais.Size = new System.Drawing.Size(915, 225);
+            this.DataGridNoteFrais.TabIndex = 20;
+            // 
+            // Typefraisforfait
+            // 
+            this.Typefraisforfait.Frozen = true;
+            this.Typefraisforfait.HeaderText = "Typefraisforfait";
+            this.Typefraisforfait.MinimumWidth = 6;
+            this.Typefraisforfait.Name = "Typefraisforfait";
+            this.Typefraisforfait.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Typefraisforfait.Width = 200;
+            // 
+            // QuantiteDG
+            // 
+            this.QuantiteDG.Frozen = true;
+            this.QuantiteDG.HeaderText = "Quantité";
+            this.QuantiteDG.MinimumWidth = 6;
+            this.QuantiteDG.Name = "QuantiteDG";
+            // 
+            // DateDGFrais
+            // 
+            this.DateDGFrais.Frozen = true;
+            this.DateDGFrais.HeaderText = "Date";
+            this.DateDGFrais.MinimumWidth = 6;
+            this.DateDGFrais.Name = "DateDGFrais";
+            this.DateDGFrais.Width = 150;
+            // 
+            // EtatDG
+            // 
+            this.EtatDG.Frozen = true;
+            this.EtatDG.HeaderText = "Etat";
+            this.EtatDG.MinimumWidth = 6;
+            this.EtatDG.Name = "EtatDG";
+            this.EtatDG.Width = 200;
+            // 
+            // JustiDG
+            // 
+            this.JustiDG.Frozen = true;
+            this.JustiDG.HeaderText = "Justificatif";
+            this.JustiDG.MinimumWidth = 6;
+            this.JustiDG.Name = "JustiDG";
+            this.JustiDG.Width = 300;
+            // 
             // FicheFraisDuMois
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1000, 722);
+            this.Controls.Add(this.DataGridNoteFrais);
             this.Controls.Add(this.rBtnRefusPartiel);
             this.Controls.Add(this.btnRetour);
             this.Controls.Add(this.lblEtat);
@@ -382,6 +481,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FicheFraisDuMois";
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridNoteFrais)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -418,5 +518,11 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnRetour;
         private System.Windows.Forms.RadioButton rBtnRefusPartiel;
+        private System.Windows.Forms.DataGridView DataGridNoteFrais;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Typefraisforfait;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QuantiteDG;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DateDGFrais;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EtatDG;
+        private System.Windows.Forms.DataGridViewTextBoxColumn JustiDG;
     }
 }

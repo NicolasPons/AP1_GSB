@@ -125,6 +125,7 @@
             // 
             // ComboBoxSelectionForfaitHorsForfait
             // 
+            this.ComboBoxSelectionForfaitHorsForfait.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxSelectionForfaitHorsForfait.FormattingEnabled = true;
             this.ComboBoxSelectionForfaitHorsForfait.Items.AddRange(new object[] {
             "Frais forfait",
@@ -137,6 +138,7 @@
             // 
             // ComboBoxTypeForfait
             // 
+            this.ComboBoxTypeForfait.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxTypeForfait.FormattingEnabled = true;
             this.ComboBoxTypeForfait.Location = new System.Drawing.Point(210, 148);
             this.ComboBoxTypeForfait.Name = "ComboBoxTypeForfait";

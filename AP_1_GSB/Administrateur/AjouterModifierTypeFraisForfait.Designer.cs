@@ -107,7 +107,7 @@
             this.typeFraisForfaitBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.typeFraisForfaitBindingNavigator.Name = "typeFraisForfaitBindingNavigator";
             this.typeFraisForfaitBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.typeFraisForfaitBindingNavigator.Size = new System.Drawing.Size(311, 26);
+            this.typeFraisForfaitBindingNavigator.Size = new System.Drawing.Size(311, 29);
             this.typeFraisForfaitBindingNavigator.TabIndex = 0;
             this.typeFraisForfaitBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -117,7 +117,7 @@
             this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(26, 23);
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(26, 26);
             this.bindingNavigatorAddNewItem.Text = "Ajouter nouveau";
             // 
             // typeFraisForfaitBindingSource
@@ -127,7 +127,7 @@
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(44, 23);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(44, 26);
             this.bindingNavigatorCountItem.Text = "de {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Nombre total d\'éléments";
             // 
@@ -137,7 +137,7 @@
             this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
             this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(26, 23);
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(26, 26);
             this.bindingNavigatorDeleteItem.Text = "Supprimer";
             // 
             // bindingNavigatorMoveFirstItem
@@ -146,7 +146,7 @@
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(26, 23);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(26, 26);
             this.bindingNavigatorMoveFirstItem.Text = "Placer en premier";
             // 
             // bindingNavigatorMovePreviousItem
@@ -155,13 +155,13 @@
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(26, 23);
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(26, 26);
             this.bindingNavigatorMovePreviousItem.Text = "Déplacer vers le haut";
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 26);
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 29);
             // 
             // bindingNavigatorPositionItem
             // 
@@ -176,7 +176,7 @@
             // bindingNavigatorSeparator1
             // 
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 26);
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 29);
             // 
             // bindingNavigatorMoveNextItem
             // 
@@ -184,7 +184,7 @@
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(26, 23);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(26, 26);
             this.bindingNavigatorMoveNextItem.Text = "Déplacer vers le bas";
             // 
             // bindingNavigatorMoveLastItem
@@ -193,13 +193,13 @@
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(26, 23);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(26, 26);
             this.bindingNavigatorMoveLastItem.Text = "Placer en dernier";
             // 
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 26);
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 29);
             // 
             // typeFraisForfaitBindingNavigatorSaveItem
             // 
@@ -207,7 +207,7 @@
             this.typeFraisForfaitBindingNavigatorSaveItem.Enabled = false;
             this.typeFraisForfaitBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("typeFraisForfaitBindingNavigatorSaveItem.Image")));
             this.typeFraisForfaitBindingNavigatorSaveItem.Name = "typeFraisForfaitBindingNavigatorSaveItem";
-            this.typeFraisForfaitBindingNavigatorSaveItem.Size = new System.Drawing.Size(26, 23);
+            this.typeFraisForfaitBindingNavigatorSaveItem.Size = new System.Drawing.Size(26, 26);
             this.typeFraisForfaitBindingNavigatorSaveItem.Text = "Enregistrer les données";
             // 
             // montantNumericUpDown

@@ -31,6 +31,8 @@ namespace AP_1_GSB
                 ReleaseCapture();
                 SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
+
+
     }
 
   

@@ -233,6 +233,16 @@ namespace AP_1_GSB.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_effacer_25 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-effacer-25", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_fermer_la_fenêtre_25 {
             get {
                 object obj = ResourceManager.GetObject("icons8-fermer-la-fenêtre-25", resourceCulture);

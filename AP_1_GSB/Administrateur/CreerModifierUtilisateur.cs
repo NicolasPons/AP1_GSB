@@ -63,19 +63,13 @@ namespace AP_1_GSB.Administrateur
                 if (utilisateur != null)
                 {
                     ValidationContext context = new ValidationContext(utilisateur, null, null);
-                    IList<ValidationResult> erreurs = new List<ValidationResult>();
+                    List<ValidationResult> erreurs = new List<ValidationResult>();
                     if (!Validator.TryValidateObject(utilisateur, context, erreurs, true))
                     {
-                        List<String> MessagesErreur = new List<String>();
                         string MessageAAfficher = " ";
                         foreach (ValidationResult erreur in erreurs)
                         {
-                            MessagesErreur.Add("- " + erreur.ErrorMessage + " \n ");
-                        }
-
-                        for (int i = 0; i < erreurs.Count; i ++)
-                        {
-                             MessageAAfficher = "" + MessageAAfficher + MessagesErreur[i];
+                            MessageAAfficher = MessageAAfficher + "- " + erreur.ErrorMessage + " \n ";
                         }
                         MessageBox.Show("Il y a une ou plusieurs saisies incorrects : \n" + MessageAAfficher);
                     }
@@ -94,19 +88,13 @@ namespace AP_1_GSB.Administrateur
                 if (utilisateurModifie != null)
                 {
                     ValidationContext context = new ValidationContext(utilisateurModifie, null, null);
-                    IList<ValidationResult> erreurs = new List<ValidationResult>();
+                    List<ValidationResult> erreurs = new List<ValidationResult>();
                     if (!Validator.TryValidateObject(utilisateurModifie, context, erreurs, true))
                     {
-                        List<String> MessagesErreur = new List<String>();
                         string MessageAAfficher = " ";
                         foreach (ValidationResult erreur in erreurs)
                         {
-                            MessagesErreur.Add("- " + erreur.ErrorMessage + " \n ");
-                        }
-
-                        for (int i = 0; i < erreurs.Count; i++)
-                        {
-                            MessageAAfficher = "" + MessageAAfficher + MessagesErreur[i];
+                            MessageAAfficher = MessageAAfficher + "- " + erreur.ErrorMessage + " \n ";
                         }
                         MessageBox.Show("Il y a une ou plusieurs saisies incorrects : \n" + MessageAAfficher);
                     }
