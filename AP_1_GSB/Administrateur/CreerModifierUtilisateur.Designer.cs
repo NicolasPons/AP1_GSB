@@ -49,9 +49,6 @@
             this.roleComboBox = new System.Windows.Forms.ComboBox();
             this.emailTextBox = new System.Windows.Forms.TextBox();
             this.fichesFraisBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.utilisateurBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.utilisateurBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
-            this.utilisateurBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             identifiantLabel = new System.Windows.Forms.Label();
             mdpLabel = new System.Windows.Forms.Label();
             nomLabel = new System.Windows.Forms.Label();
@@ -61,9 +58,6 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.utilisateurBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fichesFraisBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.utilisateurBindingSource2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.utilisateurBindingSource3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.utilisateurBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // identifiantLabel
@@ -242,23 +236,6 @@
             this.emailTextBox.Size = new System.Drawing.Size(121, 20);
             this.emailTextBox.TabIndex = 4;
             // 
-            // fichesFraisBindingSource
-            // 
-            this.fichesFraisBindingSource.DataMember = "FichesFrais";
-            this.fichesFraisBindingSource.DataSource = this.utilisateurBindingSource2;
-            // 
-            // utilisateurBindingSource2
-            // 
-            this.utilisateurBindingSource2.DataSource = typeof(AP_1_GSB.Data.Models.Utilisateur);
-            // 
-            // utilisateurBindingSource3
-            // 
-            this.utilisateurBindingSource3.DataSource = typeof(AP_1_GSB.Data.Models.Utilisateur);
-            // 
-            // utilisateurBindingSource1
-            // 
-            this.utilisateurBindingSource1.DataSource = typeof(AP_1_GSB.Data.Models.Utilisateur);
-            // 
             // CreerModifierUtilisateur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -286,9 +263,6 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.utilisateurBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fichesFraisBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.utilisateurBindingSource2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.utilisateurBindingSource3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.utilisateurBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -308,9 +282,6 @@
         private System.Windows.Forms.ComboBox roleComboBox;
         private System.Windows.Forms.TextBox emailTextBox;
         private System.Windows.Forms.Button btnQuitter;
-        private System.Windows.Forms.BindingSource utilisateurBindingSource3;
-        private System.Windows.Forms.BindingSource utilisateurBindingSource1;
-        private System.Windows.Forms.BindingSource utilisateurBindingSource2;
         private System.Windows.Forms.BindingSource fichesFraisBindingSource;
     }
 }

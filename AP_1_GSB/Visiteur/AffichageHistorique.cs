@@ -16,37 +16,25 @@ namespace AP_1_GSB.Visiteur
     {
         Utilisateur utilisateur;
         public event Action degriserBouton;
-        public AffichageHistorique(Utilisateur utilisateur, FicheFrais ficheEnCours, ListView ListfraisForfait, ListView ListfraisHorsForfait)
+        public AffichageHistorique(Utilisateur utilisateur, FicheFrais ficheEnCours)
         {
             InitializeComponent();
             this.utilisateur = utilisateur;
             AfficherFicheFrais(utilisateur);
+
+
         }
 
-            //FicheFraisService.CreerPDF(utilisateur, ficheEnCours, ListfraisForfait, ListfraisHorsForfait);
-        
-
-        public void AfficherFicheFrais (Utilisateur utilisateur)
+        public void AfficherFicheFrais(Utilisateur utilisateur)
         {
-            string etat = "";
-            
-            foreach (FicheFrais fiche in utilisateur.FichesFrais)
+            DataGridHistorique.Columns["IdFiche"].Visible = false;
+            DataGridHistorique.Rows.Clear();
+            List<string[]> listRow = FicheFraisService.HistoriqueFiches(utilisateur);
+            foreach (string[] row in listRow)
             {
-                float montant = FicheFraisService.CalculerTotalFiche(fiche);
-
-                DateTime dtFin = DateFin(fiche);
-                ListViewItem item = new ListViewItem("Du " +fiche.Date.ToString("dd MMMM yyyy")+ " au " + dtFin.ToString("dd MMMM yyyy"));
-                item.SubItems.Add(montant.ToString("F2") + "€");
-                item.SubItems.Add(etat = Services.FicheFraisService.EcrireEtatFiche(fiche));
-                listViewFicheFrais.Items.Add(item);
+                DataGridHistorique.Rows.Add(row);
             }
         }
-        public DateTime DateFin(FicheFrais fiche)
-        {
-            DateTime dtFin = new DateTime(fiche.Date.Year, fiche.Date.Month + 1, 10);
-            return dtFin;
-        }
-
         private void BtnRetour_Click(object sender, EventArgs e)
         {
             degriserBouton?.Invoke();
@@ -54,3 +42,4 @@ namespace AP_1_GSB.Visiteur
         }
     }
 }
+

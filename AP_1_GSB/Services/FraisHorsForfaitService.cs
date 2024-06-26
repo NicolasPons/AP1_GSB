@@ -7,7 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using System.Drawing;   
+using System.Drawing;
+using iText.Kernel.Pdf.Action;
 
 namespace AP_1_GSB.Services
 {
@@ -104,7 +105,7 @@ namespace AP_1_GSB.Services
 
             Data.SqlConnection.ConnexionSql();
 
-            string RequeteModificationFraisHorsForfait = "UPDATE `frais_hors_forfait` SET `description` = @description, `montant` = @montant, `date` = @date, `id_justificatif` = @idJustificatif " +
+            string RequeteModificationFraisHorsForfait = "UPDATE `frais_hors_forfait` SET `description` = @description, `montant` = @montant, `date` = @date, `etat` = @etat, `id_justificatif` = @idJustificatif " +
                                                      "WHERE `id_hors_forfait` = @IdFrais";
 
             try
@@ -114,6 +115,7 @@ namespace AP_1_GSB.Services
                     cmd.Parameters.AddWithValue("@description", frais.Description);
                     cmd.Parameters.AddWithValue("@montant", frais.Montant);
                     cmd.Parameters.AddWithValue("@date", frais.Date);
+                    cmd.Parameters.AddWithValue("@etat", "ATTENTE");
                     cmd.Parameters.AddWithValue("@idJustificatif", idJustificatif == 0 ? (object)DBNull.Value : idJustificatif);
                     cmd.Parameters.AddWithValue("@IdFrais", frais.IdFraisHorsForfait);
 

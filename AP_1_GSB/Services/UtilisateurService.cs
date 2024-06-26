@@ -128,8 +128,8 @@ namespace AP_1_GSB.Services
                     cmd.Parameters.AddWithValue("@prenom", utilisateur.Prenom);
                     cmd.Parameters.AddWithValue("@email", utilisateur.Email);
                     cmd.Parameters.AddWithValue("@role", role);
-                    if (cmd.ExecuteNonQuery() >0)
-                       return true;    
+                    if (cmd.ExecuteNonQuery() > 0)
+                        return true;
                 }
             }
             catch (MySqlException e)
@@ -161,8 +161,8 @@ namespace AP_1_GSB.Services
                     cmd.Parameters.AddWithValue("@email", utilisateur.Email);
                     cmd.Parameters.AddWithValue("@role", role);
                     cmd.Parameters.AddWithValue("@id", utilisateur.IdUtilisateur);
-                    if (cmd.ExecuteNonQuery() >0)
-                       return true;    
+                    if (cmd.ExecuteNonQuery() > 0)
+                        return true;
                 }
             }
             catch (MySqlException e)
@@ -203,5 +203,6 @@ namespace AP_1_GSB.Services
                 Data.SqlConnection.DeconnexionSql();
             }
         }
+
     }
 }

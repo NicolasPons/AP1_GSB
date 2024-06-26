@@ -610,7 +610,7 @@ namespace AP_1_GSB.Services
             return etat;
         }
 
-        public static void CreerPDF(Utilisateur utilisateur, FicheFrais ficheEnCours, ListView listForfait, ListView listHorsForfait)
+        public static void CreerPDF(Utilisateur utilisateur, FicheFrais ficheEnCours, DataGridView dataGridFraisForfait, DataGridView dataGridHorsForfait)
         {
             string dest = "fiche_de_frais.pdf";
 
@@ -635,7 +635,7 @@ namespace AP_1_GSB.Services
                 Cell headerCellInfoTable = new Cell(1, 2).Add(new Paragraph("Information fiche"))
                                .SetTextAlignment(TextAlignment.CENTER)
                                .SetFontColor(iText.Kernel.Colors.ColorConstants.WHITE)
-                               .SetBackgroundColor(iText.Kernel.Colors.ColorConstants.BLUE)
+                               .SetBackgroundColor(new DeviceRgb(45, 45, 61))
                                .SetBold();
                 noteFraisTable.AddHeaderCell(headerCellInfoTable);
 
@@ -646,14 +646,13 @@ namespace AP_1_GSB.Services
 
                 document.Add(noteFraisTable);
 
-
                 document.Add(new Paragraph("\n"));
 
                 Table collaborateurTable = new Table(UnitValue.CreatePercentArray(new float[] { 1, 1 }));
                 Cell headerCellEmploye = new Cell(1, 2).Add(new Paragraph("Information employé"))
                                .SetTextAlignment(TextAlignment.CENTER)
                                .SetFontColor(iText.Kernel.Colors.ColorConstants.WHITE)
-                               .SetBackgroundColor(iText.Kernel.Colors.ColorConstants.BLUE)
+                               .SetBackgroundColor(new DeviceRgb(45, 45, 61))
                                .SetBold();
                 collaborateurTable.AddHeaderCell(headerCellEmploye);
                 collaborateurTable.AddCell(CreerCellule("Nom"));
@@ -696,12 +695,15 @@ namespace AP_1_GSB.Services
                 fraisForfaitTable.AddHeaderCell(CreerEnTete("Date"));
                 fraisForfaitTable.AddHeaderCell(CreerEnTete("Etat"));
 
-                foreach (ListViewItem item in listForfait.Items)
+                foreach (DataGridViewRow row in dataGridFraisForfait.Rows)
                 {
-                    fraisForfaitTable.AddCell(CreerCellule(item.SubItems[0].Text));
-                    fraisForfaitTable.AddCell(CreerCellule(item.SubItems[1].Text));
-                    fraisForfaitTable.AddCell(CreerCellule(item.SubItems[2].Text));
-                    fraisForfaitTable.AddCell(CreerCellule(item.SubItems[3].Text));
+                    if (!row.IsNewRow)
+                    {
+                        fraisForfaitTable.AddCell(CreerCellule(row.Cells[0].Value?.ToString() ?? ""));
+                        fraisForfaitTable.AddCell(CreerCellule(row.Cells[1].Value?.ToString() ?? ""));
+                        fraisForfaitTable.AddCell(CreerCellule(row.Cells[2].Value?.ToString() ?? ""));
+                        fraisForfaitTable.AddCell(CreerCellule(row.Cells[3].Value?.ToString() ?? ""));
+                    }
                 }
 
                 document.Add(fraisForfaitTable);
@@ -718,12 +720,15 @@ namespace AP_1_GSB.Services
                 fraisHorsForfaitTable.AddHeaderCell(CreerEnTete("Date"));
                 fraisHorsForfaitTable.AddHeaderCell(CreerEnTete("Etat"));
 
-                foreach (ListViewItem item in listHorsForfait.Items)
+                foreach (DataGridViewRow row in dataGridHorsForfait.Rows)
                 {
-                    fraisHorsForfaitTable.AddCell(CreerCellule(item.SubItems[0].Text));
-                    fraisHorsForfaitTable.AddCell(CreerCellule(item.SubItems[1].Text));
-                    fraisHorsForfaitTable.AddCell(CreerCellule(item.SubItems[2].Text));
-                    fraisHorsForfaitTable.AddCell(CreerCellule(item.SubItems[3].Text));
+                    if (!row.IsNewRow)
+                    {
+                        fraisHorsForfaitTable.AddCell(CreerCellule(row.Cells[0].Value?.ToString() ?? ""));
+                        fraisHorsForfaitTable.AddCell(CreerCellule(row.Cells[1].Value?.ToString() ?? ""));
+                        fraisHorsForfaitTable.AddCell(CreerCellule(row.Cells[2].Value?.ToString() ?? ""));
+                        fraisHorsForfaitTable.AddCell(CreerCellule(row.Cells[3].Value?.ToString() ?? ""));
+                    }
                 }
 
                 document.Add(fraisHorsForfaitTable);
@@ -731,13 +736,42 @@ namespace AP_1_GSB.Services
             }
             Process.Start(new ProcessStartInfo(dest) { UseShellExecute = true });
         }
+
         private static Cell CreerCellule(string contenu)
         {
             return new Cell().Add(new Paragraph(contenu).SetFontSize(10));
         }
+
         private static Cell CreerEnTete(string contenu)
         {
-            return new Cell().Add(new Paragraph(contenu).SetFontSize(10).SetBold()).SetBackgroundColor(iText.Kernel.Colors.ColorConstants.BLUE).SetFontColor(iText.Kernel.Colors.ColorConstants.WHITE);
+            return new Cell().Add(new Paragraph(contenu).SetFontSize(10).SetBold()).SetBackgroundColor(new DeviceRgb(45, 45, 61)).SetFontColor(iText.Kernel.Colors.ColorConstants.WHITE);
+        }
+
+        public static List<string[]> HistoriqueFiches(Utilisateur utilisateur)
+        {
+            List<string[]> listRow = new List<string[]>();
+            foreach (FicheFrais fiche in utilisateur.FichesFrais)
+            {
+                DateTime dateFin = DateFin(fiche);
+                string DateAffichage = ("Du " + fiche.Date.ToString("dd MMMM yyyy") + " au " + dateFin.ToString("dd MMMM yyyy"));
+                float montant = FicheFraisService.CalculerTotalFiche(fiche);
+                string MontantEuros = "" + montant.ToString("F2") + " €";
+                string etat = "";
+                string[] row = new string[]
+                {
+                            DateAffichage,
+                            etat = EcrireEtatFiche(fiche),
+                            MontantEuros,
+                            fiche.IdFicheFrais.ToString(),
+                };
+                listRow.Add(row);
+            }
+            return listRow;
+        }
+        public static DateTime DateFin(FicheFrais fiche)
+        {
+            DateTime dtFin = new DateTime(fiche.Date.Year, fiche.Date.Month + 1, 10);
+            return dtFin;
         }
 
     }

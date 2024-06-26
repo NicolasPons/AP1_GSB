@@ -1,4 +1,6 @@
 ﻿using AP_1_GSB.Data.Models;
+using AP_1_GSB.Services;
+using AP_1_GSB.Visiteur;
 using iText.Layout.Splitting;
 using System;
 using System.Collections.Generic;
@@ -14,42 +16,98 @@ namespace AP_1_GSB.Comptable
 {
     public partial class InterfacePrincipaleComptable : Form
     {
-        List<Utilisateur> visiteurs; 
+        Utilisateur visiteur;
+        List<Utilisateur> visiteurs;
+        int IdFicheAModifier;
         public InterfacePrincipaleComptable()
         {
             InitializeComponent();
-            ChargerListView();
+            ChargerDataGrid();
         }
 
-        private void ChargerListView()
+        public void ChargerDataGrid()
         {
             visiteurs = new List<Utilisateur>();
             visiteurs = Services.UtilisateurService.RecupererVisiteurs();
+            DataGridVisiteur.Rows.Clear();
+            DataGridVisiteur.Columns["IdVisiteur"].Visible = false;
+            DataGridFiche.Columns["IdFiche"].Visible = false;
 
-            foreach (Utilisateur visisteur in visiteurs)
+            foreach (Utilisateur visiteur in visiteurs)
             {
-                ListViewItem item = new ListViewItem(visisteur.Nom);
-                item.SubItems.Add(visisteur.Prenom);
-                item.SubItems.Add(visisteur.Email);
-                item.Tag = visisteur.IdUtilisateur;
-                listViewAffichageUtilisateurs.Items.Add(item);
+
+                string[] row = new string[]
+                {
+                    visiteur.Nom,
+                    visiteur.Prenom,
+                    visiteur.Email,
+                    visiteur.IdUtilisateur.ToString(),
+
+                };
+
+                DataGridVisiteur.Rows.Add(row);
+            }
+            DataGridVisiteur.ClearSelection();
+        }
+
+        public void MettreAJourDataGridFiche()
+        {
+            int idVisiteurSelectionne = int.Parse(DataGridVisiteur.SelectedRows[0].Cells[3].Value.ToString());
+            visiteur = visiteurs.FirstOrDefault(v => v.IdUtilisateur == idVisiteurSelectionne);
+            if (visiteur != null)
+            {
+                visiteur = FicheFraisService.RecupererFichesFrais(visiteur);
+
+                DataGridFiche.Rows.Clear();
+                List<string[]> listRow = FicheFraisService.HistoriqueFiches(visiteur);
+                foreach (string[] row in listRow)
+                {
+                    DataGridFiche.Rows.Add(row);
+                }
             }
         }
 
-        public Utilisateur SelectionnerVisiteur()
+        public (FicheFrais, Utilisateur) SelectionnerFicher()
         {
-            Utilisateur employe;
-            if (listViewAffichageUtilisateurs.SelectedItems.Count > 0)
+            FicheFrais fiche;
+            if (DataGridFiche.SelectedRows.Count > 0)
             {
-                int IdEmploye = (int)listViewAffichageUtilisateurs.SelectedItems[0].Tag;
-                employe = visiteurs.FirstOrDefault( v => v.IdUtilisateur == IdEmploye ); 
-                return employe;
+                IdFicheAModifier = int.Parse(DataGridFiche.SelectedRows[0].Cells[3].Value.ToString());
+                fiche = visiteur.FichesFrais.FirstOrDefault(f => f.IdFicheFrais == IdFicheAModifier);
+                if (fiche != null)
+                {
+                    return (fiche, visiteur);
+                }
+                else
+                {
+                    MessageBox.Show("Fiche non trouvée.");
+                    return (null, null);
+                }
             }
             else
             {
-                MessageBox.Show("Veuillez sélectionner un employé");
-                return null;
+                MessageBox.Show("Veuillez sélectionner une fiche");
+                return (null, null);
             }
         }
+
+
+
+        private void DataGridVisiteur_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                MettreAJourDataGridFiche();
+            }
+        }
+        private void DataGridVisiteur_MouseClick(object sender, MouseEventArgs e)
+        {
+            DataGridFiche.ClearSelection();
+        }
+
+        //private void DataGridFiche_MouseClick(object sender, MouseEventArgs e)
+        //{
+        //    DataGridVisiteur.ClearSelection();
+        //}
     }
 }

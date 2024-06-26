@@ -31,43 +31,41 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FicheFraisDuMois));
             this.DateFicheFrais = new System.Windows.Forms.Label();
-            this.listViewForfait = new System.Windows.Forms.ListView();
-            this.Type_frais_forfait = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Quantite = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Etat = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Justificatif = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.listViewHorsForfait = new System.Windows.Forms.ListView();
-            this.Description = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Montant = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.DateHorsForfait = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.EtatHF = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.JustificatifHF = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.BtnPDF = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.LblTotalForfait = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.LblTotalHorsForfait = new System.Windows.Forms.Label();
-            this.LblTotalFiche = new System.Windows.Forms.Label();
             this.LblEmployeInfo = new System.Windows.Forms.Label();
             this.rBtnEnCours = new System.Windows.Forms.RadioButton();
             this.rBtnAccepter = new System.Windows.Forms.RadioButton();
             this.rBtnRefuser = new System.Windows.Forms.RadioButton();
             this.lblEtat = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.rBtnRefusPartiel = new System.Windows.Forms.RadioButton();
             this.btnRetour = new System.Windows.Forms.Button();
-            this.DataGridNoteFrais = new System.Windows.Forms.DataGridView();
+            this.DataGridFraisForfait = new System.Windows.Forms.DataGridView();
             this.Typefraisforfait = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QuantiteDG = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateDGFrais = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EtatDG = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.JustiDG = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridNoteFrais)).BeginInit();
+            this.IdFraisforfait = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataGridHorsForfait = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdFraisHorsForfait = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RBtnEnAttente = new System.Windows.Forms.RadioButton();
+            this.LblTotalForfait = new System.Windows.Forms.Label();
+            this.LblTotalFiche = new System.Windows.Forms.Label();
+            this.LblTotalHorsForfait = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridFraisForfait)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridHorsForfait)).BeginInit();
             this.SuspendLayout();
             // 
             // DateFicheFrais
@@ -81,108 +79,6 @@
             this.DateFicheFrais.Size = new System.Drawing.Size(442, 23);
             this.DateFicheFrais.TabIndex = 0;
             this.DateFicheFrais.Text = "Fiche de frais du 10 Mai 2025 au 00 Mai 2025";
-            // 
-            // listViewForfait
-            // 
-            this.listViewForfait.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Type_frais_forfait,
-            this.Quantite,
-            this.Date,
-            this.Etat,
-            this.Justificatif});
-            this.listViewForfait.FullRowSelect = true;
-            this.listViewForfait.GridLines = true;
-            this.listViewForfait.HideSelection = false;
-            this.listViewForfait.Location = new System.Drawing.Point(44, 100);
-            this.listViewForfait.Margin = new System.Windows.Forms.Padding(4);
-            this.listViewForfait.MultiSelect = false;
-            this.listViewForfait.Name = "listViewForfait";
-            this.listViewForfait.Size = new System.Drawing.Size(915, 225);
-            this.listViewForfait.TabIndex = 1;
-            this.listViewForfait.UseCompatibleStateImageBehavior = false;
-            this.listViewForfait.View = System.Windows.Forms.View.Details;
-            this.listViewForfait.Enter += new System.EventHandler(this.listViewForfait_Enter);
-            // 
-            // Type_frais_forfait
-            // 
-            this.Type_frais_forfait.Text = "Type frais forfait";
-            this.Type_frais_forfait.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Type_frais_forfait.Width = 150;
-            // 
-            // Quantite
-            // 
-            this.Quantite.Text = "Quantite";
-            this.Quantite.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Quantite.Width = 100;
-            // 
-            // Date
-            // 
-            this.Date.Text = "Date";
-            this.Date.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Date.Width = 180;
-            // 
-            // Etat
-            // 
-            this.Etat.Text = "Etat";
-            this.Etat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Etat.Width = 210;
-            // 
-            // Justificatif
-            // 
-            this.Justificatif.Text = "Justificatif";
-            this.Justificatif.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Justificatif.Width = 265;
-            // 
-            // listViewHorsForfait
-            // 
-            this.listViewHorsForfait.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Description,
-            this.Montant,
-            this.DateHorsForfait,
-            this.EtatHF,
-            this.JustificatifHF});
-            this.listViewHorsForfait.FullRowSelect = true;
-            this.listViewHorsForfait.GridLines = true;
-            this.listViewHorsForfait.HideSelection = false;
-            this.listViewHorsForfait.Location = new System.Drawing.Point(44, 386);
-            this.listViewHorsForfait.Margin = new System.Windows.Forms.Padding(4);
-            this.listViewHorsForfait.MultiSelect = false;
-            this.listViewHorsForfait.Name = "listViewHorsForfait";
-            this.listViewHorsForfait.Size = new System.Drawing.Size(915, 225);
-            this.listViewHorsForfait.TabIndex = 2;
-            this.listViewHorsForfait.UseCompatibleStateImageBehavior = false;
-            this.listViewHorsForfait.View = System.Windows.Forms.View.Details;
-            this.listViewHorsForfait.Enter += new System.EventHandler(this.listViewHorsForfait_Enter);
-            // 
-            // Description
-            // 
-            this.Description.Text = "Description";
-            this.Description.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Description.Width = 200;
-            // 
-            // Montant
-            // 
-            this.Montant.Text = "Montant";
-            this.Montant.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Montant.Width = 105;
-            // 
-            // DateHorsForfait
-            // 
-            this.DateHorsForfait.Text = "Date";
-            this.DateHorsForfait.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.DateHorsForfait.Width = 228;
-            // 
-            // EtatHF
-            // 
-            this.EtatHF.Text = "Etat";
-            this.EtatHF.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.EtatHF.Width = 147;
-            // 
-            // JustificatifHF
-            // 
-            this.JustificatifHF.Text = "Justificatif";
-            this.JustificatifHF.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.JustificatifHF.Width = 230;
             // 
             // label1
             // 
@@ -223,53 +119,6 @@
             this.BtnPDF.UseVisualStyleBackColor = false;
             this.BtnPDF.Click += new System.EventHandler(this.BtnPDF_Click);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(808, 330);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(98, 16);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Total frais forfait : ";
-            // 
-            // LblTotalForfait
-            // 
-            this.LblTotalForfait.AutoSize = true;
-            this.LblTotalForfait.Location = new System.Drawing.Point(912, 331);
-            this.LblTotalForfait.Name = "LblTotalForfait";
-            this.LblTotalForfait.Size = new System.Drawing.Size(43, 16);
-            this.LblTotalForfait.TabIndex = 8;
-            this.LblTotalForfait.Text = "12320€";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(784, 615);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(122, 16);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Total frais hors forfait : ";
-            // 
-            // LblTotalHorsForfait
-            // 
-            this.LblTotalHorsForfait.AutoSize = true;
-            this.LblTotalHorsForfait.Location = new System.Drawing.Point(912, 615);
-            this.LblTotalHorsForfait.Name = "LblTotalHorsForfait";
-            this.LblTotalHorsForfait.Size = new System.Drawing.Size(43, 16);
-            this.LblTotalHorsForfait.TabIndex = 10;
-            this.LblTotalHorsForfait.Text = "12320€";
-            // 
-            // LblTotalFiche
-            // 
-            this.LblTotalFiche.AutoSize = true;
-            this.LblTotalFiche.Font = new System.Drawing.Font("Century Gothic", 11.12727F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblTotalFiche.ForeColor = System.Drawing.Color.Firebrick;
-            this.LblTotalFiche.Location = new System.Drawing.Point(903, 669);
-            this.LblTotalFiche.Name = "LblTotalFiche";
-            this.LblTotalFiche.Size = new System.Drawing.Size(60, 21);
-            this.LblTotalFiche.TabIndex = 11;
-            this.LblTotalFiche.Text = "label5";
-            // 
             // LblEmployeInfo
             // 
             this.LblEmployeInfo.AutoSize = true;
@@ -290,7 +139,6 @@
             this.rBtnEnCours.TabIndex = 14;
             this.rBtnEnCours.Text = "En cours";
             this.rBtnEnCours.UseVisualStyleBackColor = true;
-            this.rBtnEnCours.CheckedChanged += new System.EventHandler(this.rBtnEnCours_CheckedChanged);
             // 
             // rBtnAccepter
             // 
@@ -318,22 +166,11 @@
             // 
             this.lblEtat.AutoSize = true;
             this.lblEtat.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.lblEtat.Location = new System.Drawing.Point(43, 646);
+            this.lblEtat.Location = new System.Drawing.Point(40, 647);
             this.lblEtat.Name = "lblEtat";
             this.lblEtat.Size = new System.Drawing.Size(261, 22);
             this.lblEtat.TabIndex = 17;
             this.lblEtat.Text = "etat : à définir dans le code";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Century Gothic", 11.12727F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.Firebrick;
-            this.label5.Location = new System.Drawing.Point(794, 669);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(111, 21);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "Total fiche : ";
             // 
             // rBtnRefusPartiel
             // 
@@ -361,36 +198,40 @@
             this.btnRetour.UseVisualStyleBackColor = false;
             this.btnRetour.Click += new System.EventHandler(this.btnRetour_Click);
             // 
-            // DataGridNoteFrais
+            // DataGridFraisForfait
             // 
-            this.DataGridNoteFrais.AllowUserToAddRows = false;
-            this.DataGridNoteFrais.AllowUserToDeleteRows = false;
-            this.DataGridNoteFrais.AllowUserToOrderColumns = true;
-            this.DataGridNoteFrais.AllowUserToResizeColumns = false;
-            this.DataGridNoteFrais.AllowUserToResizeRows = false;
-            this.DataGridNoteFrais.BackgroundColor = System.Drawing.Color.White;
-            this.DataGridNoteFrais.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.DataGridNoteFrais.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.DataGridFraisForfait.AllowUserToAddRows = false;
+            this.DataGridFraisForfait.AllowUserToDeleteRows = false;
+            this.DataGridFraisForfait.AllowUserToResizeColumns = false;
+            this.DataGridFraisForfait.AllowUserToResizeRows = false;
+            this.DataGridFraisForfait.BackgroundColor = System.Drawing.Color.White;
+            this.DataGridFraisForfait.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DataGridFraisForfait.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 7.854546F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridNoteFrais.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.DataGridNoteFrais.ColumnHeadersHeight = 30;
-            this.DataGridNoteFrais.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DataGridFraisForfait.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.DataGridFraisForfait.ColumnHeadersHeight = 30;
+            this.DataGridFraisForfait.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Typefraisforfait,
             this.QuantiteDG,
             this.DateDGFrais,
             this.EtatDG,
-            this.JustiDG});
-            this.DataGridNoteFrais.EnableHeadersVisualStyles = false;
-            this.DataGridNoteFrais.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.DataGridNoteFrais.Location = new System.Drawing.Point(44, 130);
-            this.DataGridNoteFrais.Name = "DataGridNoteFrais";
-            this.DataGridNoteFrais.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.JustiDG,
+            this.IdFraisforfait});
+            this.DataGridFraisForfait.EnableHeadersVisualStyles = false;
+            this.DataGridFraisForfait.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.DataGridFraisForfait.Location = new System.Drawing.Point(44, 103);
+            this.DataGridFraisForfait.MaximumSize = new System.Drawing.Size(915, 225);
+            this.DataGridFraisForfait.MinimumSize = new System.Drawing.Size(915, 225);
+            this.DataGridFraisForfait.MultiSelect = false;
+            this.DataGridFraisForfait.Name = "DataGridFraisForfait";
+            this.DataGridFraisForfait.ReadOnly = true;
+            this.DataGridFraisForfait.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -398,23 +239,25 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(61)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridNoteFrais.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.DataGridNoteFrais.RowHeadersVisible = false;
-            this.DataGridNoteFrais.RowHeadersWidth = 47;
+            this.DataGridFraisForfait.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.DataGridFraisForfait.RowHeadersVisible = false;
+            this.DataGridFraisForfait.RowHeadersWidth = 47;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightSlateGray;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.DataGridNoteFrais.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.DataGridNoteFrais.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridNoteFrais.Size = new System.Drawing.Size(915, 225);
-            this.DataGridNoteFrais.TabIndex = 20;
+            this.DataGridFraisForfait.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.DataGridFraisForfait.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DataGridFraisForfait.Size = new System.Drawing.Size(915, 225);
+            this.DataGridFraisForfait.TabIndex = 20;
+            this.DataGridFraisForfait.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DataGridFraisForfait_MouseClick);
             // 
             // Typefraisforfait
             // 
             this.Typefraisforfait.Frozen = true;
-            this.Typefraisforfait.HeaderText = "Typefraisforfait";
+            this.Typefraisforfait.HeaderText = "Type frais forfait";
             this.Typefraisforfait.MinimumWidth = 6;
             this.Typefraisforfait.Name = "Typefraisforfait";
+            this.Typefraisforfait.ReadOnly = true;
             this.Typefraisforfait.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Typefraisforfait.Width = 200;
             // 
@@ -424,6 +267,8 @@
             this.QuantiteDG.HeaderText = "Quantité";
             this.QuantiteDG.MinimumWidth = 6;
             this.QuantiteDG.Name = "QuantiteDG";
+            this.QuantiteDG.ReadOnly = true;
+            this.QuantiteDG.Width = 115;
             // 
             // DateDGFrais
             // 
@@ -431,6 +276,7 @@
             this.DateDGFrais.HeaderText = "Date";
             this.DateDGFrais.MinimumWidth = 6;
             this.DateDGFrais.Name = "DateDGFrais";
+            this.DateDGFrais.ReadOnly = true;
             this.DateDGFrais.Width = 150;
             // 
             // EtatDG
@@ -439,6 +285,7 @@
             this.EtatDG.HeaderText = "Etat";
             this.EtatDG.MinimumWidth = 6;
             this.EtatDG.Name = "EtatDG";
+            this.EtatDG.ReadOnly = true;
             this.EtatDG.Width = 200;
             // 
             // JustiDG
@@ -447,7 +294,167 @@
             this.JustiDG.HeaderText = "Justificatif";
             this.JustiDG.MinimumWidth = 6;
             this.JustiDG.Name = "JustiDG";
+            this.JustiDG.ReadOnly = true;
             this.JustiDG.Width = 300;
+            // 
+            // IdFraisforfait
+            // 
+            this.IdFraisforfait.Frozen = true;
+            this.IdFraisforfait.HeaderText = "IdFraisforfait";
+            this.IdFraisforfait.MinimumWidth = 6;
+            this.IdFraisforfait.Name = "IdFraisforfait";
+            this.IdFraisforfait.ReadOnly = true;
+            this.IdFraisforfait.Width = 115;
+            // 
+            // DataGridHorsForfait
+            // 
+            this.DataGridHorsForfait.AllowUserToAddRows = false;
+            this.DataGridHorsForfait.AllowUserToDeleteRows = false;
+            this.DataGridHorsForfait.AllowUserToResizeColumns = false;
+            this.DataGridHorsForfait.AllowUserToResizeRows = false;
+            this.DataGridHorsForfait.BackgroundColor = System.Drawing.Color.White;
+            this.DataGridHorsForfait.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DataGridHorsForfait.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridHorsForfait.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.DataGridHorsForfait.ColumnHeadersHeight = 30;
+            this.DataGridHorsForfait.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.IdFraisHorsForfait});
+            this.DataGridHorsForfait.EnableHeadersVisualStyles = false;
+            this.DataGridHorsForfait.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.DataGridHorsForfait.Location = new System.Drawing.Point(44, 387);
+            this.DataGridHorsForfait.MaximumSize = new System.Drawing.Size(915, 225);
+            this.DataGridHorsForfait.MinimumSize = new System.Drawing.Size(915, 225);
+            this.DataGridHorsForfait.MultiSelect = false;
+            this.DataGridHorsForfait.Name = "DataGridHorsForfait";
+            this.DataGridHorsForfait.ReadOnly = true;
+            this.DataGridHorsForfait.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Century Gothic", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(61)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridHorsForfait.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.DataGridHorsForfait.RowHeadersVisible = false;
+            this.DataGridHorsForfait.RowHeadersWidth = 47;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.LightSlateGray;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            this.DataGridHorsForfait.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.DataGridHorsForfait.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DataGridHorsForfait.Size = new System.Drawing.Size(915, 225);
+            this.DataGridHorsForfait.TabIndex = 21;
+            this.DataGridHorsForfait.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DataGridHorsForfait_MouseClick);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.Frozen = true;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Description";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn1.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.Frozen = true;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Montant";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 115;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.Frozen = true;
+            this.dataGridViewTextBoxColumn3.HeaderText = "Date";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.Frozen = true;
+            this.dataGridViewTextBoxColumn4.HeaderText = "Etat";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.Frozen = true;
+            this.dataGridViewTextBoxColumn5.HeaderText = "Justificatif";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 300;
+            // 
+            // IdFraisHorsForfait
+            // 
+            this.IdFraisHorsForfait.Frozen = true;
+            this.IdFraisHorsForfait.HeaderText = "IdFraisHorsForfait";
+            this.IdFraisHorsForfait.MinimumWidth = 6;
+            this.IdFraisHorsForfait.Name = "IdFraisHorsForfait";
+            this.IdFraisHorsForfait.ReadOnly = true;
+            this.IdFraisHorsForfait.Width = 115;
+            // 
+            // RBtnEnAttente
+            // 
+            this.RBtnEnAttente.AutoSize = true;
+            this.RBtnEnAttente.Location = new System.Drawing.Point(365, 652);
+            this.RBtnEnAttente.Name = "RBtnEnAttente";
+            this.RBtnEnAttente.Size = new System.Drawing.Size(81, 20);
+            this.RBtnEnAttente.TabIndex = 22;
+            this.RBtnEnAttente.Text = "En Attente";
+            this.RBtnEnAttente.UseVisualStyleBackColor = true;
+            // 
+            // LblTotalForfait
+            // 
+            this.LblTotalForfait.AutoSize = true;
+            this.LblTotalForfait.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LblTotalForfait.Location = new System.Drawing.Point(832, 345);
+            this.LblTotalForfait.Name = "LblTotalForfait";
+            this.LblTotalForfait.Size = new System.Drawing.Size(125, 18);
+            this.LblTotalForfait.TabIndex = 23;
+            this.LblTotalForfait.Text = "Total forfait : 1444,34 €";
+            // 
+            // LblTotalFiche
+            // 
+            this.LblTotalFiche.AutoSize = true;
+            this.LblTotalFiche.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LblTotalFiche.Font = new System.Drawing.Font("Century Gothic", 9.818182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblTotalFiche.ForeColor = System.Drawing.Color.Firebrick;
+            this.LblTotalFiche.Location = new System.Drawing.Point(795, 652);
+            this.LblTotalFiche.Name = "LblTotalFiche";
+            this.LblTotalFiche.Size = new System.Drawing.Size(153, 20);
+            this.LblTotalFiche.TabIndex = 24;
+            this.LblTotalFiche.Text = "Total fiche : 757,45 €";
+            // 
+            // LblTotalHorsForfait
+            // 
+            this.LblTotalHorsForfait.AutoSize = true;
+            this.LblTotalHorsForfait.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LblTotalHorsForfait.Location = new System.Drawing.Point(814, 629);
+            this.LblTotalHorsForfait.Name = "LblTotalHorsForfait";
+            this.LblTotalHorsForfait.Size = new System.Drawing.Size(143, 18);
+            this.LblTotalHorsForfait.TabIndex = 25;
+            this.LblTotalHorsForfait.Text = "Total hors forfait : 145,34 €";
             // 
             // FicheFraisDuMois
             // 
@@ -455,7 +462,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1000, 722);
-            this.Controls.Add(this.DataGridNoteFrais);
+            this.Controls.Add(this.LblTotalHorsForfait);
+            this.Controls.Add(this.LblTotalFiche);
+            this.Controls.Add(this.LblTotalForfait);
+            this.Controls.Add(this.RBtnEnAttente);
+            this.Controls.Add(this.DataGridHorsForfait);
+            this.Controls.Add(this.DataGridFraisForfait);
             this.Controls.Add(this.rBtnRefusPartiel);
             this.Controls.Add(this.btnRetour);
             this.Controls.Add(this.lblEtat);
@@ -463,17 +475,9 @@
             this.Controls.Add(this.rBtnAccepter);
             this.Controls.Add(this.rBtnEnCours);
             this.Controls.Add(this.LblEmployeInfo);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.LblTotalFiche);
-            this.Controls.Add(this.LblTotalHorsForfait);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.LblTotalForfait);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.BtnPDF);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.listViewHorsForfait);
-            this.Controls.Add(this.listViewForfait);
             this.Controls.Add(this.DateFicheFrais);
             this.Font = new System.Drawing.Font("Century Gothic", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.Black;
@@ -481,7 +485,8 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FicheFraisDuMois";
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridNoteFrais)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridFraisForfait)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridHorsForfait)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -490,39 +495,33 @@
         #endregion
 
         private System.Windows.Forms.Label DateFicheFrais;
-        private System.Windows.Forms.ListView listViewForfait;
-        private System.Windows.Forms.ColumnHeader Type_frais_forfait;
-        private System.Windows.Forms.ColumnHeader Quantite;
-        private System.Windows.Forms.ColumnHeader Date;
-        private System.Windows.Forms.ColumnHeader Justificatif;
-        private System.Windows.Forms.ListView listViewHorsForfait;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ColumnHeader Etat;
-        private System.Windows.Forms.ColumnHeader Description;
-        private System.Windows.Forms.ColumnHeader Montant;
-        private System.Windows.Forms.ColumnHeader DateHorsForfait;
-        private System.Windows.Forms.ColumnHeader EtatHF;
-        private System.Windows.Forms.ColumnHeader JustificatifHF;
         private System.Windows.Forms.Button BtnPDF;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label LblTotalForfait;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label LblTotalHorsForfait;
-        private System.Windows.Forms.Label LblTotalFiche;
         private System.Windows.Forms.Label LblEmployeInfo;
         private System.Windows.Forms.RadioButton rBtnEnCours;
         private System.Windows.Forms.RadioButton rBtnAccepter;
         private System.Windows.Forms.RadioButton rBtnRefuser;
         private System.Windows.Forms.Label lblEtat;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnRetour;
         private System.Windows.Forms.RadioButton rBtnRefusPartiel;
-        private System.Windows.Forms.DataGridView DataGridNoteFrais;
+        private System.Windows.Forms.DataGridView DataGridFraisForfait;
+        private System.Windows.Forms.DataGridView DataGridHorsForfait;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdFraisHorsForfait;
         private System.Windows.Forms.DataGridViewTextBoxColumn Typefraisforfait;
         private System.Windows.Forms.DataGridViewTextBoxColumn QuantiteDG;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateDGFrais;
         private System.Windows.Forms.DataGridViewTextBoxColumn EtatDG;
         private System.Windows.Forms.DataGridViewTextBoxColumn JustiDG;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdFraisforfait;
+        private System.Windows.Forms.RadioButton RBtnEnAttente;
+        private System.Windows.Forms.Label LblTotalForfait;
+        private System.Windows.Forms.Label LblTotalFiche;
+        private System.Windows.Forms.Label LblTotalHorsForfait;
     }
 }

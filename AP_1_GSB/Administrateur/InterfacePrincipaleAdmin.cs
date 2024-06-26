@@ -1,5 +1,6 @@
 ﻿using AP_1_GSB.Data.Models;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,19 +14,21 @@ namespace AP_1_GSB.Administrateur
 {
     public partial class InterfacePrincipaleAdmin : Form
     {
-        public ListView ListViewTypeFraisForfait => this.listViewTypeFraisForfait;
-        public ListView ListViewUtilisateur => this.listViewUtilisateur;
+        public DataGridView dataGridUtilisateurs => this.DataGridUtilisateurs;
+        public DataGridView dataGridTypeFrais => this.DataGridTypeFrais;
 
         public InterfacePrincipaleAdmin()
         {
             InitializeComponent();
-            MettreAJourListViewAdmin();
+            MettreAJourDataGrids();
         }
 
-        public void MettreAJourListViewAdmin()
+        public void MettreAJourDataGrids()
         {
-            listViewTypeFraisForfait.Items.Clear();
-            listViewUtilisateur.Items.Clear();
+            DataGridUtilisateurs.Rows.Clear();
+            DataGridTypeFrais.Rows.Clear();
+            DataGridUtilisateurs.Columns["IdUtilisateur"].Visible = false;
+            DataGridTypeFrais.Columns["IdTypeFrais"].Visible = false;
 
             List<TypeFraisForfait> TypesFraisForfait = new List<TypeFraisForfait>();
             List<Utilisateur> utilisateurs = new List<Utilisateur>();
@@ -33,23 +36,35 @@ namespace AP_1_GSB.Administrateur
             TypesFraisForfait = Services.TypeFraisForfaitService.RecupererTypeFraisForfait();
             utilisateurs = Services.UtilisateurService.RecupererUtilisateurs();
 
-            foreach (TypeFraisForfait type in  TypesFraisForfait)
+            foreach (TypeFraisForfait type in TypesFraisForfait)
             {
-                ListViewItem item = new ListViewItem(type.Nom);
-                item.SubItems.Add(type.Montant.ToString());
-                item.Tag = type.IdFraisForfait;
-                listViewTypeFraisForfait.Items.Add(item);
+                string[] row = new string[]
+                {
+                    type.Nom,
+                    type.Montant.ToString(),
+                    type.IdFraisForfait.ToString(),
+                };
+                DataGridTypeFrais.Rows.Add(row);
+
             }
 
             foreach (Utilisateur utilisateur in utilisateurs)
             {
-                ListViewItem item = new ListViewItem(utilisateur.Nom);
-                item.SubItems.Add(utilisateur.Prenom);
-                item.SubItems.Add(utilisateur.Identifiant);
-                item.SubItems.Add(utilisateur.Role.ToString());
-                item.Tag = utilisateur.IdUtilisateur;
-                listViewUtilisateur.Items.Add(item);
+                string[] row = new string[]
+                {
+                     utilisateur.Nom,
+                     utilisateur.Prenom,
+                     utilisateur.Email,
+                     utilisateur.Role.ToString(),
+                     utilisateur.IdUtilisateur.ToString(),
+                };
+                DataGridUtilisateurs.Rows.Add(row);
             }
+        }
+
+        private void DataGridTypeFrais_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

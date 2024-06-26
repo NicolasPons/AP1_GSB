@@ -27,7 +27,7 @@ namespace AP_1_GSB
         }
 
 
-        private void BtnSeConnecterCliquer(object sender, EventArgs e)
+        private void BtnSeConnecterClickr(object sender, EventArgs e)
         {
             Utilisateur utilisateur = Services.AuthentificationService.VerificationUtilisateur(saisieUtilisateur.Text, saisieMdp.Text);
 

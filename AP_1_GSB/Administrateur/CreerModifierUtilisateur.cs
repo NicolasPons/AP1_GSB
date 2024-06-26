@@ -50,8 +50,7 @@ namespace AP_1_GSB.Administrateur
             nomTextBox.DataBindings.Add("Text", utilisateurBindingSource, "Nom", true, DataSourceUpdateMode.OnPropertyChanged);
             prenomTextBox.DataBindings.Add("Text", utilisateurBindingSource, "Prenom", true, DataSourceUpdateMode.OnPropertyChanged);
             emailTextBox.DataBindings.Add("Text", utilisateurBindingSource, "Email", true, DataSourceUpdateMode.OnPropertyChanged);
-            roleComboBox.DataBindings.Add("SelectedItem", utilisateurBindingSource, "Role", true, DataSourceUpdateMode.OnPropertyChanged);
-
+            roleComboBox.DataBindings.Add("SelectedIndex", utilisateurBindingSource, "Role", true, DataSourceUpdateMode.OnPropertyChanged); 
         }
 
         private void BtnValider_Click(object sender, EventArgs e)

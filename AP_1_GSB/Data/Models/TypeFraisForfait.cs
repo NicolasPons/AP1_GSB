@@ -12,7 +12,8 @@ namespace AP_1_GSB.Data.Models
     public class TypeFraisForfait
     {
         public int IdFraisForfait { get; set; }
-        [Required, RegularExpression(@"^[a-zA-Z]+( [a-zA-Z]+)*$", ErrorMessage ="Veuillez saisir un nom de frais valide")] 
+        [Required, RegularExpression(@"^[a-zA-ZÀ-ÿ]+( [a-zA-ZÀ-ÿ]+)*$", ErrorMessage = "Veuillez saisir un nom de frais valide")]
+
         public string Nom { get; set; }
         [Required]
         [Range (0, 5000)]
