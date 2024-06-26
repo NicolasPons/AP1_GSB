@@ -152,7 +152,7 @@ namespace AP_1_GSB.Visiteur
         private void BtnJustificatif_Click(object sender, EventArgs e)
         {
             OpenFileDialog justificatif = new OpenFileDialog();
-            justificatif.Filter = "Fichiers PDF|*.pdf|Fichiers JPEG|*.jpg;*.jpeg|PNG Image|*.png";
+            justificatif.Filter = "Fichiers JPEG|*.jpg;*.jpeg|PNG Image|*.png";
             justificatif.Title = "Sélectionnez un justificatif";
             justificatif.Multiselect = false;
 

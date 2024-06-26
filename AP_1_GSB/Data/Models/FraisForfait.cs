@@ -10,7 +10,8 @@ namespace AP_1_GSB.Data.Models
     public class FraisForfait
     {
         public int IdFraisForfait { get; set; }
-
+        [Required]
+        [Range(1, 5000)]
         public int Quantite { get; set; }
         public DateTime Date { get; set; }
         public EtatFraisForfait Etat { get; set; }

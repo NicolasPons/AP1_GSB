@@ -210,7 +210,7 @@ namespace AP_1_GSB.Visiteur
             int idFraisASupprimer = 0;
             FraisHorsForfait FraisASupprimer = null;
             idFraisASupprimer = int.Parse(DataGridHorsForfait.SelectedRows[0].Cells[5].Value.ToString());
-            DataGridFraisForfait.Rows.RemoveAt(DataGridHorsForfait.SelectedRows[0].Index);
+            DataGridHorsForfait.Rows.RemoveAt(DataGridHorsForfait.SelectedRows[0].Index);
             FraisASupprimer = ficheEnCours.FraisHorsForfaits.Find(f => f.IdFraisHorsForfait == idFraisASupprimer);
 
 
@@ -463,6 +463,7 @@ namespace AP_1_GSB.Visiteur
                 ficheEnCours.Etat = EtatFicheFrais.Accepter;
                 ChangerStatutRadioBtn(false, true, false, false);
                 rBtnRefusPartiel.Enabled = false;
+                rBtnEnCours.Enabled = false;
             }
         }
         private void rBtnRefuser_CheckedChanged(object sender, EventArgs e)
@@ -486,6 +487,7 @@ namespace AP_1_GSB.Visiteur
                 ficheEnCours.Etat = EtatFicheFrais.Refuser;
                 ChangerStatutRadioBtn(false, false, true, false);
                 rBtnRefusPartiel.Enabled = false;
+                rBtnEnCours.Enabled = false;
             }
         }
 

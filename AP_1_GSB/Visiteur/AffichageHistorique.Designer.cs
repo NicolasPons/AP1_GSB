@@ -98,7 +98,7 @@
             this.IdFiche});
             this.DataGridHistorique.EnableHeadersVisualStyles = false;
             this.DataGridHistorique.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.DataGridHistorique.Location = new System.Drawing.Point(222, 115);
+            this.DataGridHistorique.Location = new System.Drawing.Point(265, 114);
             this.DataGridHistorique.MultiSelect = false;
             this.DataGridHistorique.Name = "DataGridHistorique";
             this.DataGridHistorique.ReadOnly = true;
@@ -118,7 +118,7 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
             this.DataGridHistorique.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DataGridHistorique.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridHistorique.Size = new System.Drawing.Size(558, 278);
+            this.DataGridHistorique.Size = new System.Drawing.Size(442, 203);
             this.DataGridHistorique.TabIndex = 24;
             // 
             // DateFiche
