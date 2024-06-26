@@ -36,8 +36,6 @@ namespace AP_1_GSB
                 switch (utilisateur.Role)
                 {
                     case UtilisateurRole.Visiteur:
-                        //test test = new test();
-                        //test.Show();
                         TableauBord TableauBordUtilisateur = new TableauBord(utilisateur, this);
                         TableauBordUtilisateur.Show();
                         break;

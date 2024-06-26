@@ -27,22 +27,35 @@ namespace AP_1_GSB.Services
 
             string requete = "DELETE FROM frais_hors_forfait  WHERE id_hors_forfait = @IdFraisHorsForfait";
 
-            using (MySqlCommand cmd = new MySqlCommand(requete, Data.SqlConnection.Connection))
+            try
             {
-                cmd.Parameters.AddWithValue("@IdFraisHorsForfait", IdFrais);
-
-                if (cmd.ExecuteNonQuery() > 0)
+                using (MySqlCommand cmd = new MySqlCommand(requete, Data.SqlConnection.Connection))
                 {
-                    return true;
+                    cmd.Parameters.AddWithValue("@IdFraisHorsForfait", IdFrais);
+
+                    if (cmd.ExecuteNonQuery() > 0)
+                    {
+                        return true;
+                    }
                 }
             }
+            catch(MySqlException ex)
+            {
+                MessageBox.Show("Erreur lors de la connexion à la BD : " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                Data.SqlConnection.DeconnexionSql();
+            }
+
             return false;
         }
 
         public static bool AjouterFraisHorsForfait(int IdFiche, FraisHorsForfait frais, byte[] FichierBinaire)
         {
 
-            if (frais.Date == new DateTime(1, 1, 1)) 
+            if (frais.Date == new DateTime(1, 1, 1))
             {
                 frais.Date = DateTime.Now;
             }
@@ -92,7 +105,7 @@ namespace AP_1_GSB.Services
         public static bool ModifierFraisHorsForfait(FraisHorsForfait frais, byte[] FichierBinaire)
         {
 
-            if (frais.Date == new DateTime(1, 1, 1)) 
+            if (frais.Date == new DateTime(1, 1, 1))
             {
                 frais.Date = DateTime.Now;
             }
@@ -161,13 +174,13 @@ namespace AP_1_GSB.Services
                     cmd.Parameters.AddWithValue("@idFrais", idFrais);
                     cmd.Parameters.AddWithValue("@etat", etat);
                     cmd.ExecuteNonQuery();
-                  
+
                 }
             }
             catch (MySqlException ex)
             {
                 MessageBox.Show("Erreur lors du refus de frais : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                
+
             }
             finally
             {

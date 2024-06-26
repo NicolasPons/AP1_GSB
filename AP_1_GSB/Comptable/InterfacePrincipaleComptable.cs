@@ -95,19 +95,19 @@ namespace AP_1_GSB.Comptable
 
         private void DataGridVisiteur_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
+            if (e.Button == MouseButtons.Left && DataGridVisiteur.SelectedRows.Count > 0)
             {
                 MettreAJourDataGridFiche();
             }
+            //else
+            //{
+            //    return;
+            //}
         }
         private void DataGridVisiteur_MouseClick(object sender, MouseEventArgs e)
         {
             DataGridFiche.ClearSelection();
         }
 
-        //private void DataGridFiche_MouseClick(object sender, MouseEventArgs e)
-        //{
-        //    DataGridVisiteur.ClearSelection();
-        //}
     }
 }
