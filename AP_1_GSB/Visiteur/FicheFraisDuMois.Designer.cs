@@ -47,23 +47,24 @@
             this.rBtnRefusPartiel = new System.Windows.Forms.RadioButton();
             this.btnRetour = new System.Windows.Forms.Button();
             this.DataGridFraisForfait = new System.Windows.Forms.DataGridView();
+            this.DataGridHorsForfait = new System.Windows.Forms.DataGridView();
+            this.RBtnEnAttente = new System.Windows.Forms.RadioButton();
+            this.LblTotalForfait = new System.Windows.Forms.Label();
+            this.LblTotalFiche = new System.Windows.Forms.Label();
+            this.LblTotalHorsForfait = new System.Windows.Forms.Label();
             this.Typefraisforfait = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QuantiteDG = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MontantForfait = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateDGFrais = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EtatDG = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.JustiDG = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdFraisforfait = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataGridHorsForfait = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdFraisHorsForfait = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RBtnEnAttente = new System.Windows.Forms.RadioButton();
-            this.LblTotalForfait = new System.Windows.Forms.Label();
-            this.LblTotalFiche = new System.Windows.Forms.Label();
-            this.LblTotalHorsForfait = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridFraisForfait)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridHorsForfait)).BeginInit();
             this.SuspendLayout();
@@ -73,7 +74,7 @@
             this.DateFicheFrais.AutoSize = true;
             this.DateFicheFrais.Font = new System.Drawing.Font("Century Gothic", 12.74545F, System.Drawing.FontStyle.Bold);
             this.DateFicheFrais.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
-            this.DateFicheFrais.Location = new System.Drawing.Point(292, 27);
+            this.DateFicheFrais.Location = new System.Drawing.Point(249, 27);
             this.DateFicheFrais.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.DateFicheFrais.Name = "DateFicheFrais";
             this.DateFicheFrais.Size = new System.Drawing.Size(442, 23);
@@ -124,7 +125,7 @@
             this.LblEmployeInfo.AutoSize = true;
             this.LblEmployeInfo.Font = new System.Drawing.Font("Century Gothic", 10.78182F);
             this.LblEmployeInfo.ForeColor = System.Drawing.Color.Black;
-            this.LblEmployeInfo.Location = new System.Drawing.Point(384, 50);
+            this.LblEmployeInfo.Location = new System.Drawing.Point(376, 50);
             this.LblEmployeInfo.Name = "LblEmployeInfo";
             this.LblEmployeInfo.Size = new System.Drawing.Size(205, 21);
             this.LblEmployeInfo.TabIndex = 13;
@@ -219,13 +220,14 @@
             this.DataGridFraisForfait.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Typefraisforfait,
             this.QuantiteDG,
+            this.MontantForfait,
             this.DateDGFrais,
             this.EtatDG,
             this.JustiDG,
             this.IdFraisforfait});
             this.DataGridFraisForfait.EnableHeadersVisualStyles = false;
             this.DataGridFraisForfait.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.DataGridFraisForfait.Location = new System.Drawing.Point(44, 103);
+            this.DataGridFraisForfait.Location = new System.Drawing.Point(44, 99);
             this.DataGridFraisForfait.MaximumSize = new System.Drawing.Size(915, 225);
             this.DataGridFraisForfait.MinimumSize = new System.Drawing.Size(915, 225);
             this.DataGridFraisForfait.MultiSelect = false;
@@ -250,61 +252,6 @@
             this.DataGridFraisForfait.Size = new System.Drawing.Size(915, 225);
             this.DataGridFraisForfait.TabIndex = 20;
             this.DataGridFraisForfait.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DataGridFraisForfait_MouseClick);
-            // 
-            // Typefraisforfait
-            // 
-            this.Typefraisforfait.Frozen = true;
-            this.Typefraisforfait.HeaderText = "Type frais forfait";
-            this.Typefraisforfait.MinimumWidth = 6;
-            this.Typefraisforfait.Name = "Typefraisforfait";
-            this.Typefraisforfait.ReadOnly = true;
-            this.Typefraisforfait.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Typefraisforfait.Width = 200;
-            // 
-            // QuantiteDG
-            // 
-            this.QuantiteDG.Frozen = true;
-            this.QuantiteDG.HeaderText = "Quantité";
-            this.QuantiteDG.MinimumWidth = 6;
-            this.QuantiteDG.Name = "QuantiteDG";
-            this.QuantiteDG.ReadOnly = true;
-            this.QuantiteDG.Width = 115;
-            // 
-            // DateDGFrais
-            // 
-            this.DateDGFrais.Frozen = true;
-            this.DateDGFrais.HeaderText = "Date";
-            this.DateDGFrais.MinimumWidth = 6;
-            this.DateDGFrais.Name = "DateDGFrais";
-            this.DateDGFrais.ReadOnly = true;
-            this.DateDGFrais.Width = 150;
-            // 
-            // EtatDG
-            // 
-            this.EtatDG.Frozen = true;
-            this.EtatDG.HeaderText = "Etat";
-            this.EtatDG.MinimumWidth = 6;
-            this.EtatDG.Name = "EtatDG";
-            this.EtatDG.ReadOnly = true;
-            this.EtatDG.Width = 200;
-            // 
-            // JustiDG
-            // 
-            this.JustiDG.Frozen = true;
-            this.JustiDG.HeaderText = "Justificatif";
-            this.JustiDG.MinimumWidth = 6;
-            this.JustiDG.Name = "JustiDG";
-            this.JustiDG.ReadOnly = true;
-            this.JustiDG.Width = 300;
-            // 
-            // IdFraisforfait
-            // 
-            this.IdFraisforfait.Frozen = true;
-            this.IdFraisforfait.HeaderText = "IdFraisforfait";
-            this.IdFraisforfait.MinimumWidth = 6;
-            this.IdFraisforfait.Name = "IdFraisforfait";
-            this.IdFraisforfait.ReadOnly = true;
-            this.IdFraisforfait.Width = 115;
             // 
             // DataGridHorsForfait
             // 
@@ -359,6 +306,106 @@
             this.DataGridHorsForfait.TabIndex = 21;
             this.DataGridHorsForfait.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DataGridHorsForfait_MouseClick);
             // 
+            // RBtnEnAttente
+            // 
+            this.RBtnEnAttente.AutoSize = true;
+            this.RBtnEnAttente.Location = new System.Drawing.Point(365, 652);
+            this.RBtnEnAttente.Name = "RBtnEnAttente";
+            this.RBtnEnAttente.Size = new System.Drawing.Size(81, 20);
+            this.RBtnEnAttente.TabIndex = 22;
+            this.RBtnEnAttente.Text = "En Attente";
+            this.RBtnEnAttente.UseVisualStyleBackColor = true;
+            // 
+            // LblTotalForfait
+            // 
+            this.LblTotalForfait.AutoSize = true;
+            this.LblTotalForfait.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LblTotalForfait.Location = new System.Drawing.Point(832, 343);
+            this.LblTotalForfait.Name = "LblTotalForfait";
+            this.LblTotalForfait.Size = new System.Drawing.Size(125, 18);
+            this.LblTotalForfait.TabIndex = 23;
+            this.LblTotalForfait.Text = "Total forfait : 1444,34 €";
+            // 
+            // LblTotalFiche
+            // 
+            this.LblTotalFiche.AutoSize = true;
+            this.LblTotalFiche.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LblTotalFiche.Font = new System.Drawing.Font("Century Gothic", 9.818182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblTotalFiche.ForeColor = System.Drawing.Color.Firebrick;
+            this.LblTotalFiche.Location = new System.Drawing.Point(795, 652);
+            this.LblTotalFiche.Name = "LblTotalFiche";
+            this.LblTotalFiche.Size = new System.Drawing.Size(153, 20);
+            this.LblTotalFiche.TabIndex = 24;
+            this.LblTotalFiche.Text = "Total fiche : 757,45 €";
+            // 
+            // LblTotalHorsForfait
+            // 
+            this.LblTotalHorsForfait.AutoSize = true;
+            this.LblTotalHorsForfait.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LblTotalHorsForfait.Location = new System.Drawing.Point(814, 629);
+            this.LblTotalHorsForfait.Name = "LblTotalHorsForfait";
+            this.LblTotalHorsForfait.Size = new System.Drawing.Size(143, 18);
+            this.LblTotalHorsForfait.TabIndex = 25;
+            this.LblTotalHorsForfait.Text = "Total hors forfait : 145,34 €";
+            // 
+            // Typefraisforfait
+            // 
+            this.Typefraisforfait.Frozen = true;
+            this.Typefraisforfait.HeaderText = "Type frais forfait";
+            this.Typefraisforfait.MinimumWidth = 6;
+            this.Typefraisforfait.Name = "Typefraisforfait";
+            this.Typefraisforfait.ReadOnly = true;
+            this.Typefraisforfait.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Typefraisforfait.Width = 180;
+            // 
+            // QuantiteDG
+            // 
+            this.QuantiteDG.Frozen = true;
+            this.QuantiteDG.HeaderText = "Quantité";
+            this.QuantiteDG.MinimumWidth = 6;
+            this.QuantiteDG.Name = "QuantiteDG";
+            this.QuantiteDG.ReadOnly = true;
+            this.QuantiteDG.Width = 60;
+            // 
+            // MontantForfait
+            // 
+            this.MontantForfait.HeaderText = "Montant";
+            this.MontantForfait.MinimumWidth = 6;
+            this.MontantForfait.Name = "MontantForfait";
+            this.MontantForfait.ReadOnly = true;
+            // 
+            // DateDGFrais
+            // 
+            this.DateDGFrais.HeaderText = "Date";
+            this.DateDGFrais.MinimumWidth = 6;
+            this.DateDGFrais.Name = "DateDGFrais";
+            this.DateDGFrais.ReadOnly = true;
+            this.DateDGFrais.Width = 150;
+            // 
+            // EtatDG
+            // 
+            this.EtatDG.HeaderText = "Etat";
+            this.EtatDG.MinimumWidth = 6;
+            this.EtatDG.Name = "EtatDG";
+            this.EtatDG.ReadOnly = true;
+            this.EtatDG.Width = 180;
+            // 
+            // JustiDG
+            // 
+            this.JustiDG.HeaderText = "Justificatif";
+            this.JustiDG.MinimumWidth = 6;
+            this.JustiDG.Name = "JustiDG";
+            this.JustiDG.ReadOnly = true;
+            this.JustiDG.Width = 230;
+            // 
+            // IdFraisforfait
+            // 
+            this.IdFraisforfait.HeaderText = "IdFraisforfait";
+            this.IdFraisforfait.MinimumWidth = 6;
+            this.IdFraisforfait.Name = "IdFraisforfait";
+            this.IdFraisforfait.ReadOnly = true;
+            this.IdFraisforfait.Width = 115;
+            // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.Frozen = true;
@@ -403,7 +450,7 @@
             this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 300;
+            this.dataGridViewTextBoxColumn5.Width = 280;
             // 
             // IdFraisHorsForfait
             // 
@@ -413,48 +460,6 @@
             this.IdFraisHorsForfait.Name = "IdFraisHorsForfait";
             this.IdFraisHorsForfait.ReadOnly = true;
             this.IdFraisHorsForfait.Width = 115;
-            // 
-            // RBtnEnAttente
-            // 
-            this.RBtnEnAttente.AutoSize = true;
-            this.RBtnEnAttente.Location = new System.Drawing.Point(365, 652);
-            this.RBtnEnAttente.Name = "RBtnEnAttente";
-            this.RBtnEnAttente.Size = new System.Drawing.Size(81, 20);
-            this.RBtnEnAttente.TabIndex = 22;
-            this.RBtnEnAttente.Text = "En Attente";
-            this.RBtnEnAttente.UseVisualStyleBackColor = true;
-            // 
-            // LblTotalForfait
-            // 
-            this.LblTotalForfait.AutoSize = true;
-            this.LblTotalForfait.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.LblTotalForfait.Location = new System.Drawing.Point(832, 345);
-            this.LblTotalForfait.Name = "LblTotalForfait";
-            this.LblTotalForfait.Size = new System.Drawing.Size(125, 18);
-            this.LblTotalForfait.TabIndex = 23;
-            this.LblTotalForfait.Text = "Total forfait : 1444,34 €";
-            // 
-            // LblTotalFiche
-            // 
-            this.LblTotalFiche.AutoSize = true;
-            this.LblTotalFiche.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.LblTotalFiche.Font = new System.Drawing.Font("Century Gothic", 9.818182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblTotalFiche.ForeColor = System.Drawing.Color.Firebrick;
-            this.LblTotalFiche.Location = new System.Drawing.Point(795, 652);
-            this.LblTotalFiche.Name = "LblTotalFiche";
-            this.LblTotalFiche.Size = new System.Drawing.Size(153, 20);
-            this.LblTotalFiche.TabIndex = 24;
-            this.LblTotalFiche.Text = "Total fiche : 757,45 €";
-            // 
-            // LblTotalHorsForfait
-            // 
-            this.LblTotalHorsForfait.AutoSize = true;
-            this.LblTotalHorsForfait.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.LblTotalHorsForfait.Location = new System.Drawing.Point(814, 629);
-            this.LblTotalHorsForfait.Name = "LblTotalHorsForfait";
-            this.LblTotalHorsForfait.Size = new System.Drawing.Size(143, 18);
-            this.LblTotalHorsForfait.TabIndex = 25;
-            this.LblTotalHorsForfait.Text = "Total hors forfait : 145,34 €";
             // 
             // FicheFraisDuMois
             // 
@@ -507,21 +512,22 @@
         private System.Windows.Forms.RadioButton rBtnRefusPartiel;
         private System.Windows.Forms.DataGridView DataGridFraisForfait;
         private System.Windows.Forms.DataGridView DataGridHorsForfait;
+        private System.Windows.Forms.RadioButton RBtnEnAttente;
+        private System.Windows.Forms.Label LblTotalForfait;
+        private System.Windows.Forms.Label LblTotalFiche;
+        private System.Windows.Forms.Label LblTotalHorsForfait;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Typefraisforfait;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QuantiteDG;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MontantForfait;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DateDGFrais;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EtatDG;
+        private System.Windows.Forms.DataGridViewTextBoxColumn JustiDG;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdFraisforfait;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdFraisHorsForfait;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Typefraisforfait;
-        private System.Windows.Forms.DataGridViewTextBoxColumn QuantiteDG;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DateDGFrais;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EtatDG;
-        private System.Windows.Forms.DataGridViewTextBoxColumn JustiDG;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdFraisforfait;
-        private System.Windows.Forms.RadioButton RBtnEnAttente;
-        private System.Windows.Forms.Label LblTotalForfait;
-        private System.Windows.Forms.Label LblTotalFiche;
-        private System.Windows.Forms.Label LblTotalHorsForfait;
     }
 }

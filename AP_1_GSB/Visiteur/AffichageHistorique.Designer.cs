@@ -36,8 +36,8 @@
             this.BtnRetour = new System.Windows.Forms.Button();
             this.DataGridHistorique = new System.Windows.Forms.DataGridView();
             this.DateFiche = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MontantFiche = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MontantFiche = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdFiche = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridHistorique)).BeginInit();
             this.SuspendLayout();
@@ -93,8 +93,8 @@
             this.DataGridHistorique.ColumnHeadersHeight = 30;
             this.DataGridHistorique.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DateFiche,
-            this.MontantFiche,
             this.dataGridViewTextBoxColumn1,
+            this.MontantFiche,
             this.IdFiche});
             this.DataGridHistorique.EnableHeadersVisualStyles = false;
             this.DataGridHistorique.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -131,15 +131,6 @@
             this.DateFiche.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.DateFiche.Width = 200;
             // 
-            // MontantFiche
-            // 
-            this.MontantFiche.Frozen = true;
-            this.MontantFiche.HeaderText = "Montant";
-            this.MontantFiche.MinimumWidth = 6;
-            this.MontantFiche.Name = "MontantFiche";
-            this.MontantFiche.ReadOnly = true;
-            this.MontantFiche.Width = 90;
-            // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.Frozen = true;
@@ -148,6 +139,15 @@
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
             this.dataGridViewTextBoxColumn1.Width = 150;
+            // 
+            // MontantFiche
+            // 
+            this.MontantFiche.Frozen = true;
+            this.MontantFiche.HeaderText = "Montant";
+            this.MontantFiche.MinimumWidth = 6;
+            this.MontantFiche.Name = "MontantFiche";
+            this.MontantFiche.ReadOnly = true;
+            this.MontantFiche.Width = 90;
             // 
             // IdFiche
             // 
@@ -183,8 +183,8 @@
         private System.Windows.Forms.Button BtnRetour;
         private System.Windows.Forms.DataGridView DataGridHistorique;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateFiche;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MontantFiche;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MontantFiche;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdFiche;
     }
 }

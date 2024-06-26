@@ -72,7 +72,7 @@ namespace AP_1_GSB
         {
             if (ficheFraisDuMois.dataGridViewForfait.SelectedRows.Count > 0)
             {
-                int idForfait = int.Parse(ficheFraisDuMois.dataGridViewForfait.SelectedRows[0].Cells[5].Value.ToString());
+                int idForfait = int.Parse(ficheFraisDuMois.dataGridViewForfait.SelectedRows[0].Cells[6].Value.ToString());
                 FraisForfait fraisForfait = ficheEnCours.FraisForfaits.FirstOrDefault(item => item.IdFraisForfait == idForfait);
                 if (fraisForfait.justificatif != null)
                 {

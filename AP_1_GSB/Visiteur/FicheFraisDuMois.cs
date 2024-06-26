@@ -91,6 +91,7 @@ namespace AP_1_GSB.Visiteur
 
             foreach (FraisForfait fraisForfait in ficheEnCours.FraisForfaits)
             {
+                float montantForfait = fraisForfait.Quantite * fraisForfait.TypeForfait.Montant;
                 string etatJustificatif = "Pas de justificatif";
                 if (fraisForfait.justificatif != null)
                 {
@@ -101,6 +102,7 @@ namespace AP_1_GSB.Visiteur
                 {
                     fraisForfait.TypeForfait.Nom,
                     fraisForfait.Quantite.ToString(),
+                    montantForfait.ToString() + " €",
                     fraisForfait.Date.ToString("dd/MM/yyyy"),
                     etat,
                     etatJustificatif,
@@ -464,6 +466,7 @@ namespace AP_1_GSB.Visiteur
                 ChangerStatutRadioBtn(false, true, false, false);
                 rBtnRefusPartiel.Enabled = false;
                 rBtnEnCours.Enabled = false;
+                MessageBox.Show("La fiche est accepté");
             }
         }
         private void rBtnRefuser_CheckedChanged(object sender, EventArgs e)
@@ -488,6 +491,7 @@ namespace AP_1_GSB.Visiteur
                 ChangerStatutRadioBtn(false, false, true, false);
                 rBtnRefusPartiel.Enabled = false;
                 rBtnEnCours.Enabled = false;
+                MessageBox.Show("La fiche est refusé");
             }
         }
 

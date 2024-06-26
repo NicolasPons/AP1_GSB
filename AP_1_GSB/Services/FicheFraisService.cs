@@ -639,10 +639,14 @@ namespace AP_1_GSB.Services
                                .SetBold();
                 noteFraisTable.AddHeaderCell(headerCellInfoTable);
 
+                string etat = EcrireEtatFiche(ficheEnCours);
                 noteFraisTable.AddCell(CreerCellule("NOTE DE FRAIS N°"));
                 noteFraisTable.AddCell(CreerCellule("" + ficheEnCours.IdFicheFrais));
-                noteFraisTable.AddCell(CreerCellule("Date de la note de frais"));
+                noteFraisTable.AddCell(CreerCellule("Date de la fiche de frais"));
                 noteFraisTable.AddCell(CreerCellule(ficheEnCours.Date.ToString("dd/MM/yyyy")));
+                noteFraisTable.AddCell(CreerCellule("Etat de la fiche"));
+                noteFraisTable.AddCell(CreerCellule(etat));
+
 
                 document.Add(noteFraisTable);
 
@@ -675,6 +679,7 @@ namespace AP_1_GSB.Services
                 float montantTotal = CalculerTotalFiche(ficheEnCours);
                 float montantRefuse = CalculerMontantFraisRefuser(ficheEnCours);
                 float montantAccepter = montantTotal - montantRefuse;
+                montantAccepter = (float)Math.Round(montantAccepter, 2);
                 DateTime dateRemboursement = new DateTime(ficheEnCours.Date.Year, ficheEnCours.Date.AddMonths(1).Month, 28);
                 Table remboursementTable = new Table(UnitValue.CreatePercentArray(new float[] { 1, 1 }));
                 remboursementTable.AddCell(CreerCellule("Date de remboursement prévue"));
@@ -689,9 +694,10 @@ namespace AP_1_GSB.Services
                     .SetTextAlignment(TextAlignment.CENTER)
                     .SetFontSize(14)
                     .SetBold());
-                Table fraisForfaitTable = new Table(UnitValue.CreatePercentArray(new float[] { 1, 1, 1, 1 })).UseAllAvailableWidth();
+                Table fraisForfaitTable = new Table(UnitValue.CreatePercentArray(new float[] { 1, 1, 1, 1, 1})).UseAllAvailableWidth();
                 fraisForfaitTable.AddHeaderCell(CreerEnTete("Type"));
                 fraisForfaitTable.AddHeaderCell(CreerEnTete("Quantité"));
+                fraisForfaitTable.AddHeaderCell(CreerEnTete("Montant"));
                 fraisForfaitTable.AddHeaderCell(CreerEnTete("Date"));
                 fraisForfaitTable.AddHeaderCell(CreerEnTete("Etat"));
 
@@ -703,6 +709,7 @@ namespace AP_1_GSB.Services
                         fraisForfaitTable.AddCell(CreerCellule(row.Cells[1].Value?.ToString() ?? ""));
                         fraisForfaitTable.AddCell(CreerCellule(row.Cells[2].Value?.ToString() ?? ""));
                         fraisForfaitTable.AddCell(CreerCellule(row.Cells[3].Value?.ToString() ?? ""));
+                        fraisForfaitTable.AddCell(CreerCellule(row.Cells[4].Value?.ToString() ?? ""));
                     }
                 }
 
@@ -759,10 +766,10 @@ namespace AP_1_GSB.Services
                 string etat = "";
                 string[] row = new string[]
                 {
-                            DateAffichage,
-                            etat = EcrireEtatFiche(fiche),
-                            MontantEuros,
-                            fiche.IdFicheFrais.ToString(),
+                    DateAffichage,
+                    etat = EcrireEtatFiche(fiche),
+                    MontantEuros,
+                    fiche.IdFicheFrais.ToString(),
                 };
                 listRow.Add(row);
             }
@@ -773,6 +780,5 @@ namespace AP_1_GSB.Services
             DateTime dtFin = new DateTime(fiche.Date.Year, fiche.Date.Month + 1, 10);
             return dtFin;
         }
-
     }
 }
