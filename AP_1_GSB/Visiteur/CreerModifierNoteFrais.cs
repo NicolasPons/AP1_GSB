@@ -34,9 +34,26 @@ namespace AP_1_GSB.Visiteur
             InitializeComponent();
             ChargerCombobox();
             InitialiserForm(dtFin);
+            MiseEnFormeBtn();
             fraisForfaitBindingSource.DataSource = new FraisForfait();
             fraisHorsForfaitBindingSource.DataSource = new FraisHorsForfait();
         }
+
+        private void MiseEnFormeBtn()
+        {
+            Design design = new Design();
+            BtnValider.MouseEnter += design.Btn_EntrerCurseur;
+            BtnValider.MouseLeave += design.Btn_SortirCurseur;
+            design.MiseEnFormeBoutons(BtnValider);
+            BtnJustificatif.MouseEnter += design.Btn_EntrerCurseur;
+            BtnJustificatif.MouseLeave += design.Btn_SortirCurseur;
+            design.MiseEnFormeBoutons(BtnJustificatif);
+            btnQuitter.MouseEnter += design.Btn_EntrerCurseur;
+            btnQuitter.MouseLeave += design.Btn_SortirCurseur;
+            design.MiseEnFormeBoutons(btnQuitter);
+
+        }
+
 
         public CreerModifierNoteFrais(Utilisateur utilisateur, FicheFrais ficheEnCours, DateTime dtFin, string version, FraisForfait FraisForfaitAModifier)
         {

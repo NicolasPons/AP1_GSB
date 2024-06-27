@@ -57,24 +57,42 @@ namespace AP_1_GSB.Visiteur
             btnRetour.MouseEnter += design.Btn_EntrerCurseur;
             btnRetour.MouseLeave += design.Btn_SortirCurseur;
             design.MiseEnFormeBoutons(btnRetour);
+            BtnAccepterFiche.MouseEnter += design.Btn_EntrerCurseur;
+            BtnAccepterFiche.MouseLeave += design.Btn_SortirCurseur;
+            BtnRefuserFicheComptable.MouseEnter += design.Btn_EntrerCurseur;
+            BtnRefuserFicheComptable.MouseLeave += design.Btn_SortirCurseur;
+            design.MiseEnFormeBoutons(BtnAccepterFiche);
+            design.MiseEnFormeBoutons(BtnRefuserFicheComptable);
         }
 
 
         #region General
+        private void BtnPDF_Click(object sender, EventArgs e)
+        {
+
+            FicheFraisService.CreerPDF(utilisateur, ficheEnCours, DataGridFraisForfait, DataGridHorsForfait);
+        }
+        private void DataGridFraisForfait_MouseClick(object sender, MouseEventArgs e)
+        {
+            DataGridHorsForfait.ClearSelection();
+        }
+
+        private void DataGridHorsForfait_MouseClick(object sender, MouseEventArgs e)
+        {
+            DataGridFraisForfait.ClearSelection();
+        }
+
         private void AfficherInformationForm()
         {
             if (version == "utilisateur")
             {
-                rBtnAccepter.Visible = false;
-                rBtnEnCours.Visible = false;
-                rBtnRefuser.Visible = false;
-                rBtnRefusPartiel.Visible = false;
+                BtnAccepterFiche.Visible = false;
+                BtnRefuserFicheComptable.Visible = false;
                 LblEmployeInfo.Visible = false;
                 btnRetour.Visible = false;
-                RBtnEnAttente.Visible = false;
-
                 string etat = FicheFraisService.EcrireEtatFiche(ficheEnCours);
-                lblEtat.Text = "L'état de la fiche est : " + etat;
+                LblEtatFicheComptable.Location = new Point(45, 643);   
+                VerifierEtatFiche();
             }
             else
             {
@@ -178,7 +196,7 @@ namespace AP_1_GSB.Visiteur
         public void SupprimerFraisForfait()
         {
 
-            int idFraisASupprimer = int.Parse(DataGridFraisForfait.SelectedRows[0].Cells[5].Value.ToString());
+            int idFraisASupprimer = int.Parse(DataGridFraisForfait.SelectedRows[0].Cells[6].Value.ToString());
             DataGridFraisForfait.Rows.RemoveAt(DataGridFraisForfait.SelectedRows[0].Index);
 
             FraisForfait FraisASupprimer = ficheEnCours.FraisForfaits.Find(f => f.IdFraisForfait == idFraisASupprimer);
@@ -244,30 +262,25 @@ namespace AP_1_GSB.Visiteur
             switch (ficheEnCours.Etat)
             {
                 case EtatFicheFrais.Accepter:
-                    rBtnAccepter.Checked = true;
-                    RBtnEnAttente.Enabled = false;
+                    LblEtatFicheComptable.Text = "Etat fiche : Acceptée";
+                    LblEtatFicheComptable.ForeColor = Color.Green;
+
                     break;
                 case EtatFicheFrais.Refuser:
-                    rBtnRefuser.Checked = true;
-                    RBtnEnAttente.Enabled = false;
+                    LblEtatFicheComptable.Text = "Etat fiche : Refusée";
+                    LblEtatFicheComptable.ForeColor = Color.Red;
                     break;
                 case EtatFicheFrais.EnCours:
-                    rBtnEnCours.Checked = true;
-                    RBtnEnAttente.Enabled = false;
+                    LblEtatFicheComptable.Text = "Etat fiche : En cours";
+                    LblEtatFicheComptable.ForeColor = Color.Black;
                     break;
                 case EtatFicheFrais.RefusPartiel:
-                    rBtnRefusPartiel.Checked = true;
-                    rBtnEnCours.Enabled = false;
-                    rBtnAccepter.Enabled = false;
-                    RBtnEnAttente.Enabled = false;
+                    LblEtatFicheComptable.Text = "Etat fiche : Refusée partiellement";
+                    LblEtatFicheComptable.ForeColor = Color.Orange;
                     break;
                 case EtatFicheFrais.HorsDelai:
-                    RBtnEnAttente.Checked = true;
-                    RBtnEnAttente.Enabled = false;
-                    rBtnEnCours.Enabled = false;
-                    rBtnAccepter.Enabled = true;
-                    rBtnRefuser.Enabled = true;
-                    rBtnRefusPartiel.Enabled = false;
+                    LblEtatFicheComptable.Text = "Etat fiche : En attente";
+                    LblEtatFicheComptable.ForeColor = Color.Gray;
                     break;
             }
         }
@@ -277,7 +290,7 @@ namespace AP_1_GSB.Visiteur
             string etat = "REFUSER";
             if (DataGridFraisForfait.SelectedRows.Count > 0)
             {
-                int idFrais = int.Parse(DataGridFraisForfait.SelectedRows[0].Cells[5].Value.ToString());
+                int idFrais = int.Parse(DataGridFraisForfait.SelectedRows[0].Cells[6].Value.ToString());
                 FraisForfait fraisForfait = null;
                 foreach (FraisForfait frais in ficheEnCours.FraisForfaits)
                 {
@@ -303,10 +316,8 @@ namespace AP_1_GSB.Visiteur
                 FicheFraisService.ChangerEtatFiche(ficheEnCours, 5);
                 ficheEnCours.Etat = EtatFicheFrais.RefusPartiel;
                 MettreAJourDataGrids();
-                rBtnRefusPartiel.Checked = true;
-                ChangerStatutRadioBtn(false, false, false);
-                GriserRadioBtn(false, false);
                 VerifierEtatRefuser();
+                VerifierEtatFiche();
             }
             else if (DataGridHorsForfait.SelectedRows.Count > 0)
             {
@@ -322,10 +333,8 @@ namespace AP_1_GSB.Visiteur
                 FicheFraisService.ChangerEtatFiche(ficheEnCours, 5);
                 ficheEnCours.Etat = EtatFicheFrais.RefusPartiel;
                 MettreAJourDataGrids();
-                rBtnRefusPartiel.Checked = true;
-                ChangerStatutRadioBtn(false, false, false);
-                GriserRadioBtn(false, false);
                 VerifierEtatRefuser();
+                VerifierEtatFiche(); 
             }
             else
             {
@@ -338,7 +347,7 @@ namespace AP_1_GSB.Visiteur
             string etat = "ACCEPTER";
             if (DataGridFraisForfait.SelectedRows.Count > 0)
             {
-                int idFrais = int.Parse(DataGridFraisForfait.SelectedRows[0].Cells[5].Value.ToString());
+                int idFrais = int.Parse(DataGridFraisForfait.SelectedRows[0].Cells[6].Value.ToString());
                 FraisForfaitService.ChangerEtatFraisForfat(idFrais, etat);
 
                 FraisForfait fraisForfait = null;
@@ -360,6 +369,8 @@ namespace AP_1_GSB.Visiteur
 
                 MettreAJourDataGrids();
                 VerifierEtatAccepter();
+                VerifierEtatFiche();
+
 
             }
             else if (DataGridHorsForfait.SelectedRows.Count > 0)
@@ -385,6 +396,7 @@ namespace AP_1_GSB.Visiteur
                 }
                 MettreAJourDataGrids();
                 VerifierEtatAccepter();
+                VerifierEtatFiche();
             }
             else
             {
@@ -409,11 +421,6 @@ namespace AP_1_GSB.Visiteur
             if (listeForfait.Count == dataGridViewForfait.RowCount && listeHorsForfait.Count == dataGridViewHorsForfait.RowCount)
             {
                 ficheEnCours.Etat = EtatFicheFrais.Accepter;
-                rBtnAccepter.Checked = true;
-                rBtnEnCours.Enabled = false;
-                rBtnAccepter.Enabled = true;
-                rBtnRefuser.Enabled = true;
-                rBtnRefusPartiel.Enabled = false;
             }
         }
 
@@ -434,115 +441,59 @@ namespace AP_1_GSB.Visiteur
             if (listeForfait.Count == dataGridViewForfait.RowCount && listeHorsForfait.Count == dataGridViewHorsForfait.RowCount)
             {
                 ficheEnCours.Etat = EtatFicheFrais.Refuser;
-                rBtnRefuser.Checked = true;
-                rBtnEnCours.Enabled = false;
-                rBtnAccepter.Enabled = true;
-                rBtnRefuser.Enabled = true;
-                rBtnRefusPartiel.Enabled = false;
             }
         }
+        //En base, pour id_etat : 1 = hors_delai / 2 = en_cours / 3 = accepter / 4 = refuser / 5 = refus_partiel
 
 
-
-        // En base, pour id_etat : 1 = hors_delai / 2 = en_cours / 3 = accepter / 4 = refuser / 5 = refus_partiel
-        private void rBtnAccepter_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rBtnAccepter.Checked == true)
-            {
-                foreach(FraisForfait frais in ficheEnCours.FraisForfaits)
-                {
-                    frais.Etat = EtatFraisForfait.Accepter;
-                    FraisForfaitService.ChangerEtatFraisForfat(frais.IdFraisForfait, "ACCEPTER");
-                }
-
-                foreach (FraisHorsForfait frais in ficheEnCours.FraisHorsForfaits)
-                {
-                    frais.Etat = EtatFraisHorsForfait.Accepter;
-                    FraisHorsForfaitService.ChangerEtatHorsForfait(frais.IdFraisHorsForfait, "ACCEPTER");
-                }
-                MettreAJourDataGrids();
-                FicheFraisService.ChangerEtatFiche(ficheEnCours, 3);
-                ficheEnCours.Etat = EtatFicheFrais.Accepter;
-                ChangerStatutRadioBtn(false, true, false, false);
-                rBtnRefusPartiel.Enabled = false;
-                rBtnEnCours.Enabled = false;
-                MessageBox.Show("La fiche est accepté");
-            }
-        }
-        private void rBtnRefuser_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rBtnRefuser.Checked == true)
-            {
-                foreach (FraisForfait frais in ficheEnCours.FraisForfaits)
-                {
-                    frais.Etat = EtatFraisForfait.Refuser;
-                    FraisForfaitService.ChangerEtatFraisForfat(frais.IdFraisForfait, "REFUSER");
-                }
-
-                foreach (FraisHorsForfait frais in ficheEnCours.FraisHorsForfaits)
-                {
-                    frais.Etat = EtatFraisHorsForfait.Refuser;
-                    FraisHorsForfaitService.ChangerEtatHorsForfait(frais.IdFraisHorsForfait, "REFUSER");
-                }
-
-                MettreAJourDataGrids();
-                FicheFraisService.ChangerEtatFiche(ficheEnCours, 4);
-                ficheEnCours.Etat = EtatFicheFrais.Refuser;
-                ChangerStatutRadioBtn(false, false, true, false);
-                rBtnRefusPartiel.Enabled = false;
-                rBtnEnCours.Enabled = false;
-                MessageBox.Show("La fiche est refusé");
-            }
-        }
-
-
-        private void ChangerStatutRadioBtn(bool radioBtnEnCours, bool radioBtnAccepter, bool radioBtnRefuser)
-        {
-            rBtnEnCours.Checked = radioBtnEnCours;
-            rBtnAccepter.Checked = radioBtnAccepter;
-            rBtnRefuser.Checked = radioBtnRefuser;
-        }
-        private void ChangerStatutRadioBtn(bool radioBtnEnCours, bool radioBtnAccepter, bool radioBtnRefuser, bool radioBtnRefusPartiel)
-        {
-            rBtnEnCours.Checked = radioBtnEnCours;
-            rBtnAccepter.Checked = radioBtnAccepter;
-            rBtnRefuser.Checked = radioBtnRefuser;
-            rBtnRefusPartiel.Checked = radioBtnRefusPartiel;
-        }
-
-        private void GriserRadioBtn(bool radioBtnEnCours, bool radioBtnAccepter)
-        {
-            rBtnEnCours.Enabled = radioBtnEnCours;
-            rBtnAccepter.Enabled = radioBtnAccepter;
-        }
         private void btnRetour_Click(object sender, EventArgs e)
         {
             RetourChoixVisiteur?.Invoke();
             GriserBouton?.Invoke();
             this.SendToBack();
         }
+        private void BtnAccepterFiche_Click(object sender, EventArgs e)
+        {
+                foreach (FraisForfait frais in ficheEnCours.FraisForfaits)
+            {
+                frais.Etat = EtatFraisForfait.Accepter;
+                FraisForfaitService.ChangerEtatFraisForfat(frais.IdFraisForfait, "ACCEPTER");
+            }
 
+            foreach (FraisHorsForfait frais in ficheEnCours.FraisHorsForfaits)
+            {
+                frais.Etat = EtatFraisHorsForfait.Accepter;
+                FraisHorsForfaitService.ChangerEtatHorsForfait(frais.IdFraisHorsForfait, "ACCEPTER");
+            }
+            MettreAJourDataGrids();
+            FicheFraisService.ChangerEtatFiche(ficheEnCours, 3);
+            ficheEnCours.Etat = EtatFicheFrais.Accepter;
+            VerifierEtatFiche();
+            MessageBox.Show("La fiche est accepté");
+        }
+
+        private void BtnRefuser_Click(object sender, EventArgs e)
+        {
+            foreach (FraisForfait frais in ficheEnCours.FraisForfaits)
+            {
+                frais.Etat = EtatFraisForfait.Refuser;
+                FraisForfaitService.ChangerEtatFraisForfat(frais.IdFraisForfait, "REFUSER");
+            }
+
+            foreach (FraisHorsForfait frais in ficheEnCours.FraisHorsForfaits)
+            {
+                frais.Etat = EtatFraisHorsForfait.Refuser;
+                FraisHorsForfaitService.ChangerEtatHorsForfait(frais.IdFraisHorsForfait, "REFUSER");
+            }
+
+            MettreAJourDataGrids();
+            FicheFraisService.ChangerEtatFiche(ficheEnCours, 4);
+            ficheEnCours.Etat = EtatFicheFrais.Refuser;
+            VerifierEtatFiche();
+            MessageBox.Show("La fiche est refusé");
+        }
         #endregion
 
-
-        private void BtnPDF_Click(object sender, EventArgs e)
-        {
-
-            FicheFraisService.CreerPDF(utilisateur, ficheEnCours, DataGridFraisForfait, DataGridHorsForfait);
-        }
-        private void DataGridFraisForfait_MouseClick(object sender, MouseEventArgs e)
-        {
-            DataGridHorsForfait.ClearSelection();
-        }
-
-        private void DataGridHorsForfait_MouseClick(object sender, MouseEventArgs e)
-        {
-            DataGridFraisForfait.ClearSelection();
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
     }
+
 }

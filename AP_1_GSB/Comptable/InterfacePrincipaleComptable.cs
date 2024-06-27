@@ -58,6 +58,11 @@ namespace AP_1_GSB.Comptable
             {
                 visiteur = FicheFraisService.RecupererFichesFrais(visiteur);
 
+                if(visiteur.FichesFrais.Count == 0)
+                {
+
+                }
+
                 DataGridFiche.Rows.Clear();
                 List<string[]> listRow = FicheFraisService.HistoriqueFiches(visiteur);
                 foreach (string[] row in listRow)
@@ -67,7 +72,7 @@ namespace AP_1_GSB.Comptable
             }
         }
 
-        public (FicheFrais, Utilisateur) SelectionnerFicher()
+        public (FicheFrais, Utilisateur) SelectionnerFiche()
         {
             FicheFrais fiche;
             if (DataGridFiche.SelectedRows.Count > 0)

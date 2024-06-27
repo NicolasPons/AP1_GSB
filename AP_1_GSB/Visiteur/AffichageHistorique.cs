@@ -19,10 +19,17 @@ namespace AP_1_GSB.Visiteur
         public AffichageHistorique(Utilisateur utilisateur, FicheFrais ficheEnCours)
         {
             InitializeComponent();
+            MiseEnFormeBtn();
             this.utilisateur = utilisateur;
             AfficherFicheFrais(utilisateur);
+        }
 
-
+        private void MiseEnFormeBtn()
+        {
+            Design design = new Design();
+            BtnRetour.MouseEnter += design.Btn_EntrerCurseur;
+            BtnRetour.MouseLeave += design.Btn_SortirCurseur;
+            design.MiseEnFormeBoutons(BtnRetour);
         }
 
         public void AfficherFicheFrais(Utilisateur utilisateur)

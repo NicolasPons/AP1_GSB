@@ -40,8 +40,6 @@ namespace AP_1_GSB
         {
             this.utilisateur = utilisateur;
             this.loginForm = loginForm;
-            //this.Text = string.Empty;
-            //this.ControlBox = false;
             InitializeComponent();
 
             switch (utilisateur.Role)
@@ -62,11 +60,6 @@ namespace AP_1_GSB
 
         #region General
 
-        [DllImport("user32.dll", EntryPoint = "ReleaseCapture")]
-        private extern static void ReleaseCapture();
-
-        [DllImport("user32.dll", EntryPoint = "SendMessage")]
-        private extern static void SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
 
         private void AfficherJustificatif()
         {
@@ -215,7 +208,7 @@ namespace AP_1_GSB
         {
             if (ficheFraisDuMois.dataGridViewForfait.SelectedRows.Count > 0)
             {
-                int idForfait = int.Parse(ficheFraisDuMois.dataGridViewForfait.SelectedRows[0].Cells[5].Value.ToString());
+                int idForfait = int.Parse(ficheFraisDuMois.dataGridViewForfait.SelectedRows[0].Cells[6].Value.ToString());
                 FraisForfait fraisForfait = ficheEnCours.FraisForfaits.FirstOrDefault(item => item.IdFraisForfait == idForfait);
                 AfficherPopUpCreationModification("modifierForfait", fraisForfait);
             }
@@ -351,7 +344,7 @@ namespace AP_1_GSB
 
         private void BtnAfficherFichesEmplye_Click(object sender, EventArgs e)
         {
-           (ficheEnCours, utilisateur) = affichageComptable.SelectionnerFicher();
+           (ficheEnCours, utilisateur) = affichageComptable.SelectionnerFiche();
             DateTime dtFin = FicheFraisService.DateFin(ficheEnCours);
            
             if (ficheEnCours != null)
@@ -620,6 +613,11 @@ namespace AP_1_GSB
                 }
             }
         }
+        [DllImport("user32.dll", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+
+        [DllImport("user32.dll", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
         private void panelEnTete_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();

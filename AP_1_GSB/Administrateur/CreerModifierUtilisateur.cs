@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AP_1_GSB.Data.Models;
 using System.ComponentModel.DataAnnotations;
+using AP_1_GSB.Services;
 
 namespace AP_1_GSB.Administrateur
 {
@@ -21,11 +22,19 @@ namespace AP_1_GSB.Administrateur
         public CreerModifierUtilisateur(string version)
         {
             InitializeComponent();
+            MiseEnFormeBtn();
             lblModifierUtilisateur.Visible = false;
             this.version = version;
             utilisateurBindingSource.DataSource = new Utilisateur();
         }
 
+        private void MiseEnFormeBtn()
+        {
+            Design design = new Design();
+            btnValider.MouseEnter += design.Btn_EntrerCurseur;
+            btnValider.MouseLeave += design.Btn_SortirCurseur;
+            design.MiseEnFormeBoutons(btnValider);
+        }
         public CreerModifierUtilisateur(string version, Utilisateur utilisateurAModifier)
         {
             InitializeComponent();
@@ -50,7 +59,7 @@ namespace AP_1_GSB.Administrateur
             nomTextBox.DataBindings.Add("Text", utilisateurBindingSource, "Nom", true, DataSourceUpdateMode.OnPropertyChanged);
             prenomTextBox.DataBindings.Add("Text", utilisateurBindingSource, "Prenom", true, DataSourceUpdateMode.OnPropertyChanged);
             emailTextBox.DataBindings.Add("Text", utilisateurBindingSource, "Email", true, DataSourceUpdateMode.OnPropertyChanged);
-            roleComboBox.DataBindings.Add("SelectedIndex", utilisateurBindingSource, "Role", true, DataSourceUpdateMode.OnPropertyChanged); 
+            roleComboBox.DataBindings.Add("SelectedIndex", utilisateurBindingSource, "Role", true, DataSourceUpdateMode.OnPropertyChanged);
         }
 
         private void BtnValider_Click(object sender, EventArgs e)

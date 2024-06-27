@@ -32,16 +32,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreerModifierNoteFrais));
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnQuitter = new System.Windows.Forms.Button();
             this.DtTimePickerForfait = new System.Windows.Forms.DateTimePicker();
-            this.fraisForfaitBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.quantiteNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.ComboBoxSelectionForfaitHorsForfait = new System.Windows.Forms.ComboBox();
             this.ComboBoxTypeForfait = new System.Windows.Forms.ComboBox();
             this.BtnValider = new System.Windows.Forms.Button();
             this.BtnJustificatif = new System.Windows.Forms.Button();
             this.DtTimePickerHorsForfait = new System.Windows.Forms.DateTimePicker();
-            this.fraisHorsForfaitBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
             this.montantNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.LblDate = new System.Windows.Forms.Label();
@@ -52,11 +49,14 @@
             this.LblCategorie = new System.Windows.Forms.Label();
             this.lblMiseAJourJustificatif = new System.Windows.Forms.Label();
             this.lblJustificatif = new System.Windows.Forms.Label();
+            this.btnQuitter = new System.Windows.Forms.Button();
+            this.fraisForfaitBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.fraisHorsForfaitBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fraisForfaitBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quantiteNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fraisHorsForfaitBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.montantNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fraisForfaitBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fraisHorsForfaitBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -83,21 +83,6 @@
             this.panel1.Size = new System.Drawing.Size(482, 81);
             this.panel1.TabIndex = 9;
             // 
-            // btnQuitter
-            // 
-            this.btnQuitter.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnQuitter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnQuitter.Font = new System.Drawing.Font("Verdana", 12.2F, System.Drawing.FontStyle.Bold);
-            this.btnQuitter.ForeColor = System.Drawing.Color.White;
-            this.btnQuitter.Location = new System.Drawing.Point(440, 21);
-            this.btnQuitter.Margin = new System.Windows.Forms.Padding(2);
-            this.btnQuitter.Name = "btnQuitter";
-            this.btnQuitter.Size = new System.Drawing.Size(32, 32);
-            this.btnQuitter.TabIndex = 7;
-            this.btnQuitter.Text = "X";
-            this.btnQuitter.UseVisualStyleBackColor = true;
-            this.btnQuitter.Click += new System.EventHandler(this.btnQuitter_Click);
-            // 
             // DtTimePickerForfait
             // 
             this.DtTimePickerForfait.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.fraisForfaitBindingSource, "Date", true));
@@ -105,10 +90,6 @@
             this.DtTimePickerForfait.Name = "DtTimePickerForfait";
             this.DtTimePickerForfait.Size = new System.Drawing.Size(150, 22);
             this.DtTimePickerForfait.TabIndex = 11;
-            // 
-            // fraisForfaitBindingSource
-            // 
-            this.fraisForfaitBindingSource.DataSource = typeof(AP_1_GSB.Data.Models.FraisForfait);
             // 
             // quantiteNumericUpDown
             // 
@@ -180,10 +161,6 @@
             this.DtTimePickerHorsForfait.Name = "DtTimePickerHorsForfait";
             this.DtTimePickerHorsForfait.Size = new System.Drawing.Size(150, 22);
             this.DtTimePickerHorsForfait.TabIndex = 26;
-            // 
-            // fraisHorsForfaitBindingSource
-            // 
-            this.fraisHorsForfaitBindingSource.DataSource = typeof(AP_1_GSB.Data.Models.FraisHorsForfait);
             // 
             // descriptionTextBox
             // 
@@ -281,6 +258,29 @@
             this.lblJustificatif.TabIndex = 37;
             this.lblJustificatif.Text = "Justificatif : ";
             // 
+            // btnQuitter
+            // 
+            this.btnQuitter.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnQuitter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnQuitter.Font = new System.Drawing.Font("Verdana", 12.2F, System.Drawing.FontStyle.Bold);
+            this.btnQuitter.ForeColor = System.Drawing.Color.White;
+            this.btnQuitter.Image = global::AP_1_GSB.Properties.Resources.icons8_fermer_50;
+            this.btnQuitter.Location = new System.Drawing.Point(440, 21);
+            this.btnQuitter.Margin = new System.Windows.Forms.Padding(2);
+            this.btnQuitter.Name = "btnQuitter";
+            this.btnQuitter.Size = new System.Drawing.Size(32, 32);
+            this.btnQuitter.TabIndex = 7;
+            this.btnQuitter.UseVisualStyleBackColor = true;
+            this.btnQuitter.Click += new System.EventHandler(this.btnQuitter_Click);
+            // 
+            // fraisForfaitBindingSource
+            // 
+            this.fraisForfaitBindingSource.DataSource = typeof(AP_1_GSB.Data.Models.FraisForfait);
+            // 
+            // fraisHorsForfaitBindingSource
+            // 
+            this.fraisHorsForfaitBindingSource.DataSource = typeof(AP_1_GSB.Data.Models.FraisHorsForfait);
+            // 
             // CreerModifierNoteFrais
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 14F);
@@ -312,10 +312,10 @@
             this.Text = "Créer ou Modifier une Note de Frais";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fraisForfaitBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.quantiteNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fraisHorsForfaitBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.montantNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fraisForfaitBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fraisHorsForfaitBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

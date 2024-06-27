@@ -1,4 +1,5 @@
 ﻿using AP_1_GSB.Data.Models;
+using AP_1_GSB.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,11 +28,20 @@ namespace AP_1_GSB.Administrateur
         public AjouterModifierTypeFraisForfait(string version, TypeFraisForfait typeFraisForfaitAModifier)
         {
             InitializeComponent();
+            MiseEnFormeBtn();
             lblCreer.Visible = false;
             this.typeFraisForfaitAModifier = typeFraisForfaitAModifier;
             this.version = version;
             typeFraisForfaitBindingSource.DataSource = typeFraisForfaitAModifier;
             ChargerComposants(typeFraisForfaitAModifier);
+        }
+
+        private void MiseEnFormeBtn()
+        {
+            Design design = new Design();
+            btnValider.MouseEnter += design.Btn_EntrerCurseur;
+            btnValider.MouseLeave += design.Btn_SortirCurseur;
+            design.MiseEnFormeBoutons(btnValider);
         }
 
         private void ChargerComposants(TypeFraisForfait type)

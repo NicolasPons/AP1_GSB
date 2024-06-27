@@ -37,17 +37,17 @@
             System.Windows.Forms.Label emailLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreerModifierUtilisateur));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnQuitter = new System.Windows.Forms.Button();
             this.lblModifierUtilisateur = new System.Windows.Forms.Label();
             this.lblCreerUtilisateur = new System.Windows.Forms.Label();
             this.btnValider = new System.Windows.Forms.Button();
             this.identifiantTextBox = new System.Windows.Forms.TextBox();
-            this.utilisateurBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mdpTextBox = new System.Windows.Forms.TextBox();
             this.nomTextBox = new System.Windows.Forms.TextBox();
             this.prenomTextBox = new System.Windows.Forms.TextBox();
             this.roleComboBox = new System.Windows.Forms.ComboBox();
             this.emailTextBox = new System.Windows.Forms.TextBox();
+            this.utilisateurBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnQuitter = new System.Windows.Forms.Button();
             this.fichesFraisBindingSource = new System.Windows.Forms.BindingSource(this.components);
             identifiantLabel = new System.Windows.Forms.Label();
             mdpLabel = new System.Windows.Forms.Label();
@@ -125,21 +125,6 @@
             this.panel1.Size = new System.Drawing.Size(519, 98);
             this.panel1.TabIndex = 0;
             // 
-            // btnQuitter
-            // 
-            this.btnQuitter.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnQuitter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnQuitter.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold);
-            this.btnQuitter.ForeColor = System.Drawing.Color.White;
-            this.btnQuitter.Location = new System.Drawing.Point(480, 13);
-            this.btnQuitter.Margin = new System.Windows.Forms.Padding(2);
-            this.btnQuitter.Name = "btnQuitter";
-            this.btnQuitter.Size = new System.Drawing.Size(28, 33);
-            this.btnQuitter.TabIndex = 13;
-            this.btnQuitter.Text = "X";
-            this.btnQuitter.UseVisualStyleBackColor = true;
-            this.btnQuitter.Click += new System.EventHandler(this.BtnQuitter_Click);
-            // 
             // lblModifierUtilisateur
             // 
             this.lblModifierUtilisateur.AutoSize = true;
@@ -184,10 +169,6 @@
             this.identifiantTextBox.Name = "identifiantTextBox";
             this.identifiantTextBox.Size = new System.Drawing.Size(121, 20);
             this.identifiantTextBox.TabIndex = 6;
-            // 
-            // utilisateurBindingSource
-            // 
-            this.utilisateurBindingSource.DataSource = typeof(AP_1_GSB.Data.Models.Utilisateur);
             // 
             // mdpTextBox
             // 
@@ -235,6 +216,25 @@
             this.emailTextBox.Name = "emailTextBox";
             this.emailTextBox.Size = new System.Drawing.Size(121, 20);
             this.emailTextBox.TabIndex = 4;
+            // 
+            // utilisateurBindingSource
+            // 
+            this.utilisateurBindingSource.DataSource = typeof(AP_1_GSB.Data.Models.Utilisateur);
+            // 
+            // btnQuitter
+            // 
+            this.btnQuitter.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnQuitter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnQuitter.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold);
+            this.btnQuitter.ForeColor = System.Drawing.Color.White;
+            this.btnQuitter.Image = global::AP_1_GSB.Properties.Resources.icons8_fermer_la_fenêtre_50;
+            this.btnQuitter.Location = new System.Drawing.Point(480, 13);
+            this.btnQuitter.Margin = new System.Windows.Forms.Padding(2);
+            this.btnQuitter.Name = "btnQuitter";
+            this.btnQuitter.Size = new System.Drawing.Size(28, 33);
+            this.btnQuitter.TabIndex = 13;
+            this.btnQuitter.UseVisualStyleBackColor = true;
+            this.btnQuitter.Click += new System.EventHandler(this.BtnQuitter_Click);
             // 
             // CreerModifierUtilisateur
             // 

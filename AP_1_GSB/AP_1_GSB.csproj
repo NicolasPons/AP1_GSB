@@ -357,6 +357,7 @@
     <None Include="Resources\comdlpng6956463 %281%29.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\icons8-fermer-50.png" />
     <None Include="Resources\icons8-effacer-25.png" />
     <None Include="Resources\icons8-fermer-la-fenêtre-50.png" />
     <None Include="Resources\icons8-fermer-la-fenêtre-25.png" />

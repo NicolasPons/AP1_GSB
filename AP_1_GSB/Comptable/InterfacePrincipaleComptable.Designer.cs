@@ -107,7 +107,7 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
             this.DataGridVisiteur.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DataGridVisiteur.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridVisiteur.Size = new System.Drawing.Size(385, 238);
+            this.DataGridVisiteur.Size = new System.Drawing.Size(381, 228);
             this.DataGridVisiteur.TabIndex = 21;
             this.DataGridVisiteur.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridVisiteur_CellMouseClick);
             this.DataGridVisiteur.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DataGridVisiteur_MouseClick);
