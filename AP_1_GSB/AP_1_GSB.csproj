@@ -199,34 +199,34 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Administrateur\AjouterModifierTypeFraisForfait.cs">
+    <Compile Include="Utilisateurs\Administrateur\AjouterModifierTypeFraisForfait.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administrateur\AjouterModifierTypeFraisForfait.Designer.cs">
+    <Compile Include="Utilisateurs\Administrateur\AjouterModifierTypeFraisForfait.Designer.cs">
       <DependentUpon>AjouterModifierTypeFraisForfait.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrateur\CreerModifierUtilisateur.cs">
+    <Compile Include="Utilisateurs\Administrateur\CreerModifierUtilisateur.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administrateur\CreerModifierUtilisateur.Designer.cs">
+    <Compile Include="Utilisateurs\Administrateur\CreerModifierUtilisateur.Designer.cs">
       <DependentUpon>CreerModifierUtilisateur.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrateur\InterfacePrincipaleAdmin.cs">
+    <Compile Include="Utilisateurs\Administrateur\InterfacePrincipaleAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administrateur\InterfacePrincipaleAdmin.Designer.cs">
+    <Compile Include="Utilisateurs\Administrateur\InterfacePrincipaleAdmin.Designer.cs">
       <DependentUpon>InterfacePrincipaleAdmin.cs</DependentUpon>
     </Compile>
-    <Compile Include="AfficherJustificatif.cs">
+    <Compile Include="Utilisateurs\AfficherJustificatif.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AfficherJustificatif.Designer.cs">
+    <Compile Include="Utilisateurs\AfficherJustificatif.Designer.cs">
       <DependentUpon>AfficherJustificatif.cs</DependentUpon>
     </Compile>
-    <Compile Include="Comptable\InterfacePrincipaleComptable.cs">
+    <Compile Include="Utilisateurs\Comptable\InterfacePrincipaleComptable.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Comptable\InterfacePrincipaleComptable.Designer.cs">
+    <Compile Include="Utilisateurs\Comptable\InterfacePrincipaleComptable.Designer.cs">
       <DependentUpon>InterfacePrincipaleComptable.cs</DependentUpon>
     </Compile>
     <Compile Include="Services\Design.cs" />
@@ -258,37 +258,37 @@
     <Compile Include="Services\FraisForfaitService.cs" />
     <Compile Include="Services\FicheFraisService.cs" />
     <Compile Include="Services\FraisHorsForfaitService.cs" />
-    <Compile Include="Visiteur\AffichageHistorique.cs">
+    <Compile Include="Utilisateurs\Visiteur\AffichageHistorique.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Visiteur\AffichageHistorique.Designer.cs">
+    <Compile Include="Utilisateurs\Visiteur\AffichageHistorique.Designer.cs">
       <DependentUpon>AffichageHistorique.cs</DependentUpon>
     </Compile>
-    <Compile Include="Visiteur\CreerModifierNoteFrais.cs">
+    <Compile Include="Utilisateurs\Visiteur\CreerModifierNoteFrais.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Visiteur\CreerModifierNoteFrais.Designer.cs">
+    <Compile Include="Utilisateurs\Visiteur\CreerModifierNoteFrais.Designer.cs">
       <DependentUpon>CreerModifierNoteFrais.cs</DependentUpon>
     </Compile>
-    <Compile Include="Visiteur\FicheFraisDuMois.cs">
+    <Compile Include="Utilisateurs\FicheFraisDuMois.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Visiteur\FicheFraisDuMois.Designer.cs">
+    <Compile Include="Utilisateurs\FicheFraisDuMois.Designer.cs">
       <DependentUpon>FicheFraisDuMois.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Administrateur\AjouterModifierTypeFraisForfait.resx">
+    <EmbeddedResource Include="Utilisateurs\Administrateur\AjouterModifierTypeFraisForfait.resx">
       <DependentUpon>AjouterModifierTypeFraisForfait.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administrateur\CreerModifierUtilisateur.resx">
+    <EmbeddedResource Include="Utilisateurs\Administrateur\CreerModifierUtilisateur.resx">
       <DependentUpon>CreerModifierUtilisateur.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administrateur\InterfacePrincipaleAdmin.resx">
+    <EmbeddedResource Include="Utilisateurs\Administrateur\InterfacePrincipaleAdmin.resx">
       <DependentUpon>InterfacePrincipaleAdmin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AfficherJustificatif.resx">
+    <EmbeddedResource Include="Utilisateurs\AfficherJustificatif.resx">
       <DependentUpon>AfficherJustificatif.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Comptable\InterfacePrincipaleComptable.resx">
+    <EmbeddedResource Include="Utilisateurs\Comptable\InterfacePrincipaleComptable.resx">
       <DependentUpon>InterfacePrincipaleComptable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TableauBord.resx">
@@ -307,13 +307,13 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Visiteur\AffichageHistorique.resx">
+    <EmbeddedResource Include="Utilisateurs\Visiteur\AffichageHistorique.resx">
       <DependentUpon>AffichageHistorique.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Visiteur\CreerModifierNoteFrais.resx">
+    <EmbeddedResource Include="Utilisateurs\Visiteur\CreerModifierNoteFrais.resx">
       <DependentUpon>CreerModifierNoteFrais.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Visiteur\FicheFraisDuMois.resx">
+    <EmbeddedResource Include="Utilisateurs\FicheFraisDuMois.resx">
       <DependentUpon>FicheFraisDuMois.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />

@@ -214,10 +214,8 @@ namespace AP_1_GSB.Services
             }
             else
             {
-                MessageBox.Show("Aucun justificatif n'est disponible pour ce frais", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return null;
+            return null;
             }
-
         }
     }
 }

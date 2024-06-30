@@ -469,7 +469,7 @@ namespace AP_1_GSB.Visiteur
             FicheFraisService.ChangerEtatFiche(ficheEnCours, 3);
             ficheEnCours.Etat = EtatFicheFrais.Accepter;
             VerifierEtatFiche();
-            MessageBox.Show("La fiche est accepté");
+            MessageBox.Show("La fiche est acceptée");
         }
 
         private void BtnRefuser_Click(object sender, EventArgs e)
@@ -490,7 +490,7 @@ namespace AP_1_GSB.Visiteur
             FicheFraisService.ChangerEtatFiche(ficheEnCours, 4);
             ficheEnCours.Etat = EtatFicheFrais.Refuser;
             VerifierEtatFiche();
-            MessageBox.Show("La fiche est refusé");
+            MessageBox.Show("La fiche est refusée");
         }
         #endregion
 
