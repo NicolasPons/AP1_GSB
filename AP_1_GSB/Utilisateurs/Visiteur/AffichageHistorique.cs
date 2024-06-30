@@ -15,7 +15,7 @@ namespace AP_1_GSB.Visiteur
     public partial class AffichageHistorique : Form
     {
         Utilisateur utilisateur;
-        public event Action degriserBouton;
+        public event Action DegriserBouton;
         public AffichageHistorique(Utilisateur utilisateur, FicheFrais ficheEnCours)
         {
             InitializeComponent();
@@ -23,7 +23,7 @@ namespace AP_1_GSB.Visiteur
             this.utilisateur = utilisateur;
             AfficherFicheFrais(utilisateur);
         }
-
+        //Applique le design sur les boutons 
         private void MiseEnFormeBtn()
         {
             Design design = new Design();
@@ -31,7 +31,7 @@ namespace AP_1_GSB.Visiteur
             BtnRetour.MouseLeave += design.Btn_SortirCurseur;
             design.MiseEnFormeBoutons(BtnRetour);
         }
-
+        //Affiche les fiches dans le data grid
         public void AfficherFicheFrais(Utilisateur utilisateur)
         {
             DataGridHistorique.Columns["IdFiche"].Visible = false;
@@ -44,7 +44,7 @@ namespace AP_1_GSB.Visiteur
         }
         private void BtnRetour_Click(object sender, EventArgs e)
         {
-            degriserBouton?.Invoke();
+            DegriserBouton?.Invoke();
             this.SendToBack();
         }
     }

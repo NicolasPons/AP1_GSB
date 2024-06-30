@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace AP_1_GSB.Data.Models
 {
+
+    //Attributs de la classe Utilisateur et ses annotations qui définissent les règles de validation dans le forme dont l'utlisateur est le DataSource
     public class Utilisateur
     {
         public int IdUtilisateur { get; set; }

@@ -96,7 +96,7 @@
             this.btnQuitter.Size = new System.Drawing.Size(32, 32);
             this.btnQuitter.TabIndex = 7;
             this.btnQuitter.UseVisualStyleBackColor = true;
-            this.btnQuitter.Click += new System.EventHandler(this.btnQuitter_Click);
+            this.btnQuitter.Click += new System.EventHandler(this.BtnQuitter_Click);
             // 
             // DtTimePickerForfait
             // 

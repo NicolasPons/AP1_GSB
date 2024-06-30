@@ -30,7 +30,7 @@ namespace AP_1_GSB.Visiteur
         readonly Utilisateur utilisateur;
         readonly FicheFrais ficheEnCours;
         readonly string version;
-        public event Action ListesVide;
+        public event Action DataGridsVides;
         public event Action GriserBouton;
         public event Action RetourChoixVisiteur;
         public DataGridView dataGridViewForfait => this.DataGridFraisForfait;
@@ -48,6 +48,7 @@ namespace AP_1_GSB.Visiteur
             DateFicheFrais.Text = "Fiche de frais du " + ficheEnCours.Date.ToString("dd MMMM yyyy") + " au " + dtFin.ToString("dd MMMM yyyy");
         }
 
+        //Met en forme le design des boutons 
         private void MiseEnFormeBoutons()
         {
             Design design = new Design();
@@ -67,21 +68,24 @@ namespace AP_1_GSB.Visiteur
 
 
         #region General
+
+        //Génère la création d'un PDF  
         private void BtnPDF_Click(object sender, EventArgs e)
         {
-
             FicheFraisService.CreerPDF(utilisateur, ficheEnCours, DataGridFraisForfait, DataGridHorsForfait);
         }
+        //Clear la sélection d'un grid au clique sur l'autre grid
+        //Evite d'avoir une ligne sélectionnée dans chacun des DataGridView
         private void DataGridFraisForfait_MouseClick(object sender, MouseEventArgs e)
         {
             DataGridHorsForfait.ClearSelection();
         }
-
         private void DataGridHorsForfait_MouseClick(object sender, MouseEventArgs e)
         {
             DataGridFraisForfait.ClearSelection();
         }
 
+        //Met en forme le formulaire selon le profil
         private void AfficherInformationForm()
         {
             if (version == "utilisateur")
@@ -90,8 +94,7 @@ namespace AP_1_GSB.Visiteur
                 BtnRefuserFicheComptable.Visible = false;
                 LblEmployeInfo.Visible = false;
                 btnRetour.Visible = false;
-                string etat = FicheFraisService.EcrireEtatFiche(ficheEnCours);
-                LblEtatFicheComptable.Location = new Point(45, 643);   
+                LblEtatFiche.Location = new Point(45, 643);   
                 VerifierEtatFiche();
             }
             else
@@ -102,6 +105,7 @@ namespace AP_1_GSB.Visiteur
             }
         }
 
+        //Méthode de mise à jour des data grids et des champs "total" lors de modifications effectuées 
         public void MettreAJourDataGrids()
         {
             DataGridFraisForfait.Rows.Clear();
@@ -169,14 +173,14 @@ namespace AP_1_GSB.Visiteur
 
         #region utilisateur 
 
+        //Méthode qui permet de griser les boutons si DataGrid sont vides 
         public void VerifierDataGridsVides()
         {
             if (DataGridFraisForfait.Rows.Count == 0 && DataGridHorsForfait.Rows.Count == 0)
             {
-                ListesVide?.Invoke();
+                DataGridsVides?.Invoke();
             }
         }
-
 
         public void SupprimerSelectionLigne()
         {
@@ -255,36 +259,38 @@ namespace AP_1_GSB.Visiteur
 
         #region Comptable
 
-        // En base, pour id_etat : 1 = hors_delai / 2 = en_cours / 3 = accepter / 4 = refuser / 5 = refus_partiel
+        // En base, pour id_etat : 1 = attente / 2 = en_cours / 3 = accepter / 4 = refuser / 5 = refus_partiel
 
+        //Gère l'affichage de l'état de la fiche
         public void VerifierEtatFiche()
         {
             switch (ficheEnCours.Etat)
             {
                 case EtatFicheFrais.Accepter:
-                    LblEtatFicheComptable.Text = "Etat fiche : Acceptée";
-                    LblEtatFicheComptable.ForeColor = Color.Green;
+                    LblEtatFiche.Text = "Etat fiche : Acceptée";
+                    LblEtatFiche.ForeColor = Color.Green;
 
                     break;
                 case EtatFicheFrais.Refuser:
-                    LblEtatFicheComptable.Text = "Etat fiche : Refusée";
-                    LblEtatFicheComptable.ForeColor = Color.Red;
+                    LblEtatFiche.Text = "Etat fiche : Refusée";
+                    LblEtatFiche.ForeColor = Color.Red;
                     break;
                 case EtatFicheFrais.EnCours:
-                    LblEtatFicheComptable.Text = "Etat fiche : En cours";
-                    LblEtatFicheComptable.ForeColor = Color.Black;
+                    LblEtatFiche.Text = "Etat fiche : En cours";
+                    LblEtatFiche.ForeColor = Color.Black;
                     break;
                 case EtatFicheFrais.RefusPartiel:
-                    LblEtatFicheComptable.Text = "Etat fiche : Refusée partiellement";
-                    LblEtatFicheComptable.ForeColor = Color.Orange;
+                    LblEtatFiche.Text = "Etat fiche : Refusée partiellement";
+                    LblEtatFiche.ForeColor = Color.Orange;
                     break;
-                case EtatFicheFrais.HorsDelai:
-                    LblEtatFicheComptable.Text = "Etat fiche : En attente";
-                    LblEtatFicheComptable.ForeColor = Color.Gray;
+                case EtatFicheFrais.Attente:
+                    LblEtatFiche.Text = "Etat fiche : En attente";
+                    LblEtatFiche.ForeColor = Color.Gray;
                     break;
             }
         }
 
+        //Méthode pour refuser un frais et mettre à jour en base, en objet et le datagrid
         public void RefuserFrais()
         {
             string etat = "REFUSER";
@@ -342,6 +348,7 @@ namespace AP_1_GSB.Visiteur
             }
         }
 
+        //Méthode pour accepter un frais et mettre à jour en base, en objet et le datagrid
         public void AccepterFrais()
         {
             string etat = "ACCEPTER";
@@ -404,6 +411,7 @@ namespace AP_1_GSB.Visiteur
             }
         }
 
+        //Vérifie si l'état de tous les frais forfait et hors forfait est accepté et change l'état de la fiche en fonction
         private void VerifierEtatAccepter()
         {
             List<FraisForfait> listeForfait = new List<FraisForfait>();
@@ -421,9 +429,11 @@ namespace AP_1_GSB.Visiteur
             if (listeForfait.Count == dataGridViewForfait.RowCount && listeHorsForfait.Count == dataGridViewHorsForfait.RowCount)
             {
                 ficheEnCours.Etat = EtatFicheFrais.Accepter;
+                FicheFraisService.ChangerEtatFiche(ficheEnCours, 3);
+
             }
         }
-
+        //Vérifie si l'état de tous les frais forfait et hors forfait est refusé et change l'état de la fiche en fonction
         private void VerifierEtatRefuser()
         {
             List<FraisForfait> listeForfait = new List<FraisForfait>();
@@ -441,17 +451,20 @@ namespace AP_1_GSB.Visiteur
             if (listeForfait.Count == dataGridViewForfait.RowCount && listeHorsForfait.Count == dataGridViewHorsForfait.RowCount)
             {
                 ficheEnCours.Etat = EtatFicheFrais.Refuser;
+                FicheFraisService.ChangerEtatFiche(ficheEnCours, 4);
             }
         }
-        //En base, pour id_etat : 1 = hors_delai / 2 = en_cours / 3 = accepter / 4 = refuser / 5 = refus_partiel
+        //En base, pour id_etat : 1 = attente / 2 = en_cours / 3 = accepter / 4 = refuser / 5 = refus_partiel
 
 
-        private void btnRetour_Click(object sender, EventArgs e)
+        private void BtnRetour_Click(object sender, EventArgs e)
         {
             RetourChoixVisiteur?.Invoke();
             GriserBouton?.Invoke();
             this.SendToBack();
         }
+
+        //Méthode pour accepter l'état général de la fiche et mettre à jour l'état de tous les frais
         private void BtnAccepterFiche_Click(object sender, EventArgs e)
         {
                 foreach (FraisForfait frais in ficheEnCours.FraisForfaits)
@@ -471,8 +484,8 @@ namespace AP_1_GSB.Visiteur
             VerifierEtatFiche();
             MessageBox.Show("La fiche est acceptée");
         }
-
-        private void BtnRefuser_Click(object sender, EventArgs e)
+        //Méthode pour refuser l'état général de la fiche et mettre à jour l'état de tous les frais
+        private void BtnRefuserFiche_Click(object sender, EventArgs e)
         {
             foreach (FraisForfait frais in ficheEnCours.FraisForfaits)
             {

@@ -13,6 +13,8 @@ namespace AP_1_GSB.Services
 {
     internal class TypeFraisForfaitService
     {
+
+        //Récupération de tous les types de frais forfait en base
         public static List<TypeFraisForfait> RecupererTypeFraisForfait()
         {
             Data.SqlConnection.ConnexionSql();
@@ -56,6 +58,7 @@ namespace AP_1_GSB.Services
             }
         }
 
+        //Création en base d'un type de frais forfait
         public static bool CreerTypeFraisForfait(TypeFraisForfait typeFraisForfait)
         {
             Data.SqlConnection.ConnexionSql();
@@ -85,7 +88,7 @@ namespace AP_1_GSB.Services
             }
             return false;
         }
-
+        //Modfication en base d'un type de frais forfait
         public static bool ModifierTypeFraisForfait(TypeFraisForfait typeFraisForfait)
         {
             Data.SqlConnection.ConnexionSql();

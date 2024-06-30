@@ -16,12 +16,15 @@ namespace AP_1_GSB
     {
         FraisForfait fraisForfait;
         FraisHorsForfait fraisHorsForfait;
+
+        //Deux constructeurs pour afficher le justificatif en fonction du type de frais. 
+        //Transforme le fichier byte[] en Image via une méthode et affiche l'image dans le picture box
         public AfficherJustificatif(FraisForfait frais)
         {
             InitializeComponent();
             this.fraisForfait = frais;
             byte[] blob = fraisForfait.justificatif.FichierBlob;
-            Image image = FraisForfaitService.AfficherJustificatif(blob);
+            Image image = JustificatifService.AfficherJustificatif(blob);
             btnQuitter.BringToFront();
             PictureBoxJustificatif.Image = image;
             PictureBoxJustificatif.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -32,15 +35,13 @@ namespace AP_1_GSB
             InitializeComponent();
             this.fraisHorsForfait = frais;
             byte[] blob = fraisHorsForfait.Justificatif.FichierBlob;
-            Image image = FraisHorsForfaitService.AfficherJustificatif(blob);
+            Image image = JustificatifService.AfficherJustificatif(blob);
             btnQuitter.BringToFront();
             PictureBoxJustificatif.Image = image;
             PictureBoxJustificatif.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
-
-
-        private void btnQuitter_Click(object sender, EventArgs e)
+        private void BtnQuitter_Click(object sender, EventArgs e)
         {
             this.Close();
         }

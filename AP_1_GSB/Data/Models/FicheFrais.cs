@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace AP_1_GSB.Data.Models
 {
+    //Attributs de la classe FicheFrais
     public class FicheFrais
     {
         public int IdFicheFrais { get; set; }
@@ -21,7 +22,7 @@ namespace AP_1_GSB.Data.Models
         EnCours,
         Accepter,
         Refuser,
-        HorsDelai,
+        Attente,
         RefusPartiel
     }
 }

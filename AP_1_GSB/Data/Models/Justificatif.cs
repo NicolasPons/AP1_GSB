@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace AP_1_GSB.Data.Models
 {
+    
     public class Justificatif
     {
         public int IdJustificatif { get; set; }

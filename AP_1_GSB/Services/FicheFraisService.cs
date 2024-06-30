@@ -15,10 +15,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using iText.Kernel.Pdf;
 using iText.Layout;
-using iText.Layout.Element;
-using iText.Kernel.Pdf.Canvas.Draw;
 using iText.Layout.Borders;
 using iText.Kernel.Colors;
 using System.Security.Policy;
@@ -28,21 +25,12 @@ namespace AP_1_GSB.Services
 {
     public class FicheFraisService
     {
+
+        //Récupération de la dernière fiche. Si à la date souhaitée elle n'existe pas, elle sera créée automatiquement
         public static FicheFrais RecupererDerniereFiche(Utilisateur utilisateur, DateTime dateDebut, DateTime datetFin)
         {
             FicheFrais ficheEnCours = null;
-            DateTime now = DateTime.Now;
-
-            if (now.Day >= 11)
-            {
-                dateDebut = new DateTime(now.Year, now.Month, 11);
-                datetFin = new DateTime(now.Year, now.Month + 1, 10);
-            }
-            else
-            {
-                dateDebut = new DateTime(now.Year, now.Month - 1, 11);
-                datetFin = new DateTime(now.Year, now.Month, 10);
-            }
+  
 
             utilisateur.FichesFrais.ForEach
                 (
@@ -63,7 +51,7 @@ namespace AP_1_GSB.Services
             return ficheEnCours;
         }
 
-
+        //Création d'un objet "Justificatif"
         private static Justificatif CreerObjetJustificatif(MySqlDataReader reader)
         {
             Justificatif justi = null;
@@ -77,6 +65,8 @@ namespace AP_1_GSB.Services
             }
             return justi;
         }
+
+        //Récupération de toutes les fiches frais d'un utilisateur en base 
         public static Utilisateur RecupererFichesFrais(Utilisateur utilisateur)
         {
             Data.SqlConnection.ConnexionSql();
@@ -113,8 +103,8 @@ namespace AP_1_GSB.Services
                                     case "refus_partiel":
                                         etatFicheFrais = EtatFicheFrais.RefusPartiel;
                                         break;
-                                    case "hors_delai":
-                                        etatFicheFrais = EtatFicheFrais.HorsDelai;
+                                    case "attente":
+                                        etatFicheFrais = EtatFicheFrais.Attente;
                                         break;
                                     default:
                                         etatFicheFrais = EtatFicheFrais.EnCours;
@@ -152,7 +142,7 @@ namespace AP_1_GSB.Services
             }
         }
 
-
+        //Récupération de toutes les frais forfait d'un utilisateur pour une fiche en base 
         public static Utilisateur RecupererNotesForfait(Utilisateur utilisateur, FicheFrais FicheEnCours)
         {
             Data.SqlConnection.ConnexionSql();
@@ -194,9 +184,6 @@ namespace AP_1_GSB.Services
 
                                 Justificatif justi = CreerObjetJustificatif(reader);
 
-
-
-                                //CREER METHODE YA ZEUBI
                                 TypeFraisForfait typeFraisForfait = new TypeFraisForfait()
                                 {
                                     IdFraisForfait = (int)reader["id_type_forfait"],
@@ -247,7 +234,6 @@ namespace AP_1_GSB.Services
                 return null;
             }
         }
-
         public static FicheFrais RecupererNotesForfait(FicheFrais FicheEnCours)
         {
             Data.SqlConnection.ConnexionSql();
@@ -334,6 +320,8 @@ namespace AP_1_GSB.Services
                 }
             }
         }
+
+        //Récupération des tous les frais hors forfait d'une fiche donnée pour un utilisateur donnée
         public static Utilisateur RecupererNotesHorsForfait(Utilisateur utilisateur, FicheFrais FicheEnCours)
         {
             Data.SqlConnection.ConnexionSql();
@@ -480,6 +468,7 @@ namespace AP_1_GSB.Services
             }
         }
 
+        //Création de la fiche du mois si elle n'existe pas 
         public static Utilisateur CreerFicheFraisMoisEnCours(Utilisateur utilisateur, DateTime DateCreationFiche)
         {
             Data.SqlConnection.ConnexionSql();
@@ -518,6 +507,7 @@ namespace AP_1_GSB.Services
             }
         }
 
+        //Calcul le total de la fiche 
         public static float CalculerTotalFiche(FicheFrais ficheEnCours)
         {
 
@@ -536,6 +526,7 @@ namespace AP_1_GSB.Services
             return totalFiche;
         }
 
+        //Calcul le total de la fiche moins les frais refusés par le comtpable 
         public static float CalculerMontantFraisRefuser(FicheFrais ficheEnCours)
         {
             float totalRefuse = 0;
@@ -561,6 +552,7 @@ namespace AP_1_GSB.Services
             return totalRefuse;
         }
 
+        //Modificaiton de l'état de la fiche en base
         public static void ChangerEtatFiche(FicheFrais ficheEnCours, int idEtat)
         {
             Data.SqlConnection.ConnexionSql();
@@ -586,6 +578,8 @@ namespace AP_1_GSB.Services
                 Data.SqlConnection.DeconnexionSql();
             }
         }
+
+        //Permet d'écrire correctement l'état de la fiche
         public static string EcrireEtatFiche(FicheFrais ficheEnCours)
         {
             string etat = "";
@@ -603,13 +597,14 @@ namespace AP_1_GSB.Services
                 case EtatFicheFrais.RefusPartiel:
                     etat = "Refusée partiellement";
                     break;
-                case EtatFicheFrais.HorsDelai:
-                    etat = "Hors délai";
+                case EtatFicheFrais.Attente:
+                    etat = "En attente";
                     break;
             }
             return etat;
         }
 
+        //Méthode pour générer un PDF
         public static void CreerPDF(Utilisateur utilisateur, FicheFrais ficheEnCours, DataGridView dataGridFraisForfait, DataGridView dataGridHorsForfait)
         {
             string dest = "fiche_de_frais.pdf";
@@ -618,12 +613,6 @@ namespace AP_1_GSB.Services
             {
                 PdfDocument pdf = new PdfDocument(writer);
                 Document document = new Document(pdf);
-
-                //// Ajouter le logo
-                //Image logo = new Image(ImageDataFactory.Create("path/to/your/logo.png"));
-                //logo.SetHeight(50);
-                //logo.SetHorizontalAlignment(HorizontalAlignment.LEFT);
-                //document.Add(logo);
 
                 document.Add(new Paragraph("Fiche de frais")
                     .SetTextAlignment(TextAlignment.CENTER)
@@ -743,17 +732,18 @@ namespace AP_1_GSB.Services
             }
             Process.Start(new ProcessStartInfo(dest) { UseShellExecute = true });
         }
-
+        //Création d'une cellule
         private static Cell CreerCellule(string contenu)
         {
             return new Cell().Add(new Paragraph(contenu).SetFontSize(10));
         }
-
+        //Création d'une cellule d'en tête
         private static Cell CreerEnTete(string contenu)
         {
             return new Cell().Add(new Paragraph(contenu).SetFontSize(10).SetBold()).SetBackgroundColor(new DeviceRgb(45, 45, 61)).SetFontColor(iText.Kernel.Colors.ColorConstants.WHITE);
         }
 
+        //Permet d'afficher l'historique des fiches pour un utilisateur 
         public static List<string[]> HistoriqueFiches(Utilisateur utilisateur)
         {
             List<string[]> listRow = new List<string[]>();
@@ -763,11 +753,11 @@ namespace AP_1_GSB.Services
                 string DateAffichage = ("Du " + fiche.Date.ToString("dd MMMM yyyy") + " au " + dateFin.ToString("dd MMMM yyyy"));
                 float montant = FicheFraisService.CalculerTotalFiche(fiche);
                 string MontantEuros = "" + montant.ToString("F2") + " €";
-                string etat = "";
+               
                 string[] row = new string[]
                 {
                     DateAffichage,
-                    etat = EcrireEtatFiche(fiche),
+                    EcrireEtatFiche(fiche),
                     MontantEuros,
                     fiche.IdFicheFrais.ToString(),
                 };
@@ -775,6 +765,8 @@ namespace AP_1_GSB.Services
             }
             return listRow;
         }
+
+        //Calcul la date de fin d'une fiche
         public static DateTime DateFin(FicheFrais fiche)
         {
             DateTime dtFin = new DateTime(fiche.Date.Year, fiche.Date.Month + 1, 10);

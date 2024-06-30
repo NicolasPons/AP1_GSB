@@ -1,4 +1,5 @@
 ﻿using AP_1_GSB.Data.Models;
+using Google.Protobuf.Compiler;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
@@ -16,6 +17,8 @@ namespace AP_1_GSB.Administrateur
     {
         public DataGridView dataGridUtilisateurs => this.DataGridUtilisateurs;
         public DataGridView dataGridTypeFrais => this.DataGridTypeFrais;
+        CreerModifierUtilisateur creerModifierUtilisateur = null;
+        AjouterModifierTypeFraisForfait ajouterModifierTypeFraisForfait = null;
 
         public InterfacePrincipaleAdmin()
         {
@@ -30,11 +33,8 @@ namespace AP_1_GSB.Administrateur
             DataGridUtilisateurs.Columns["IdUtilisateur"].Visible = false;
             DataGridTypeFrais.Columns["IdTypeFrais"].Visible = false;
 
-            List<TypeFraisForfait> TypesFraisForfait = new List<TypeFraisForfait>();
-            List<Utilisateur> utilisateurs = new List<Utilisateur>();
-
-            TypesFraisForfait = Services.TypeFraisForfaitService.RecupererTypeFraisForfait();
-            utilisateurs = Services.UtilisateurService.RecupererUtilisateurs();
+            List<TypeFraisForfait> TypesFraisForfait = Services.TypeFraisForfaitService.RecupererTypeFraisForfait();
+            List<Utilisateur> utilisateurs = Services.UtilisateurService.RecupererUtilisateurs();
 
             foreach (TypeFraisForfait type in TypesFraisForfait)
             {
@@ -61,9 +61,93 @@ namespace AP_1_GSB.Administrateur
                 DataGridUtilisateurs.Rows.Add(row);
             }
         }
-
-        private void DataGridTypeFrais_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        //Méthode pour ajouter un utilisateur
+        public void AjouterUtilisateur()
         {
+            if (creerModifierUtilisateur == null || creerModifierUtilisateur.IsDisposed)
+            {
+                creerModifierUtilisateur = new CreerModifierUtilisateur("ajouter");
+                creerModifierUtilisateur.StartPosition = FormStartPosition.Manual;
+                creerModifierUtilisateur.UtilisateurEvenement += MettreAJourDataGrids;
+                creerModifierUtilisateur.Location = new System.Drawing.Point(this.Location.X - 1100, this.Location.Y + 350);
+                creerModifierUtilisateur.TopLevel = true;
+            }
+            creerModifierUtilisateur.Show();
+        }
+        //Méthode pour modifier un utilisateur. Récupère l'ID sélectionné
+        public void ModifierUtilisateur()
+        {
+           
+            List<Utilisateur> utilisateurs = new List<Utilisateur>();
+            utilisateurs = Services.UtilisateurService.RecupererUtilisateurs();
+            int idUtilisateur = int.Parse(DataGridUtilisateurs.SelectedRows[0].Cells[4].Value.ToString());
+            Utilisateur utilisateur = utilisateurs.FirstOrDefault(item => item.IdUtilisateur == idUtilisateur);
+
+            if (creerModifierUtilisateur == null || creerModifierUtilisateur.IsDisposed)
+            {
+                creerModifierUtilisateur = new CreerModifierUtilisateur("modifier", utilisateur);
+                creerModifierUtilisateur.StartPosition = FormStartPosition.Manual;
+                creerModifierUtilisateur.UtilisateurEvenement += MettreAJourDataGrids;
+                creerModifierUtilisateur.Location = new System.Drawing.Point(this.Location.X - 1100, this.Location.Y + 350);
+                creerModifierUtilisateur.TopLevel = true;
+            }
+            creerModifierUtilisateur.Show();
+        }
+        //Méthode pour supprimer un utilisateur. Récupère l'ID sélectionné
+        public void SupprimerUtilisateur()
+        {
+            List<Utilisateur> utilisateurs = new List<Utilisateur>();
+            utilisateurs = Services.UtilisateurService.RecupererUtilisateurs();
+            int idUtilisateur = int.Parse(DataGridUtilisateurs.SelectedRows[0].Cells[4].Value.ToString());
+            Utilisateur utilisateur = utilisateurs.FirstOrDefault(item => item.IdUtilisateur == idUtilisateur);
+
+            DialogResult dialogResult = MessageBox.Show("Voulez-vous vraiment supprimer cet utilisateur ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
+            {
+                if (Services.UtilisateurService.SupprimerUtilisateur(utilisateur))
+                {
+                    MessageBox.Show("Utilisateur supprimé avec succès", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MettreAJourDataGrids();
+                }
+                else
+                {
+                    MessageBox.Show("Erreur lors de la suppression de l'utilisateur", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        //Méthode pour modifier le type de frais. Récupère l'ID sélectionné
+        public void ModifierTypeFrais()
+        {
+            List<TypeFraisForfait> TypesFraisForfait = new List<TypeFraisForfait>();
+            TypesFraisForfait = Services.TypeFraisForfaitService.RecupererTypeFraisForfait();
+            string test = DataGridTypeFrais.SelectedRows[0].Cells[0].Value.ToString();
+            int idTypFrais = int.Parse(DataGridTypeFrais.SelectedRows[0].Cells[2].Value.ToString());
+            TypeFraisForfait typeFraisForfait = TypesFraisForfait.FirstOrDefault(frais => frais.IdFraisForfait == idTypFrais);
+
+            if (ajouterModifierTypeFraisForfait == null || ajouterModifierTypeFraisForfait.IsDisposed)
+            {
+                ajouterModifierTypeFraisForfait = new AjouterModifierTypeFraisForfait("modifier", typeFraisForfait);
+                ajouterModifierTypeFraisForfait.StartPosition = FormStartPosition.Manual;
+                ajouterModifierTypeFraisForfait.TypeFraisForfaitEvenement += MettreAJourDataGrids;
+                ajouterModifierTypeFraisForfait.Location = new System.Drawing.Point(this.Location.X - 1000, this.Location.Y + 350);
+                ajouterModifierTypeFraisForfait.TopLevel = true;
+            }
+            ajouterModifierTypeFraisForfait.Show();
+        }
+
+        public void AjouterTypeFrais()
+        {
+
+            if (ajouterModifierTypeFraisForfait == null || ajouterModifierTypeFraisForfait.IsDisposed)
+            {
+                ajouterModifierTypeFraisForfait = new AjouterModifierTypeFraisForfait("ajouter");
+                ajouterModifierTypeFraisForfait.StartPosition = FormStartPosition.Manual;
+                ajouterModifierTypeFraisForfait.TypeFraisForfaitEvenement += MettreAJourDataGrids;
+                ajouterModifierTypeFraisForfait.Location = new System.Drawing.Point(this.Location.X - 1000, this.Location.Y + 350);
+                ajouterModifierTypeFraisForfait.TopLevel = true;
+            }
+            ajouterModifierTypeFraisForfait.Show();
 
         }
     }

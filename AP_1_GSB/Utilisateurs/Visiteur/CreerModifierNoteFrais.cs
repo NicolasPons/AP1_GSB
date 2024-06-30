@@ -26,6 +26,8 @@ namespace AP_1_GSB.Visiteur
         string version;
         byte[] fichierBinaire = null;
         int idType;
+
+        //Trois constructeurs en fonction du besoin : créer ou modifier(forfait ou hors forfait 
         public CreerModifierNoteFrais(Utilisateur utilisateur, FicheFrais ficheEnCours, DateTime dtFin, string version)
         {
             this.utilisateur = utilisateur;
@@ -38,23 +40,6 @@ namespace AP_1_GSB.Visiteur
             fraisForfaitBindingSource.DataSource = new FraisForfait();
             fraisHorsForfaitBindingSource.DataSource = new FraisHorsForfait();
         }
-
-        private void MiseEnFormeBtn()
-        {
-            Design design = new Design();
-            BtnValider.MouseEnter += design.Btn_EntrerCurseur;
-            BtnValider.MouseLeave += design.Btn_SortirCurseur;
-            design.MiseEnFormeBoutons(BtnValider);
-            BtnJustificatif.MouseEnter += design.Btn_EntrerCurseur;
-            BtnJustificatif.MouseLeave += design.Btn_SortirCurseur;
-            design.MiseEnFormeBoutons(BtnJustificatif);
-            btnQuitter.MouseEnter += design.Btn_EntrerCurseur;
-            btnQuitter.MouseLeave += design.Btn_SortirCurseur;
-            design.MiseEnFormeBoutons(btnQuitter);
-
-        }
-
-
         public CreerModifierNoteFrais(Utilisateur utilisateur, FicheFrais ficheEnCours, DateTime dtFin, string version, FraisForfait FraisForfaitAModifier)
         {
             this.utilisateur = utilisateur;
@@ -64,6 +49,7 @@ namespace AP_1_GSB.Visiteur
             InitializeComponent();
             ChargerCombobox();
             InitialiserForm(dtFin);
+            MiseEnFormeBtn();
             fraisForfaitBindingSource.DataSource = FraisForfaitAModifier;
 
             if (FraisForfaitAModifier.justificatif != null )
@@ -94,6 +80,7 @@ namespace AP_1_GSB.Visiteur
             InitializeComponent();
             ChargerCombobox();
             InitialiserForm(dtFin);
+            MiseEnFormeBtn();
             fraisHorsForfaitBindingSource.DataSource = FraisHorsForfaitAModifier;
 
             if (FraisHorsForfaitAModifier.Justificatif != null)
@@ -115,6 +102,23 @@ namespace AP_1_GSB.Visiteur
             lblJustificatif.Visible = true;
         }
 
+        //Applique le design des boutons
+        private void MiseEnFormeBtn()
+        {
+            Design design = new Design();
+            BtnValider.MouseEnter += design.Btn_EntrerCurseur;
+            BtnValider.MouseLeave += design.Btn_SortirCurseur;
+            design.MiseEnFormeBoutons(BtnValider);
+            BtnJustificatif.MouseEnter += design.Btn_EntrerCurseur;
+            BtnJustificatif.MouseLeave += design.Btn_SortirCurseur;
+            design.MiseEnFormeBoutons(BtnJustificatif);
+            btnQuitter.MouseEnter += design.Btn_EntrerCurseur;
+            btnQuitter.MouseLeave += design.Btn_SortirCurseur;
+            design.MiseEnFormeBoutons(btnQuitter);
+
+        }
+
+        //Met en forme la pop up 
         public void InitialiserForm(DateTime dtFin)
         {
             DateMinMaxDateTimePicker(DtTimePickerForfait, dtFin);
@@ -148,15 +152,14 @@ namespace AP_1_GSB.Visiteur
                 label1.Text = "Modification d'une note de frais";
             }
         }
-
+        //Définit la période de sélection possible dans le DateTimePicker
         private void DateMinMaxDateTimePicker(DateTimePicker dtp, DateTime dtFin)
         {
             dtp.MinDate = ficheEnCours.Date;
             dtp.MaxDate = dtFin;
         }
 
-
-
+        //Charge les valeurs du combobox
         private void ChargerCombobox()
         {
             List<TypeFraisForfait> typeFraisForfaits = TypeFraisForfaitService.RecupererTypeFraisForfait();
@@ -164,7 +167,6 @@ namespace AP_1_GSB.Visiteur
             ComboBoxTypeForfait.DisplayMember = "Nom";
             ComboBoxTypeForfait.ValueMember = "IdFraisForfait";
         }
-
 
         private void BtnJustificatif_Click(object sender, EventArgs e)
         {
@@ -191,6 +193,8 @@ namespace AP_1_GSB.Visiteur
                 lblMiseAJourJustificatif.Text = "Justificatif ajouté";
             }
         }
+
+        //Met à jour les différents composants en fonction de l'item sélectionné
         private void ComboBoxSelectionForfaitHorsForfait_SelectedIndexChanged(object sender, EventArgs e)
         {
             bool isFraisForfait = ComboBoxSelectionForfaitHorsForfait.SelectedIndex == 0;
@@ -214,6 +218,7 @@ namespace AP_1_GSB.Visiteur
 
         }
 
+        //Creer un frais 
         private void CreerForfait()
         {
             if (ComboBoxSelectionForfaitHorsForfait.SelectedIndex == 0)
@@ -291,6 +296,7 @@ namespace AP_1_GSB.Visiteur
             }
         }
 
+        //Méthode pour modifier un frais forfait 
         private void ModifierForfait()
         {
             FraisForfait fraisForfaitModifier = fraisForfaitBindingSource.Current as FraisForfait;
@@ -330,6 +336,8 @@ namespace AP_1_GSB.Visiteur
 
             }
         }
+
+        //Méthode pour modifier hors forfait 
         private void ModifierHorsForfait()
         {
             FraisHorsForfait fraisHorsForfaitModifie = fraisHorsForfaitBindingSource.Current as FraisHorsForfait;
@@ -369,6 +377,7 @@ namespace AP_1_GSB.Visiteur
             }
         }
 
+        //Définie la méthode à appeler en fonction de la version
         private void BtnValider_Click(object sender, EventArgs e)
         {
             switch (version)
@@ -385,7 +394,7 @@ namespace AP_1_GSB.Visiteur
             }
         }
 
-        private void btnQuitter_Click(object sender, EventArgs e)
+        private void BtnQuitter_Click(object sender, EventArgs e)
         {
             this.Close();
         }

@@ -23,11 +23,23 @@ namespace AP_1_GSB.Administrateur
         {
             InitializeComponent();
             MiseEnFormeBtn();
+            ChargerCombobox();
             lblModifierUtilisateur.Visible = false;
             this.version = version;
             utilisateurBindingSource.DataSource = new Utilisateur();
         }
+        public CreerModifierUtilisateur(string version, Utilisateur utilisateurAModifier)
+        {
+            InitializeComponent();
+            lblCreerUtilisateur.Visible = false;
+            ChargerCombobox();
+            ChargerComposants();
+            this.version = version;
+            this.utilisateurAModifier = utilisateurAModifier;
+            utilisateurBindingSource.DataSource = utilisateurAModifier;
+        }
 
+        //applique le designe sur les boutons 
         private void MiseEnFormeBtn()
         {
             Design design = new Design();
@@ -35,16 +47,13 @@ namespace AP_1_GSB.Administrateur
             btnValider.MouseLeave += design.Btn_SortirCurseur;
             design.MiseEnFormeBoutons(btnValider);
         }
-        public CreerModifierUtilisateur(string version, Utilisateur utilisateurAModifier)
+
+        private void ChargerCombobox()
         {
-            InitializeComponent();
-            lblCreerUtilisateur.Visible = false;
-            ChargerComposants();
-            this.version = version;
-            this.utilisateurAModifier = utilisateurAModifier;
-            utilisateurBindingSource.DataSource = utilisateurAModifier;
+            roleComboBox.DataSource = Enum.GetValues(typeof(UtilisateurRole));
         }
 
+        //Charge les composants lors de la modification en se sourcant sur le DataSource : utilisateurAModifier
         private void ChargerComposants()
         {
             identifiantTextBox.DataBindings.Clear();
@@ -54,14 +63,21 @@ namespace AP_1_GSB.Administrateur
             emailTextBox.DataBindings.Clear();
             roleComboBox.DataBindings.Clear();
 
+
             identifiantTextBox.DataBindings.Add("Text", utilisateurBindingSource, "Identifiant", true, DataSourceUpdateMode.OnPropertyChanged);
             mdpTextBox.DataBindings.Add("Text", utilisateurBindingSource, "Mdp", true, DataSourceUpdateMode.OnPropertyChanged);
             nomTextBox.DataBindings.Add("Text", utilisateurBindingSource, "Nom", true, DataSourceUpdateMode.OnPropertyChanged);
             prenomTextBox.DataBindings.Add("Text", utilisateurBindingSource, "Prenom", true, DataSourceUpdateMode.OnPropertyChanged);
             emailTextBox.DataBindings.Add("Text", utilisateurBindingSource, "Email", true, DataSourceUpdateMode.OnPropertyChanged);
-            roleComboBox.DataBindings.Add("SelectedIndex", utilisateurBindingSource, "Role", true, DataSourceUpdateMode.OnPropertyChanged);
+            roleComboBox.DataBindings.Add("SelectedIndex", utilisateurBindingSource, "Role", true, DataSourceUpdateMode.Never);
+
+            roleComboBox.SelectedIndexChanged -= roleComboBox_SelectedIndexChanged;
+            roleComboBox.SelectedIndexChanged += roleComboBox_SelectedIndexChanged;
+
         }
 
+        //Méthode de validation de la saisie utilisateur. Si saisie incorecte, envoie un message listant les différents erreurs
+        //Sinon création ou modification de l'utilisateur 
         private void BtnValider_Click(object sender, EventArgs e)
         {
             if (version == "ajouter")
@@ -125,6 +141,15 @@ namespace AP_1_GSB.Administrateur
         private void BtnQuitter_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void roleComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (utilisateurBindingSource.Current is Utilisateur utilisateur)
+            {
+                utilisateur.Role = (UtilisateurRole)roleComboBox.SelectedItem;
+            }
+
         }
     }
 }

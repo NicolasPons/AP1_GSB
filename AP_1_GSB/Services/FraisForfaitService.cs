@@ -18,6 +18,8 @@ namespace AP_1_GSB.Services
 {
     public class FraisForfaitService
     {
+
+        //Supression d'un frais forfait en base
         public static bool SupprimerFraisForfait(FraisForfait frais)
         {
             int IdFrais = frais.IdFraisForfait;
@@ -53,7 +55,7 @@ namespace AP_1_GSB.Services
                 Data.SqlConnection.DeconnexionSql();
             }
         }
-
+        //Insertion d'un frais forfait en base
         public static bool AjouterFraisForfait(int IdFiche, int idType, FraisForfait frais, byte[] justificatif)
         {
             if (frais.Date == new DateTime(1, 1, 1)) 
@@ -99,7 +101,7 @@ namespace AP_1_GSB.Services
             }
             return false;
         }
-
+        //Modification d'un frais forfait en base
         public static bool ModifierFraisForfait(int idType, FraisForfait frais, byte[] justificatif)
         {
             if (frais.Date == new DateTime(1, 1, 1)) 
@@ -149,7 +151,7 @@ namespace AP_1_GSB.Services
         }
 
 
-
+        //Calcul du total des frais forfait
         public static float CalculerTotalForfait(FicheFrais ficheEncours)
         {
             float Total = 0;
@@ -183,7 +185,7 @@ namespace AP_1_GSB.Services
                 Data.SqlConnection.DeconnexionSql();
             }
         }
-
+        //Ecriture des frais forfait 
         public static string EcrireEtatFraisForfait(FraisForfait frais)
         {
             string etat = "";
@@ -200,22 +202,6 @@ namespace AP_1_GSB.Services
                     break;
             }
             return etat;
-        }
-
-        public static Image AfficherJustificatif(byte[] blob)
-        {
-            if (blob != null)
-            {
-                using (MemoryStream ms = new MemoryStream(blob))
-                {
-                    Image image = Image.FromStream(ms);
-                    return image;
-                }
-            }
-            else
-            {
-            return null;
-            }
         }
     }
 }

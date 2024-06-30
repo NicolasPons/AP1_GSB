@@ -161,7 +161,7 @@
             this.BtnValiderLogin.TabIndex = 10;
             this.BtnValiderLogin.Text = "Se connecter";
             this.BtnValiderLogin.UseVisualStyleBackColor = false;
-            this.BtnValiderLogin.Click += new System.EventHandler(this.BtnSeConnecterClickr);
+            this.BtnValiderLogin.Click += new System.EventHandler(this.BtnSeConnecter_Click);
             // 
             // panel4
             // 

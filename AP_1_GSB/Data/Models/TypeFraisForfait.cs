@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 namespace AP_1_GSB.Data.Models
 {
+    //Attributs de la classe TypeFraisForfait et ses annotations qui définissent les règles de validation dans le forme dont le TypeFraisForfait est le DataSource
     public class TypeFraisForfait
     {
         public int IdFraisForfait { get; set; }

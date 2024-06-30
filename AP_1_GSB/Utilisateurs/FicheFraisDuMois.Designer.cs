@@ -43,6 +43,13 @@
             this.lblEtat = new System.Windows.Forms.Label();
             this.btnRetour = new System.Windows.Forms.Button();
             this.DataGridFraisForfait = new System.Windows.Forms.DataGridView();
+            this.Typefraisforfait = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuantiteDG = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MontantForfait = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DateDGFrais = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EtatDG = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.JustiDG = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdFraisforfait = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataGridHorsForfait = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,14 +62,7 @@
             this.LblTotalHorsForfait = new System.Windows.Forms.Label();
             this.BtnRefuserFicheComptable = new System.Windows.Forms.Button();
             this.BtnAccepterFiche = new System.Windows.Forms.Button();
-            this.LblEtatFicheComptable = new System.Windows.Forms.Label();
-            this.Typefraisforfait = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QuantiteDG = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MontantForfait = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DateDGFrais = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EtatDG = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.JustiDG = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdFraisforfait = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LblEtatFiche = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridFraisForfait)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridHorsForfait)).BeginInit();
             this.SuspendLayout();
@@ -153,7 +153,7 @@
             this.btnRetour.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnRetour.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRetour.UseVisualStyleBackColor = false;
-            this.btnRetour.Click += new System.EventHandler(this.btnRetour_Click);
+            this.btnRetour.Click += new System.EventHandler(this.BtnRetour_Click);
             // 
             // DataGridFraisForfait
             // 
@@ -208,6 +208,65 @@
             this.DataGridFraisForfait.Size = new System.Drawing.Size(915, 225);
             this.DataGridFraisForfait.TabIndex = 20;
             this.DataGridFraisForfait.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DataGridFraisForfait_MouseClick);
+            // 
+            // Typefraisforfait
+            // 
+            this.Typefraisforfait.Frozen = true;
+            this.Typefraisforfait.HeaderText = "Type frais forfait";
+            this.Typefraisforfait.MinimumWidth = 6;
+            this.Typefraisforfait.Name = "Typefraisforfait";
+            this.Typefraisforfait.ReadOnly = true;
+            this.Typefraisforfait.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Typefraisforfait.Width = 180;
+            // 
+            // QuantiteDG
+            // 
+            this.QuantiteDG.Frozen = true;
+            this.QuantiteDG.HeaderText = "Quantité";
+            this.QuantiteDG.MinimumWidth = 6;
+            this.QuantiteDG.Name = "QuantiteDG";
+            this.QuantiteDG.ReadOnly = true;
+            this.QuantiteDG.Width = 60;
+            // 
+            // MontantForfait
+            // 
+            this.MontantForfait.HeaderText = "Montant";
+            this.MontantForfait.MinimumWidth = 6;
+            this.MontantForfait.Name = "MontantForfait";
+            this.MontantForfait.ReadOnly = true;
+            this.MontantForfait.Width = 115;
+            // 
+            // DateDGFrais
+            // 
+            this.DateDGFrais.HeaderText = "Date";
+            this.DateDGFrais.MinimumWidth = 6;
+            this.DateDGFrais.Name = "DateDGFrais";
+            this.DateDGFrais.ReadOnly = true;
+            this.DateDGFrais.Width = 150;
+            // 
+            // EtatDG
+            // 
+            this.EtatDG.HeaderText = "Etat";
+            this.EtatDG.MinimumWidth = 6;
+            this.EtatDG.Name = "EtatDG";
+            this.EtatDG.ReadOnly = true;
+            this.EtatDG.Width = 180;
+            // 
+            // JustiDG
+            // 
+            this.JustiDG.HeaderText = "Justificatif";
+            this.JustiDG.MinimumWidth = 6;
+            this.JustiDG.Name = "JustiDG";
+            this.JustiDG.ReadOnly = true;
+            this.JustiDG.Width = 228;
+            // 
+            // IdFraisforfait
+            // 
+            this.IdFraisforfait.HeaderText = "IdFraisforfait";
+            this.IdFraisforfait.MinimumWidth = 6;
+            this.IdFraisforfait.Name = "IdFraisforfait";
+            this.IdFraisforfait.ReadOnly = true;
+            this.IdFraisforfait.Width = 115;
             // 
             // DataGridHorsForfait
             // 
@@ -362,7 +421,7 @@
             this.BtnRefuserFicheComptable.TabIndex = 26;
             this.BtnRefuserFicheComptable.Text = "Refuser";
             this.BtnRefuserFicheComptable.UseVisualStyleBackColor = false;
-            this.BtnRefuserFicheComptable.Click += new System.EventHandler(this.BtnRefuser_Click);
+            this.BtnRefuserFicheComptable.Click += new System.EventHandler(this.BtnRefuserFiche_Click);
             // 
             // BtnAccepterFiche
             // 
@@ -379,75 +438,16 @@
             this.BtnAccepterFiche.UseVisualStyleBackColor = false;
             this.BtnAccepterFiche.Click += new System.EventHandler(this.BtnAccepterFiche_Click);
             // 
-            // LblEtatFicheComptable
+            // LblEtatFiche
             // 
-            this.LblEtatFicheComptable.AutoSize = true;
-            this.LblEtatFicheComptable.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.LblEtatFicheComptable.Font = new System.Drawing.Font("Century Gothic", 9.818182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblEtatFicheComptable.Location = new System.Drawing.Point(401, 651);
-            this.LblEtatFicheComptable.Name = "LblEtatFicheComptable";
-            this.LblEtatFicheComptable.Size = new System.Drawing.Size(168, 22);
-            this.LblEtatFicheComptable.TabIndex = 28;
-            this.LblEtatFicheComptable.Text = "Etat fiche : Acceptée";
-            // 
-            // Typefraisforfait
-            // 
-            this.Typefraisforfait.Frozen = true;
-            this.Typefraisforfait.HeaderText = "Type frais forfait";
-            this.Typefraisforfait.MinimumWidth = 6;
-            this.Typefraisforfait.Name = "Typefraisforfait";
-            this.Typefraisforfait.ReadOnly = true;
-            this.Typefraisforfait.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Typefraisforfait.Width = 180;
-            // 
-            // QuantiteDG
-            // 
-            this.QuantiteDG.Frozen = true;
-            this.QuantiteDG.HeaderText = "Quantité";
-            this.QuantiteDG.MinimumWidth = 6;
-            this.QuantiteDG.Name = "QuantiteDG";
-            this.QuantiteDG.ReadOnly = true;
-            this.QuantiteDG.Width = 60;
-            // 
-            // MontantForfait
-            // 
-            this.MontantForfait.HeaderText = "Montant";
-            this.MontantForfait.MinimumWidth = 6;
-            this.MontantForfait.Name = "MontantForfait";
-            this.MontantForfait.ReadOnly = true;
-            this.MontantForfait.Width = 115;
-            // 
-            // DateDGFrais
-            // 
-            this.DateDGFrais.HeaderText = "Date";
-            this.DateDGFrais.MinimumWidth = 6;
-            this.DateDGFrais.Name = "DateDGFrais";
-            this.DateDGFrais.ReadOnly = true;
-            this.DateDGFrais.Width = 150;
-            // 
-            // EtatDG
-            // 
-            this.EtatDG.HeaderText = "Etat";
-            this.EtatDG.MinimumWidth = 6;
-            this.EtatDG.Name = "EtatDG";
-            this.EtatDG.ReadOnly = true;
-            this.EtatDG.Width = 180;
-            // 
-            // JustiDG
-            // 
-            this.JustiDG.HeaderText = "Justificatif";
-            this.JustiDG.MinimumWidth = 6;
-            this.JustiDG.Name = "JustiDG";
-            this.JustiDG.ReadOnly = true;
-            this.JustiDG.Width = 228;
-            // 
-            // IdFraisforfait
-            // 
-            this.IdFraisforfait.HeaderText = "IdFraisforfait";
-            this.IdFraisforfait.MinimumWidth = 6;
-            this.IdFraisforfait.Name = "IdFraisforfait";
-            this.IdFraisforfait.ReadOnly = true;
-            this.IdFraisforfait.Width = 115;
+            this.LblEtatFiche.AutoSize = true;
+            this.LblEtatFiche.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LblEtatFiche.Font = new System.Drawing.Font("Century Gothic", 9.818182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblEtatFiche.Location = new System.Drawing.Point(401, 651);
+            this.LblEtatFiche.Name = "LblEtatFiche";
+            this.LblEtatFiche.Size = new System.Drawing.Size(168, 22);
+            this.LblEtatFiche.TabIndex = 28;
+            this.LblEtatFiche.Text = "Etat fiche : Acceptée";
             // 
             // FicheFraisDuMois
             // 
@@ -455,7 +455,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1000, 722);
-            this.Controls.Add(this.LblEtatFicheComptable);
+            this.Controls.Add(this.LblEtatFiche);
             this.Controls.Add(this.BtnAccepterFiche);
             this.Controls.Add(this.BtnRefuserFicheComptable);
             this.Controls.Add(this.LblTotalHorsForfait);
@@ -505,7 +505,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn IdFraisHorsForfait;
         private System.Windows.Forms.Button BtnRefuserFicheComptable;
         private System.Windows.Forms.Button BtnAccepterFiche;
-        private System.Windows.Forms.Label LblEtatFicheComptable;
+        private System.Windows.Forms.Label LblEtatFiche;
         private System.Windows.Forms.DataGridViewTextBoxColumn Typefraisforfait;
         private System.Windows.Forms.DataGridViewTextBoxColumn QuantiteDG;
         private System.Windows.Forms.DataGridViewTextBoxColumn MontantForfait;

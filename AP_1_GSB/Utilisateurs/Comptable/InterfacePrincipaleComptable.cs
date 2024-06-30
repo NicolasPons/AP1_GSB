@@ -25,6 +25,7 @@ namespace AP_1_GSB.Comptable
             ChargerDataGrid();
         }
 
+        //Affiche la liste des utilisateurs dans le data grid 
         public void ChargerDataGrid()
         {
             visiteurs = new List<Utilisateur>();
@@ -50,6 +51,7 @@ namespace AP_1_GSB.Comptable
             DataGridVisiteur.ClearSelection();
         }
 
+        //Met à jour le data Grid des fiches en fonction de l'utilisateur sélectionné dans le data grid utilisateur
         public void MettreAJourDataGridFiche()
         {
             int idVisiteurSelectionne = int.Parse(DataGridVisiteur.SelectedRows[0].Cells[3].Value.ToString());
@@ -72,6 +74,8 @@ namespace AP_1_GSB.Comptable
             }
         }
 
+        // Méthode appelé lors du clique sur le bouton dans le formulaire dashboard;
+        // Retourne un tuple avec un objet FicheFrais et un objet Utilisateur 
         public (FicheFrais, Utilisateur) SelectionnerFiche()
         {
             FicheFrais fiche;
@@ -97,18 +101,17 @@ namespace AP_1_GSB.Comptable
         }
 
 
-
+        //Evenement pour mettre à jour le data grid fiche lors de la sélection d'un utilisateur 
         private void DataGridVisiteur_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left && DataGridVisiteur.SelectedRows.Count > 0)
             {
                 MettreAJourDataGridFiche();
             }
-            //else
-            //{
-            //    return;
-            //}
+
         }
+
+        //Clear le data grid fiche au clique sur le datagrid visiteur 
         private void DataGridVisiteur_MouseClick(object sender, MouseEventArgs e)
         {
             DataGridFiche.ClearSelection();

@@ -2,15 +2,19 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace AP_1_GSB.Services
 { 
     internal class JustificatifService
     {
+
+        //Ajout d'un justificatif en base 
         public static Justificatif AjouterJustificatif(byte[] FichierBinaire)
         {
             Data.SqlConnection.ConnexionSql();
@@ -41,6 +45,24 @@ namespace AP_1_GSB.Services
             finally
             {
                 Data.SqlConnection.DeconnexionSql();
+            }
+        }
+
+        //Permet d'afficher un justificatif 
+        public static Image AfficherJustificatif(byte[] blob)
+        {
+            if (blob != null)
+            {
+                using (MemoryStream ms = new MemoryStream(blob))
+                {
+                    Image image = Image.FromStream(ms);
+                    return image;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Aucun justificatif n'est disponible pour ce frais", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return null;
             }
         }
     }

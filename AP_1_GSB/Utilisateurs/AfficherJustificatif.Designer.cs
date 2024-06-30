@@ -47,7 +47,7 @@
             this.btnQuitter.TabIndex = 7;
             this.btnQuitter.Text = "X";
             this.btnQuitter.UseVisualStyleBackColor = true;
-            this.btnQuitter.Click += new System.EventHandler(this.btnQuitter_Click);
+            this.btnQuitter.Click += new System.EventHandler(this.BtnQuitter_Click);
             // 
             // PictureBoxJustificatif
             // 

@@ -12,7 +12,7 @@ using AP_1_GSB.Data.Models;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI.Relational;
-using AP_1_GSB.Services;
+
 
 namespace AP_1_GSB
 {
@@ -26,8 +26,8 @@ namespace AP_1_GSB
             MiseEnFormeBoutonsPourLogin();
         }
 
-
-        private void BtnSeConnecterClickr(object sender, EventArgs e)
+        //Ouvre l'interface correspondant au rôle de l'utilisateur 
+        private void BtnSeConnecter_Click(object sender, EventArgs e)
         {
             Utilisateur utilisateur = Services.AuthentificationService.VerificationUtilisateur(saisieUtilisateur.Text, saisieMdp.Text);
 
@@ -57,6 +57,7 @@ namespace AP_1_GSB
             }
             this.Hide();
         }
+        //Applique le design sur les boutons
         private void MiseEnFormeBoutonsPourLogin()
         {
             Design design = new Design();

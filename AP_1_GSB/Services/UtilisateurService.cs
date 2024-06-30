@@ -12,6 +12,8 @@ namespace AP_1_GSB.Services
 {
     internal class UtilisateurService
     {
+
+        //Récupération de tout les visiteurs en base
         public static List<Utilisateur> RecupererVisiteurs()
         {
             List<Utilisateur> visiteurs = new List<Utilisateur>();
@@ -53,6 +55,7 @@ namespace AP_1_GSB.Services
             }
         }
 
+        //Récupération de tout les utilisateur en base
         public static List<Utilisateur> RecupererUtilisateurs()
         {
             List<Utilisateur> utilisateurs = new List<Utilisateur>();
@@ -111,6 +114,7 @@ namespace AP_1_GSB.Services
             }
         }
 
+        //Création d'un utilisateur en base
         public static bool CreerUtilisateur(Utilisateur utilisateur)
         {
             Data.SqlConnection.ConnexionSql();
@@ -144,6 +148,7 @@ namespace AP_1_GSB.Services
             return false;
         }
 
+        //Modification d'un utilisateur en base 
         public static bool ModifierUtilisateur(Utilisateur utilisateur)
         {
             Data.SqlConnection.ConnexionSql();
@@ -178,6 +183,7 @@ namespace AP_1_GSB.Services
         }
 
 
+        //Suppression utilisateur en base 
         public static bool SupprimerUtilisateur(Utilisateur utilisateur)
         {
             Data.SqlConnection.ConnexionSql();

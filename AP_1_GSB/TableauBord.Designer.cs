@@ -47,27 +47,27 @@
             this.btnAjoutUtilisateur = new System.Windows.Forms.Button();
             this.PanelAffichage = new System.Windows.Forms.Panel();
             this.PanelUtilisateur = new System.Windows.Forms.Panel();
-            this.BtnRetourLoginUtilisateur = new System.Windows.Forms.Button();
-            this.BtnAfficherJustificatifUtilisateur = new System.Windows.Forms.Button();
+            this.BtnRetourLoginVisiteur = new System.Windows.Forms.Button();
+            this.BtnAfficherJustificatifVisiteur = new System.Windows.Forms.Button();
             this.BtnAfficherHistoriqueVisiteur = new System.Windows.Forms.Button();
             this.BtnModifierNoteVisiteur = new System.Windows.Forms.Button();
             this.BtnSupprimerNoteVisiteur = new System.Windows.Forms.Button();
             this.BtnAjouterNoteFraisVisiteur = new System.Windows.Forms.Button();
-            this.panelMenu = new System.Windows.Forms.Panel();
-            this.BtnAfficheFichesEmploye = new System.Windows.Forms.Button();
-            this.btnRefusFrais = new System.Windows.Forms.Button();
-            this.btnAccepterFrais = new System.Windows.Forms.Button();
-            this.BtnAfficherJustificatifComptable = new System.Windows.Forms.Button();
-            this.BtnRetourLoginComptable = new System.Windows.Forms.Button();
             this.PanelComptable = new System.Windows.Forms.Panel();
+            this.BtnRetourLoginComptable = new System.Windows.Forms.Button();
+            this.BtnAfficherJustificatifComptable = new System.Windows.Forms.Button();
+            this.btnAccepterFrais = new System.Windows.Forms.Button();
+            this.BtnRefusFrais = new System.Windows.Forms.Button();
+            this.BtnAfficherFicheSelectionnee = new System.Windows.Forms.Button();
+            this.panelMenu = new System.Windows.Forms.Panel();
             this.PanelEnTete.SuspendLayout();
             this.PanelUtilsateurLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             this.panelAdministrateur.SuspendLayout();
             this.PanelAffichage.SuspendLayout();
             this.PanelUtilisateur.SuspendLayout();
-            this.panelMenu.SuspendLayout();
             this.PanelComptable.SuspendLayout();
+            this.panelMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // PanelEnTete
@@ -81,7 +81,7 @@
             this.PanelEnTete.Name = "PanelEnTete";
             this.PanelEnTete.Size = new System.Drawing.Size(1000, 87);
             this.PanelEnTete.TabIndex = 0;
-            this.PanelEnTete.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelEnTete_MouseDown);
+            this.PanelEnTete.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelEnTete_MouseDown);
             // 
             // label1
             // 
@@ -228,7 +228,7 @@
             this.btnSupprimerUtilisateur.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSupprimerUtilisateur.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSupprimerUtilisateur.UseVisualStyleBackColor = true;
-            this.btnSupprimerUtilisateur.Click += new System.EventHandler(this.btnSupprimerUtilisateur_Click);
+            this.btnSupprimerUtilisateur.Click += new System.EventHandler(this.BtnSupprimerUtilisateur_Click);
             // 
             // btnModifierTypeFrais
             // 
@@ -248,7 +248,7 @@
             this.btnModifierTypeFrais.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnModifierTypeFrais.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnModifierTypeFrais.UseVisualStyleBackColor = true;
-            this.btnModifierTypeFrais.Click += new System.EventHandler(this.btnModifierTypeFrais_Click);
+            this.btnModifierTypeFrais.Click += new System.EventHandler(this.BtnModifierTypeFrais_Click);
             // 
             // btnAjouterTypeFrais
             // 
@@ -268,7 +268,7 @@
             this.btnAjouterTypeFrais.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAjouterTypeFrais.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAjouterTypeFrais.UseVisualStyleBackColor = true;
-            this.btnAjouterTypeFrais.Click += new System.EventHandler(this.btnAjouterTypeFrais_Click);
+            this.btnAjouterTypeFrais.Click += new System.EventHandler(this.BtnAjouterTypeFrais_Click);
             // 
             // btnModifierUtilisateur
             // 
@@ -288,7 +288,7 @@
             this.btnModifierUtilisateur.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnModifierUtilisateur.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnModifierUtilisateur.UseVisualStyleBackColor = true;
-            this.btnModifierUtilisateur.Click += new System.EventHandler(this.btnModifierUtilisateur_Click);
+            this.btnModifierUtilisateur.Click += new System.EventHandler(this.BtnModifierUtilisateur_Click);
             // 
             // btnAjoutUtilisateur
             // 
@@ -308,7 +308,7 @@
             this.btnAjoutUtilisateur.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAjoutUtilisateur.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAjoutUtilisateur.UseVisualStyleBackColor = true;
-            this.btnAjoutUtilisateur.Click += new System.EventHandler(this.btnAjoutUtilisateur_Click);
+            this.btnAjoutUtilisateur.Click += new System.EventHandler(this.BtnAjoutUtilisateur_Click);
             // 
             // PanelAffichage
             // 
@@ -326,8 +326,8 @@
             // PanelUtilisateur
             // 
             this.PanelUtilisateur.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(61)))));
-            this.PanelUtilisateur.Controls.Add(this.BtnRetourLoginUtilisateur);
-            this.PanelUtilisateur.Controls.Add(this.BtnAfficherJustificatifUtilisateur);
+            this.PanelUtilisateur.Controls.Add(this.BtnRetourLoginVisiteur);
+            this.PanelUtilisateur.Controls.Add(this.BtnAfficherJustificatifVisiteur);
             this.PanelUtilisateur.Controls.Add(this.BtnAfficherHistoriqueVisiteur);
             this.PanelUtilisateur.Controls.Add(this.BtnModifierNoteVisiteur);
             this.PanelUtilisateur.Controls.Add(this.BtnSupprimerNoteVisiteur);
@@ -338,46 +338,46 @@
             this.PanelUtilisateur.Size = new System.Drawing.Size(200, 722);
             this.PanelUtilisateur.TabIndex = 1;
             // 
-            // BtnRetourLoginUtilisateur
+            // BtnRetourLoginVisiteur
             // 
-            this.BtnRetourLoginUtilisateur.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnRetourLoginUtilisateur.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.BtnRetourLoginUtilisateur.FlatAppearance.BorderSize = 0;
-            this.BtnRetourLoginUtilisateur.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnRetourLoginUtilisateur.Font = new System.Drawing.Font("Century Gothic", 7.2F);
-            this.BtnRetourLoginUtilisateur.ForeColor = System.Drawing.Color.White;
-            this.BtnRetourLoginUtilisateur.Image = ((System.Drawing.Image)(resources.GetObject("BtnRetourLoginUtilisateur.Image")));
-            this.BtnRetourLoginUtilisateur.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnRetourLoginUtilisateur.Location = new System.Drawing.Point(0, 653);
-            this.BtnRetourLoginUtilisateur.Name = "BtnRetourLoginUtilisateur";
-            this.BtnRetourLoginUtilisateur.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.BtnRetourLoginUtilisateur.Size = new System.Drawing.Size(200, 69);
-            this.BtnRetourLoginUtilisateur.TabIndex = 11;
-            this.BtnRetourLoginUtilisateur.Text = "       Déconnexion";
-            this.BtnRetourLoginUtilisateur.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnRetourLoginUtilisateur.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BtnRetourLoginUtilisateur.UseVisualStyleBackColor = true;
-            this.BtnRetourLoginUtilisateur.Click += new System.EventHandler(this.BtnRetourLoginUtilisateur_Click);
+            this.BtnRetourLoginVisiteur.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnRetourLoginVisiteur.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.BtnRetourLoginVisiteur.FlatAppearance.BorderSize = 0;
+            this.BtnRetourLoginVisiteur.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnRetourLoginVisiteur.Font = new System.Drawing.Font("Century Gothic", 7.2F);
+            this.BtnRetourLoginVisiteur.ForeColor = System.Drawing.Color.White;
+            this.BtnRetourLoginVisiteur.Image = ((System.Drawing.Image)(resources.GetObject("BtnRetourLoginVisiteur.Image")));
+            this.BtnRetourLoginVisiteur.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnRetourLoginVisiteur.Location = new System.Drawing.Point(0, 653);
+            this.BtnRetourLoginVisiteur.Name = "BtnRetourLoginVisiteur";
+            this.BtnRetourLoginVisiteur.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.BtnRetourLoginVisiteur.Size = new System.Drawing.Size(200, 69);
+            this.BtnRetourLoginVisiteur.TabIndex = 11;
+            this.BtnRetourLoginVisiteur.Text = "       Déconnexion";
+            this.BtnRetourLoginVisiteur.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnRetourLoginVisiteur.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnRetourLoginVisiteur.UseVisualStyleBackColor = true;
+            this.BtnRetourLoginVisiteur.Click += new System.EventHandler(this.BtnRetourLoginVisiteur_Click);
             // 
-            // BtnAfficherJustificatifUtilisateur
+            // BtnAfficherJustificatifVisiteur
             // 
-            this.BtnAfficherJustificatifUtilisateur.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BtnAfficherJustificatifUtilisateur.FlatAppearance.BorderSize = 0;
-            this.BtnAfficherJustificatifUtilisateur.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnAfficherJustificatifUtilisateur.Font = new System.Drawing.Font("Century Gothic", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAfficherJustificatifUtilisateur.ForeColor = System.Drawing.Color.White;
-            this.BtnAfficherJustificatifUtilisateur.Image = global::AP_1_GSB.Properties.Resources.icons8_image_25;
-            this.BtnAfficherJustificatifUtilisateur.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnAfficherJustificatifUtilisateur.Location = new System.Drawing.Point(0, 296);
-            this.BtnAfficherJustificatifUtilisateur.Name = "BtnAfficherJustificatifUtilisateur";
-            this.BtnAfficherJustificatifUtilisateur.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.BtnAfficherJustificatifUtilisateur.Size = new System.Drawing.Size(200, 74);
-            this.BtnAfficherJustificatifUtilisateur.TabIndex = 6;
-            this.BtnAfficherJustificatifUtilisateur.Text = "   Afficher justificatif";
-            this.BtnAfficherJustificatifUtilisateur.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnAfficherJustificatifUtilisateur.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BtnAfficherJustificatifUtilisateur.UseVisualStyleBackColor = true;
-            this.BtnAfficherJustificatifUtilisateur.Click += new System.EventHandler(this.BtnAfficherJustificatifUtilisateur_Click);
+            this.BtnAfficherJustificatifVisiteur.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BtnAfficherJustificatifVisiteur.FlatAppearance.BorderSize = 0;
+            this.BtnAfficherJustificatifVisiteur.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnAfficherJustificatifVisiteur.Font = new System.Drawing.Font("Century Gothic", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnAfficherJustificatifVisiteur.ForeColor = System.Drawing.Color.White;
+            this.BtnAfficherJustificatifVisiteur.Image = global::AP_1_GSB.Properties.Resources.icons8_image_25;
+            this.BtnAfficherJustificatifVisiteur.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnAfficherJustificatifVisiteur.Location = new System.Drawing.Point(0, 296);
+            this.BtnAfficherJustificatifVisiteur.Name = "BtnAfficherJustificatifVisiteur";
+            this.BtnAfficherJustificatifVisiteur.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.BtnAfficherJustificatifVisiteur.Size = new System.Drawing.Size(200, 74);
+            this.BtnAfficherJustificatifVisiteur.TabIndex = 6;
+            this.BtnAfficherJustificatifVisiteur.Text = "   Afficher justificatif";
+            this.BtnAfficherJustificatifVisiteur.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnAfficherJustificatifVisiteur.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnAfficherJustificatifVisiteur.UseVisualStyleBackColor = true;
+            this.BtnAfficherJustificatifVisiteur.Click += new System.EventHandler(this.BtnAfficherJustificatifVisiteur_Click);
             // 
             // BtnAfficherHistoriqueVisiteur
             // 
@@ -417,7 +417,7 @@
             this.BtnModifierNoteVisiteur.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnModifierNoteVisiteur.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnModifierNoteVisiteur.UseVisualStyleBackColor = true;
-            this.BtnModifierNoteVisiteur.Click += new System.EventHandler(this.BtnModifier_Click);
+            this.BtnModifierNoteVisiteur.Click += new System.EventHandler(this.BtnModifierNoteVisiteur_Click);
             // 
             // BtnSupprimerNoteVisiteur
             // 
@@ -459,95 +459,18 @@
             this.BtnAjouterNoteFraisVisiteur.UseVisualStyleBackColor = true;
             this.BtnAjouterNoteFraisVisiteur.Click += new System.EventHandler(this.BtnAjouterNoteFrais_Click);
             // 
-            // panelMenu
+            // PanelComptable
             // 
-            this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(61)))));
-            this.panelMenu.Controls.Add(this.PanelUtilsateurLogo);
-            this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelMenu.Location = new System.Drawing.Point(0, 0);
-            this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(200, 800);
-            this.panelMenu.TabIndex = 4;
-            // 
-            // BtnAfficheFichesEmploye
-            // 
-            this.BtnAfficheFichesEmploye.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BtnAfficheFichesEmploye.FlatAppearance.BorderSize = 0;
-            this.BtnAfficheFichesEmploye.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnAfficheFichesEmploye.Font = new System.Drawing.Font("Century Gothic", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAfficheFichesEmploye.ForeColor = System.Drawing.Color.White;
-            this.BtnAfficheFichesEmploye.Image = global::AP_1_GSB.Properties.Resources.icons8_document_252;
-            this.BtnAfficheFichesEmploye.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnAfficheFichesEmploye.Location = new System.Drawing.Point(0, 0);
-            this.BtnAfficheFichesEmploye.Name = "BtnAfficheFichesEmploye";
-            this.BtnAfficheFichesEmploye.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.BtnAfficheFichesEmploye.Size = new System.Drawing.Size(200, 73);
-            this.BtnAfficheFichesEmploye.TabIndex = 0;
-            this.BtnAfficheFichesEmploye.Text = "      Afficher la fiche";
-            this.BtnAfficheFichesEmploye.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnAfficheFichesEmploye.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BtnAfficheFichesEmploye.UseVisualStyleBackColor = true;
-            this.BtnAfficheFichesEmploye.Click += new System.EventHandler(this.BtnAfficherFichesEmplye_Click);
-            // 
-            // btnRefusFrais
-            // 
-            this.btnRefusFrais.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnRefusFrais.FlatAppearance.BorderSize = 0;
-            this.btnRefusFrais.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefusFrais.Font = new System.Drawing.Font("Century Gothic", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRefusFrais.ForeColor = System.Drawing.Color.White;
-            this.btnRefusFrais.Image = global::AP_1_GSB.Properties.Resources.icons8_croix_25;
-            this.btnRefusFrais.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRefusFrais.Location = new System.Drawing.Point(0, 73);
-            this.btnRefusFrais.Name = "btnRefusFrais";
-            this.btnRefusFrais.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnRefusFrais.Size = new System.Drawing.Size(200, 74);
-            this.btnRefusFrais.TabIndex = 1;
-            this.btnRefusFrais.Text = "       Refuser un frais";
-            this.btnRefusFrais.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRefusFrais.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnRefusFrais.UseVisualStyleBackColor = true;
-            this.btnRefusFrais.Click += new System.EventHandler(this.btnRefusFrais_Click);
-            // 
-            // btnAccepterFrais
-            // 
-            this.btnAccepterFrais.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnAccepterFrais.FlatAppearance.BorderSize = 0;
-            this.btnAccepterFrais.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAccepterFrais.Font = new System.Drawing.Font("Century Gothic", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAccepterFrais.ForeColor = System.Drawing.Color.White;
-            this.btnAccepterFrais.Image = global::AP_1_GSB.Properties.Resources.icons8_vérifié_25;
-            this.btnAccepterFrais.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAccepterFrais.Location = new System.Drawing.Point(0, 147);
-            this.btnAccepterFrais.Name = "btnAccepterFrais";
-            this.btnAccepterFrais.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnAccepterFrais.Size = new System.Drawing.Size(200, 74);
-            this.btnAccepterFrais.TabIndex = 2;
-            this.btnAccepterFrais.Text = "      Accepter un frais";
-            this.btnAccepterFrais.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAccepterFrais.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAccepterFrais.UseVisualStyleBackColor = true;
-            this.btnAccepterFrais.Click += new System.EventHandler(this.btnAccepterFrais_Click);
-            // 
-            // BtnAfficherJustificatifComptable
-            // 
-            this.BtnAfficherJustificatifComptable.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BtnAfficherJustificatifComptable.FlatAppearance.BorderSize = 0;
-            this.BtnAfficherJustificatifComptable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnAfficherJustificatifComptable.Font = new System.Drawing.Font("Century Gothic", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAfficherJustificatifComptable.ForeColor = System.Drawing.Color.White;
-            this.BtnAfficherJustificatifComptable.Image = global::AP_1_GSB.Properties.Resources.icons8_image_25;
-            this.BtnAfficherJustificatifComptable.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnAfficherJustificatifComptable.Location = new System.Drawing.Point(0, 221);
-            this.BtnAfficherJustificatifComptable.Name = "BtnAfficherJustificatifComptable";
-            this.BtnAfficherJustificatifComptable.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.BtnAfficherJustificatifComptable.Size = new System.Drawing.Size(200, 74);
-            this.BtnAfficherJustificatifComptable.TabIndex = 3;
-            this.BtnAfficherJustificatifComptable.Text = "      Afficher justificatif";
-            this.BtnAfficherJustificatifComptable.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnAfficherJustificatifComptable.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BtnAfficherJustificatifComptable.UseVisualStyleBackColor = true;
-            this.BtnAfficherJustificatifComptable.Click += new System.EventHandler(this.BtnAfficherJustificatifComptable_Click);
+            this.PanelComptable.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(61)))));
+            this.PanelComptable.Controls.Add(this.BtnRetourLoginComptable);
+            this.PanelComptable.Controls.Add(this.BtnAfficherJustificatifComptable);
+            this.PanelComptable.Controls.Add(this.btnAccepterFrais);
+            this.PanelComptable.Controls.Add(this.BtnRefusFrais);
+            this.PanelComptable.Controls.Add(this.BtnAfficherFicheSelectionnee);
+            this.PanelComptable.Location = new System.Drawing.Point(623, 5);
+            this.PanelComptable.Name = "PanelComptable";
+            this.PanelComptable.Size = new System.Drawing.Size(200, 722);
+            this.PanelComptable.TabIndex = 6;
             // 
             // BtnRetourLoginComptable
             // 
@@ -570,18 +493,95 @@
             this.BtnRetourLoginComptable.UseVisualStyleBackColor = true;
             this.BtnRetourLoginComptable.Click += new System.EventHandler(this.BtnRetourLoginComptable_Click);
             // 
-            // PanelComptable
+            // BtnAfficherJustificatifComptable
             // 
-            this.PanelComptable.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(61)))));
-            this.PanelComptable.Controls.Add(this.BtnRetourLoginComptable);
-            this.PanelComptable.Controls.Add(this.BtnAfficherJustificatifComptable);
-            this.PanelComptable.Controls.Add(this.btnAccepterFrais);
-            this.PanelComptable.Controls.Add(this.btnRefusFrais);
-            this.PanelComptable.Controls.Add(this.BtnAfficheFichesEmploye);
-            this.PanelComptable.Location = new System.Drawing.Point(623, 5);
-            this.PanelComptable.Name = "PanelComptable";
-            this.PanelComptable.Size = new System.Drawing.Size(200, 722);
-            this.PanelComptable.TabIndex = 6;
+            this.BtnAfficherJustificatifComptable.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BtnAfficherJustificatifComptable.FlatAppearance.BorderSize = 0;
+            this.BtnAfficherJustificatifComptable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnAfficherJustificatifComptable.Font = new System.Drawing.Font("Century Gothic", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnAfficherJustificatifComptable.ForeColor = System.Drawing.Color.White;
+            this.BtnAfficherJustificatifComptable.Image = global::AP_1_GSB.Properties.Resources.icons8_image_25;
+            this.BtnAfficherJustificatifComptable.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnAfficherJustificatifComptable.Location = new System.Drawing.Point(0, 221);
+            this.BtnAfficherJustificatifComptable.Name = "BtnAfficherJustificatifComptable";
+            this.BtnAfficherJustificatifComptable.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.BtnAfficherJustificatifComptable.Size = new System.Drawing.Size(200, 74);
+            this.BtnAfficherJustificatifComptable.TabIndex = 3;
+            this.BtnAfficherJustificatifComptable.Text = "      Afficher justificatif";
+            this.BtnAfficherJustificatifComptable.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnAfficherJustificatifComptable.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnAfficherJustificatifComptable.UseVisualStyleBackColor = true;
+            this.BtnAfficherJustificatifComptable.Click += new System.EventHandler(this.BtnAfficherJustificatifComptable_Click);
+            // 
+            // btnAccepterFrais
+            // 
+            this.btnAccepterFrais.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnAccepterFrais.FlatAppearance.BorderSize = 0;
+            this.btnAccepterFrais.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAccepterFrais.Font = new System.Drawing.Font("Century Gothic", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAccepterFrais.ForeColor = System.Drawing.Color.White;
+            this.btnAccepterFrais.Image = global::AP_1_GSB.Properties.Resources.icons8_vérifié_25;
+            this.btnAccepterFrais.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAccepterFrais.Location = new System.Drawing.Point(0, 147);
+            this.btnAccepterFrais.Name = "btnAccepterFrais";
+            this.btnAccepterFrais.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnAccepterFrais.Size = new System.Drawing.Size(200, 74);
+            this.btnAccepterFrais.TabIndex = 2;
+            this.btnAccepterFrais.Text = "      Accepter un frais";
+            this.btnAccepterFrais.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAccepterFrais.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAccepterFrais.UseVisualStyleBackColor = true;
+            this.btnAccepterFrais.Click += new System.EventHandler(this.BtnAccepterFrais_Click);
+            // 
+            // BtnRefusFrais
+            // 
+            this.BtnRefusFrais.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BtnRefusFrais.FlatAppearance.BorderSize = 0;
+            this.BtnRefusFrais.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnRefusFrais.Font = new System.Drawing.Font("Century Gothic", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnRefusFrais.ForeColor = System.Drawing.Color.White;
+            this.BtnRefusFrais.Image = global::AP_1_GSB.Properties.Resources.icons8_croix_25;
+            this.BtnRefusFrais.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnRefusFrais.Location = new System.Drawing.Point(0, 73);
+            this.BtnRefusFrais.Name = "BtnRefusFrais";
+            this.BtnRefusFrais.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.BtnRefusFrais.Size = new System.Drawing.Size(200, 74);
+            this.BtnRefusFrais.TabIndex = 1;
+            this.BtnRefusFrais.Text = "       Refuser un frais";
+            this.BtnRefusFrais.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnRefusFrais.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnRefusFrais.UseVisualStyleBackColor = true;
+            this.BtnRefusFrais.Click += new System.EventHandler(this.BtnRefusFrais_Click);
+            // 
+            // BtnAfficherFicheSelectionnee
+            // 
+            this.BtnAfficherFicheSelectionnee.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BtnAfficherFicheSelectionnee.FlatAppearance.BorderSize = 0;
+            this.BtnAfficherFicheSelectionnee.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnAfficherFicheSelectionnee.Font = new System.Drawing.Font("Century Gothic", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnAfficherFicheSelectionnee.ForeColor = System.Drawing.Color.White;
+            this.BtnAfficherFicheSelectionnee.Image = global::AP_1_GSB.Properties.Resources.icons8_document_252;
+            this.BtnAfficherFicheSelectionnee.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnAfficherFicheSelectionnee.Location = new System.Drawing.Point(0, 0);
+            this.BtnAfficherFicheSelectionnee.Name = "BtnAfficherFicheSelectionnee";
+            this.BtnAfficherFicheSelectionnee.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.BtnAfficherFicheSelectionnee.Size = new System.Drawing.Size(200, 73);
+            this.BtnAfficherFicheSelectionnee.TabIndex = 0;
+            this.BtnAfficherFicheSelectionnee.Text = "      Afficher la fiche";
+            this.BtnAfficherFicheSelectionnee.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnAfficherFicheSelectionnee.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnAfficherFicheSelectionnee.UseVisualStyleBackColor = true;
+            this.BtnAfficherFicheSelectionnee.Click += new System.EventHandler(this.BtnAfficherFicheSelectionnee_Click);
+            // 
+            // panelMenu
+            // 
+            this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(61)))));
+            this.panelMenu.Controls.Add(this.PanelUtilsateurLogo);
+            this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelMenu.Location = new System.Drawing.Point(0, 0);
+            this.panelMenu.Name = "panelMenu";
+            this.panelMenu.Size = new System.Drawing.Size(200, 800);
+            this.panelMenu.TabIndex = 4;
             // 
             // TableauBord
             // 
@@ -606,8 +606,8 @@
             this.panelAdministrateur.ResumeLayout(false);
             this.PanelAffichage.ResumeLayout(false);
             this.PanelUtilisateur.ResumeLayout(false);
-            this.panelMenu.ResumeLayout(false);
             this.PanelComptable.ResumeLayout(false);
+            this.panelMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -628,12 +628,12 @@
         private System.Windows.Forms.Button BtnAjouterNoteFraisVisiteur;
         private System.Windows.Forms.Button BtnModifierNoteVisiteur;
         private System.Windows.Forms.Button BtnAfficherHistoriqueVisiteur;
-        private System.Windows.Forms.Button BtnAfficherJustificatifUtilisateur;
+        private System.Windows.Forms.Button BtnAfficherJustificatifVisiteur;
         private System.Windows.Forms.Panel PanelUtilisateur;
         private System.Windows.Forms.Panel PanelUtilsateurLogo;
         private System.Windows.Forms.Panel panelMenu;
         private System.Windows.Forms.Button BtnRetourLoginAdministrateur;
-        private System.Windows.Forms.Button BtnRetourLoginUtilisateur;
+        private System.Windows.Forms.Button BtnRetourLoginVisiteur;
         private System.Windows.Forms.Button BtnSupprimerNoteVisiteur;
         private System.Windows.Forms.PictureBox PictureBoxLogo;
         private System.Windows.Forms.Label LblPrenom;
@@ -643,7 +643,7 @@
         private System.Windows.Forms.Button BtnRetourLoginComptable;
         private System.Windows.Forms.Button BtnAfficherJustificatifComptable;
         private System.Windows.Forms.Button btnAccepterFrais;
-        private System.Windows.Forms.Button btnRefusFrais;
-        private System.Windows.Forms.Button BtnAfficheFichesEmploye;
+        private System.Windows.Forms.Button BtnRefusFrais;
+        private System.Windows.Forms.Button BtnAfficherFicheSelectionnee;
     }
 }

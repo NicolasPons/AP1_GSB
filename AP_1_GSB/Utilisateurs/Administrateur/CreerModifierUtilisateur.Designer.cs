@@ -37,6 +37,7 @@
             System.Windows.Forms.Label emailLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreerModifierUtilisateur));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnQuitter = new System.Windows.Forms.Button();
             this.lblModifierUtilisateur = new System.Windows.Forms.Label();
             this.lblCreerUtilisateur = new System.Windows.Forms.Label();
             this.btnValider = new System.Windows.Forms.Button();
@@ -46,9 +47,8 @@
             this.prenomTextBox = new System.Windows.Forms.TextBox();
             this.roleComboBox = new System.Windows.Forms.ComboBox();
             this.emailTextBox = new System.Windows.Forms.TextBox();
-            this.utilisateurBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnQuitter = new System.Windows.Forms.Button();
             this.fichesFraisBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.utilisateurBindingSource = new System.Windows.Forms.BindingSource(this.components);
             identifiantLabel = new System.Windows.Forms.Label();
             mdpLabel = new System.Windows.Forms.Label();
             nomLabel = new System.Windows.Forms.Label();
@@ -56,8 +56,8 @@
             roleLabel = new System.Windows.Forms.Label();
             emailLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.utilisateurBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fichesFraisBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.utilisateurBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // identifiantLabel
@@ -124,6 +124,21 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(519, 98);
             this.panel1.TabIndex = 0;
+            // 
+            // btnQuitter
+            // 
+            this.btnQuitter.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnQuitter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnQuitter.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold);
+            this.btnQuitter.ForeColor = System.Drawing.Color.White;
+            this.btnQuitter.Image = global::AP_1_GSB.Properties.Resources.icons8_fermer_la_fenêtre_50;
+            this.btnQuitter.Location = new System.Drawing.Point(480, 13);
+            this.btnQuitter.Margin = new System.Windows.Forms.Padding(2);
+            this.btnQuitter.Name = "btnQuitter";
+            this.btnQuitter.Size = new System.Drawing.Size(28, 33);
+            this.btnQuitter.TabIndex = 13;
+            this.btnQuitter.UseVisualStyleBackColor = true;
+            this.btnQuitter.Click += new System.EventHandler(this.BtnQuitter_Click);
             // 
             // lblModifierUtilisateur
             // 
@@ -196,18 +211,13 @@
             // 
             // roleComboBox
             // 
-            this.roleComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.utilisateurBindingSource, "Role", true));
-            this.roleComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.utilisateurBindingSource, "Role", true));
             this.roleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.roleComboBox.FormattingEnabled = true;
-            this.roleComboBox.Items.AddRange(new object[] {
-            "Visiteur",
-            "Comptable",
-            "Administrateur"});
             this.roleComboBox.Location = new System.Drawing.Point(294, 183);
             this.roleComboBox.Name = "roleComboBox";
             this.roleComboBox.Size = new System.Drawing.Size(121, 21);
             this.roleComboBox.TabIndex = 14;
+            this.roleComboBox.SelectedIndexChanged += new System.EventHandler(this.roleComboBox_SelectedIndexChanged);
             // 
             // emailTextBox
             // 
@@ -220,21 +230,6 @@
             // utilisateurBindingSource
             // 
             this.utilisateurBindingSource.DataSource = typeof(AP_1_GSB.Data.Models.Utilisateur);
-            // 
-            // btnQuitter
-            // 
-            this.btnQuitter.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnQuitter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnQuitter.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold);
-            this.btnQuitter.ForeColor = System.Drawing.Color.White;
-            this.btnQuitter.Image = global::AP_1_GSB.Properties.Resources.icons8_fermer_la_fenêtre_50;
-            this.btnQuitter.Location = new System.Drawing.Point(480, 13);
-            this.btnQuitter.Margin = new System.Windows.Forms.Padding(2);
-            this.btnQuitter.Name = "btnQuitter";
-            this.btnQuitter.Size = new System.Drawing.Size(28, 33);
-            this.btnQuitter.TabIndex = 13;
-            this.btnQuitter.UseVisualStyleBackColor = true;
-            this.btnQuitter.Click += new System.EventHandler(this.BtnQuitter_Click);
             // 
             // CreerModifierUtilisateur
             // 
@@ -261,8 +256,8 @@
             this.Text = "CreerModifierUtilisateur";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.utilisateurBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fichesFraisBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.utilisateurBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

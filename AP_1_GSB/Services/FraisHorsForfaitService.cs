@@ -14,6 +14,8 @@ namespace AP_1_GSB.Services
 {
     internal class FraisHorsForfaitService
     {
+
+        //Supression d'un frais hors forfait en base
         public static bool SupprimerFraisHorsForfait(FraisHorsForfait frais)
         {
             int IdFrais = frais.IdFraisHorsForfait;
@@ -51,7 +53,7 @@ namespace AP_1_GSB.Services
 
             return false;
         }
-
+        //Insertion d'un frais hors forfait en base
         public static bool AjouterFraisHorsForfait(int IdFiche, FraisHorsForfait frais, byte[] FichierBinaire)
         {
 
@@ -101,7 +103,7 @@ namespace AP_1_GSB.Services
 
             return false;
         }
-
+        //Modification d'un frais hors forfait en base
         public static bool ModifierFraisHorsForfait(FraisHorsForfait frais, byte[] FichierBinaire)
         {
 
@@ -150,7 +152,7 @@ namespace AP_1_GSB.Services
 
             return false;
         }
-
+        //Calcul du total hors forfait 
         public static float CalculerTotalHorsForfait(FicheFrais ficheEncours)
         {
             float total = 0;
@@ -161,7 +163,7 @@ namespace AP_1_GSB.Services
             }
             return total;
         }
-
+        //Changement de l'état d'un frais hors forfait
         public static void ChangerEtatHorsForfait(int idFrais, string etat)
         {
             Data.SqlConnection.ConnexionSql();
@@ -187,6 +189,8 @@ namespace AP_1_GSB.Services
                 Data.SqlConnection.DeconnexionSql();
             }
         }
+
+        //Permet l'écriture correcte de l'état d'un frais dans l'application 
         public static string EcrireEtatFraiHorsForfait(FraisHorsForfait frais)
         {
             string etat = "";
@@ -205,21 +209,5 @@ namespace AP_1_GSB.Services
             return etat;
         }
 
-        public static Image AfficherJustificatif(byte[] blob)
-        {
-            if (blob != null)
-            {
-                using (MemoryStream ms = new MemoryStream(blob))
-                {
-                    Image image = Image.FromStream(ms);
-                    return image;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Aucun justificatif n'est disponible pour ce frais", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return null;
-            }
-        }
     }
 }

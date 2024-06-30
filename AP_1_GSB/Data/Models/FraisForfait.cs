@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace AP_1_GSB.Data.Models
 {
+    //Attributs de la classe FraisForfait et ses annotations qui définissent les règles de validation dans le forme dont le FraisForfait est le DataSource
     public class FraisForfait
     {
         public int IdFraisForfait { get; set; }

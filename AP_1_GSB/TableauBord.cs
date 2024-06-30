@@ -20,10 +20,9 @@ using System.Runtime.InteropServices;
 
 namespace AP_1_GSB
 { 
-    //test
     public partial class TableauBord : Form
     {
-        Login loginForm;
+        readonly Login loginForm;
         Utilisateur utilisateur;
         FicheFraisDuMois ficheFraisDuMois;
         FicheFrais ficheEnCours;
@@ -32,8 +31,6 @@ namespace AP_1_GSB
         InterfacePrincipaleComptable affichageComptable;
         AffichageHistorique affichageHistorique = null;
         CreerModifierNoteFrais creerModifierNoteFrais = null;
-        AjouterModifierTypeFraisForfait ajouterModifierTypeFraisForfait = null;
-        CreerModifierUtilisateur creerModifierUtilisateur = null;
         InterfacePrincipaleAdmin interfaceAdmin = null;
         AfficherJustificatif affichageJustificatif = null;
 
@@ -43,6 +40,7 @@ namespace AP_1_GSB
             this.loginForm = loginForm;
             InitializeComponent();
 
+            //Affiche l'interface en fonction du profil 
             switch (utilisateur.Role)
             {
                 case UtilisateurRole.Visiteur:
@@ -61,7 +59,7 @@ namespace AP_1_GSB
 
         #region General
 
-
+        //Ouvre le formulaire pour afficher le justificatif en fonction du type de frais
         private void AfficherJustificatif()
         {
             if (ficheFraisDuMois.dataGridViewForfait.SelectedRows.Count > 0)
@@ -128,6 +126,7 @@ namespace AP_1_GSB
 
         #region Visiteur
 
+        //Permet de définir la période de la fiche en fonction de la date actuelle
         private void RecupererDatesFiche()
         {
             DateTime now = DateTime.Now;
@@ -164,29 +163,32 @@ namespace AP_1_GSB
             LblPrenom.Text = "" + utilisateur.Prenom;
             LblProfilUtilisateur.Text = "Profil : " + utilisateur.Role.ToString();
 
+            //Passe l'état des fiche en Attente pour les fiches dont la période est finie 
+            //et sur lesquelles le comptable n'a pas encore effectué d'action 
             utilisateur = Services.FicheFraisService.RecupererFichesFrais(utilisateur);
             foreach (FicheFrais fiche in utilisateur.FichesFrais)
             {
                 DateTime dateFin = new DateTime(fiche.Date.Year, fiche.Date.AddMonths(1).Month, 10);
                 if (dateFin < DateTime.Now && fiche.Etat == EtatFicheFrais.EnCours)
                 {
-                    fiche.Etat = EtatFicheFrais.HorsDelai;
+                    fiche.Etat = EtatFicheFrais.Attente;
                     FicheFraisService.ChangerEtatFiche(fiche, 1);
                 }
             }
 
-
+            //Récupère la fiche du mois en cours
             ficheEnCours = null;
             RecupererDatesFiche();
             ficheEnCours = Services.FicheFraisService.RecupererDerniereFiche(utilisateur, DateDebut, dateFin);
             utilisateur = Services.FicheFraisService.RecupererNotesForfait(utilisateur, ficheEnCours);
             utilisateur = Services.FicheFraisService.RecupererNotesHorsForfait(utilisateur, ficheEnCours);
 
+            //Ouvre l'interface utilisateur 
             string version = "utilisateur";
-
             ficheFraisDuMois = new FicheFraisDuMois(utilisateur, ficheEnCours, dateFin, version);
-            ficheFraisDuMois.ListesVide += () => BtnSupprimerNoteVisiteur.Enabled = false;
-            ficheFraisDuMois.ListesVide += () => BtnModifierNoteVisiteur.Enabled = false;
+            ficheFraisDuMois.DataGridsVides += () => BtnSupprimerNoteVisiteur.Enabled = false;
+            ficheFraisDuMois.DataGridsVides += () => BtnModifierNoteVisiteur.Enabled = false;
+            ficheFraisDuMois.DataGridsVides += () => BtnAfficherJustificatifVisiteur.Enabled = false;
             ficheFraisDuMois.VerifierDataGridsVides();
             ficheFraisDuMois.TopLevel = false;
             PanelAffichage.Controls.Add(ficheFraisDuMois);
@@ -194,10 +196,11 @@ namespace AP_1_GSB
             ficheFraisDuMois.Dock = DockStyle.Fill;
             ficheFraisDuMois.Show();
         }
+
+        //Action au clique des différents boutons de l'interface utilisateur
         public void BtnAjouterNoteFrais_Click(object sender, EventArgs e)
         {
-            string VersionPopUp = "creer";
-            AfficherPopUpCreationModification(VersionPopUp);
+            AfficherPopUpCreationModification("creer");
         }
         public void BtnSupprimerNote_Click(object sender, EventArgs e)
         {
@@ -205,7 +208,7 @@ namespace AP_1_GSB
 
         }
 
-        private void BtnModifier_Click(object sender, EventArgs e)
+        private void BtnModifierNoteVisiteur_Click(object sender, EventArgs e)
         {
             if (ficheFraisDuMois.dataGridViewForfait.SelectedRows.Count > 0)
             {
@@ -216,17 +219,20 @@ namespace AP_1_GSB
 
             else if (ficheFraisDuMois.dataGridViewHorsForfait.SelectedRows.Count > 0)
             {
-                string versionPopUp = "modifierHorsForfait";
+                
                 int idHorsForfait = int.Parse(ficheFraisDuMois.dataGridViewHorsForfait.SelectedRows[0].Cells[5].Value.ToString());
                 FraisHorsForfait fraisHorsForfait = ficheEnCours.FraisHorsForfaits.FirstOrDefault(item => item.IdFraisHorsForfait == idHorsForfait);
 
-                AfficherPopUpCreationModification(versionPopUp, fraisHorsForfait);
+                AfficherPopUpCreationModification("modifierHorsForfait", fraisHorsForfait);
             }
             else
             {
                 MessageBox.Show("Veuillez sélectionner un frais à modifier.", "Aucune sélection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        //Méthode surchargée pour prendre en compte les différentes versions de la pop up : Création ou modification 
+        // et les différents types de frais à modifier : forfait ou hors forfait
         private void AfficherPopUpCreationModification(string versionPopUp)
         {
             if (creerModifierNoteFrais == null || creerModifierNoteFrais.IsDisposed)
@@ -272,19 +278,20 @@ namespace AP_1_GSB
             creerModifierNoteFrais.Show();
         }
 
-        private void BtnAfficherJustificatifUtilisateur_Click(object sender, EventArgs e)
+        private void BtnAfficherJustificatifVisiteur_Click(object sender, EventArgs e)
         {
             AfficherJustificatif();
         }
+
+        //Affichage de l'historique du visiteur
         private void BtnHistorique_Click(object sender, EventArgs e)
         {
-
             GriserBouton(false, false, false, false);
 
             if (affichageHistorique == null)
             {
                 affichageHistorique = new AffichageHistorique(utilisateur, ficheEnCours);
-                affichageHistorique.degriserBouton += () => GriserBouton(true, true, true, true);
+                affichageHistorique.DegriserBouton += () => GriserBouton(true, true, true, true);
                 affichageHistorique.StartPosition = FormStartPosition.Manual;
                 affichageHistorique.TopLevel = false;
                 PanelAffichage.Controls.Add(affichageHistorique);
@@ -295,16 +302,16 @@ namespace AP_1_GSB
             affichageHistorique.Show();
         }
 
-
+        //Méthode pour griser et dégriser les boutons en fonction du besoin
         private void GriserBouton(bool btnAJout, bool btnSupprimer, bool btnModif, bool btnJustif)
         {
             BtnAjouterNoteFraisVisiteur.Enabled = btnAJout;
             BtnSupprimerNoteVisiteur.Enabled = btnSupprimer;
             BtnModifierNoteVisiteur.Enabled = btnModif;
-            BtnAfficherJustificatifUtilisateur.Enabled = btnJustif;
+            BtnAfficherJustificatifVisiteur.Enabled = btnJustif;
         }
 
-        private void BtnRetourLoginUtilisateur_Click(object sender, EventArgs e)
+        private void BtnRetourLoginVisiteur_Click(object sender, EventArgs e)
         {
             RetourLogin();
         }
@@ -312,6 +319,8 @@ namespace AP_1_GSB
 
 
         #region Comptable 
+        
+        //Affichage et mise en forme de l'interface comptable 
         private void AfficherInterfaceComptable()
         {
             panelMenu.Controls.Add(PanelUtilisateur);
@@ -331,7 +340,7 @@ namespace AP_1_GSB
             LblPrenom.Text = "" + utilisateur.Prenom;
             LblProfilUtilisateur.Text = "Profil : " + utilisateur.Role.ToString();
 
-            btnRefusFrais.Enabled = false;
+            BtnRefusFrais.Enabled = false;
             btnAccepterFrais.Enabled = false;
             BtnAfficherJustificatifComptable.Enabled = false;
 
@@ -342,8 +351,8 @@ namespace AP_1_GSB
             affichageComptable.Dock = DockStyle.Fill;
             affichageComptable.Show();
         }
-
-        private void BtnAfficherFichesEmplye_Click(object sender, EventArgs e)
+        //Action au clique des différents boutons de l'interface comptable
+        private void BtnAfficherFicheSelectionnee_Click(object sender, EventArgs e)
         {
            (ficheEnCours, utilisateur) = affichageComptable.SelectionnerFiche();
             DateTime dtFin = FicheFraisService.DateFin(ficheEnCours);
@@ -352,19 +361,19 @@ namespace AP_1_GSB
             {
 
                 string version = "comptable";
-                btnRefusFrais.Enabled = true;
+                BtnRefusFrais.Enabled = true;
                 btnAccepterFrais.Enabled = true;
                 BtnAfficherJustificatifComptable.Enabled = true;
-                BtnAfficheFichesEmploye.Enabled = false;
+                BtnAfficherFicheSelectionnee.Enabled = false;
                 ficheFraisDuMois = new FicheFraisDuMois(utilisateur, ficheEnCours, dtFin, version);
-                ficheFraisDuMois.ListesVide += () => btnRefusFrais.Enabled = false;
-                ficheFraisDuMois.ListesVide += () => btnAccepterFrais.Enabled = false;
-                ficheFraisDuMois.ListesVide += () => BtnAfficherJustificatifComptable.Enabled = false;
+                ficheFraisDuMois.DataGridsVides += () => BtnRefusFrais.Enabled = false;
+                ficheFraisDuMois.DataGridsVides += () => btnAccepterFrais.Enabled = false;
+                ficheFraisDuMois.DataGridsVides += () => BtnAfficherJustificatifComptable.Enabled = false;
                 ficheFraisDuMois.VerifierDataGridsVides();
-                ficheFraisDuMois.GriserBouton += () => btnRefusFrais.Enabled = false;
+                ficheFraisDuMois.GriserBouton += () => BtnRefusFrais.Enabled = false;
                 ficheFraisDuMois.GriserBouton += () => btnAccepterFrais.Enabled = false;
                 ficheFraisDuMois.GriserBouton += () => BtnAfficherJustificatifComptable.Enabled = false;
-                ficheFraisDuMois.GriserBouton += () => BtnAfficheFichesEmploye.Enabled = true;
+                ficheFraisDuMois.GriserBouton += () => BtnAfficherFicheSelectionnee.Enabled = true;
                 ficheFraisDuMois.RetourChoixVisiteur += affichageComptable.MettreAJourDataGridFiche;
                 ficheFraisDuMois.TopLevel = false;
                 PanelAffichage.Controls.Add(ficheFraisDuMois);
@@ -374,11 +383,11 @@ namespace AP_1_GSB
                 ficheFraisDuMois.Show();
             }
         }
-        private void btnRefusFrais_Click(object sender, EventArgs e)
+        private void BtnRefusFrais_Click(object sender, EventArgs e)
         {
             ficheFraisDuMois.RefuserFrais();
         }
-        private void btnAccepterFrais_Click(object sender, EventArgs e)
+        private void BtnAccepterFrais_Click(object sender, EventArgs e)
         {
             ficheFraisDuMois.AccepterFrais();
         }
@@ -395,6 +404,7 @@ namespace AP_1_GSB
 
         #region Administrateur
 
+        //Affichage et mise en forme de l'interface administrateur
         private void AfficherInterfaceAdministrateur()
         {
 
@@ -427,40 +437,17 @@ namespace AP_1_GSB
             interfaceAdmin.Dock = DockStyle.Fill;
             interfaceAdmin.Show();
         }
-        private void btnAjouterTypeFrais_Click(object sender, EventArgs e)
-        {
-            string version = "ajouter";
 
-            if (ajouterModifierTypeFraisForfait == null || ajouterModifierTypeFraisForfait.IsDisposed)
-            {
-                ajouterModifierTypeFraisForfait = new AjouterModifierTypeFraisForfait(version);
-                ajouterModifierTypeFraisForfait.StartPosition = FormStartPosition.Manual;
-                ajouterModifierTypeFraisForfait.TypeFraisForfaitEvenement += interfaceAdmin.MettreAJourDataGrids;
-                ajouterModifierTypeFraisForfait.Location = new System.Drawing.Point(this.Location.X + 400, this.Location.Y + 250);
-                ajouterModifierTypeFraisForfait.TopLevel = true;
-            }
-            ajouterModifierTypeFraisForfait.Show();
-        }
-        private void btnModifierTypeFrais_Click(object sender, EventArgs e)
+        //Action au clique des différents boutons de l'interface administrateur
+        private void BtnAjouterTypeFrais_Click(object sender, EventArgs e)
         {
-            string version = "modfier";
+            interfaceAdmin.AjouterTypeFrais();
+        }
+        private void BtnModifierTypeFrais_Click(object sender, EventArgs e)
+        {
             if (interfaceAdmin.dataGridTypeFrais.SelectedRows.Count > 0)
             {
-                List<TypeFraisForfait> TypesFraisForfait = new List<TypeFraisForfait>();
-                TypesFraisForfait = Services.TypeFraisForfaitService.RecupererTypeFraisForfait();
-                string test = interfaceAdmin.dataGridTypeFrais.SelectedRows[0].Cells[0].Value.ToString();
-                int idTypFrais = int.Parse(interfaceAdmin.dataGridTypeFrais.SelectedRows[0].Cells[2].Value.ToString());
-                TypeFraisForfait typeFraisForfait = TypesFraisForfait.FirstOrDefault(frais => frais.IdFraisForfait == idTypFrais);
-
-                if (ajouterModifierTypeFraisForfait == null || ajouterModifierTypeFraisForfait.IsDisposed)
-                {
-                    ajouterModifierTypeFraisForfait = new AjouterModifierTypeFraisForfait(version, typeFraisForfait);
-                    ajouterModifierTypeFraisForfait.StartPosition = FormStartPosition.Manual;
-                    ajouterModifierTypeFraisForfait.TypeFraisForfaitEvenement += interfaceAdmin.MettreAJourDataGrids;
-                    ajouterModifierTypeFraisForfait.Location = new System.Drawing.Point(this.Location.X + 400, this.Location.Y + 250);
-                    ajouterModifierTypeFraisForfait.TopLevel = true;
-                }
-                ajouterModifierTypeFraisForfait.Show();
+                 interfaceAdmin.ModifierTypeFrais();
             }
             else
             {
@@ -468,39 +455,15 @@ namespace AP_1_GSB
                 return;
             }
         }
-        private void btnAjoutUtilisateur_Click(object sender, EventArgs e)
+        private void BtnAjoutUtilisateur_Click(object sender, EventArgs e)
         {
-            string version = "ajouter";
-
-            if (creerModifierUtilisateur == null || creerModifierUtilisateur.IsDisposed)
-            {
-                creerModifierUtilisateur = new CreerModifierUtilisateur(version);
-                creerModifierUtilisateur.StartPosition = FormStartPosition.Manual;
-                creerModifierUtilisateur.UtilisateurEvenement += interfaceAdmin.MettreAJourDataGrids;
-                creerModifierUtilisateur.Location = new System.Drawing.Point(this.Location.X + 400, this.Location.Y + 250);
-                creerModifierUtilisateur.TopLevel = true;
-            }
-            creerModifierUtilisateur.Show();
+            interfaceAdmin.AjouterUtilisateur();
         }
-        private void btnModifierUtilisateur_Click(object sender, EventArgs e)
+        private void BtnModifierUtilisateur_Click(object sender, EventArgs e)
         {
-            string version = "modifier";
             if (interfaceAdmin.dataGridUtilisateurs.SelectedRows.Count > 0)
             {
-                List<Utilisateur> utilisateurs = new List<Utilisateur>();
-                utilisateurs = Services.UtilisateurService.RecupererUtilisateurs();
-                int idUtilisateur = int.Parse(interfaceAdmin.dataGridUtilisateurs.SelectedRows[0].Cells[4].Value.ToString());
-                Utilisateur utilisateur = utilisateurs.FirstOrDefault(item => item.IdUtilisateur == idUtilisateur);
-
-                if (creerModifierUtilisateur == null || creerModifierUtilisateur.IsDisposed)
-                {
-                    creerModifierUtilisateur = new CreerModifierUtilisateur(version, utilisateur);
-                    creerModifierUtilisateur.StartPosition = FormStartPosition.Manual;
-                    creerModifierUtilisateur.UtilisateurEvenement += interfaceAdmin.MettreAJourDataGrids;
-                    creerModifierUtilisateur.Location = new System.Drawing.Point(this.Location.X + 400, this.Location.Y + 250);
-                    creerModifierUtilisateur.TopLevel = true;
-                }
-                creerModifierUtilisateur.Show();
+                interfaceAdmin.ModifierUtilisateur();
             }
             else
             {
@@ -509,28 +472,11 @@ namespace AP_1_GSB
             }
         }
 
-        private void btnSupprimerUtilisateur_Click(object sender, EventArgs e)
+        private void BtnSupprimerUtilisateur_Click(object sender, EventArgs e)
         {
             if (interfaceAdmin.dataGridUtilisateurs.SelectedRows.Count > 0)
             {
-                List<Utilisateur> utilisateurs = new List<Utilisateur>();
-                utilisateurs = Services.UtilisateurService.RecupererUtilisateurs();
-                int idUtilisateur = int.Parse(interfaceAdmin.dataGridUtilisateurs.SelectedRows[0].Cells[4].Value.ToString());
-                Utilisateur utilisateur = utilisateurs.FirstOrDefault(item => item.IdUtilisateur == idUtilisateur);
-
-                DialogResult dialogResult = MessageBox.Show("Voulez-vous vraiment supprimer cet utilisateur ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    if (Services.UtilisateurService.SupprimerUtilisateur(utilisateur))
-                    {
-                        MessageBox.Show("Utilisateur supprimé avec succès", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        interfaceAdmin.MettreAJourDataGrids();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Erreur lors de la suppression de l'utilisateur", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
+                interfaceAdmin.SupprimerUtilisateur();
             }
             else
             {
@@ -547,6 +493,7 @@ namespace AP_1_GSB
 
 
         #region Design 
+        // Met en forme les boutons à leur état initial
         private void MiseEnFormeBoutons(Button BoutonSender)
         {
             Control ControlParent = BoutonSender.Parent;
@@ -561,17 +508,17 @@ namespace AP_1_GSB
             }
         }
 
+        //Met en forme le bouton actif lors du passage du curseur
         private void MiseEnFormeBoutonActif(Button BoutonSender)
         {
             MiseEnFormeBoutons(BoutonSender);
             BoutonSender.BackColor = Color.FromArgb(255, 183, 77);
-            BoutonSender.Font = new Font("Century Gothic", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0))); 
+            BoutonSender.Font = new Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0))); 
         }
 
         private void Btn_EntrerCurseur(object sender, EventArgs e)
         {
-            Button BoutonSender = sender as Button;
-            if (BoutonSender != null)
+            if (sender is Button BoutonSender)
             {
                 MiseEnFormeBoutonActif(BoutonSender);
             }
@@ -579,13 +526,13 @@ namespace AP_1_GSB
 
         private void Btn_SortirCurseur(object sender, EventArgs e)
         {
-            Button BoutonSender = sender as Button;
-            if (BoutonSender != null)
+            if (sender is Button BoutonSender)
             {
-                MiseEnFormeBoutons(BoutonSender);
+                MiseEnFormeBoutonActif(BoutonSender);
             }
         }
 
+        //Assigne les méthodes précédentes aux évenement entrer et sortie du curseur sur l'élément pour chacun des boutons du panel
         private void AssignerEvenementBouton()
         {
 
@@ -614,12 +561,15 @@ namespace AP_1_GSB
                 }
             }
         }
+
+        //Ce code permet de déplacer la fenêtre de l'application en cliquant et en glissant le panneau d'en-tête.
+        //Appels direct à l'API windows pour gérer les actions de la souris et déplacer la fenêtre
         [DllImport("user32.dll", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
 
         [DllImport("user32.dll", EntryPoint = "SendMessage")]
         private extern static void SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
-        private void panelEnTete_MouseDown(object sender, MouseEventArgs e)
+        private void PanelEnTete_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);

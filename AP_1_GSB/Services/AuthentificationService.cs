@@ -13,6 +13,7 @@ namespace AP_1_GSB.Services
 {
     internal class AuthentificationService
     {
+        //Vérifiaction en base de l'identifiant et du mot de passe, création de l'objet utilisateur 
         public static Utilisateur VerificationUtilisateur(string utilisateur, string mdp)
         {
             Data.SqlConnection.ConnexionSql();

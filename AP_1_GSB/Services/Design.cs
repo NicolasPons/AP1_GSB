@@ -10,7 +10,7 @@ namespace AP_1_GSB.Services
 {
     internal class Design
     {
-
+        //Met en forme les boutons à leur état initial
         public void MiseEnFormeBoutons(Button BoutonSender)
         {
             Control ControlParent = BoutonSender.Parent;
@@ -24,7 +24,7 @@ namespace AP_1_GSB.Services
                 }
             }
         }
-
+        //Met en forme le bouton actif lors du hoover
         public void MiseEnFormeBoutonActif(Button BoutonSender)
         {
             MiseEnFormeBoutons(BoutonSender);

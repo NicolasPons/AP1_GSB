@@ -12,6 +12,7 @@ namespace AP_1_GSB.Data
     {
         public static MySqlConnection Connection;
 
+        //Ouvre la connexion SQL 
         public static void ConnexionSql()
         {
             try
@@ -24,7 +25,7 @@ namespace AP_1_GSB.Data
                 MessageBox.Show(e.Message, "La connexion à la base de donnée a échoué"); 
             }
         }
-
+        //Ferme la connexion SQL 
         public static void DeconnexionSql()
         {
             Connection.Close();

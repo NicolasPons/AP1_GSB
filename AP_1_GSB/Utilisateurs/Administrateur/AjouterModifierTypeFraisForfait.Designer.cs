@@ -277,7 +277,7 @@
             this.btnQuitter.TabIndex = 12;
             this.btnQuitter.Text = "X";
             this.btnQuitter.UseVisualStyleBackColor = true;
-            this.btnQuitter.Click += new System.EventHandler(this.btnQuitter_Click);
+            this.btnQuitter.Click += new System.EventHandler(this.BtnQuitter_Click);
             // 
             // btnValider
             // 
@@ -291,7 +291,7 @@
             this.btnValider.TabIndex = 11;
             this.btnValider.Text = "Valider";
             this.btnValider.UseVisualStyleBackColor = false;
-            this.btnValider.Click += new System.EventHandler(this.btnValider_Click);
+            this.btnValider.Click += new System.EventHandler(this.BtnValider_Click);
             // 
             // AjouterModifierTypeFraisForfait
             // 

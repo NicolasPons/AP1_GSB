@@ -33,9 +33,10 @@ namespace AP_1_GSB.Administrateur
             this.typeFraisForfaitAModifier = typeFraisForfaitAModifier;
             this.version = version;
             typeFraisForfaitBindingSource.DataSource = typeFraisForfaitAModifier;
-            ChargerComposants(typeFraisForfaitAModifier);
+            ChargerComposants();
         }
 
+        //applique le design sur les boutons
         private void MiseEnFormeBtn()
         {
             Design design = new Design();
@@ -44,7 +45,8 @@ namespace AP_1_GSB.Administrateur
             design.MiseEnFormeBoutons(btnValider);
         }
 
-        private void ChargerComposants(TypeFraisForfait type)
+        //Charge le combobow en se basant sur le data source : typeFraisForfaitAModifier
+        private void ChargerComposants()
         {
             nomTextBox.DataBindings.Clear();
             montantNumericUpDown.DataBindings.Clear();
@@ -52,7 +54,10 @@ namespace AP_1_GSB.Administrateur
             nomTextBox.DataBindings.Add("Text", typeFraisForfaitBindingSource, "Nom", true, DataSourceUpdateMode.OnPropertyChanged);
             montantNumericUpDown.DataBindings.Add("Value", typeFraisForfaitBindingSource, "Montant", true, DataSourceUpdateMode.OnPropertyChanged);
         }
-        private void btnValider_Click(object sender, EventArgs e)
+
+        //Méthode de validation de la saisie utilisateur et renvoie un message d'erreur en cas de saisie incorecte
+        //Sinon création ou modification d'un type de frais
+        private void BtnValider_Click(object sender, EventArgs e)
         {
             if (version == "ajouter")
             {
@@ -108,7 +113,7 @@ namespace AP_1_GSB.Administrateur
             }
         }
 
-        private void btnQuitter_Click(object sender, EventArgs e)
+        private void BtnQuitter_Click(object sender, EventArgs e)
         {
             this.Close();
         }

@@ -168,7 +168,6 @@
             this.DataGridTypeFrais.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DataGridTypeFrais.Size = new System.Drawing.Size(268, 185);
             this.DataGridTypeFrais.TabIndex = 23;
-            this.DataGridTypeFrais.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridTypeFrais_CellContentClick);
             // 
             // TypeFrais
             // 

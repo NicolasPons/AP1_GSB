@@ -369,7 +369,7 @@
     <None Include="Resources\icons8-utilisateur-50.png" />
     <None Include="Resources\icons8-croix-251.png" />
     <None Include="Resources\delete-garbage-office-svgrepo-com.png" />
-    <Content Include="BDD\gsb_ap1%281%29.sql" />
+    <Content Include="BDD\gsb_ap1.sql" />
     <Content Include="Resources\gsbtransparentIcon.ico" />
     <None Include="Resources\icons8-document-252.png" />
     <None Include="Resources\icons8-connexion-25.png" />
