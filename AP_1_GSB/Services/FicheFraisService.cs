@@ -30,7 +30,7 @@ namespace AP_1_GSB.Services
         public static FicheFrais RecupererDerniereFiche(Utilisateur utilisateur, DateTime dateDebut, DateTime datetFin)
         {
             FicheFrais ficheEnCours = null;
-  
+
 
             utilisateur.FichesFrais.ForEach
                 (
@@ -683,7 +683,7 @@ namespace AP_1_GSB.Services
                     .SetTextAlignment(TextAlignment.CENTER)
                     .SetFontSize(14)
                     .SetBold());
-                Table fraisForfaitTable = new Table(UnitValue.CreatePercentArray(new float[] { 1, 1, 1, 1, 1})).UseAllAvailableWidth();
+                Table fraisForfaitTable = new Table(UnitValue.CreatePercentArray(new float[] { 1, 1, 1, 1, 1 })).UseAllAvailableWidth();
                 fraisForfaitTable.AddHeaderCell(CreerEnTete("Type"));
                 fraisForfaitTable.AddHeaderCell(CreerEnTete("Quantité"));
                 fraisForfaitTable.AddHeaderCell(CreerEnTete("Montant"));
@@ -753,7 +753,7 @@ namespace AP_1_GSB.Services
                 string DateAffichage = ("Du " + fiche.Date.ToString("dd MMMM yyyy") + " au " + dateFin.ToString("dd MMMM yyyy"));
                 float montant = FicheFraisService.CalculerTotalFiche(fiche);
                 string MontantEuros = "" + montant.ToString("F2") + " €";
-               
+
                 string[] row = new string[]
                 {
                     DateAffichage,

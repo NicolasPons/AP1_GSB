@@ -88,7 +88,7 @@ namespace AP_1_GSB.Administrateur
                 creerModifierUtilisateur = new CreerModifierUtilisateur("modifier", utilisateur);
                 creerModifierUtilisateur.StartPosition = FormStartPosition.Manual;
                 creerModifierUtilisateur.UtilisateurEvenement += MettreAJourDataGrids;
-                creerModifierUtilisateur.Location = new System.Drawing.Point(this.Location.X - 1100, this.Location.Y + 350);
+                //creerModifierUtilisateur.Location = new System.Drawing.Point(this.Location.X - 1100, this.Location.Y + 350);
                 creerModifierUtilisateur.TopLevel = true;
             }
             creerModifierUtilisateur.Show();

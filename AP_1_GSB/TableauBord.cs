@@ -41,6 +41,7 @@ namespace AP_1_GSB
             InitializeComponent();
 
             //Affiche l'interface en fonction du profil 
+            //Test Commit 
             switch (utilisateur.Role)
             {
                 case UtilisateurRole.Visiteur:
