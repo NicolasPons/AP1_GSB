@@ -7,13 +7,13 @@ Prérequis
 
 Avant d'installer et d'utiliser l'application, vous devez :
 
-    Installer MariaDB.
+1. Installer MariaDB.
 
-    Configurer MariaDB pour écouter sur le port 3307.
+2. Configurer MariaDB pour écouter sur le port 3307.
 
-    Créer la base de données GSB1.
+3. Créer la base de données GSB1.
 
-    Importer le script SQL fourni (dump.sql).
+4. Importer le script SQL fourni (dump.sql).
 
 Installation
 1. Installer MariaDB
