@@ -1,4 +1,4 @@
-AP1 - Gestionnaire de Fiches de Frais
+**AP1 - Gestionnaire de Fiches de Frais**
 
 Bienvenue sur le dépôt GitHub de AP1 - Gestionnaire de Fiches de Frais !
 
