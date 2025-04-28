@@ -32,7 +32,8 @@ Avant d'installer et d'utiliser l'application, vous devez :
 - Créez une base de données appelée `GSB1` :
 
 ```sql
-CREATE DATABASE GSB1;
+CREATE DATABASE GSB1; 
+```
 - Importez le fichier `dump.sql` fourni dans ce dépôt pour créer les tables nécessaires.
 
 ### 3. Installer l'application
