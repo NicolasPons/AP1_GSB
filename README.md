@@ -11,9 +11,10 @@ Ce projet est une application de gestion des fiches de frais, développée dans 
 Avant d'installer et d'utiliser l'application, vous devez :
 
 1. Installer MariaDB.
-2. Configurer MariaDB pour écouter sur le **port 3307**.
-3. Créer la base de données **GSB1**.
-4. Importer le script SQL fourni (`dump.sql`).
+2. Créer l'utilisateur : 'root' avec le mot de passe : root 
+3. Configurer MariaDB pour écouter sur le **port 3307**.
+4. Créer la base de données **gsb1**.
+5. Importer le script SQL fourni dans le dossier BDD du repo git
 
 ---
 
