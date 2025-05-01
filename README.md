@@ -48,5 +48,5 @@ CREATE DATABASE gsb1;
 
 ## Auteur
 
-- [Ton Prénom Nom]  
+- Nicolas PONS
 - BTS SIO - Atelier de professionnalisation 1
