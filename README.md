@@ -40,7 +40,7 @@ CREATE DATABASE gsb1;
 
 ### 3. Installer l'application
 
-- Téléchargez l'archive contenant le fichier `setup.exe` depuis ce dépôt GitHub.
+- Téléchargez l'archive 'installer' contenant le fichier `setup.exe` depuis ce dépôt GitHub.
 - Exécutez `setup.exe` pour installer l'application sur votre machine.
 - Suivez les instructions de l'assistant d'installation.
 
