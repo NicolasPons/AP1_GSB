@@ -14,6 +14,23 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,6 +50,18 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>E0370D25EE04694D88635A4B133F81E83B7BB65D</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>AP_1_GSB_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
@@ -199,17 +228,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Utilisateurs\Administrateur\AjouterModifierTypeFraisForfait.cs">
+    <Compile Include="Utilisateurs\Administrateur\AjouterTypeFraisForfait.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Utilisateurs\Administrateur\AjouterModifierTypeFraisForfait.Designer.cs">
-      <DependentUpon>AjouterModifierTypeFraisForfait.cs</DependentUpon>
+    <Compile Include="Utilisateurs\Administrateur\AjouterTypeFraisForfait.Designer.cs">
+      <DependentUpon>AjouterTypeFraisForfait.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utilisateurs\Administrateur\CreerModifierUtilisateur.cs">
+    <Compile Include="Utilisateurs\Administrateur\CreerUtilisateur.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Utilisateurs\Administrateur\CreerModifierUtilisateur.Designer.cs">
-      <DependentUpon>CreerModifierUtilisateur.cs</DependentUpon>
+    <Compile Include="Utilisateurs\Administrateur\CreerUtilisateur.Designer.cs">
+      <DependentUpon>CreerUtilisateur.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilisateurs\Administrateur\InterfacePrincipaleAdmin.cs">
       <SubType>Form</SubType>
@@ -276,11 +305,11 @@
     <Compile Include="Utilisateurs\FicheFraisDuMois.Designer.cs">
       <DependentUpon>FicheFraisDuMois.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Utilisateurs\Administrateur\AjouterModifierTypeFraisForfait.resx">
-      <DependentUpon>AjouterModifierTypeFraisForfait.cs</DependentUpon>
+    <EmbeddedResource Include="Utilisateurs\Administrateur\AjouterTypeFraisForfait.resx">
+      <DependentUpon>AjouterTypeFraisForfait.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Utilisateurs\Administrateur\CreerModifierUtilisateur.resx">
-      <DependentUpon>CreerModifierUtilisateur.cs</DependentUpon>
+    <EmbeddedResource Include="Utilisateurs\Administrateur\CreerUtilisateur.resx">
+      <DependentUpon>CreerUtilisateur.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilisateurs\Administrateur\InterfacePrincipaleAdmin.resx">
       <DependentUpon>InterfacePrincipaleAdmin.cs</DependentUpon>
@@ -316,6 +345,7 @@
     <EmbeddedResource Include="Utilisateurs\FicheFraisDuMois.resx">
       <DependentUpon>FicheFraisDuMois.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="AP_1_GSB_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\AP_1_GSB.Data.Models.FraisForfait.datasource" />
     <None Include="Properties\DataSources\AP_1_GSB.Data.Models.FraisHorsForfait.datasource" />
@@ -384,8 +414,18 @@
     <None Include="Resources\icons8-croix-25.png" />
     <None Include="Resources\icons8-document-25.png" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Interface\" />
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 et x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

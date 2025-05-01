@@ -40,10 +40,7 @@
             this.PictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.panelAdministrateur = new System.Windows.Forms.Panel();
             this.BtnRetourLoginAdministrateur = new System.Windows.Forms.Button();
-            this.btnSupprimerUtilisateur = new System.Windows.Forms.Button();
-            this.btnModifierTypeFrais = new System.Windows.Forms.Button();
             this.btnAjouterTypeFrais = new System.Windows.Forms.Button();
-            this.btnModifierUtilisateur = new System.Windows.Forms.Button();
             this.btnAjoutUtilisateur = new System.Windows.Forms.Button();
             this.PanelAffichage = new System.Windows.Forms.Panel();
             this.PanelUtilisateur = new System.Windows.Forms.Panel();
@@ -90,7 +87,7 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(386, 57);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(123, 19);
+            this.label1.Size = new System.Drawing.Size(116, 17);
             this.label1.TabIndex = 9;
             this.label1.Text = "Le soin des coûts";
             // 
@@ -101,7 +98,7 @@
             this.LblTitre.ForeColor = System.Drawing.Color.White;
             this.LblTitre.Location = new System.Drawing.Point(295, 31);
             this.LblTitre.Name = "LblTitre";
-            this.LblTitre.Size = new System.Drawing.Size(341, 26);
+            this.LblTitre.Size = new System.Drawing.Size(291, 24);
             this.LblTitre.TabIndex = 8;
             this.LblTitre.Text = "Gestion des fiches de Frais - GSB";
             // 
@@ -127,7 +124,7 @@
             this.LblNom.ForeColor = System.Drawing.Color.White;
             this.LblNom.Location = new System.Drawing.Point(71, 9);
             this.LblNom.Name = "LblNom";
-            this.LblNom.Size = new System.Drawing.Size(51, 24);
+            this.LblNom.Size = new System.Drawing.Size(42, 20);
             this.LblNom.TabIndex = 9;
             this.LblNom.Text = "Nom";
             // 
@@ -151,7 +148,7 @@
             this.LblProfilUtilisateur.ForeColor = System.Drawing.Color.White;
             this.LblProfilUtilisateur.Location = new System.Drawing.Point(72, 59);
             this.LblProfilUtilisateur.Name = "LblProfilUtilisateur";
-            this.LblProfilUtilisateur.Size = new System.Drawing.Size(76, 16);
+            this.LblProfilUtilisateur.Size = new System.Drawing.Size(74, 15);
             this.LblProfilUtilisateur.TabIndex = 11;
             this.LblProfilUtilisateur.Text = "Profil : Visiteur";
             // 
@@ -162,7 +159,7 @@
             this.LblPrenom.ForeColor = System.Drawing.Color.White;
             this.LblPrenom.Location = new System.Drawing.Point(71, 33);
             this.LblPrenom.Name = "LblPrenom";
-            this.LblPrenom.Size = new System.Drawing.Size(77, 24);
+            this.LblPrenom.Size = new System.Drawing.Size(64, 20);
             this.LblPrenom.TabIndex = 10;
             this.LblPrenom.Text = "Prenom";
             // 
@@ -179,10 +176,7 @@
             // 
             this.panelAdministrateur.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(61)))));
             this.panelAdministrateur.Controls.Add(this.BtnRetourLoginAdministrateur);
-            this.panelAdministrateur.Controls.Add(this.btnSupprimerUtilisateur);
-            this.panelAdministrateur.Controls.Add(this.btnModifierTypeFrais);
             this.panelAdministrateur.Controls.Add(this.btnAjouterTypeFrais);
-            this.panelAdministrateur.Controls.Add(this.btnModifierUtilisateur);
             this.panelAdministrateur.Controls.Add(this.btnAjoutUtilisateur);
             this.panelAdministrateur.Location = new System.Drawing.Point(17, 5);
             this.panelAdministrateur.Name = "panelAdministrateur";
@@ -210,46 +204,6 @@
             this.BtnRetourLoginAdministrateur.UseVisualStyleBackColor = true;
             this.BtnRetourLoginAdministrateur.Click += new System.EventHandler(this.BtnRetourLoginAdministrateur_Click);
             // 
-            // btnSupprimerUtilisateur
-            // 
-            this.btnSupprimerUtilisateur.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnSupprimerUtilisateur.FlatAppearance.BorderSize = 0;
-            this.btnSupprimerUtilisateur.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSupprimerUtilisateur.Font = new System.Drawing.Font("Century Gothic", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSupprimerUtilisateur.ForeColor = System.Drawing.Color.White;
-            this.btnSupprimerUtilisateur.Image = global::AP_1_GSB.Properties.Resources.icons8_supprimer_25;
-            this.btnSupprimerUtilisateur.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSupprimerUtilisateur.Location = new System.Drawing.Point(0, 288);
-            this.btnSupprimerUtilisateur.Name = "btnSupprimerUtilisateur";
-            this.btnSupprimerUtilisateur.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnSupprimerUtilisateur.Size = new System.Drawing.Size(200, 72);
-            this.btnSupprimerUtilisateur.TabIndex = 4;
-            this.btnSupprimerUtilisateur.Text = " Supprimer un utilisateur";
-            this.btnSupprimerUtilisateur.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSupprimerUtilisateur.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSupprimerUtilisateur.UseVisualStyleBackColor = true;
-            this.btnSupprimerUtilisateur.Click += new System.EventHandler(this.BtnSupprimerUtilisateur_Click);
-            // 
-            // btnModifierTypeFrais
-            // 
-            this.btnModifierTypeFrais.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnModifierTypeFrais.FlatAppearance.BorderSize = 0;
-            this.btnModifierTypeFrais.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnModifierTypeFrais.Font = new System.Drawing.Font("Century Gothic", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModifierTypeFrais.ForeColor = System.Drawing.Color.White;
-            this.btnModifierTypeFrais.Image = global::AP_1_GSB.Properties.Resources.icons8_créer_un_nouveau_25;
-            this.btnModifierTypeFrais.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnModifierTypeFrais.Location = new System.Drawing.Point(0, 216);
-            this.btnModifierTypeFrais.Name = "btnModifierTypeFrais";
-            this.btnModifierTypeFrais.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnModifierTypeFrais.Size = new System.Drawing.Size(200, 72);
-            this.btnModifierTypeFrais.TabIndex = 1;
-            this.btnModifierTypeFrais.Text = "  Modifier un type de frais";
-            this.btnModifierTypeFrais.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnModifierTypeFrais.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnModifierTypeFrais.UseVisualStyleBackColor = true;
-            this.btnModifierTypeFrais.Click += new System.EventHandler(this.BtnModifierTypeFrais_Click);
-            // 
             // btnAjouterTypeFrais
             // 
             this.btnAjouterTypeFrais.Dock = System.Windows.Forms.DockStyle.Top;
@@ -259,7 +213,7 @@
             this.btnAjouterTypeFrais.ForeColor = System.Drawing.Color.White;
             this.btnAjouterTypeFrais.Image = global::AP_1_GSB.Properties.Resources.icons8_ajouter_25;
             this.btnAjouterTypeFrais.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAjouterTypeFrais.Location = new System.Drawing.Point(0, 144);
+            this.btnAjouterTypeFrais.Location = new System.Drawing.Point(0, 72);
             this.btnAjouterTypeFrais.Name = "btnAjouterTypeFrais";
             this.btnAjouterTypeFrais.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnAjouterTypeFrais.Size = new System.Drawing.Size(200, 72);
@@ -269,26 +223,6 @@
             this.btnAjouterTypeFrais.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAjouterTypeFrais.UseVisualStyleBackColor = true;
             this.btnAjouterTypeFrais.Click += new System.EventHandler(this.BtnAjouterTypeFrais_Click);
-            // 
-            // btnModifierUtilisateur
-            // 
-            this.btnModifierUtilisateur.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnModifierUtilisateur.FlatAppearance.BorderSize = 0;
-            this.btnModifierUtilisateur.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnModifierUtilisateur.Font = new System.Drawing.Font("Century Gothic", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModifierUtilisateur.ForeColor = System.Drawing.Color.White;
-            this.btnModifierUtilisateur.Image = global::AP_1_GSB.Properties.Resources.icons8_créer_un_nouveau_25;
-            this.btnModifierUtilisateur.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnModifierUtilisateur.Location = new System.Drawing.Point(0, 72);
-            this.btnModifierUtilisateur.Name = "btnModifierUtilisateur";
-            this.btnModifierUtilisateur.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnModifierUtilisateur.Size = new System.Drawing.Size(200, 72);
-            this.btnModifierUtilisateur.TabIndex = 3;
-            this.btnModifierUtilisateur.Text = "    Modifier un utilisateur";
-            this.btnModifierUtilisateur.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnModifierUtilisateur.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnModifierUtilisateur.UseVisualStyleBackColor = true;
-            this.btnModifierUtilisateur.Click += new System.EventHandler(this.BtnModifierUtilisateur_Click);
             // 
             // btnAjoutUtilisateur
             // 
@@ -621,10 +555,7 @@
         private System.Windows.Forms.Label LblNom;
         private System.Windows.Forms.Panel panelAdministrateur;
         private System.Windows.Forms.Button btnAjouterTypeFrais;
-        private System.Windows.Forms.Button btnSupprimerUtilisateur;
-        private System.Windows.Forms.Button btnModifierUtilisateur;
         private System.Windows.Forms.Button btnAjoutUtilisateur;
-        private System.Windows.Forms.Button btnModifierTypeFrais;
         private System.Windows.Forms.Button BtnAjouterNoteFraisVisiteur;
         private System.Windows.Forms.Button BtnModifierNoteVisiteur;
         private System.Windows.Forms.Button BtnAfficherHistoriqueVisiteur;

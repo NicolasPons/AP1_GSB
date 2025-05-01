@@ -443,46 +443,9 @@ namespace AP_1_GSB
         {
             interfaceAdmin.AjouterTypeFrais();
         }
-        private void BtnModifierTypeFrais_Click(object sender, EventArgs e)
-        {
-            if (interfaceAdmin.dataGridTypeFrais.SelectedRows.Count > 0)
-            {
-                 interfaceAdmin.ModifierTypeFrais();
-            }
-            else
-            {
-                MessageBox.Show("Veuillez sélectionner un type de frais à modifier", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-        }
         private void BtnAjoutUtilisateur_Click(object sender, EventArgs e)
         {
             interfaceAdmin.AjouterUtilisateur();
-        }
-        private void BtnModifierUtilisateur_Click(object sender, EventArgs e)
-        {
-            if (interfaceAdmin.dataGridUtilisateurs.SelectedRows.Count > 0)
-            {
-                interfaceAdmin.ModifierUtilisateur();
-            }
-            else
-            {
-                MessageBox.Show("Veuillez sélectionner un utilisateur à modifier", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-        }
-
-        private void BtnSupprimerUtilisateur_Click(object sender, EventArgs e)
-        {
-            if (interfaceAdmin.dataGridUtilisateurs.SelectedRows.Count > 0)
-            {
-                interfaceAdmin.SupprimerUtilisateur();
-            }
-            else
-            {
-                MessageBox.Show("Veuillez sélectionner un utilisateur à supprimer", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
         }
         private void BtnRetourLoginAdministrateur_Click(object sender, EventArgs e)
         {
