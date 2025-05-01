@@ -29,13 +29,14 @@ Avant d'installer et d'utiliser l'application, vous devez :
 
 ### 2. Configurer la base de données
 
+
 - Connectez-vous à MariaDB (via un client comme HeidiSQL, DBeaver, ou en ligne de commande).
-- Créez une base de données appelée `GSB1` :
+- Créez une base de données appelée `gsb1` :
 
 ```sql
-CREATE DATABASE GSB1; 
+CREATE DATABASE gsb1; 
 ```
-- Importez le fichier `dump.sql` fourni dans ce dépôt pour créer les tables nécessaires.
+- Importez le fichier .sql fourni dans le dossier BDD du dépôt pour créer les tables nécessaires.
 
 ### 3. Installer l'application
 
