@@ -44,6 +44,11 @@ CREATE DATABASE gsb1;
 - Exécutez `setup.exe` pour installer l'application sur votre machine.
 - Suivez les instructions de l'assistant d'installation.
 
+- ### 4. Tester l'application
+
+- Identifiant visiteur : visiteur / mdp : visiteur
+- Identifiant comptable : compta / mdp : compta
+- Identifiant admin : admin / mdp : admin
 ---
 
 ## Auteur
